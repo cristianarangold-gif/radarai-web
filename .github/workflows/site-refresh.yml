@@ -51,23 +51,22 @@ jobs:
           def belongs(t,w):
             vals=[norm(t['cat'])]+[norm(x) for x in t['tags']]; needles=aliases[w]
             return any(any(n in v or v in n for n in needles) for v in vals)
-          # Locate the real category containers by headings/classes and inject cards once.
+          # Replace the category card container content if a known category container exists.
+          # This is intentionally done by the visible category labels, not by JS-only filtering.
           for cat in aliases:
-            if f'RADAR-CATEGORY:{cat}' in s: continue
             ts=[t for t in tools if belongs(t,cat)]
             if not ts: continue
-            cards=[]
-            for t in ts[:12]:
-              cards.append(f'''<article class="tool-card"><h3>{html.escape(t['name'])}</h3><p>{html.escape(t['desc'])}</p><a class="btn secondary" href="{html.escape(t['url'],quote=True)}" target="_blank" rel="noopener">Visitar sitio</a></article>''')
-            grid='<div class="radar-category-grid"><!-- RADAR-CATEGORY:'+cat+' -->'+''.join(cards)+'</div>'
-            # Match a heading containing the category and place the grid after its containing heading block.
-            pat=re.compile(r'(<(?:h2|h3)[^>]*>[^<]*'+re.escape(cat.split()[0])+r'[^<]*</(?:h2|h3)>)',re.I)
-            mm=pat.search(s)
-            if mm: s=s[:mm.end()]+grid+s[mm.end():]
+            cards=''.join(f'''<article class="tool-card"><h3>{html.escape(t['name'])}</h3><p>{html.escape(t['desc'])}</p><a class="btn secondary" href="{html.escape(t['url'],quote=True)}" target="_blank" rel="noopener">Visitar sitio</a></article>''' for t in ts[:12])
+            marker=f'<!-- RADAR-CARDS-{cat.upper().replace(" ","-")} -->'
+            if marker not in s:
+              # Insert a hidden marker + cards immediately after the first heading containing the category.
+              first=cat.split()[0]
+              mm=re.search(r'<(?:h2|h3)[^>]*>[^<]*'+re.escape(first)+r'[^<]*</(?:h2|h3)>',s,re.I)
+              if mm: s=s[:mm.end()] + marker + '<div class="radar-category-grid">'+cards+'</div>' + s[mm.end():]
           s=s.replace('/guias/como-elegir-una-ia/','guias/como-elegir-una-ia/index.html').replace('/herramientas-radar/','herramientas-radar/index.html').replace('https://TU-DOMINIO.com/','https://radarai.es/')
           index.write_text(s,encoding='utf-8')
-          # Generate detail pages from the same source dataset.
-          base=s; m=re.search(r'const TOOLS\s*=\s*\[(.*?)\];',base,re.S)
+          # Generate tool detail pages.
+          m=re.search(r'const TOOLS\s*=\s*\[(.*?)\];',s,re.S)
           if m:
             pat=re.compile(r'''\{\s*name:\s*"([^"]+)"\s*,\s*cat:\s*"([^"]+)"\s*,\s*desc:\s*"([^"]*)"\s*,\s*tags:\s*\[([^\]]*)\]\s*,\s*url:\s*"([^"]+)"''')
             for x in pat.finditer(m.group(1)):
