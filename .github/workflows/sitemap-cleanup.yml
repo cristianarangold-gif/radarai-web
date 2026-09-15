@@ -1,0 +1,55 @@
+name: Clean Radar IA sitemap
+
+on:
+  workflow_run:
+    workflows: ["Build Radar IA public pages"]
+    types: [completed]
+
+permissions:
+  contents: write
+
+jobs:
+  clean:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+      - name: Rebuild sitemap excluding error pages
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from xml.sax.saxutils import escape
+          root=Path('.')
+          urls=[]
+          for p in sorted(root.rglob('*.html')):
+              if '.git' in p.parts or '.github' in p.parts:
+                  continue
+              rel=p.relative_to(root).as_posix()
+              if rel == '404.html':
+                  continue
+              if rel == 'index.html':
+                  url='https://radarai.es/'
+              elif rel.endswith('/index.html'):
+                  url='https://radarai.es/'+rel[:-10].rstrip('/')+'/'
+              else:
+                  url='https://radarai.es/'+rel
+              urls.append(url)
+          urls=sorted(set(urls))
+          xml=['<?xml version="1.0" encoding="UTF-8"?>','<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+          xml += [f'  <url><loc>{escape(u)}</loc></url>' for u in urls]
+          xml += ['</urlset>']
+          (root/'sitemap.xml').write_text('\n'.join(xml)+'\n',encoding='utf-8')
+          PY
+      - name: Commit sitemap if changed
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add sitemap.xml
+          if git diff --cached --quiet; then echo "Sitemap already clean"; exit 0; fi
+          git commit -m "Clean sitemap and exclude 404 [skip ci]"
+          git push origin HEAD:main
