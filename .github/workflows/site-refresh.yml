@@ -2,7 +2,8 @@ name: Build Radar IA public pages
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
   workflow_dispatch:
 
 concurrency:
@@ -19,47 +20,25 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Build public pages
+      - name: Fix catalog renderer
         shell: bash
         run: |
-          python3 <<'PY'
+          python3 - <<'PY'
           from pathlib import Path
-          import re, html
-          root=Path('.')
-          index=root/'index.html'
-          s=index.read_text(encoding='utf-8')
 
-          style='''
-<style id="radar-ia-fixes">
-header nav a{font-size:.86rem}
-a.btn+a.btn,button.btn+a.btn{margin-left:12px}
-.compare-table{width:100%;border-collapse:collapse;text-align:center}
-.compare-table th,.compare-table td{text-align:center;vertical-align:middle;padding:10px}
-.compare-table th:first-child,.compare-table td:first-child{text-align:left}
-.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
-</style>
-'''
-          if 'id="radar-ia-fixes"' not in s:
-              s=s.replace('</head>',style+'</head>',1)
+          path = Path('index.html')
+          s = path.read_text(encoding='utf-8')
 
-          # The catalog is rendered by JavaScript from the TOOLS object already
-          # present in index.html. Do not inject cards into headings: that can
-          # corrupt the HTML/JS. Fix the actual renderer instead.
-          new_render='''function renderCatalog(){
+          start = s.find('function renderCatalog(){')
+          end = s.find('function bindCatalogActions', start)
+          if start < 0 or end < 0:
+              raise SystemExit('No se encontró el renderizador del catálogo')
+
+          new_render = r'''function renderCatalog(){
   const grid=$('#tools-grid'); if(!grid)return;
   const groups=[['ia-general','IA general','🤖'],['escritura','Escritura','✍️'],['imagenes','Imágenes','🎨'],['video','Vídeo','🎬'],['audio','Audio y música','🎵'],['programacion','Programación','💻'],['educacion','Educación','📚'],['marketing','Marketing','📈'],['productividad','Productividad','💼']];
-  const categoryMap={
-    'ia-general':'ia-general','IA general':'ia-general','general':'ia-general',
-    'escritura':'escritura','Escritura':'escritura',
-    'imagenes':'imagenes','Imágenes':'imagenes','imagen':'imagenes',
-    'video':'video','Vídeo':'video','vídeo':'video',
-    'audio':'audio','Audio y música':'audio',
-    'programacion':'programacion','Programación':'programacion','codigo':'programacion','Código':'programacion',
-    'educacion':'educacion','Educación':'educacion',
-    'marketing':'marketing','Marketing':'marketing',
-    'productividad':'productividad','Productividad':'productividad'
-  };
-  const keyFor=(t)=>t.catKey||categoryMap[t.cat]||categoryMap[String(t.cat||'').toLowerCase()]||String(t.cat||'').toLowerCase().normalize('NFD').replace(/[\\u0300-\\u036f]/g,'').replace(/\\s+/g,'-');
+  const aliases={'IA general':'ia-general','ia-general':'ia-general','Escritura':'escritura','escritura':'escritura','Imágenes':'imagenes','imagenes':'imagenes','Vídeo':'video','video':'video','Audio y música':'audio','audio':'audio','Programación':'programacion','programacion':'programacion','Educación':'educacion','educacion':'educacion','Marketing':'marketing','marketing':'marketing','Productividad':'productividad','productividad':'productividad'};
+  const keyFor=(t)=>t.catKey||aliases[t.cat]||String(t.cat||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/\s+/g,'-');
   const cardFor=(id,t)=>`<article class="tool-card" data-category="${keyFor(t)}" data-tool-id="${id}" data-price="${t.price||''}" data-level="${t.level||''}" data-platform="${t.platform||''}" data-language="${t.lang||''}" data-search="${normalize([t.name,t.cat,t.desc,...(t.tags||[])].join(' '))}"><div class="tool-card-top"><div aria-hidden="true" class="tool-logo text-logo">${String(t.name||'?').slice(0,1)}</div><div class="tool-name-wrap"><p class="tool-name">${t.name||''}</p><p class="tool-category">${t.cat||''}</p></div><button aria-label="Guardar en favoritas" class="favorite-btn" data-favorite="${id}" title="Guardar en favoritas" type="button">☆</button></div><p class="tool-desc">${t.desc||''}</p><div class="tool-tags">${(t.tags||[]).slice(0,3).map(x=>`<span class="tool-tag">${x}</span>`).join('')}</div><div class="tool-meta"><span>${t.level||''}</span><span>${t.platform||''}</span><span>${t.lang==='multi'?'Multidioma':t.lang==='es'?'Español':'Inglés'}</span><span class="score-badge">Radar <strong>${radarScore(id)}</strong></span></div><div class="tool-card-bottom"><button aria-pressed="false" class="compare-btn" data-compare="${id}" type="button">Comparar</button><span class="tool-price">${t.price==='gratis'?'Gratis':t.price==='freemium'?'Gratis + opciones de pago':'De pago'}</span><a class="tool-link" href="herramientas/${id}/index.html">Ver ficha completa</a></div></article>`;
   grid.innerHTML=groups.map(([key,label,icon],i)=>{
     const items=Object.entries(TOOLS).filter(([id,t])=>keyFor(t)===key).map(([id,t])=>cardFor(id,t)).join('');
@@ -69,51 +48,39 @@ a.btn+a.btn,button.btn+a.btn{margin-left:12px}
   bindCatalogActions();
 }
 '''
-          pattern=r'function renderCatalog\(\)\{.*?\n\}\nfunction bindCatalogActions'
-          s2,n=re.subn(pattern,new_render+'function bindCatalogActions',s,flags=re.S)
-          if n!=1:
-              raise SystemExit(f'No se pudo reemplazar renderCatalog; coincidencias={n}')
-          s=s2
 
-          # Keep source links absolute/valid and remove any old static card markers
-          # left by earlier builds without touching the catalog's JavaScript.
-          s=re.sub(r'<!-- RADAR-CARDS-[^>]+-->\s*<div class="radar-category-grid">.*?</div>','',s,flags=re.S)
-          s=s.replace('/guias/como-elegir-una-ia/','guias/como-elegir-una-ia/index.html')
-          s=s.replace('/herramientas-radar/','herramientas-radar/index.html')
-          s=s.replace('https://TU-DOMINIO.com/','https://radarai.es/')
-          index.write_text(s,encoding='utf-8')
+          s = s[:start] + new_render + s[end:]
 
-          # Generate tool detail pages from the TOOLS object/array when possible.
-          # Existing detail pages are preserved if the parser cannot read a format.
-          m=re.search(r'const TOOLS\s*=\s*([\\[{].*?);',s,re.S)
-          if m:
-              block=m.group(1)
-              pat=re.compile(r'''["']([^"']+)["']\s*:\s*\{\s*name:\s*["']([^"']+)["']\s*,\s*cat:\s*["']([^"']+)["']\s*,\s*desc:\s*["']([^"']*)["'].*?url:\s*["']([^"']+)["']''')
-              for x in pat.finditer(block):
-                  tool_id,name,cat,desc,url=x.group(1),x.group(2),x.group(3),x.group(4),x.group(5)
-                  p=root/'herramientas'/tool_id/'index.html'; p.parent.mkdir(parents=True,exist_ok=True)
-                  p.write_text(f'''<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{html.escape(name)} | Radar IA</title><meta name="description" content="{html.escape(desc)}"></head><body><main><p><a href="/">Radar IA</a></p><h1>{html.escape(name)}</h1><p>{html.escape(desc)}</p><p><strong>Categoría:</strong> {html.escape(cat)}</p><p><a class="btn" href="{html.escape(url,quote=True)}" target="_blank" rel="noopener">Visitar sitio oficial</a></p><p><a href="/herramientas-radar/index.html">Herramientas gratuitas</a> · <a href="/">Inicio</a></p></main></body></html>''',encoding='utf-8')
+          # Remove any old static-card injection if an earlier build left it behind.
+          while '<!-- RADAR-CARDS-' in s:
+              a = s.find('<!-- RADAR-CARDS-')
+              b = s.find('</div>', a)
+              if b < 0:
+                  break
+              s = s[:a] + s[b+6:]
+
+          path.write_text(s, encoding='utf-8')
+          print('Catálogo de IA corregido')
           PY
-      - name: Validate index HTML/JS
+
+      - name: Validate catalog
         shell: bash
         run: |
           python3 - <<'PY'
           from pathlib import Path
-          import re
-          s=Path('index.html').read_text(encoding='utf-8')
+          s = Path('index.html').read_text(encoding='utf-8')
           assert 'function renderCatalog(){' in s
           assert 'const cardFor=' in s
           assert 'cards[Object.keys(TOOLS).indexOf(id)]' not in s
-          assert 'RADAR-CARDS-' not in s
-          assert 'function bindCatalogActions' in s
-          print('Radar IA catalog renderer validated')
+          print('OK: el catálogo genera cada tarjeta completa')
           PY
-      - name: Commit generated pages
+
+      - name: Commit fix
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add .
+          git add index.html
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m "Fix IA category catalog rendering [skip ci]"
+          git commit -m "Fix IA category cards [skip ci]"
           git push
