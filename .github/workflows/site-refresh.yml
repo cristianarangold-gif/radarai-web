@@ -21,14 +21,18 @@ jobs:
         run: |
           python3 - <<'PY'
           from pathlib import Path
+          import re
           p = Path('index.html')
           s = p.read_text(encoding='utf-8')
-          marker = '/* Radar IA: ocultar únicamente la sección de Guías de Elección */'
-          if marker not in s:
-              block = r'''<style>/* Radar IA: ocultar únicamente la sección de Guías de Elección */.radar-guide-choice-hidden{display:none!important}</style><script>(function(){function removeGuide(){var hs=document.querySelectorAll('h1,h2,h3,h4,p');for(var i=0;i<hs.length;i++){var t=(hs[i].textContent||'').replace(/\s+/g,' ').trim().toLowerCase();if(t==='radar ia · guías de elección'||t==='radar ia - guías de elección'||t==='radar ia • guías de elección'){var n=hs[i];while(n&&n!==document.body){if(n.tagName==='SECTION'){n.classList.add('radar-guide-choice-hidden');return}n=n.parentElement}if(hs[i].parentElement)hs[i].parentElement.classList.add('radar-guide-choice-hidden');return}}}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',removeGuide);else removeGuide();})();</script>'''
-              s = s.replace('</body>', block + '</body>', 1)
-              p.write_text(s, encoding='utf-8')
-          print('OK: solo se oculta la sección de Guías de Elección')
+          pattern = re.compile(r'<section\b(?:(?!</section>).)*?RADAR\s+IA\s*[·•-]\s*GU[IÍ]AS\s+DE\s+ELECCI[ÓO]N(?:(?!</section>).)*?(?:https?://radarai\.es/mejor-ia/index\.html|/mejor-ia/index\.html)(?:(?!</section>).)*?</section>', re.I|re.S)
+          s, removed = pattern.subn('', s, count=1)
+          if removed == 0:
+              pattern = re.compile(r'<div\b(?:(?!</div>).)*?RADAR\s+IA\s*[·•-]\s*GU[IÍ]AS\s+DE\s+ELECCI[ÓO]N(?:(?!</div>).)*?(?:https?://radarai\.es/mejor-ia/index\.html|/mejor-ia/index\.html)(?:(?!</div>).)*?</div>', re.I|re.S)
+              s, removed = pattern.subn('', s, count=1)
+          if removed != 1:
+              raise SystemExit(f'No se eliminó exactamente una sección de Guías de Elección: {removed}')
+          p.write_text(s, encoding='utf-8')
+          print('OK: eliminada únicamente la sección de Guías de Elección')
           PY
       - name: Validate
         run: |
@@ -40,8 +44,10 @@ jobs:
           assert 'function renderCatalog(){' in s
           assert 'const cardFor=' in s
           assert 'cards[Object.keys(TOOLS).indexOf(id)]' not in s
-          assert 'Radar IA: ocultar únicamente la sección de Guías de Elección' in s
-          print('OK')
+          assert 'RADAR IA · GUÍAS DE ELECCIÓN' not in s
+          assert 'Encuentra la mejor IA para lo que necesitas' not in s
+          assert 'mejor-ia/index.html' not in s
+          print('OK: HTML completo y sección eliminada')
           PY
       - name: Commit and push
         run: |
