@@ -17,14 +17,30 @@ jobs:
         uses: actions/checkout@v4
       - name: Repair IA catalog
         run: python3 scripts/fix_catalog.py
+      - name: Remove only the guides section
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          p = Path('index.html')
+          s = p.read_text(encoding='utf-8')
+          marker = '/* Radar IA: ocultar únicamente la sección de Guías de Elección */'
+          if marker not in s:
+              block = r'''<style>/* Radar IA: ocultar únicamente la sección de Guías de Elección */.radar-guide-choice-hidden{display:none!important}</style><script>(function(){function removeGuide(){var hs=document.querySelectorAll('h1,h2,h3,h4,p');for(var i=0;i<hs.length;i++){var t=(hs[i].textContent||'').replace(/\s+/g,' ').trim().toLowerCase();if(t==='radar ia · guías de elección'||t==='radar ia - guías de elección'||t==='radar ia • guías de elección'){var n=hs[i];while(n&&n!==document.body){if(n.tagName==='SECTION'){n.classList.add('radar-guide-choice-hidden');return}n=n.parentElement}if(hs[i].parentElement)hs[i].parentElement.classList.add('radar-guide-choice-hidden');return}}}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',removeGuide);else removeGuide();})();</script>'''
+              s = s.replace('</body>', block + '</body>', 1)
+              p.write_text(s, encoding='utf-8')
+          print('OK: solo se oculta la sección de Guías de Elección')
+          PY
       - name: Validate
         run: |
           python3 - <<'PY'
           from pathlib import Path
           s = Path('index.html').read_text(encoding='utf-8')
+          assert '<!DOCTYPE html>' in s
+          assert '</html>' in s
           assert 'function renderCatalog(){' in s
           assert 'const cardFor=' in s
           assert 'cards[Object.keys(TOOLS).indexOf(id)]' not in s
+          assert 'Radar IA: ocultar únicamente la sección de Guías de Elección' in s
           print('OK')
           PY
       - name: Commit and push
@@ -33,5 +49,5 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m "Fix IA category cards [skip ci]"
+          git commit -m "Remove only Radar IA guide section [skip ci]"
           git push
