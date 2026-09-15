@@ -17,22 +17,66 @@ jobs:
         uses: actions/checkout@v4
       - name: Repair IA catalog
         run: python3 scripts/fix_catalog.py
-      - name: Remove only the guides section
+      - name: Replace old authority section with expanded decision guide
         run: |
           python3 - <<'PY'
           from pathlib import Path
           import re
           p = Path('index.html')
           s = p.read_text(encoding='utf-8')
-          pattern = re.compile(r'<section\b(?:(?!</section>).)*?RADAR\s+IA\s*[·•-]\s*GU[IÍ]AS\s+DE\s+ELECCI[ÓO]N(?:(?!</section>).)*?(?:https?://radarai\.es/mejor-ia/index\.html|/mejor-ia/index\.html)(?:(?!</section>).)*?</section>', re.I|re.S)
-          s, removed = pattern.subn('', s, count=1)
+
+          # Remove only the old FASE 10 block, never crossing its enclosing section.
+          old = re.compile(r'<section\\b(?:(?!</section>).)*?(?:FASE\\s*10\\s*[·•-]\\s*AUTORIDAD\\s+Y\\s+DECISI[ÓO]N|ALTERNATIVAS,\\s*PRECIOS\\s+Y\\s+CAMBIOS\\s+DE\\s+LAS\\s+HERRAMIENTAS\\s+IA)(?:(?!</section>).)*?</section>', re.I|re.S)
+          s, removed = old.subn('', s, count=1)
+
+          # Also remove an equivalent div wrapper if the original block was not a section.
           if removed == 0:
-              pattern = re.compile(r'<div\b(?:(?!</div>).)*?RADAR\s+IA\s*[·•-]\s*GU[IÍ]AS\s+DE\s+ELECCI[ÓO]N(?:(?!</div>).)*?(?:https?://radarai\.es/mejor-ia/index\.html|/mejor-ia/index\.html)(?:(?!</div>).)*?</div>', re.I|re.S)
-              s, removed = pattern.subn('', s, count=1)
-          if removed != 1:
-              raise SystemExit(f'No se eliminó exactamente una sección de Guías de Elección: {removed}')
+              old = re.compile(r'<div\\b(?:(?!</div>).)*?(?:FASE\\s*10\\s*[·•-]\\s*AUTORIDAD\\s+Y\\s+DECISI[ÓO]N|ALTERNATIVAS,\\s*PRECIOS\\s+Y\\s+CAMBIOS\\s+DE\\s+LAS\\s+HERRAMIENTAS\\s+IA)(?:(?!</div>).)*?</div>', re.I|re.S)
+              s, removed = old.subn('', s, count=1)
+
+          expanded = r'''<section id="alternativas-precios-ia" class="radar-value-section" aria-labelledby="alternativas-precios-title">
+            <style>
+              .radar-value-section{margin:42px auto;padding:28px;max-width:1180px;border:1px solid var(--border,#2a3454);border-radius:22px;background:linear-gradient(145deg,rgba(34,45,78,.45),rgba(16,22,40,.72));text-align:left}
+              .radar-value-section h2,.radar-value-section h3{margin-top:0;color:var(--text-primary,#f5f7fb)}
+              .radar-value-section p,.radar-value-section li{color:var(--text-secondary,#b4bfd4);line-height:1.65}
+              .radar-value-section .value-intro{max-width:850px;font-size:1.05rem}
+              .radar-value-section .value-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,245px),1fr));gap:16px;margin-top:22px}
+              .radar-value-section .value-card{padding:20px;border:1px solid var(--border,#2a3454);border-radius:16px;background:rgba(10,15,29,.42);min-width:0}
+              .radar-value-section .value-card strong{color:var(--text-primary,#fff)}
+              .radar-value-section .value-card ul{padding-left:20px;margin-bottom:0}
+              .radar-value-section .value-table{width:100%;border-collapse:collapse;margin-top:20px;display:block;overflow-x:auto}
+              .radar-value-section .value-table th,.radar-value-section .value-table td{border-bottom:1px solid var(--border,#2a3454);padding:12px;text-align:left;vertical-align:top;color:var(--text-secondary,#b4bfd4)}
+              .radar-value-section .value-table th{color:var(--text-primary,#fff)}
+              .radar-value-section .value-note{padding:14px 16px;border-left:4px solid #7c9cff;background:rgba(124,156,255,.09);border-radius:8px}
+              .radar-value-section a{color:#9db5ff;font-weight:700}
+              @media(max-width:600px){.radar-value-section{padding:20px;margin:28px 0}.radar-value-section .value-table{font-size:.92rem}}
+            </style>
+            <h2 id="alternativas-precios-title">Alternativas, precios y cambios de las herramientas IA</h2>
+            <p class="value-intro">Elegir una herramienta de inteligencia artificial no consiste solo en escoger la más famosa. Esta guía te ayuda a comparar alternativas, entender los modelos de precios y detectar cambios antes de pagar o cambiar de plataforma.</p>
+            <div class="value-grid">
+              <article class="value-card"><h3>1. Compara por tarea, no por moda</h3><p>Una IA excelente para redactar puede no ser la mejor para crear imágenes, programar, investigar o automatizar procesos.</p><ul><li>Define el resultado que necesitas.</li><li>Comprueba calidad, velocidad y facilidad de uso.</li><li>Valora si necesitas integraciones o trabajo en equipo.</li></ul></article>
+              <article class="value-card"><h3>2. Entiende el precio real</h3><p>El coste no es únicamente la cuota mensual. Revisa límites, créditos, consumo adicional, número de usuarios y funciones reservadas a planes superiores.</p><ul><li>Gratis: útil para probar.</li><li>Freemium: acceso limitado con mejoras de pago.</li><li>Suscripción: cuota periódica.</li><li>Por uso: pagas según consumo.</li></ul></article>
+              <article class="value-card"><h3>3. Revisa los cambios</h3><p>Las herramientas IA evolucionan rápido: pueden cambiar de modelo, límites, funciones, interfaz, disponibilidad geográfica o condiciones comerciales.</p><ul><li>Consulta siempre la página oficial.</li><li>Comprueba la fecha de actualización.</li><li>No des por hecho que una función seguirá siendo gratuita.</li></ul></article>
+              <article class="value-card"><h3>4. Protege tus datos</h3><p>Antes de subir información, revisa el tratamiento de datos, la retención, el uso para entrenamiento y las opciones de administración.</p><ul><li>No compartas secretos ni datos sensibles.</li><li>Busca controles de privacidad.</li><li>Para empresas, revisa contrato y cumplimiento.</li></ul></article>
+            </div>
+            <h3 style="margin-top:28px">Qué revisar antes de elegir</h3>
+            <table class="value-table"><thead><tr><th>Criterio</th><th>Pregunta útil</th><th>Señal de alerta</th></tr></thead><tbody><tr><td>Calidad</td><td>¿Resuelve bien mi caso real?</td><td>Promesas sin ejemplos verificables.</td></tr><tr><td>Precio</td><td>¿Cuánto pagaré al mes o por uso?</td><td>Límites poco claros o cargos adicionales.</td></tr><tr><td>Privacidad</td><td>¿Qué ocurre con mis datos?</td><td>Política difícil de encontrar o entender.</td></tr><tr><td>Continuidad</td><td>¿Tiene soporte y actualizaciones?</td><td>Producto abandonado o cambios sin aviso.</td></tr><tr><td>Portabilidad</td><td>¿Puedo exportar mi trabajo?</td><td>Dependencia total de una plataforma.</td></tr></tbody></table>
+            <h3 style="margin-top:28px">Cómo encontrar una alternativa mejor</h3>
+            <p>Empieza por la función principal y compara al menos tres opciones. Prueba la misma tarea con el mismo texto, imagen o conjunto de datos; anota calidad, tiempo, límites y coste. Después elige la herramienta que ofrezca el mejor equilibrio para tu uso, no necesariamente la que tenga más publicidad.</p>
+            <p class="value-note"><strong>Consejo Radar IA:</strong> antes de contratar, abre la web oficial de la herramienta y verifica el precio, la moneda, los impuestos, la renovación automática, los límites y las condiciones de cancelación. Los precios y las funciones pueden cambiar.</p>
+            <p>Explora también nuestras <a href="/alternativas/index.html">alternativas de IA</a>, consulta la sección de <a href="/precios/index.html">precios</a> y revisa las <a href="/revisiones/index.html">revisiones</a> para tomar una decisión más informada.</p>
+          </section>'''
+
+          if removed:
+              # Place the expanded section before the closing body, preserving the rest of the page.
+              s = s.replace('</body>', expanded + '\\n</body>', 1)
+          else:
+              # If the old section is already absent, add the new section only once.
+              if 'id="alternativas-precios-ia"' not in s:
+                  s = s.replace('</body>', expanded + '\\n</body>', 1)
+
           p.write_text(s, encoding='utf-8')
-          print('OK: eliminada únicamente la sección de Guías de Elección')
+          print(f'OK: bloque antiguo reemplazado; coincidencias eliminadas={removed}')
           PY
       - name: Validate
         run: |
@@ -44,10 +88,11 @@ jobs:
           assert 'function renderCatalog(){' in s
           assert 'const cardFor=' in s
           assert 'cards[Object.keys(TOOLS).indexOf(id)]' not in s
-          assert 'RADAR IA · GUÍAS DE ELECCIÓN' not in s
-          assert 'Encuentra la mejor IA para lo que necesitas' not in s
-          assert 'mejor-ia/index.html' not in s
-          print('OK: HTML completo y sección eliminada')
+          assert 'FASE 10' not in s.upper()
+          assert 'alternativas-precios-ia' in s
+          assert 'Alternativas, precios y cambios de las herramientas IA' in s
+          assert 'Qué revisar antes de elegir' in s
+          print('OK: HTML completo y sección ampliada validada')
           PY
       - name: Commit and push
         run: |
@@ -55,5 +100,5 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add index.html
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m "Remove only Radar IA guide section [skip ci]"
+          git commit -m "Expand AI alternatives and pricing guide [skip ci]"
           git push
