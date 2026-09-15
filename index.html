@@ -1186,6 +1186,29 @@ a.btn+a.btn,button.btn+a.btn{margin-left:12px}
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',markSelection);else markSelection();
 })();
+</script><style>
+/* Selección Radar IA: centrado real de todas las tarjetas emergentes */
+.radar-selection-section .selection-grid,.radar-selection-section .radar-selection-grid,.radar-selection-section .selection-cards,.radar-selection-section .radar-picks,.radar-selection-section .featured-tools,.radar-selection-section .featured-grid{align-items:stretch}
+.radar-selection-section .selection-grid > *, .radar-selection-section .radar-selection-grid > *, .radar-selection-section .selection-cards > *, .radar-selection-section .radar-picks > *, .radar-selection-section .featured-tools > *, .radar-selection-section .featured-grid > *{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.radar-selection-section h3,.radar-selection-section p,.radar-selection-section a{ text-align:center; }
+.radar-selection-section .tool-card,.radar-selection-section article,.radar-selection-section .card{display:flex;flex-direction:column;align-items:center;text-align:center;justify-content:space-between}
+.radar-selection-section .tool-card-top,.radar-selection-section .tool-card-bottom{width:100%;justify-content:center;align-items:center;text-align:center;flex-wrap:wrap}
+.radar-selection-section .tool-name-wrap,.radar-selection-section .tool-desc,.radar-selection-section .tool-category{width:100%;text-align:center}
+.radar-selection-section .tool-tags,.radar-selection-section .tool-meta{justify-content:center;text-align:center;flex-wrap:wrap}
+.radar-selection-section .tool-link{margin-left:auto;margin-right:auto}
+</style><script>
+(function(){
+  function markSelection(){
+    var headings=document.querySelectorAll('h1,h2,h3');
+    headings.forEach(function(h){
+      if((h.textContent||'').trim().toLowerCase().includes('selección radar ia')){
+        var section=h.closest('section')||h.parentElement;
+        if(section) section.classList.add('radar-selection-section');
+      }
+    });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',markSelection);else markSelection();
+})();
 </script></head>
 <body><a class="skip-link" href="#herramientas">Saltar al contenido</a>
 <!-- ================= HEADER ================= -->
