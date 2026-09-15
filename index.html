@@ -1167,7 +1167,26 @@ a.btn+a.btn,button.btn+a.btn{margin-left:12px}
 .selection-grid .tool-card-top,.radar-selection-grid .tool-card-top,.selection-cards .tool-card-top,.radar-picks .tool-card-top,.featured-tools .tool-card-top,.featured-grid .tool-card-top{width:100%;justify-content:center;text-align:center}
 .selection-grid .tool-name-wrap,.radar-selection-grid .tool-name-wrap,.selection-cards .tool-name-wrap,.radar-picks .tool-name-wrap,.featured-tools .tool-name-wrap,.featured-grid .tool-name-wrap{flex:1;text-align:center}
 .selection-grid .tool-card-bottom,.radar-selection-grid .tool-card-bottom,.selection-cards .tool-card-bottom,.radar-picks .tool-card-bottom,.featured-tools .tool-card-bottom,.featured-grid .tool-card-bottom{width:100%;justify-content:center;align-items:center;text-align:center;flex-wrap:wrap}
-</style></head>
+</style><style>
+/* Selección Radar IA: centrado real, incluso si cambia la clase de las tarjetas */
+.radar-selection-section .selection-grid,.radar-selection-section .radar-selection-grid,.radar-selection-section .selection-cards,.radar-selection-section .radar-picks,.radar-selection-section .featured-tools,.radar-selection-section .featured-grid{align-items:stretch}
+.radar-selection-section .selection-grid > *, .radar-selection-section .radar-selection-grid > *, .radar-selection-section .selection-cards > *, .radar-selection-section .radar-picks > *, .radar-selection-section .featured-tools > *, .radar-selection-section .featured-grid > *{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.radar-selection-section h3,.radar-selection-section p,.radar-selection-section a{ text-align:center; }
+.radar-selection-section .tool-tags{justify-content:center}
+.radar-selection-section .tool-card-top,.radar-selection-section .tool-card-bottom{width:100%;justify-content:center;align-items:center;text-align:center;flex-wrap:wrap}
+.radar-selection-section .tool-name-wrap{flex:1;text-align:center}
+</style><script>
+(function(){
+  function markSelection(){
+    document.querySelectorAll('section,div').forEach(function(el){
+      if((el.textContent||'').includes('Selección Radar IA') && el.querySelector('h2,h3')){
+        el.classList.add('radar-selection-section');
+      }
+    });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',markSelection);else markSelection();
+})();
+</script></head>
 <body><a class="skip-link" href="#herramientas">Saltar al contenido</a>
 <!-- ================= HEADER ================= -->
 <header class="site-header" id="site-header">
