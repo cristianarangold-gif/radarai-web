@@ -29,20 +29,22 @@ menu = '''<div class="radar-menu-wrap"><button class="radar-menu-toggle" type="b
 s = re.sub(r'<nav[^>]*class=["\'][^"\']*main-nav[^"\']*["\'][^>]*>.*?</nav>', menu, s, count=1, flags=re.S|re.I)
 
 selection_css = '''<style>
-/* Selección Radar IA: centrado real de todas las tarjetas emergentes */
-.radar-selection-section .selection-grid,.radar-selection-section .radar-selection-grid,.radar-selection-section .selection-cards,.radar-selection-section .radar-picks,.radar-selection-section .featured-tools,.radar-selection-section .featured-grid{align-items:stretch}
-.radar-selection-section .selection-grid > *, .radar-selection-section .radar-selection-grid > *, .radar-selection-section .selection-cards > *, .radar-selection-section .radar-picks > *, .radar-selection-section .featured-tools > *, .radar-selection-section .featured-grid > *{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
-.radar-selection-section h3,.radar-selection-section p,.radar-selection-section a{ text-align:center; }
-.radar-selection-section .tool-card,.radar-selection-section article,.radar-selection-section .card{display:flex;flex-direction:column;align-items:center;text-align:center;justify-content:space-between}
-.radar-selection-section .tool-card-top,.radar-selection-section .tool-card-bottom{width:100%;justify-content:center;align-items:center;text-align:center;flex-wrap:wrap}
-.radar-selection-section .tool-name-wrap,.radar-selection-section .tool-desc,.radar-selection-section .tool-category{width:100%;text-align:center}
-.radar-selection-section .tool-tags,.radar-selection-section .tool-meta{justify-content:center;text-align:center;flex-wrap:wrap}
-.radar-selection-section .tool-link{margin-left:auto;margin-right:auto}
+/* Corrección definitiva: el contenido de las ventanas nunca puede desbordarse */
+.radar-selection-section,.radar-selection-section *{box-sizing:border-box;min-width:0;max-width:100%;}
+.radar-selection-section{width:100%;overflow:hidden;text-align:center;}
+.radar-selection-section h1,.radar-selection-section h2,.radar-selection-section h3,.radar-selection-section p,.radar-selection-section a,.radar-selection-section span,.radar-selection-section strong,.radar-selection-section small{white-space:normal!important;overflow-wrap:anywhere!important;word-break:normal!important;text-align:center!important;}
+.radar-selection-section .selection-grid,.radar-selection-section .radar-selection-grid,.radar-selection-section .selection-cards,.radar-selection-section .radar-picks,.radar-selection-section .featured-tools,.radar-selection-section .featured-grid{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr))!important;gap:16px!important;width:100%!important;align-items:stretch!important;}
+.radar-selection-section .selection-grid>* ,.radar-selection-section .radar-selection-grid>* ,.radar-selection-section .selection-cards>* ,.radar-selection-section .radar-picks>* ,.radar-selection-section .featured-tools>* ,.radar-selection-section .featured-grid>*{width:100%!important;min-width:0!important;max-width:100%!important;display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;text-align:center!important;overflow:hidden!important;}
+.radar-selection-section .tool-card,.radar-selection-section article,.radar-selection-section .card,.radar-selection-section a{width:100%;max-width:100%;min-width:0;overflow:hidden;display:flex;flex-direction:column;align-items:center;text-align:center;justify-content:space-between;}
+.radar-selection-section .tool-card-top,.radar-selection-section .tool-card-bottom{width:100%;max-width:100%;display:flex;justify-content:center;align-items:center;text-align:center;flex-wrap:wrap;gap:8px;}
+.radar-selection-section .tool-name-wrap,.radar-selection-section .tool-desc,.radar-selection-section .tool-category,.radar-selection-section .tool-name{width:100%;max-width:100%;min-width:0;white-space:normal!important;overflow-wrap:anywhere!important;text-align:center!important;}
+.radar-selection-section .tool-tags,.radar-selection-section .tool-meta{width:100%;max-width:100%;display:flex;justify-content:center;text-align:center;flex-wrap:wrap;gap:6px;}
+.radar-selection-section .tool-link{margin-left:auto;margin-right:auto;white-space:normal!important;overflow-wrap:anywhere!important;}
+@media(max-width:480px){.radar-selection-section .selection-grid,.radar-selection-section .radar-selection-grid,.radar-selection-section .selection-cards,.radar-selection-section .radar-picks,.radar-selection-section .featured-tools,.radar-selection-section .featured-grid{grid-template-columns:1fr!important;}.radar-selection-section .tool-card{padding:16px!important;}}
 </style><script>
 (function(){
   function markSelection(){
-    var headings=document.querySelectorAll('h1,h2,h3');
-    headings.forEach(function(h){
+    document.querySelectorAll('h1,h2,h3').forEach(function(h){
       if((h.textContent||'').trim().toLowerCase().includes('selección radar ia')){
         var section=h.closest('section')||h.parentElement;
         if(section) section.classList.add('radar-selection-section');
@@ -52,7 +54,7 @@ selection_css = '''<style>
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',markSelection);else markSelection();
 })();
 </script>'''
-if 'centrado real de todas las tarjetas emergentes' not in s:
+if 'Corrección definitiva: el contenido de las ventanas nunca puede desbordarse' not in s:
     s = s.replace('</head>', selection_css + '</head>', 1)
 
 if 'radar-main-menu{' not in s:
@@ -60,4 +62,4 @@ if 'radar-main-menu{' not in s:
     s = s.replace('</head>', addon + '</head>', 1)
 
 path.write_text(s, encoding='utf-8')
-print('Catálogo, menú y centrado de Selección Radar IA corregidos')
+print('Catálogo, menú y centrado/ajuste de desbordamiento corregidos')
