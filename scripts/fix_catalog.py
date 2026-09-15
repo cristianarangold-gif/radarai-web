@@ -29,26 +29,30 @@ menu = '''<div class="radar-menu-wrap"><button class="radar-menu-toggle" type="b
 s = re.sub(r'<nav[^>]*class=["\'][^"\']*main-nav[^"\']*["\'][^>]*>.*?</nav>', menu, s, count=1, flags=re.S|re.I)
 
 selection_css = '''<style>
-/* Selección Radar IA: centrado real, incluso si cambia la clase de las tarjetas */
+/* Selección Radar IA: centrado real de todas las tarjetas emergentes */
 .radar-selection-section .selection-grid,.radar-selection-section .radar-selection-grid,.radar-selection-section .selection-cards,.radar-selection-section .radar-picks,.radar-selection-section .featured-tools,.radar-selection-section .featured-grid{align-items:stretch}
 .radar-selection-section .selection-grid > *, .radar-selection-section .radar-selection-grid > *, .radar-selection-section .selection-cards > *, .radar-selection-section .radar-picks > *, .radar-selection-section .featured-tools > *, .radar-selection-section .featured-grid > *{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
 .radar-selection-section h3,.radar-selection-section p,.radar-selection-section a{ text-align:center; }
-.radar-selection-section .tool-tags{justify-content:center}
+.radar-selection-section .tool-card,.radar-selection-section article,.radar-selection-section .card{display:flex;flex-direction:column;align-items:center;text-align:center;justify-content:space-between}
 .radar-selection-section .tool-card-top,.radar-selection-section .tool-card-bottom{width:100%;justify-content:center;align-items:center;text-align:center;flex-wrap:wrap}
-.radar-selection-section .tool-name-wrap{flex:1;text-align:center}
+.radar-selection-section .tool-name-wrap,.radar-selection-section .tool-desc,.radar-selection-section .tool-category{width:100%;text-align:center}
+.radar-selection-section .tool-tags,.radar-selection-section .tool-meta{justify-content:center;text-align:center;flex-wrap:wrap}
+.radar-selection-section .tool-link{margin-left:auto;margin-right:auto}
 </style><script>
 (function(){
   function markSelection(){
-    document.querySelectorAll('section,div').forEach(function(el){
-      if((el.textContent||'').includes('Selección Radar IA') && el.querySelector('h2,h3')){
-        el.classList.add('radar-selection-section');
+    var headings=document.querySelectorAll('h1,h2,h3');
+    headings.forEach(function(h){
+      if((h.textContent||'').trim().toLowerCase().includes('selección radar ia')){
+        var section=h.closest('section')||h.parentElement;
+        if(section) section.classList.add('radar-selection-section');
       }
     });
   }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',markSelection);else markSelection();
 })();
 </script>'''
-if 'centrado real, incluso si cambia la clase' not in s:
+if 'centrado real de todas las tarjetas emergentes' not in s:
     s = s.replace('</head>', selection_css + '</head>', 1)
 
 if 'radar-main-menu{' not in s:
@@ -56,4 +60,4 @@ if 'radar-main-menu{' not in s:
     s = s.replace('</head>', addon + '</head>', 1)
 
 path.write_text(s, encoding='utf-8')
-print('Catálogo, menú y selección Radar IA corregidos')
+print('Catálogo, menú y centrado de Selección Radar IA corregidos')
