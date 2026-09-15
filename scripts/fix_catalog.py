@@ -28,10 +28,24 @@ s = s[:start] + new_render + s[end:]
 menu = '''<div class="radar-menu-wrap"><button class="radar-menu-toggle" type="button" aria-expanded="false" aria-controls="radar-main-menu">☰ Menú</button><nav id="radar-main-menu" class="radar-main-menu"><a href="#inicio">Inicio</a><a href="#herramientas">Herramientas</a><a href="#categorias">Categorías</a><a href="#articulos">Artículos</a><a href="/noticias/index.html">Noticias IA</a><a href="/reviews/index.html">Reviews IA</a><a href="/rankings/index.html">Rankings</a><a href="/alternativas/index.html">Alternativas</a><a href="/precios/index.html">Precios</a><a href="#seo-recursos">Guías IA</a><a href="/sobre-radar-ia/index.html">Sobre Radar IA</a><a href="/metodologia/index.html">Metodología</a><a href="/revisiones/index.html">Revisiones</a><a href="#preguntas-frecuentes">Preguntas frecuentes</a></nav></div>'''
 s = re.sub(r'<nav[^>]*class=["\'][^"\']*main-nav[^"\']*["\'][^>]*>.*?</nav>', menu, s, count=1, flags=re.S|re.I)
 
+# Estilos de alineación para los recuadros de «Selección Radar IA».
+selection_css = '''<style>
+/* Selección Radar IA: tarjetas equilibradas y texto perfectamente centrado */
+.selection-grid,.radar-selection-grid,.selection-cards,.radar-picks,.featured-tools,.featured-grid{align-items:stretch}
+.selection-grid > *, .radar-selection-grid > *, .selection-cards > *, .radar-picks > *, .featured-tools > *, .featured-grid > *{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.selection-grid h3,.selection-grid p,.radar-selection-grid h3,.radar-selection-grid p,.selection-cards h3,.selection-cards p,.radar-picks h3,.radar-picks p,.featured-tools h3,.featured-tools p,.featured-grid h3,.featured-grid p{width:100%;text-align:center;margin-left:auto;margin-right:auto}
+.selection-grid .tool-tags,.radar-selection-grid .tool-tags,.selection-cards .tool-tags,.radar-picks .tool-tags,.featured-tools .tool-tags,.featured-grid .tool-tags{justify-content:center}
+.selection-grid .tool-card-top,.radar-selection-grid .tool-card-top,.selection-cards .tool-card-top,.radar-picks .tool-card-top,.featured-tools .tool-card-top,.featured-grid .tool-card-top{width:100%;justify-content:center;text-align:center}
+.selection-grid .tool-name-wrap,.radar-selection-grid .tool-name-wrap,.selection-cards .tool-name-wrap,.radar-picks .tool-name-wrap,.featured-tools .tool-name-wrap,.featured-grid .tool-name-wrap{flex:1;text-align:center}
+.selection-grid .tool-card-bottom,.radar-selection-grid .tool-card-bottom,.selection-cards .tool-card-bottom,.radar-picks .tool-card-bottom,.featured-tools .tool-card-bottom,.featured-grid .tool-card-bottom{width:100%;justify-content:center;align-items:center;text-align:center;flex-wrap:wrap}
+</style>'''
+if 'Selección Radar IA: tarjetas equilibradas' not in s:
+    s = s.replace('</head>', selection_css + '</head>', 1)
+
 # Menú cerrado por defecto; el botón alterna abrir/cerrar.
 if 'radar-main-menu{' not in s:
     addon = '''<style>.radar-menu-wrap{position:relative}.radar-menu-toggle{background:var(--surface,#161d30);color:var(--text-primary,#f1f4fa);border:1px solid var(--border,#2a3454);border-radius:10px;padding:9px 15px;font-weight:600;cursor:pointer}.radar-main-menu{display:none;position:absolute;right:0;top:calc(100% + 8px);width:280px;max-height:70vh;overflow:auto;padding:10px;background:var(--surface,#161d30);border:1px solid var(--border,#2a3454);border-radius:14px;box-shadow:0 18px 40px rgba(0,0,0,.35);z-index:300}.radar-main-menu.is-open{display:flex;flex-direction:column}.radar-main-menu a{padding:9px 10px;border-radius:8px;color:var(--text-secondary,#9ba6c0);text-decoration:none}.radar-main-menu a:hover{background:var(--surface-2,#1c243a);color:var(--text-primary,#f1f4fa)}@media(max-width:700px){.radar-main-menu{right:auto;left:0;width:min(280px,calc(100vw - 32px))}}</style><script>document.addEventListener('click',function(e){var b=e.target.closest('.radar-menu-toggle');if(b){var m=document.getElementById('radar-main-menu');if(!m)return;var o=m.classList.toggle('is-open');b.setAttribute('aria-expanded',String(o))}else if(!e.target.closest('.radar-menu-wrap')){var m=document.getElementById('radar-main-menu');if(m){m.classList.remove('is-open');var b=m.parentElement.querySelector('.radar-menu-toggle');if(b)b.setAttribute('aria-expanded','false')}}});</script>'''
     s = s.replace('</head>', addon + '</head>', 1)
 
 path.write_text(s, encoding='utf-8')
-print('Catálogo de IA y menú principal corregidos')
+print('Catálogo, menú y alineación de Selección Radar IA corregidos')
