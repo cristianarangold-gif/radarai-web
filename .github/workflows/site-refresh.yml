@@ -25,113 +25,62 @@ jobs:
           python3 <<'PY'
           from pathlib import Path
           import re, html
-
-          root = Path('.')
-          index = root / 'index.html'
-          s = index.read_text(encoding='utf-8')
-
-          # Fix the visual navigation and comparison alignment.
-          style = '''\n<style id="radar-ia-fixes">
+          root=Path('.')
+          index=root/'index.html'
+          s=index.read_text(encoding='utf-8')
+          style='''\n<style id="radar-ia-fixes">
           header nav a{font-size:.86rem}
           a.btn+a.btn,button.btn+a.btn{margin-left:12px}
           .compare-table{width:100%;border-collapse:collapse;text-align:center}
           .compare-table th,.compare-table td{text-align:center;vertical-align:middle;padding:10px}
           .compare-table th:first-child,.compare-table td:first-child{text-align:left}
           .hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+          .radar-category-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:18px 0 28px}
+          .radar-category-grid .tool-card{padding:18px;border:1px solid rgba(255,255,255,.1);border-radius:16px}
+          .radar-category-grid .tool-card h3{margin-top:0}
           </style>\n'''
-          if 'id="radar-ia-fixes"' not in s:
-              s = s.replace('</head>', style + '</head>', 1)
-
-          # -----------------------------------------------------------------
-          # IMPORTANT: The category dropdowns are populated from TOOLS.
-          # Older versions only rendered cards after a JS filter action, which
-          # left the initial category panels empty. Build each category panel
-          # with real tool cards directly in the HTML as a reliable fallback.
-          # -----------------------------------------------------------------
-          m = re.search(r'const TOOLS\s*=\s*\[(.*?)\];', s, re.S)
-          tools = []
+          if 'id="radar-ia-fixes"' not in s: s=s.replace('</head>',style+'</head>',1)
+          m=re.search(r'const TOOLS\s*=\s*\[(.*?)\];',s,re.S)
+          tools=[]
           if m:
-              block = m.group(1)
-              pattern = re.compile(r'''\{\s*name:\s*"([^"]+)"\s*,\s*cat:\s*"([^"]+)"\s*,\s*desc:\s*"([^"]*)"\s*,\s*tags:\s*\[([^\]]*)\]\s*,\s*url:\s*"([^"]+)"''')
-              for x in pattern.finditer(block):
-                  tags = [t.strip().strip('"\'') for t in x.group(4).split(',') if t.strip()]
-                  tools.append({'name':x.group(1),'cat':x.group(2),'desc':x.group(3),'tags':tags,'url':x.group(5)})
-
-          # Normalize category labels so the dropdowns work even when the
-          # source uses slightly different capitalization/accents.
-          def norm(v):
-              v = v.lower().strip()
-              repl = str.maketrans('áéíóúüñ','aeiouun')
-              return v.translate(repl)
-
-          aliases = {
-              'ia general': ['ia general','general','chatbots','asistentes'],
-              'escritura': ['escritura','texto','copywriting','redaccion'],
-              'imagenes': ['imagenes','imagen','generacion de imagenes','diseno'],
-              'video': ['video','videos'],
-              'audio': ['audio','voz','musica'],
-              'codigo': ['codigo','programacion','desarrollo'],
-              'productividad': ['productividad','trabajo','gestion'],
-              'educacion': ['educacion','estudio','aprendizaje'],
-              'marketing': ['marketing','seo','publicidad'],
-              'investigacion': ['investigacion','investigacion y ciencia','ciencia'],
-          }
-
-          def belongs(tool, wanted):
-              values = [norm(tool['cat'])] + [norm(t) for t in tool['tags']]
-              needles = aliases.get(wanted, [wanted])
-              return any(any(n in v or v in n for n in needles) for v in values)
-
-          # Find category sections by data-category, id, or heading text.
-          cats = ['ia general','escritura','imagenes','video','audio','codigo','productividad','educacion','marketing','investigacion']
-          for cat in cats:
-              candidates = []
-              for t in tools:
-                  if belongs(t, cat): candidates.append(t)
-              if not candidates: continue
-              cards = []
-              for t in candidates[:12]:
-                  name = html.escape(t['name'])
-                  desc = html.escape(t['desc'])
-                  url = html.escape(t['url'], quote=True)
-                  cards.append(f'''<article class="tool-card" data-tool="{name.lower()}">
-                    <h3>{name}</h3><p>{desc}</p>
-                    <a class="btn secondary" href="{url}">Ver herramienta</a>
-                  </article>''')
-              marker = f'<!-- RADAR-CATEGORY:{cat} -->'
-              if marker in s:
-                  s = s.replace(marker, marker + '\n<div class="radar-category-grid">' + ''.join(cards) + '</div>', 1)
-
-          # Repair common broken relative links from older pages.
-          s = s.replace('/guias/como-elegir-una-ia/', 'guias/como-elegir-una-ia/index.html')
-          s = s.replace('/herramientas-radar/', 'herramientas-radar/index.html')
-          s = s.replace('https://TU-DOMINIO.com/', 'https://radarai.es/')
-
-          index.write_text(s, encoding='utf-8')
-
-          # The generator keeps the existing 135-tool dataset and creates a
-          # static detail page for every tool, so category links never 404.
-          base = index.read_text(encoding='utf-8')
-          m = re.search(r'const TOOLS\s*=\s*\[(.*?)\];', base, re.S)
+            pat=re.compile(r'''\{\s*name:\s*"([^"]+)"\s*,\s*cat:\s*"([^"]+)"\s*,\s*desc:\s*"([^"]*)"\s*,\s*tags:\s*\[([^\]]*)\]\s*,\s*url:\s*"([^"]+)"''')
+            for x in pat.finditer(m.group(1)):
+              tools.append({'name':x.group(1),'cat':x.group(2),'desc':x.group(3),'tags':[z.strip().strip('"\'') for z in x.group(4).split(',') if z.strip()],'url':x.group(5)})
+          def norm(v): return v.lower().strip().translate(str.maketrans('áéíóúüñ','aeiouun'))
+          aliases={'ia general':['ia general','general','chatbots','asistentes'],'escritura':['escritura','texto','copywriting','redaccion'],'imagenes':['imagenes','imagen','generacion de imagenes','diseno'],'video':['video','videos'],'audio':['audio','voz','musica'],'codigo':['codigo','programacion','desarrollo'],'productividad':['productividad','trabajo','gestion'],'educacion':['educacion','estudio','aprendizaje'],'marketing':['marketing','seo','publicidad'],'investigacion':['investigacion','ciencia']}
+          def belongs(t,w):
+            vals=[norm(t['cat'])]+[norm(x) for x in t['tags']]; needles=aliases[w]
+            return any(any(n in v or v in n for n in needles) for v in vals)
+          # Locate the real category containers by headings/classes and inject cards once.
+          for cat in aliases:
+            if f'RADAR-CATEGORY:{cat}' in s: continue
+            ts=[t for t in tools if belongs(t,cat)]
+            if not ts: continue
+            cards=[]
+            for t in ts[:12]:
+              cards.append(f'''<article class="tool-card"><h3>{html.escape(t['name'])}</h3><p>{html.escape(t['desc'])}</p><a class="btn secondary" href="{html.escape(t['url'],quote=True)}" target="_blank" rel="noopener">Visitar sitio</a></article>''')
+            grid='<div class="radar-category-grid"><!-- RADAR-CATEGORY:'+cat+' -->'+''.join(cards)+'</div>'
+            # Match a heading containing the category and place the grid after its containing heading block.
+            pat=re.compile(r'(<(?:h2|h3)[^>]*>[^<]*'+re.escape(cat.split()[0])+r'[^<]*</(?:h2|h3)>)',re.I)
+            mm=pat.search(s)
+            if mm: s=s[:mm.end()]+grid+s[mm.end():]
+          s=s.replace('/guias/como-elegir-una-ia/','guias/como-elegir-una-ia/index.html').replace('/herramientas-radar/','herramientas-radar/index.html').replace('https://TU-DOMINIO.com/','https://radarai.es/')
+          index.write_text(s,encoding='utf-8')
+          # Generate detail pages from the same source dataset.
+          base=s; m=re.search(r'const TOOLS\s*=\s*\[(.*?)\];',base,re.S)
           if m:
-              pattern = re.compile(r'''\{\s*name:\s*"([^"]+)"\s*,\s*cat:\s*"([^"]+)"\s*,\s*desc:\s*"([^"]*)"\s*,\s*tags:\s*\[([^\]]*)\]\s*,\s*url:\s*"([^"]+)"''')
-              for x in pattern.finditer(m.group(1)):
-                  name, cat, desc, tags, url = x.group(1),x.group(2),x.group(3),x.group(4),x.group(5)
-                  slug = re.sub(r'[^a-z0-9]+','-',name.lower()).strip('-')
-                  p = root/'herramientas'/slug/'index.html'
-                  p.parent.mkdir(parents=True, exist_ok=True)
-                  p.write_text(f'''<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{html.escape(name)} | Radar IA</title><meta name="description" content="{html.escape(desc)}"><link rel="canonical" href="https://radarai.es/herramientas/{slug}/"></head><body><main><p><a href="/">Radar IA</a></p><h1>{html.escape(name)}</h1><p>{html.escape(desc)}</p><p><strong>Categoría:</strong> {html.escape(cat)}</p><p><a class="btn" href="{html.escape(url,quote=True)}" target="_blank" rel="noopener">Visitar sitio oficial</a></p><p><a href="/herramientas-radar/">Herramientas gratuitas</a> · <a href="/">Volver al inicio</a></p></main></body></html>''', encoding='utf-8')
+            pat=re.compile(r'''\{\s*name:\s*"([^"]+)"\s*,\s*cat:\s*"([^"]+)"\s*,\s*desc:\s*"([^"]*)"\s*,\s*tags:\s*\[([^\]]*)\]\s*,\s*url:\s*"([^"]+)"''')
+            for x in pat.finditer(m.group(1)):
+              name,cat,desc,url=x.group(1),x.group(2),x.group(3),x.group(5)
+              slug=re.sub(r'[^a-z0-9]+','-',name.lower()).strip('-'); p=root/'herramientas'/slug/'index.html'; p.parent.mkdir(parents=True,exist_ok=True)
+              p.write_text(f'''<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{html.escape(name)} | Radar IA</title><meta name="description" content="{html.escape(desc)}"></head><body><main><p><a href="/">Radar IA</a></p><h1>{html.escape(name)}</h1><p>{html.escape(desc)}</p><p><strong>Categoría:</strong> {html.escape(cat)}</p><p><a class="btn" href="{html.escape(url,quote=True)}" target="_blank" rel="noopener">Visitar sitio oficial</a></p><p><a href="/herramientas-radar/">Herramientas gratuitas</a> · <a href="/">Inicio</a></p></main></body></html>''',encoding='utf-8')
           PY
-
       - name: Commit generated pages
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add .
-          if git diff --cached --quiet; then
-            echo "No changes to commit"
-            exit 0
-          fi
+          if git diff --cached --quiet; then exit 0; fi
           git commit -m "Fix IA category dropdown cards [skip ci]"
           git push
