@@ -2,6 +2,9 @@ name: Build Radar IA public pages
 on:
   push:
     branches: [main]
+concurrency:
+  group: radar-ia-site-publish
+  cancel-in-progress: false
 permissions:
   contents: write
 jobs:
@@ -9,6 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Generate public pages
         shell: bash
         run: |
@@ -41,7 +46,7 @@ jobs:
           guides={'como-elegir-una-ia':('Cómo elegir una IA','https://openai.com/es-ES/academy/getting-started/'),'mejores-prompts':('Cómo escribir mejores prompts','https://help.openai.com/es-es/articles/10032626-prompt-engineering-best-practices-for-chatgpt'),'ia-para-estudiar':('IA para estudiar','https://openai.com/es-ES/academy/using-chatgpt/'),'privacidad-en-ia':('Privacidad en IA','https://help.openai.com/es-es/articles/7730893'),'chatbot-buscador-generador':('Chatbot, buscador con IA o generador','https://www.perplexity.ai/help-center/es/articles/10352155-que-es-perplexity'),'automatizar-tareas':('Primeros pasos para automatizar tareas','https://openai.com/index/introducing-the-agents-api/')}
           for slug,(title,src) in guides.items():
             d=root/'guias'/slug; d.mkdir(parents=True,exist_ok=True); body=f'<p class="lede">Guía editorial basada en documentación oficial. Consulta la fuente para la información más actual.</p><div class="card"><a class="btn" href="{src}" target="_blank" rel="noopener noreferrer">Consultar fuente oficial</a></div>'; (d/'index.html').write_text(page(title,'Guía Radar IA',body,'../..'),encoding='utf-8')
-          news=[('openai-agents-api','Nueva Agents API de OpenAI','10/09/2026','https://openai.com/index/introducing-the-agents-api/'),('openai-financial-services','ChatGPT para servicios financieros','10/09/2026','https://openai.com/index/introducing-chatgpt-financial-services/'),('openai-gpt6-astra','GPT-6 Astra: nueva generación de inteligencia para el trabajo','09/09/2026','https://openai.com/news/product-releases/'),('anthropic-misuse-september-2026','Anthropic: detección y respuesta ante uso indebido de IA','10/09/2026','https://www.anthropic.com/news?_x_tr_hist=true&_x_tr_pto=tc&_x_tr_sl=en&_x_tr_tl=es'),('ia-seguridad-septiembre-2026','Anthropic refuerza sus prácticas de alineamiento y seguridad','31/08/2026','https://www.anthropic.com/news/improving-alignment-security-efforts'),('mistral-ai-now-2026','Mistral AI Now Summit 2026','28/05/2026','https://mistral.ai/news/ai-now-summit-2026/')]
+          news=[('openai-agents-api','Nueva Agents API de OpenAI','10/09/2026','https://openai.com/index/introducing-the-agents-api/'),('openai-financial-services','ChatGPT para servicios financieros','10/09/2026','https://openai.com/index/introducing-chatgpt-financial-services/'),('openai-gpt6-astra','GPT-6 Astra: nueva generación de inteligencia para el trabajo','09/09/2026','https://openai.com/news/product-releases/'),('anthropic-misuse-september-2026','Anthropic: detección y respuesta ante uso indebido de IA','10/09/2026','https://www.anthropic.com/news'),('ia-seguridad-septiembre-2026','Anthropic refuerza sus prácticas de alineamiento y seguridad','31/08/2026','https://www.anthropic.com/news/improving-alignment-security-efforts'),('mistral-ai-now-2026','Mistral AI Now Summit 2026','28/05/2026','https://mistral.ai/news/ai-now-summit-2026/')]
           cards=[]
           for slug,title,date,src in news:
             d=root/'noticias'/slug; d.mkdir(parents=True,exist_ok=True); body=f'<p class="lede">Contenido basado en la publicación oficial del proveedor.</p><div class="card"><p>Radar IA resume y enlaza la fuente original; no sustituye la publicación oficial.</p><a class="btn" href="{src}" target="_blank" rel="noopener noreferrer">Leer publicación oficial</a></div>'; (d/'index.html').write_text(page(title,'Radar IA · Noticias',body,'../..'),encoding='utf-8'); cards.append(f'<a class="card" href="noticias/{slug}/index.html"><strong>{html.escape(title)}</strong><p class="muted">{date}</p><p>Leer análisis y consultar la fuente oficial.</p></a>')
@@ -58,7 +63,24 @@ jobs:
           s=s.replace('https://TU-DOMINIO.com/','https://radarai.es/')
           s=s.replace('<a data-legal="contacto" href="#">Contacto</a>','<a href="legal/contacto.html">Contacto</a>')
           s=s.replace('<a href="legal/politica-cookies.html">Política de cookies</a><a href="legal/contacto.html">Contacto</a>','<a href="legal/politica-cookies.html">Política de cookies</a>')
+          extra='''<style>header nav a{font-size:.86rem}a.btn+a.btn,button.btn+a.btn{margin-left:12px}.compare-table{width:100%;border-collapse:collapse;text-align:center}.compare-table th,.compare-table td{text-align:center;vertical-align:middle;padding:10px}.compare-table th:first-child,.compare-table td:first-child{text-align:left}.hero-actions{display:flex;gap:14px;flex-wrap:wrap}</style>'''
+          if '</head>' in s: s=s.replace('</head>',extra+'</head>',1)
           idx.write_text(s,encoding='utf-8')
+
+          # Generate a canonical XML sitemap from the pages that actually exist.
+          urls=[]
+          for p in sorted(root.rglob('*.html')):
+            if '.git' in p.parts or p.parts[0] == '.github': continue
+            rel=p.relative_to(root).as_posix()
+            if rel == 'index.html': u='https://radarai.es/'
+            elif rel.endswith('/index.html'): u='https://radarai.es/'+rel[:-10].rstrip('/')+'/'
+            else: u='https://radarai.es/'+rel
+            urls.append(u)
+          urls=sorted(set(urls))
+          xml=['<?xml version="1.0" encoding="UTF-8"?>','<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+          xml += [f'  <url><loc>{html.escape(u)}</loc></url>' for u in urls]
+          xml += ['</urlset>']
+          (root/'sitemap.xml').write_text('\n'.join(xml)+'\n',encoding='utf-8')
           PY
       - name: Commit generated pages
         shell: bash
@@ -68,4 +90,4 @@ jobs:
           git add -A
           if git diff --cached --quiet; then echo "No changes"; exit 0; fi
           git commit -m "Improve Radar IA pages, links and official sources [skip ci]"
-          git push
+          git push origin HEAD:main
