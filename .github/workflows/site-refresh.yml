@@ -1,0 +1,71 @@
+name: Build Radar IA public pages
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate public pages
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re, html
+          root=Path('.')
+          idx=root/'index.html'
+          s=idx.read_text(encoding='utf-8')
+          rx=re.compile(r'\s*"([^"]+)":\{name:"([^"]+)",cat:"([^"]+)",desc:"(.*?)",price:"([^"]+)",level:"([^"]+)",platform:"([^"]+)",lang:"([^"]+)",tags:\[(.*?)\],url:"([^"]+)"\},?$',re.S)
+          tools=[]
+          for line in s.splitlines():
+            m=rx.match(line)
+            if m:
+              tools.append(dict(id=m.group(1),name=m.group(2),cat=m.group(3),desc=m.group(4),price=m.group(5),level=m.group(6),platform=m.group(7),lang=m.group(8),tags=re.findall(r'"([^"]+)"',m.group(9)),url=m.group(10)))
+          css='''*{box-sizing:border-box}body{margin:0;background:#0D1220;color:#F1F4FA;font-family:Inter,Arial,sans-serif;line-height:1.6}a{color:inherit}.wrap{max-width:1080px;margin:auto;padding:0 22px}.nav{position:sticky;top:0;background:rgba(13,18,32,.95);border-bottom:1px solid #2A3454;z-index:5}.navin{min-height:64px;display:flex;align-items:center;gap:22px;flex-wrap:wrap}.brand{font-weight:800;font-size:1.15rem;text-decoration:none}.brand span{color:#FFB86B}.links{display:flex;gap:16px;flex-wrap:wrap;font-size:.9rem;color:#9BA6C0}.links a{text-decoration:none}.hero{padding:54px 0 30px}.eyebrow{color:#FFB86B;font-size:.82rem;font-weight:700;text-transform:uppercase}.hero h1{font-size:clamp(2rem,4vw,3.1rem);line-height:1.1;margin:8px 0 14px}.lede{font-size:1.08rem;color:#9BA6C0;max-width:760px}.card{background:#161D30;border:1px solid #2A3454;border-radius:16px;padding:22px;margin:18px 0}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}.btn{display:inline-block;padding:10px 16px;border-radius:999px;background:#FFB86B;color:#1a1206;text-decoration:none;font-weight:700;border:0;cursor:pointer}.meta{display:flex;gap:8px;flex-wrap:wrap;color:#9BA6C0;font-size:.85rem}.tag{border:1px solid #2A3454;border-radius:999px;padding:4px 9px}.source{margin-top:20px;padding-top:16px;border-top:1px solid #2A3454}.notice{padding:14px 16px;border:1px solid #665a20;background:#2a2614;border-radius:12px;color:#f2e7b0}footer{border-top:1px solid #2A3454;margin-top:50px;padding:28px 0;color:#9BA6C0;font-size:.9rem}@media(max-width:700px){.navin{align-items:flex-start;flex-direction:column;padding:12px 0;gap:8px}}'''
+          def page(title,eyebrow,body,root='..'):
+            return f'''<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>{html.escape(title)} | Radar IA</title><meta name="description" content="{html.escape(title)} — Radar IA"><style>{css}</style></head><body><header class="nav"><div class="wrap navin"><a class="brand" href="{root}/index.html">Radar<span>IA</span></a><nav class="links"><a href="{root}/index.html#inicio">Inicio</a><a href="{root}/index.html#herramientas">Herramientas</a><a href="{root}/index.html#categorias">Categorías</a><a href="{root}/index.html#articulos">Guías</a><a href="{root}/noticias/index.html">Noticias</a></nav></div></header><main class="wrap"><section class="hero"><div class="eyebrow">{html.escape(eyebrow)}</div><h1>{html.escape(title)}</h1>{body}</section></main><footer><div class="wrap">Radar IA · <a href="{root}/legal/contacto.html">contacto@radarai.es</a></div></footer></body></html>'''
+          for t in tools:
+            d=root/'herramientas'/t['id']; d.mkdir(parents=True,exist_ok=True)
+            tags=' '.join('<span class="tag">'+html.escape(x)+'</span>' for x in t['tags'])
+            body=f'<div class="card"><p>{html.escape(t["desc"])}</p><div class="meta"><span>Acceso: {html.escape(t["price"])}</span><span>Nivel: {html.escape(t["level"])}</span><span>Plataforma: {html.escape(t["platform"])}</span><span>Idioma: {html.escape(t["lang"])}</span></div><div class="meta" style="margin-top:10px">{tags}</div><p style="margin-top:18px"><a class="btn" href="{html.escape(t["url"],quote=True)}" target="_blank" rel="noopener noreferrer">Visitar web oficial</a></p><div class="source"><strong>Fuente:</strong> esta ficha usa la información del directorio base de Radar IA. Comprueba siempre las condiciones actuales en la web oficial.</div></div>'
+            (d/'index.html').write_text(page(t['name'],'Ficha de herramienta',body,'../..'),encoding='utf-8')
+          utils={'generador-de-prompts':'Generador de prompts','mejorador-de-prompts':'Mejorador de prompts','generador-de-titulos':'Generador de títulos','generador-de-ideas':'Generador de ideas','generador-de-hashtags':'Generador de hashtags','contador-de-palabras':'Contador de palabras','descripcion-video':'Descripción para YouTube/TikTok','prompt-imagenes':'Prompt para imágenes'}
+          for slug,title in utils.items():
+            d=root/'herramientas-radar'/slug; d.mkdir(parents=True,exist_ok=True)
+            js='''<script>const i=document.querySelector('#i'),o=document.querySelector('#o');document.querySelector('#b').onclick=()=>{let v=i.value.trim();if(!v){o.textContent='Escribe algo primero.';return}let p=location.pathname,m='';if(p.includes('contador'))m=`Palabras: ${v.split(/\\s+/).filter(Boolean).length}\\nCaracteres: ${v.length}`;else if(p.includes('hashtags'))m=v.split(/[,;\\n]/).map(x=>x.trim()).filter(Boolean).map(x=>'#'+x.replace(/\\s+/g,'')).join(' ');else if(p.includes('titulos'))m=Array.from({length:8},(_,n)=>`${n+1}. ${v}: propuesta de título ${n+1}`).join('\\n');else if(p.includes('ideas'))m=Array.from({length:8},(_,n)=>`${n+1}. Idea ${n+1} sobre ${v}`).join('\\n');else if(p.includes('imagen'))m=`Sujeto: ${v}\\nEstilo: [define estilo]\\nComposición: [define encuadre]\\nIluminación: [define luz]\\nFormato: [16:9 / 1:1 / 9:16]`;else m=`Objetivo: ${v}\\nContexto: [añade contexto]\\nResultado: [define formato]\\nCriterios: [define cómo evaluar]`;o.textContent=m}</script>'''
+            body=f'<p class="lede">Herramienta gratuita que funciona en el navegador.</p><div class="card"><textarea id="i" rows="8" style="width:100%;background:#0b1020;color:#fff;border:1px solid #2A3454;border-radius:12px;padding:12px"></textarea><p><button id="b" class="btn" type="button">Generar</button></p><pre id="o" style="white-space:pre-wrap;background:#0b1020;border:1px solid #2A3454;border-radius:12px;padding:16px;min-height:100px"></pre></div>'+js
+            (d/'index.html').write_text(page(title,'Herramienta propia Radar IA',body,'../..'),encoding='utf-8')
+          guides={'como-elegir-una-ia':('Cómo elegir una IA','https://openai.com/es-ES/academy/getting-started/'),'mejores-prompts':('Cómo escribir mejores prompts','https://help.openai.com/es-es/articles/10032626-prompt-engineering-best-practices-for-chatgpt'),'ia-para-estudiar':('IA para estudiar','https://openai.com/es-ES/academy/using-chatgpt/'),'privacidad-en-ia':('Privacidad en IA','https://help.openai.com/es-es/articles/7730893'),'chatbot-buscador-generador':('Chatbot, buscador con IA o generador','https://www.perplexity.ai/help-center/es/articles/10352155-que-es-perplexity'),'automatizar-tareas':('Primeros pasos para automatizar tareas','https://openai.com/index/introducing-the-agents-api/')}
+          for slug,(title,src) in guides.items():
+            d=root/'guias'/slug; d.mkdir(parents=True,exist_ok=True); body=f'<p class="lede">Guía editorial basada en documentación oficial. Consulta la fuente para la información más actual.</p><div class="card"><a class="btn" href="{src}" target="_blank" rel="noopener noreferrer">Consultar fuente oficial</a></div>'; (d/'index.html').write_text(page(title,'Guía Radar IA',body,'../..'),encoding='utf-8')
+          news=[('openai-agents-api','Nueva Agents API de OpenAI','10/09/2026','https://openai.com/index/introducing-the-agents-api/'),('openai-financial-services','ChatGPT para servicios financieros','10/09/2026','https://openai.com/index/introducing-chatgpt-financial-services/'),('openai-gpt6-astra','GPT-6 Astra: nueva generación de inteligencia para el trabajo','09/09/2026','https://openai.com/news/product-releases/'),('anthropic-misuse-september-2026','Anthropic: detección y respuesta ante uso indebido de IA','10/09/2026','https://www.anthropic.com/news?_x_tr_hist=true&_x_tr_pto=tc&_x_tr_sl=en&_x_tr_tl=es'),('ia-seguridad-septiembre-2026','Anthropic refuerza sus prácticas de alineamiento y seguridad','31/08/2026','https://www.anthropic.com/news/improving-alignment-security-efforts'),('mistral-ai-now-2026','Mistral AI Now Summit 2026','28/05/2026','https://mistral.ai/news/ai-now-summit-2026/')]
+          cards=[]
+          for slug,title,date,src in news:
+            d=root/'noticias'/slug; d.mkdir(parents=True,exist_ok=True); body=f'<p class="lede">Contenido basado en la publicación oficial del proveedor.</p><div class="card"><p>Radar IA resume y enlaza la fuente original; no sustituye la publicación oficial.</p><a class="btn" href="{src}" target="_blank" rel="noopener noreferrer">Leer publicación oficial</a></div>'; (d/'index.html').write_text(page(title,'Radar IA · Noticias',body,'../..'),encoding='utf-8'); cards.append(f'<a class="card" href="noticias/{slug}/index.html"><strong>{html.escape(title)}</strong><p class="muted">{date}</p><p>Leer análisis y consultar la fuente oficial.</p></a>')
+          nd=root/'noticias'/'index.html'; nd.write_text(page('Noticias de inteligencia artificial','Radar IA · Actualidad','<p class="lede">Selección editorial enlazada a fuentes oficiales.</p><div class="grid">'+''.join(cards).replace('href="noticias/','href="')+'</div>','..'),encoding='utf-8')
+          info={'alternativas':'Alternativas de herramientas IA','precios':'Precios de herramientas IA','cambios':'Cambios y revisiones de Radar IA','rankings':'Rankings de Radar IA','reviews':'Revisiones de Radar IA','preguntas-frecuentes':'Preguntas frecuentes sobre IA','mejor-ia':'Guías para encontrar la mejor IA','publicacion':'Checklist de publicación de Radar IA'}
+          for slug,title in info.items():
+            d=root/slug; d.mkdir(parents=True,exist_ok=True); body='<p class="lede">Información editorial y transparente. Cuando una función, precio o condición pueda cambiar, la referencia válida es la web oficial del proveedor.</p><div class="card"><p>Radar IA no es el proveedor de las herramientas incluidas.</p></div>'; (d/'index.html').write_text(page(title,'Radar IA',body,'..'),encoding='utf-8')
+          leg={'contacto':('Contacto','Puedes escribir a <a href="mailto:contacto@radarai.es">contacto@radarai.es</a>.'),'aviso-legal':('Aviso legal','Radar IA es un portal informativo y no es el proveedor de los servicios que aparecen en el directorio.'),'politica-privacidad':('Política de privacidad','Esta política debe completarse con la identidad y los tratamientos reales del titular antes de la activación comercial.'),'politica-cookies':('Política de cookies','Debe reflejar las cookies y proveedores reales que se activen, incluidos los de publicidad, antes de la activación comercial.')}
+          for slug,(title,text) in leg.items():
+            d=root/'legal'; d.mkdir(parents=True,exist_ok=True); body=f'<p class="lede">{text}</p><div class="notice">No se inventan datos legales. Antes de monetizar, completa identidad/domicilio del titular, proveedores reales y mecanismo de consentimiento.</div>'; (d/(slug+'.html')).write_text(page(title,'Información legal',body,'..'),encoding='utf-8')
+          s=idx.read_text(encoding='utf-8')
+          s=s.replace('gap: 32px;','gap: 20px;').replace('font-size: 0.95rem;','font-size: 0.86rem;',1)
+          s=s.replace('href="/guias/como-elegir-una-ia/"','href="guias/como-elegir-una-ia/index.html"').replace('href="/herramientas-radar/"','href="herramientas-radar/index.html"')
+          s=s.replace('https://TU-DOMINIO.com/','https://radarai.es/')
+          s=s.replace('<a data-legal="contacto" href="#">Contacto</a>','<a href="legal/contacto.html">Contacto</a>')
+          s=s.replace('<a href="legal/politica-cookies.html">Política de cookies</a><a href="legal/contacto.html">Contacto</a>','<a href="legal/politica-cookies.html">Política de cookies</a>')
+          idx.write_text(s,encoding='utf-8')
+          PY
+      - name: Commit generated pages
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --cached --quiet; then echo "No changes"; exit 0; fi
+          git commit -m "Improve Radar IA pages, links and official sources [skip ci]"
+          git push
