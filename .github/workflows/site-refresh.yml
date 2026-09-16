@@ -14,8 +14,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Repair IA catalog
         run: python3 scripts/fix_catalog.py
+
       - name: Remove obsolete AI sections
         run: |
           python3 - <<'PY'
@@ -34,46 +36,69 @@ jobs:
           p.write_text(s, encoding='utf-8')
           print(f'OK: secciones eliminadas={removed}')
           PY
-      - name: Install Google AdSense publisher tag
+
+      - name: Add SEO canonicals and AdSense to public pages
         run: |
           python3 - <<'PY'
           from pathlib import Path
-          p = Path('index.html')
-          s = p.read_text(encoding='utf-8')
-          tag = '''<!-- Google AdSense -->
-          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7428485851163208" crossorigin="anonymous"></script>
-          '''
-          if 'ca-pub-7428485851163208' not in s:
-              if '</head>' not in s.lower():
-                  raise SystemExit('ERROR: no se encontró </head> en index.html')
-              s = s.replace('</head>', tag + '</head>', 1)
+          import re
+          root = Path('.')
+          adsense = '<!-- Google AdSense -->\n<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7428485851163208" crossorigin="anonymous"></script>\n'
+          changed = 0
+          for p in root.rglob('*.html'):
+              if any(part.startswith('.') for part in p.parts):
+                  continue
+              s = p.read_text(encoding='utf-8')
+              rel = p.relative_to(root).as_posix()
+              if rel == 'index.html':
+                  canonical = 'https://radarai.es/'
+              elif rel.endswith('/index.html'):
+                  canonical = 'https://radarai.es/' + rel[:-10].rstrip('/') + '/'
+              else:
+                  canonical = 'https://radarai.es/' + rel
+              canonical_tag = f'<link rel="canonical" href="{canonical}" />'
+              if 'rel="canonical"' not in s.lower():
+                  s = re.sub(r'</head>', canonical_tag + '\n</head>', s, count=1, flags=re.I)
+              if not rel.startswith('legal/') and 'ca-pub-7428485851163208' not in s:
+                  s = re.sub(r'</head>', adsense + '</head>', s, count=1, flags=re.I)
               p.write_text(s, encoding='utf-8')
-              print('OK: etiqueta de Google AdSense añadida')
-          else:
-              print('OK: etiqueta de Google AdSense ya estaba instalada')
+              changed += 1
+          print(f'OK: páginas HTML revisadas={changed}')
           PY
-      - name: Validate
+
+      - name: Validate HTML, SEO and internal links
         run: |
           python3 - <<'PY'
           from pathlib import Path
-          s = Path('index.html').read_text(encoding='utf-8')
-          assert '<!DOCTYPE html>' in s
-          assert '</html>' in s
-          assert 'function renderCatalog(){' in s
-          assert 'const cardFor=' in s
-          assert 'cards[Object.keys(TOOLS).indexOf(id)]' not in s
-          assert 'FASE 10' not in s.upper()
-          assert 'alternativas-precios-ia' not in s
-          assert 'Alternativas, precios y cambios de las herramientas IA' not in s
-          assert 'ca-pub-7428485851163208' in s
-          assert 'pagead2.googlesyndication.com/pagead/js/adsbygoogle.js' in s
-          print('OK: HTML válido y AdSense configurado')
+          from html.parser import HTMLParser
+          import re
+          root = Path('.')
+          html_files = list(root.rglob('*.html'))
+          assert html_files, 'No se encontraron páginas HTML'
+          for p in html_files:
+              s = p.read_text(encoding='utf-8')
+              assert '<!DOCTYPE html>' in s.upper(), f'DOCTYPE ausente: {p}'
+              assert re.search(r'<title\b[^>]*>.*?</title>', s, re.I|re.S), f'Título ausente: {p}'
+              assert re.search(r'<meta\b[^>]*name=["\']description["\'][^>]*>', s, re.I), f'Descripción ausente: {p}'
+              assert 'rel="canonical"' in s.lower(), f'Canonical ausente: {p}'
+              assert '</html>' in s.lower(), f'Cierre HTML ausente: {p}'
+          index = (root / 'index.html').read_text(encoding='utf-8')
+          assert 'function renderCatalog(){' in index
+          assert 'const cardFor=' in index
+          assert 'cards[Object.keys(TOOLS).indexOf(id)]' not in index
+          assert 'FASE 10' not in index.upper()
+          assert 'alternativas-precios-ia' not in index
+          assert 'Alternativas, precios y cambios de las herramientas IA' not in index
+          assert 'ca-pub-7428485851163208' in index
+          assert 'pagead2.googlesyndication.com/pagead/js/adsbygoogle.js' in index
+          print(f'OK: {len(html_files)} páginas HTML validadas; SEO y AdSense presentes')
           PY
+
       - name: Commit and push
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add index.html
+          git add '*.html' '.github/workflows/site-refresh.yml'
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m "Install Google AdSense publisher tag [skip ci]"
+          git commit -m "Mejorar SEO técnico y validación de páginas [skip ci]"
           git push
