@@ -19,9 +19,8 @@ ADSENSE_CLIENT = 'ca-pub-7428485851163208'
 NO_ADS_PREFIXES = ('/legal/', '/contacto/', '/404')
 
 NAV = [
-    ('Inicio', '/'),
-    ('Herramientas', '/#herramientas'),
     ('Comparativas', '/mejor-ia/'),
+    ('Herramientas', '/herramientas/'),
     ('Guías', '/guias/'),
     ('Noticias', '/noticias/'),
     ('Utilidades', '/herramientas-radar/'),

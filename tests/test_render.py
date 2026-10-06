@@ -102,3 +102,21 @@ def test_no_custom_cookie_banner(env):
     # El consentimiento lo gestiona el CMP certificado de Google (AdSense > Privacidad y mensajes).
     html = render_page(env, news('n', 1), ctx())
     assert 'cookie-banner' not in html
+
+
+def test_nav_order_and_targets():
+    from radar.render import NAV
+    assert NAV == [('Comparativas', '/mejor-ia/'), ('Herramientas', '/herramientas/'), ('Guías', '/guias/'),
+                   ('Noticias', '/noticias/'), ('Utilidades', '/herramientas-radar/')]
+
+
+def test_no_google_fonts_and_fonts_preloaded(env):
+    html = render_page(env, news('n', 1), ctx())
+    assert 'fonts.googleapis' not in html and 'fonts.gstatic' not in html
+    assert '<link rel="preload" href="/static/fonts/fraunces-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>' in html
+    assert '/static/fonts/inter-latin-400-normal.woff2' in html
+
+
+def test_footer_has_motto_and_brand(env):
+    html = render_page(env, news('n', 1), ctx())
+    assert 'La IA en tu día' in html and 'class="site-footer"' in html

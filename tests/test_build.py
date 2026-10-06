@@ -156,3 +156,23 @@ def test_og_images_generated_and_declared(tmp_path):
     assert '<meta name="twitter:card" content="summary_large_image">' in html
     assert '"image": "https://radarai.es/og/noticias/buena.png"' in html
     assert 'og:image' not in (out / '404.html').read_text()
+
+
+def test_no_google_fonts_anywhere(tmp_path):
+    root, out = make_root(tmp_path), tmp_path / '_site'
+    build(root, out)
+    for f in out.rglob('*.html'):
+        assert 'Google Fonts' not in f.read_text() and 'fonts.googleapis' not in f.read_text(), f
+
+
+def test_real_legal_pages_do_not_mention_google_fonts():
+    for name in ('politica-cookies', 'politica-privacidad'):
+        assert 'Google Fonts' not in (ROOT / 'content' / 'paginas' / 'legal' / f'{name}.md').read_text()
+
+
+def test_css_defines_editorial_tokens():
+    css = (ROOT / 'static' / 'css' / 'radar.css').read_text()
+    for token in ('--paper: #fbf8f3', '--paper-2: #f3ece0', '--ink: #151515', '--ink-2: #444',
+                  '--rule: #e0d9cc', '--accent: #e4572e', '--amber: #f3a712'):
+        assert token in css, token
+    assert css.count('@font-face') == 7 and 'font-display: swap' in css
