@@ -29,3 +29,9 @@ def test_has_page_flag(tmp_path):
     (tmp_path / 'herramientas' / 'claude.md').write_text('titulo: Claude\n\nx', encoding='utf-8')
     tools = load_tools(ROOT / 'data' / 'tools.json', tmp_path)
     assert [t for t in tools if tools[t].has_page] == ['claude']
+
+
+def test_every_ficha_id_exists_in_catalog():
+    ids = set(json.loads((ROOT / 'data' / 'tools.json').read_text(encoding='utf-8')))
+    fichas = {p.stem for p in (ROOT / 'content' / 'herramientas').glob('*.md')}
+    assert fichas <= ids, fichas - ids

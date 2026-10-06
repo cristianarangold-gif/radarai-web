@@ -3,9 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<script>document.documentElement.classList.add('js')</script>
 <title>{% block title %}{{ page.title }} | Radar IA{% endblock %}</title>
 <meta name="description" content="{{ page.description }}">
+{% if page.url != '/404/' %}
 <link rel="canonical" href="{{ canonical_url }}">
+{% endif %}
 {% if not page.indexable %}
 <meta name="robots" content="noindex,follow">
 {% endif %}

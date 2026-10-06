@@ -17,6 +17,7 @@ SECTION_BY_KIND = {
     'guia': ('Guías', '/guias/'),
     'comparativa': ('Comparativas', '/mejor-ia/'),
     'ficha': ('Herramientas', '/herramientas/'),
+    'utilidad': ('Utilidades', '/herramientas-radar/'),
 }
 
 

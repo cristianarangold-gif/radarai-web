@@ -93,3 +93,21 @@ def test_entities_in_meta_are_decoded(tmp_path):
     p = load_pages(tmp_path)[0]
     assert p.title == 'Guía & trucos'
     assert p.description == 'A "B"'
+
+
+def test_date_requires_iso_dashes(tmp_path):
+    write(tmp_path, 'noticias/compacta.md', 'titulo: N\ndescripcion: d\nfecha: 20261001\n\nx')
+    with pytest.raises(ValueError, match='compacta.md'):
+        load_pages(tmp_path)
+
+
+def test_utilidad_url(tmp_path):
+    write(tmp_path, 'utilidades/generador-de-prompts.md', BASIC)
+    (p,) = load_pages(tmp_path)
+    assert p.url == '/herramientas-radar/generador-de-prompts/'
+    assert p.kind == 'utilidad'
+
+
+def test_noindex_accent(tmp_path):
+    write(tmp_path, 'paginas/n.md', 'titulo: T\ndescripcion: d\nnoindex: sí\n\nx')
+    assert load_pages(tmp_path)[0].indexable is False

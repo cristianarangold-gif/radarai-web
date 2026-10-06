@@ -24,7 +24,7 @@ class Page:
 
     @property
     def indexable(self) -> bool:
-        return not self.draft and self.extra.get('noindex') != 'si'
+        return not self.draft and self.extra.get('noindex', '').lower() not in ('si', 'sí', 'true')
 
     @property
     def lastmod(self) -> Optional[date]:

@@ -32,6 +32,7 @@ TEMPLATE_BY_KIND = {
     'guia': 'article.html',
     'comparativa': 'article.html',
     'pagina': 'page.html',
+    'utilidad': 'utility.html',
 }
 
 

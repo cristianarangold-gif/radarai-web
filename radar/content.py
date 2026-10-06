@@ -17,6 +17,7 @@ KIND_BY_DIR = {
     'noticias': 'noticia',
     'herramientas': 'ficha',
     'paginas': 'pagina',
+    'utilidades': 'utilidad',
 }
 
 MIN_WORDS = {
@@ -48,12 +49,16 @@ def _url_for(kind_dir: str, rel: Path) -> str:
         return '/' if stem == 'inicio' else f'/{stem}/'
     if kind_dir == 'mejor-ia':
         return f'/{stem}/'
+    if kind_dir == 'utilidades':
+        return f'/herramientas-radar/{stem}/'
     return f'/{kind_dir}/{stem}/'
 
 
 def _parse_date(value: Optional[str], path: Path, key: str) -> Optional[date]:
     if not value:
         return None
+    if not re.fullmatch(r'\d{4}-\d{2}-\d{2}', value.strip()):
+        raise ValueError(f'{path}: «{key}» debe tener formato AAAA-MM-DD (valor: {value!r})')
     try:
         return date.fromisoformat(value.strip())
     except ValueError:

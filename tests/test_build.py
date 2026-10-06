@@ -74,5 +74,30 @@ def test_old_tool_url_redirects(tmp_path):
 def test_duplicate_output_path_raises(tmp_path):
     root, out = make_root(tmp_path), tmp_path / '_site'
     (root / 'data' / 'redirects.yml').write_text('/noticias/buena/: /\n', encoding='utf-8')
-    with pytest.raises(ValueError, match='noticias/buena/index.html'):
+    with pytest.raises(ValueError, match='noticias/buena/index.html') as exc:
         build(root, out)
+    assert 'content /noticias/buena/' in str(exc.value) and 'redirección' in str(exc.value)
+
+
+def test_404_has_no_canonical(tmp_path):
+    root, out = make_root(tmp_path), tmp_path / '_site'
+    build(root, out)
+    assert 'rel="canonical"' not in (out / '404.html').read_text()
+
+
+def test_refuses_out_dir_with_sources(tmp_path):
+    root = make_root(tmp_path)
+    (root / 'scripts').mkdir()
+    (root / 'scripts' / 'build.py').write_text('')
+    with pytest.raises(ValueError, match='código fuente'):
+        build(root, root)
+
+
+def test_utilities_listing(tmp_path):
+    root, out = make_root(tmp_path), tmp_path / '_site'
+    (root / 'static' / 'utilidades' / 'index.html').unlink()
+    (root / 'content' / 'utilidades').mkdir()
+    (root / 'content' / 'utilidades' / 'contador.md').write_text(
+        'titulo: Contador\ndescripcion: Cuenta palabras\n\n' + 'palabra ' * 320, encoding='utf-8')
+    build(root, out)
+    assert 'href="/herramientas-radar/contador/"' in (out / 'herramientas-radar' / 'index.html').read_text()

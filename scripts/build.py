@@ -30,6 +30,8 @@ LISTINGS = [
      'Comparativas actualizadas para elegir la herramienta de IA adecuada según lo que necesitas hacer.'),
     ('/herramientas/', 'ficha', 'Análisis de herramientas de IA',
      'Fichas completas de las herramientas de IA más usadas: qué hacen, cuánto cuestan y para quién son.'),
+    ('/herramientas-radar/', 'utilidad', 'Utilidades gratuitas de Radar IA',
+     'Pequeñas herramientas gratuitas que funcionan en tu navegador para preparar prompts, títulos, hashtags y textos.'),
 ]
 
 
@@ -62,6 +64,8 @@ def _out_path(url: str) -> str:
 
 def build(root: Path, out: Path) -> None:
     root, out = Path(root), Path(out)
+    if (out / 'scripts' / 'build.py').exists() or (out / 'content').is_dir():
+        raise ValueError(f'{out} contiene código fuente; elige otra carpeta de salida')
     if out.exists():
         shutil.rmtree(out)
     out.mkdir(parents=True)
@@ -80,6 +84,8 @@ def build(root: Path, out: Path) -> None:
         w.write(_out_path(p.url), render_page(env, p, base_ctx), f'content {p.url}')
 
     for url, kind, title, desc in LISTINGS:
+        if kind == 'utilidad' and not (root / 'content' / 'utilidades').is_dir():
+            continue
         items = sorted((p for p in pages if p.kind == kind and p.indexable),
                        key=lambda p: (p.date is None, p.date), reverse=(kind == 'noticia'))
         if kind != 'noticia':

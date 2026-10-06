@@ -36,9 +36,10 @@ h3 { font-size: 1.2rem; margin: 1.6em 0 .5em; }
 .site-nav a:hover, .site-nav a[aria-current="page"] { color: var(--text); background: var(--surface); }
 .menu-toggle { display: none; background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 999px; padding: 8px 14px; font: inherit; cursor: pointer; }
 @media (max-width: 820px) {
-  .menu-toggle { display: inline-block; }
-  .site-nav { display: none; width: 100%; flex-direction: column; padding-bottom: 12px; }
-  .site-nav.open { display: flex; }
+  .site-nav { width: 100%; padding-bottom: 12px; }
+  .js .menu-toggle { display: inline-block; }
+  .js .site-nav { display: none; flex-direction: column; }
+  .js .site-nav.open { display: flex; }
 }
 
 /* Botones */
