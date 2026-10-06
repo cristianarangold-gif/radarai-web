@@ -3,6 +3,10 @@ descripcion: Análisis de Suno, la IA para crear canciones: planes Free, Pro y P
 fecha: 2026-10-06
 web: https://suno.com/
 plataforma: Web, iOS y Android
+precio_desde: 0 $
+plan_pago: Pro 8 $/mes
+ideal_para: Crear canciones
+veredicto: La forma más sencilla de convertir una idea en una canción; Pro incluye derechos comerciales y 20 descargas al mes.
 fuentes: https://suno.com/pricing
 
 Suno es una herramienta de inteligencia artificial que **crea canciones completas** —con letra, voz e instrumentos— a partir de una descripción o de una letra que escribas tú. En pocos segundos genera temas de casi cualquier estilo, desde pop o flamenco hasta música electrónica o bandas sonoras instrumentales. En esta ficha explicamos qué ofrece cada plan, qué puedes hacer legalmente con las canciones y en qué casos compensa pagar.

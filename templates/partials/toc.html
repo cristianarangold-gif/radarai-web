@@ -1,0 +1,9 @@
+<details class="toc-box" open>
+  <summary>En esta página</summary>
+  <div class="progress" aria-hidden="true"><i></i></div>
+  {% if toc %}
+  <nav class="toc" aria-label="Índice del artículo">
+    {% for hid, text in toc %}<a href="#{{ hid }}">{{ text }}</a>{% endfor %}
+  </nav>
+  {% endif %}
+</details>

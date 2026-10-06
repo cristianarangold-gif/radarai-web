@@ -3,6 +3,10 @@ descripcion: Análisis de Cursor, el editor de código con IA: plan Hobby gratui
 fecha: 2026-10-06
 web: https://cursor.com/
 plataforma: Windows, macOS y Linux
+precio_desde: 0 $
+plan_pago: Desde 20 $/mes
+ideal_para: Programar con agentes
+veredicto: Una de las mejores opciones para programar con agentes de IA; el plan Individual desde 20 $/mes es el punto de partida profesional.
 fuentes: https://cursor.com/pricing
 
 Cursor es un **editor de código construido alrededor de la inteligencia artificial**. Está basado en VS Code, por lo que su aspecto y sus extensiones resultan familiares, pero añade autocompletado avanzado, un chat que entiende todo tu proyecto y agentes capaces de planificar y ejecutar cambios en muchos archivos. Se ha convertido en una de las herramientas favoritas de desarrolladores y equipos de producto. En esta ficha repasamos sus planes, lo que ofrece cada uno y cuándo compensa frente a otras opciones.

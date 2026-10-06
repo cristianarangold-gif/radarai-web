@@ -1,19 +1,45 @@
 {% extends 'base.html' %}
 {% block main %}
+{% set t = tools.get(page.slug) %}
+{% set cat_label = (categories | selectattr(0, 'equalto', t.cat) | map(attribute=1) | first) if t else '' %}
+{% set name = t.name if t else page.title %}
 <article class="wrap article">
-  <header class="article-head">
-    <p class="eyebrow">Ficha de herramienta</p>
-    <h1>{{ page.title }}</h1>
-    <p class="lede">{{ page.description }}</p>
-    {% include 'partials/byline.html' %}
-    {% if page.extra.get('web') %}
-    <p><a class="btn btn-primary" href="{{ page.extra['web'] }}" rel="noopener nofollow" target="_blank">Visitar web oficial</a></p>
-    {% endif %}
+  <nav class="crumbs" aria-label="Migas de pan"><a href="/">Inicio</a> › <a href="/herramientas/">Herramientas</a> › <span>{{ name }}</span></nav>
+  <header class="article-head tool-head">
+    {{ page.slug | logo(80, name) }}
+    <div>
+      <p class="kicker">Ficha{% if cat_label %} · {{ cat_label }}{% endif %}</p>
+      <h1>{{ page.title }}</h1>
+      {% include 'partials/byline.html' %}
+    </div>
   </header>
-  <div class="prose">
-    {{ page.body_html | safe }}
+  <div class="article-grid">
+    <div class="article-main">
+      {% set boxes = [('Precio desde', page.extra.get('precio_desde')), ('Plan de pago', page.extra.get('plan_pago')), ('Ideal para', page.extra.get('ideal_para')), ('Plataformas', page.extra.get('plataforma'))] | selectattr(1) | list %}
+      {% if boxes %}
+      <dl class="summary">
+        {% for label, value in boxes %}<div{% if value | length > 22 %} class="summary-long"{% endif %}><dt>{{ label }}</dt><dd>{{ value }}</dd></div>{% endfor %}
+      </dl>
+      {% endif %}
+      {% if page.extra.get('veredicto') %}
+      <div class="verdict"><p class="verdict-label">Veredicto en una línea</p><p>{{ page.extra['veredicto'] }}</p></div>
+      {% endif %}
+      <div class="prose">
+        {{ page.body_html | safe }}
+      </div>
+      {% include 'partials/ad_slot.html' %}
+      {% include 'partials/sources.html' %}
+    </div>
+    <aside class="article-side">
+      <div class="side-sticky">
+        {% include 'partials/toc.html' %}
+        {% if page.extra.get('web') %}
+        <a class="cta" href="{{ page.extra['web'] }}" rel="noopener nofollow" target="_blank">Visitar {{ name }} →</a>
+        {% endif %}
+        {% include 'partials/ad_slot.html' %}
+      </div>
+    </aside>
   </div>
-  {% include 'partials/ad_slot.html' %}
-  {% include 'partials/sources.html' %}
 </article>
 {% endblock %}
+{% block scripts %}<script src="/static/js/toc.js" defer></script>{% endblock %}

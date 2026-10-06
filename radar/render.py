@@ -11,7 +11,7 @@ from markupsafe import Markup, escape
 
 from .brands import logo_html
 from .covers import cover_for, cover_svg, og_rel
-from .editorial import reading_minutes
+from .editorial import reading_minutes, related_news, toc
 from .models import Brand, Page
 from .seo import SITE, canonical, jsonld
 
@@ -130,5 +130,7 @@ def render_page(env: jinja2.Environment, page: Page, ctx: dict) -> str:
         radar=ctx.get('radar', []),
         imprescindibles=ctx.get('imprescindibles', []),
         fichas=ctx.get('fichas', {}),
+        toc=toc(page.body_html),
+        related=related_news(page, ctx.get('news', [])) if page.kind == 'noticia' else [],
         logos_dir=logos_dir,
     )

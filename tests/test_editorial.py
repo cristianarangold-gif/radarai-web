@@ -95,3 +95,24 @@ def test_imprescindibles_noindex_url_raises(tmp_path):
     f.write_text('/a/\n', encoding='utf-8')
     with pytest.raises(ValueError, match='/a/'):
         load_imprescindibles(f, {'/a/': make_page(url='/a/', draft=True)})
+
+
+def test_validate_fichas_requires_at_least_one_field():
+    from radar.editorial import FICHA_FIELDS, validate_fichas
+    assert FICHA_FIELDS == ('precio_desde', 'plan_pago', 'ideal_para', 'veredicto')
+    validate_fichas([make_page(kind='ficha', slug='a', extra={'veredicto': 'x'}), make_page(kind='guia')])
+    with pytest.raises(ValueError, match='herramientas/b: faltan precio_desde, plan_pago, ideal_para y veredicto'):
+        validate_fichas([make_page(kind='ficha', slug='b')])
+
+
+def test_real_fichas_have_all_summary_fields():
+    from pathlib import Path
+    from radar.content import load_pages
+    from radar.editorial import FICHA_FIELDS
+    root = Path(__file__).resolve().parent.parent
+    for p in load_pages(root / 'content'):
+        if p.kind == 'ficha':
+            for f in FICHA_FIELDS:
+                assert p.extra.get(f), f'{p.slug}: falta {f}'
+            assert len(p.extra['veredicto'].split()) <= 30, p.slug
+            assert 'hemos probado' not in p.extra['veredicto'].lower()

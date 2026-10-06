@@ -3,6 +3,10 @@ descripcion: Análisis de las funciones de IA de Canva en 2026: planes Gratis, P
 fecha: 2026-10-06
 web: https://www.canva.com/ai/
 plataforma: Web, Windows, macOS, iOS y Android
+precio_desde: 0 €
+plan_pago: Pro 110 €/año
+ideal_para: Diseñar sin experiencia
+veredicto: La opción más práctica para crear diseños completos con IA sin saber diseñar; Pro es el plan lógico para autónomos y creadores.
 fuentes: https://www.canva.com/es_es/precios/
 
 Canva es la herramienta de diseño en línea más popular entre personas que no son diseñadoras, y en los últimos años ha incorporado un amplio conjunto de **funciones de inteligencia artificial**: generar imágenes, redactar textos, quitar fondos, ampliar fotos, crear presentaciones a partir de una idea o redimensionar un diseño para distintas redes sociales. En esta ficha explicamos qué ofrece la IA de Canva, cómo funcionan los límites de uso y qué plan conviene según tu caso.

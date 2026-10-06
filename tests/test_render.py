@@ -130,3 +130,42 @@ def test_home_has_no_catalog(env):
 def test_home_title_emphasis_is_escaped(env):
     html = render_page(env, make_page(url='/', title='Tu <b> & la inteligencia artificial'), ctx())
     assert 'Tu &lt;b&gt; &amp; la <em>inteligencia artificial</em>' in html
+
+
+FICHA_BODY = '<h2 id="planes">Planes y precios</h2><p>x</p><h2 id="faq">Preguntas frecuentes</h2><p>y</p>'
+
+
+def ficha(**extra):
+    return make_page(kind='ficha', slug='bar', url='/herramientas/bar/', title='Bar', body_html=FICHA_BODY,
+                     word_count=1100, date=date(2026, 10, 1), extra=dict({'web': 'https://bar.example/'}, **extra))
+
+
+def test_ficha_summary_verdict_toc(env):
+    html = render_page(env, ficha(precio_desde='0 €', plan_pago='8 €/mes', ideal_para='Uso general',
+                                  plataforma='Web', veredicto='Muy útil.'),
+                       ctx(tools={'bar': tool('bar', True)}))
+    assert 'class="summary"' in html and 'Precio desde' in html and 'Plan de pago' in html
+    assert 'class="verdict"' in html and 'Muy útil.' in html
+    toc_html = html[html.index('class="toc"'):]
+    assert 'href="#planes"' in toc_html and 'href="#faq"' in toc_html
+    assert '5 min de lectura' in html
+    assert 'Visitar Bar' in html and 'href="https://bar.example/" rel="noopener nofollow" target="_blank"' in html
+    assert 'Ficha · Escritura' in html and '/static/js/toc.js' in html
+
+
+def test_ficha_hides_empty_summary_boxes(env):
+    html = render_page(env, ficha(precio_desde='0 €'), ctx(tools={'bar': tool('bar', True)}))
+    assert 'Precio desde' in html and 'Plan de pago' not in html and 'class="verdict"' not in html
+
+
+def test_news_related_excludes_self(env):
+    items = [news(f'n{i}', 10 - i) for i in range(5)]
+    html = render_page(env, items[1], ctx(news=items))
+    rel = html[html.index('class="related"'):]
+    assert 'href="/noticias/n0/"' in rel and 'href="/noticias/n3/"' in rel
+    assert 'href="/noticias/n1/"' not in rel and 'href="/noticias/n4/"' not in rel
+
+
+def test_article_has_cover_and_two_columns(env):
+    html = render_page(env, make_page(kind='guia', url='/guias/g/', body_html=FICHA_BODY), ctx())
+    assert 'class="article-grid"' in html and '<svg class="cover"' in html and 'class="toc"' in html

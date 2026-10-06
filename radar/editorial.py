@@ -65,3 +65,13 @@ def load_imprescindibles(path: Path, by_url: Dict[str, Page]) -> List[Page]:
             raise ValueError(f'imprescindibles.txt: {url} no existe o no es indexable')
         result.append(page)
     return result[:4]
+
+
+FICHA_FIELDS = ('precio_desde', 'plan_pago', 'ideal_para', 'veredicto')
+
+
+def validate_fichas(pages: List[Page]) -> None:
+    """Una ficha sin ninguno de los campos de resumen probablemente se ha quedado a medias."""
+    for p in pages:
+        if p.kind == 'ficha' and not any(p.extra.get(f) for f in FICHA_FIELDS):
+            raise ValueError(f'herramientas/{p.slug}: faltan precio_desde, plan_pago, ideal_para y veredicto')

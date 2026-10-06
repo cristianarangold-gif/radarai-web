@@ -3,6 +3,10 @@ descripcion: Análisis de ElevenLabs, la IA de voz: planes Free, Starter, Creato
 fecha: 2026-10-06
 web: https://elevenlabs.io/
 plataforma: Web, iOS, Android y API
+precio_desde: 0 $
+plan_pago: Starter 6 $/mes
+ideal_para: Voces y locuciones
+veredicto: Algunas de las voces sintéticas más naturales; Starter basta para locuciones con derechos comerciales y Creator equilibra para quien publica cada semana.
 fuentes: https://elevenlabs.io/pricing
 
 ElevenLabs es la plataforma de referencia para **generar voz con inteligencia artificial**. Convierte texto en locuciones muy naturales en decenas de idiomas, permite clonar voces, doblar vídeos a otros idiomas y crear efectos de sonido. La usan creadores de contenido, editoriales de audiolibros, empresas de formación y desarrolladores que integran voz en sus aplicaciones. En esta ficha repasamos sus planes, qué incluye cada uno y las precauciones legales que conviene tener en cuenta.

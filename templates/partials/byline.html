@@ -2,4 +2,5 @@
   Por <a href="/autor/" rel="author">{{ page.author }}</a>
   {% if page.date %} · <time datetime="{{ page.date.isoformat() }}">{{ page.date | fecha_es }}</time>{% endif %}
   {% if page.updated %} · <span>Actualizado el <time datetime="{{ page.updated.isoformat() }}">{{ page.updated | fecha_es }}</time></span>{% endif %}
+  · {{ reading_minutes(page) }} min de lectura
 </p>

@@ -3,6 +3,10 @@ descripcion: Análisis de Notion AI en 2026: qué incluye cada plan de Notion (G
 fecha: 2026-10-06
 web: https://www.notion.com/product/ai
 plataforma: Web, Windows, macOS, iOS y Android
+precio_desde: 0 €
+plan_pago: Business 19,50 €/usuario/mes
+ideal_para: Equipos que usan Notion
+veredicto: Muy recomendable si tu equipo ya trabaja en Notion; ten en cuenta que la IA completa requiere el plan Business.
 fuentes: https://www.notion.com/es-es/pricing
 
 Notion es una de las herramientas de organización más populares: sirve para tomar notas, gestionar proyectos, crear wikis de empresa o bases de datos personales. **Notion AI** es la capa de inteligencia artificial integrada en todo ese espacio de trabajo: redacta, resume, rellena bases de datos, toma notas de reuniones y busca información en tus páginas y en otras aplicaciones conectadas. En esta ficha explicamos qué incluye cada plan, cuánto cuesta y en qué casos aporta más que un chatbot independiente.

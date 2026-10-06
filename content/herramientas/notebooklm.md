@@ -3,6 +3,10 @@ descripcion: Análisis de Gemini Notebook, el antiguo NotebookLM de Google: cóm
 fecha: 2026-10-06
 web: https://notebooklm.google.com/
 plataforma: Web, Android e iOS
+precio_desde: 0 €
+plan_pago: Google AI Plus 4,99 €/mes
+ideal_para: Estudiar con tus fuentes
+veredicto: Probablemente la mejor herramienta gratuita para estudiar con IA: se basa en tus fuentes y las cita; el plan gratuito basta a la mayoría.
 fuentes: https://support.google.com/notebooklm/answer/16213268?hl=es
     https://gemini.google/subscriptions/
 

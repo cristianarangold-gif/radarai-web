@@ -3,6 +3,10 @@ descripcion: Análisis de GitHub Copilot en 2026: planes Free, Pro, Pro+ y Max, 
 fecha: 2026-10-06
 web: https://github.com/features/copilot
 plataforma: VS Code, JetBrains, Visual Studio, Xcode, terminal, GitHub.com y móvil
+precio_desde: 0 $
+plan_pago: Pro 10 $/mes
+ideal_para: Programar en GitHub
+veredicto: La opción más natural si ya trabajas con GitHub y VS Code; Pro (10 $/mes) tiene una relación calidad-precio excelente.
 fuentes: https://github.com/features/copilot/plans
 
 GitHub Copilot es el asistente de programación con inteligencia artificial de GitHub (Microsoft). Sugiere código mientras escribes, responde preguntas sobre tu proyecto en un chat, realiza cambios en varios archivos en modo agente y puede incluso trabajar por su cuenta en tareas asignadas desde GitHub. En esta ficha explicamos sus planes, el nuevo sistema de créditos de IA y para quién compensa cada opción.

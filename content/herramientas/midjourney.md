@@ -3,6 +3,10 @@ descripcion: Análisis de Midjourney en 2026: planes Basic, Standard, Pro y Mega
 fecha: 2026-10-06
 web: https://www.midjourney.com/
 plataforma: Web y Discord
+precio_desde: 10 $/mes
+plan_pago: Standard 30 $/mes
+ideal_para: Imágenes artísticas
+veredicto: Una referencia para imágenes de calidad estética profesional; Standard es el plan equilibrado por sus imágenes ilimitadas en modo Relax.
 fuentes: https://docs.midjourney.com/hc/en-us/articles/27870484040333-Comparing-Midjourney-Plans
 
 Midjourney es uno de los generadores de imágenes con inteligencia artificial más conocidos, apreciado sobre todo por la **calidad estética** de sus resultados: iluminación cuidada, texturas ricas y un estilo que muchas veces parece obra de un ilustrador o un fotógrafo profesional. Además de imágenes, permite generar vídeos cortos. En esta ficha explicamos cómo funcionan sus planes, cuánto cuestan y qué debes saber antes de suscribirte, en especial sobre la privacidad de tus creaciones.
