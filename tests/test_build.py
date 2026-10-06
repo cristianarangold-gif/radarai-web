@@ -38,6 +38,10 @@ def make_root(tmp_path):
                        lang='en', tags=[], url='https://runwayml.com/'),
     }
     (root / 'data' / 'tools.json').write_text(json.dumps(tools), encoding='utf-8')
+    (root / 'data' / 'brands.json').write_text(json.dumps({
+        'openai': dict(name='OpenAI', color='#10a37f', icon=None, monograma='O'),
+        'claude': dict(name='Claude', color='#d97757', icon='claude', monograma='C'),
+    }), encoding='utf-8')
     (root / 'data' / 'redirects.yml').write_text('/rankings/: /noticias/\n', encoding='utf-8')
     (root / 'ads.txt').write_text('google.com, pub-1, DIRECT, f08c47fec0942fa0\n')
     (root / 'CNAME').write_text('radarai.es')
@@ -115,3 +119,28 @@ def test_home_shows_featured_sections(tmp_path):
     home = (out / 'index.html').read_text()
     assert 'href="/mejor-ia-para-x/"' in home
     assert 'href="/guias/guia-y/"' in home
+
+
+def test_news_with_unknown_tool_fails_build(tmp_path):
+    root, out = make_root(tmp_path), tmp_path / '_site'
+    (root / 'content' / 'noticias' / 'buena.md').write_text(
+        'titulo: Buena\ndescripcion: d1\nfecha: 2026-10-01\nherramientas: inexistente\n\n' + 'palabra ' * 600,
+        encoding='utf-8')
+    with pytest.raises(ValueError, match='noticias/buena: herramienta desconocida «inexistente»'):
+        build(root, out)
+
+
+def test_draft_news_is_validated_too(tmp_path):
+    root, out = make_root(tmp_path), tmp_path / '_site'
+    (root / 'content' / 'noticias' / 'borrador.md').write_text(
+        'titulo: Borrador\ndescripcion: d2\nfecha: 2026-10-02\nborrador: si\nempresa: openia\n\ncorto',
+        encoding='utf-8')
+    with pytest.raises(ValueError, match='empresa desconocida «openia»'):
+        build(root, out)
+
+
+def test_imprescindibles_with_unknown_url_fails_build(tmp_path):
+    root, out = make_root(tmp_path), tmp_path / '_site'
+    (root / 'data' / 'imprescindibles.txt').write_text('/no-existe/\n', encoding='utf-8')
+    with pytest.raises(ValueError, match='/no-existe/'):
+        build(root, out)

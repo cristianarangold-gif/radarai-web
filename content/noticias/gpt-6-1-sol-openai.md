@@ -1,6 +1,8 @@
 titulo: OpenAI lanza GPT-6.1 Sol: rendimiento cercano a Astra por una quinta parte del precio
 descripcion: GPT-6.1 Sol llega a ChatGPT Work, Codex y la API con un precio de 2 $ por millón de tokens de entrada. Qué mejora, quién puede usarlo y qué significa para empresas y desarrolladores.
 fecha: 2026-10-06
+empresa: openai
+herramientas: chatgpt
 fuentes: https://openai.com/es-ES/index/introducing-gpt-6-1-sol/
 
 OpenAI ha presentado **GPT-6.1 Sol**, una versión mejorada de su modelo intermedio GPT-6 Sol. La promesa principal es económica: según la empresa, ofrece un rendimiento **cercano al de GPT-6 Astra**, su modelo más avanzado, **por aproximadamente una quinta parte de las tarifas estándar** de Astra. El lanzamiento se produjo en el marco de DevDay 2026, a finales de septiembre.

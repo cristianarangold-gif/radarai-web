@@ -13,7 +13,9 @@ from typing import Dict, List
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
+from radar.brands import load_brands  # noqa: E402
 from radar.content import load_pages  # noqa: E402
+from radar.editorial import load_imprescindibles, radar_tools, validate_news_meta  # noqa: E402
 from radar.models import Page, Redirect  # noqa: E402
 from radar.redirects import load_redirects, output_paths, render_redirect  # noqa: E402
 from radar.render import make_env, render_page  # noqa: E402
@@ -73,6 +75,8 @@ def build(root: Path, out: Path) -> None:
     env = make_env(root / 'templates')
     pages = load_pages(root / 'content')
     tools = load_tools(root / 'data' / 'tools.json', root / 'content')
+    brands = load_brands(root / 'data' / 'brands.json', root / 'static' / 'logos')
+    validate_news_meta(pages, tools, brands)
     by_url = {p.url: p for p in pages}
     news = sorted((p for p in pages if p.kind == 'noticia' and p.indexable),
                   key=lambda p: p.date, reverse=True)
@@ -80,7 +84,11 @@ def build(root: Path, out: Path) -> None:
         return sorted((p for p in pages if p.kind == kind and p.indexable), key=lambda p: p.title)
     base_ctx = dict(tools=tools, categories=CATEGORIES, latest_news=news[:6], listing=None,
                     comparativas=featured('comparativa'), guias=featured('guia'),
-                    utilidades=featured('utilidad'))
+                    utilidades=featured('utilidad'), brands=brands, radar=radar_tools(news, tools),
+                    imprescindibles=[])
+    imprescindibles = root / 'data' / 'imprescindibles.txt'
+    if imprescindibles.exists():
+        base_ctx['imprescindibles'] = load_imprescindibles(imprescindibles, by_url)
     w = Writer(out)
 
     all_pages: List[Page] = list(pages)

@@ -1,6 +1,8 @@
 titulo: Gemini 3.8 Live estrena avatares que hablan en tiempo real para empresas
 descripcion: Google lanza Gemini 3.8 Live con Live Avatar en Gemini Enterprise: avatares animados que conversan en 97 idiomas, con marca de agua SynthID. Qué es, para qué sirve y sus riesgos.
 fecha: 2026-10-06
+empresa: google
+herramientas: gemini
 fuentes: https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-3-8-live-with-live-avatar/
 
 Google ha presentado **Gemini 3.8 Live con Live Avatar**, una función que combina la conversación por voz en tiempo real de Gemini con **avatares animados** capaces de hablar con sincronización labial y expresiones naturales. El lanzamiento, anunciado el 24 de septiembre de 2026, está dirigido de momento a empresas a través de **Gemini Enterprise**.
