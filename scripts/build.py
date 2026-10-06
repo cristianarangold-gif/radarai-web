@@ -15,6 +15,7 @@ sys.path.insert(0, str(ROOT))
 
 from radar.brands import load_brands  # noqa: E402
 from radar.content import load_pages  # noqa: E402
+from radar.covers import cover_for, og_rel, write_cover_png  # noqa: E402
 from radar.editorial import load_imprescindibles, radar_tools, validate_news_meta  # noqa: E402
 from radar.models import Page, Redirect  # noqa: E402
 from radar.redirects import load_redirects, output_paths, render_redirect  # noqa: E402
@@ -85,7 +86,7 @@ def build(root: Path, out: Path) -> None:
     base_ctx = dict(tools=tools, categories=CATEGORIES, latest_news=news[:6], listing=None,
                     comparativas=featured('comparativa'), guias=featured('guia'),
                     utilidades=featured('utilidad'), brands=brands, radar=radar_tools(news, tools),
-                    imprescindibles=[])
+                    imprescindibles=[], logos_dir=root / 'static' / 'logos')
     imprescindibles = root / 'data' / 'imprescindibles.txt'
     if imprescindibles.exists():
         base_ctx['imprescindibles'] = load_imprescindibles(imprescindibles, by_url)
@@ -122,6 +123,15 @@ def build(root: Path, out: Path) -> None:
                            '<a href="/">portada</a>, las <a href="/noticias/">noticias</a> '
                            'o las <a href="/mejor-ia/">comparativas</a>.</p>')
     w.write('404.html', render_page(env, not_found, base_ctx), '404')
+
+    for p in all_pages:
+        if not p.indexable:
+            continue
+        rel = og_rel(p.url)
+        if rel in w.owners:
+            raise ValueError(f'Ruta duplicada {rel}: la generan «{w.owners[rel]}» y «portada {p.url}»')
+        w.owners[rel] = f'portada {p.url}'
+        write_cover_png(cover_for(p, brands, tools), out / rel, root / 'static' / 'fonts')
 
     w.write('sitemap.xml', sitemap_xml(all_pages), 'sitemap')
     w.write('rss.xml', rss_xml(news), 'rss')

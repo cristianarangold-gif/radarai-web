@@ -144,3 +144,15 @@ def test_imprescindibles_with_unknown_url_fails_build(tmp_path):
     (root / 'data' / 'imprescindibles.txt').write_text('/no-existe/\n', encoding='utf-8')
     with pytest.raises(ValueError, match='/no-existe/'):
         build(root, out)
+
+
+def test_og_images_generated_and_declared(tmp_path):
+    root, out = make_root(tmp_path), tmp_path / '_site'
+    build(root, out)
+    assert (out / 'og' / 'inicio.png').exists() and (out / 'og' / 'noticias' / 'buena.png').exists()
+    assert not (out / 'og' / 'noticias' / 'borrador.png').exists()
+    html = (out / 'noticias' / 'buena' / 'index.html').read_text()
+    assert '<meta property="og:image" content="https://radarai.es/og/noticias/buena.png">' in html
+    assert '<meta name="twitter:card" content="summary_large_image">' in html
+    assert '"image": "https://radarai.es/og/noticias/buena.png"' in html
+    assert 'og:image' not in (out / '404.html').read_text()

@@ -3,7 +3,7 @@ from __future__ import annotations
 
 from datetime import datetime, time, timezone
 from email.utils import format_datetime
-from typing import List
+from typing import List, Optional
 from xml.sax.saxutils import escape
 
 from .models import Page
@@ -44,7 +44,7 @@ def _breadcrumb(page: Page) -> dict:
     }
 
 
-def jsonld(page: Page) -> List[dict]:
+def jsonld(page: Page, image: Optional[str] = None) -> List[dict]:
     if page.url == '/':
         return [{
             '@context': 'https://schema.org', '@type': 'WebSite',
@@ -61,6 +61,8 @@ def jsonld(page: Page) -> List[dict]:
             'author': _person(page.author),
             'publisher': {'@type': 'Organization', 'name': SITE_NAME, 'url': SITE + '/'},
         }
+        if image:
+            article['image'] = image
         if page.date:
             article['datePublished'] = page.date.isoformat()
         if page.lastmod:

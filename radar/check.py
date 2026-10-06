@@ -12,6 +12,7 @@ from .seo import SITE
 ESCAPE_RE = re.compile(r'\\u[0-9a-fA-F]{4}')
 HREF_RE = re.compile(r'href="(/[^"]*)"')
 DOUBLE_ESCAPE_RE = re.compile(r'&amp;(amp|quot|lt|gt|#\d+|[a-z]+);')
+OG_RE = re.compile(r'<meta property="og:image" content="([^"]*)"')
 REFRESH_RE = re.compile(r'http-equiv="refresh" content="0; url=([^"]+)"')
 
 
@@ -95,6 +96,11 @@ def check_site(site_dir: Path) -> List[str]:
             titles[found_titles[0].strip()].append(rel)
         if f'<link rel="canonical" href="{SITE}{url}">' not in html:
             errors.append(f'{rel}: canonical ausente o distinto de {SITE}{url}')
+        og = OG_RE.search(html)
+        if not og:
+            errors.append(f'{rel}: falta og:image')
+        elif not og.group(1).startswith(SITE + '/') or not (site / og.group(1)[len(SITE) + 1:]).is_file():
+            errors.append(f'{rel}: og:image inexistente {og.group(1)}')
         kind = _meta(html, 'radar:kind')
         words = _meta(html, 'radar:words')
         if kind in MIN_WORDS and words is not None and int(words) < MIN_WORDS[kind]:

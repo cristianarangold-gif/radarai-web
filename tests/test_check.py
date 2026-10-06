@@ -2,16 +2,21 @@ from radar.check import check_site
 
 GOOD = ('<!doctype html><html lang="es"><head><title>{title}</title>'
         '<meta name="description" content="{desc}"><link rel="canonical" href="https://radarai.es{url}">'
-        '{robots}<meta name="radar:kind" content="{kind}"><meta name="radar:words" content="{words}">'
+        '{robots}{og}<meta name="radar:kind" content="{kind}"><meta name="radar:words" content="{words}">'
         '</head><body>{body}</body></html>')
 
 
-def page(site, rel, url, title='T', desc=None, kind='pagina', words=10, body='', robots=''):
+def page(site, rel, url, title='T', desc=None, kind='pagina', words=10, body='', robots='', og=None):
     desc = desc or f'Descripción {title}'
+    if og is None:
+        img = 'og/' + (rel.replace('/index.html', '').replace('index.html', 'inicio') or 'inicio') + '.png'
+        (site / img).parent.mkdir(parents=True, exist_ok=True)
+        (site / img).write_bytes(b'png')
+        og = f'<meta property="og:image" content="https://radarai.es/{img}">'
     p = site / rel
     p.parent.mkdir(parents=True, exist_ok=True)
     p.write_text(GOOD.format(title=title, desc=desc, url=url, kind=kind, words=words,
-                             body=body, robots=robots), encoding='utf-8')
+                             body=body, robots=robots, og=og), encoding='utf-8')
 
 
 def sitemap(site, *urls):
@@ -127,3 +132,22 @@ def test_redirect_to_missing_category_anchor_reported(tmp_path):
         '<html><head><meta http-equiv="refresh" content="0; url=/#cat-nada"></head></html>')
     sitemap(tmp_path, '/')
     assert any('#cat-nada' in e for e in check_site(tmp_path))
+
+
+def test_indexable_page_without_og_image(tmp_path):
+    page(tmp_path, 'index.html', '/', og='')
+    sitemap(tmp_path, '/')
+    assert any('falta og:image' in e for e in check_site(tmp_path))
+
+
+def test_og_image_must_exist(tmp_path):
+    page(tmp_path, 'index.html', '/', og='<meta property="og:image" content="https://radarai.es/og/nada.png">')
+    sitemap(tmp_path, '/')
+    assert any('og:image inexistente' in e for e in check_site(tmp_path))
+
+
+def test_noindex_page_needs_no_og_image(tmp_path):
+    page(tmp_path, 'index.html', '/')
+    page(tmp_path, 'b/index.html', '/b/', title='B', og='', robots='<meta name="robots" content="noindex,follow">')
+    sitemap(tmp_path, '/')
+    assert check_site(tmp_path) == []
