@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block main %}
+<article class="wrap article">
+  <header class="article-head">
+    <p class="eyebrow">{{ {'noticia': 'Noticia', 'guia': 'Guía', 'comparativa': 'Comparativa'}[page.kind] }}</p>
+    <h1>{{ page.title }}</h1>
+    <p class="lede">{{ page.description }}</p>
+    {% include 'partials/byline.html' %}
+  </header>
+  <div class="prose">
+    {{ page.body_html | safe }}
+  </div>
+  {% include 'partials/ad_slot.html' %}
+  {% include 'partials/sources.html' %}
+</article>
+{% endblock %}

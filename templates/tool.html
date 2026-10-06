@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block main %}
+<article class="wrap article">
+  <header class="article-head">
+    <p class="eyebrow">Ficha de herramienta</p>
+    <h1>{{ page.title }}</h1>
+    <p class="lede">{{ page.description }}</p>
+    {% include 'partials/byline.html' %}
+    {% if page.extra.get('web') %}
+    <p><a class="btn btn-primary" href="{{ page.extra['web'] }}" rel="noopener nofollow" target="_blank">Visitar web oficial</a></p>
+    {% endif %}
+  </header>
+  <div class="prose">
+    {{ page.body_html | safe }}
+  </div>
+  {% include 'partials/ad_slot.html' %}
+  {% include 'partials/sources.html' %}
+</article>
+{% endblock %}

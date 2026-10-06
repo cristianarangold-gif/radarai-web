@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>document.documentElement.classList.add('js')</script>
+<title>{% block title %}{{ page.title }} | Radar IA{% endblock %}</title>
+<meta name="description" content="{{ page.description }}">
+{% if page.url != '/404/' %}
+<link rel="canonical" href="{{ canonical_url }}">
+{% endif %}
+{% if not page.indexable %}
+<meta name="robots" content="noindex,follow">
+{% endif %}
+<meta name="radar:kind" content="{{ page.kind }}">
+<meta name="radar:words" content="{{ page.word_count }}">
+<meta property="og:type" content="{{ 'article' if page.kind in ('noticia', 'guia', 'comparativa', 'ficha') else 'website' }}">
+<meta property="og:title" content="{{ page.title }}">
+<meta property="og:description" content="{{ page.description }}">
+<meta property="og:url" content="{{ canonical_url }}">
+<meta property="og:site_name" content="Radar IA">
+<meta property="og:locale" content="es_ES">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/rss+xml" title="Radar IA · Noticias" href="/rss.xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/static/css/radar.css">
+{% if show_adsense %}
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ ADSENSE_CLIENT }}" crossorigin="anonymous"></script>
+{% endif %}
+{% for block in jsonld %}
+<script type="application/ld+json">{{ block | to_json }}</script>
+{% endfor %}
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+{% include 'partials/header.html' %}
+<main id="contenido">
+{% block main %}{% endblock %}
+</main>
+{% include 'partials/footer.html' %}
+{% include 'partials/cookies.html' %}
+<script src="/static/js/site.js" defer></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>

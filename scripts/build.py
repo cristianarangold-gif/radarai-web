@@ -1,0 +1,149 @@
+"""Genera el sitio estático de Radar IA en _site/.
+
+Uso: python scripts/build.py [--out _site]
+"""
+from __future__ import annotations
+
+import argparse
+import shutil
+import sys
+from pathlib import Path
+from typing import Dict, List
+
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
+
+from radar.content import load_pages  # noqa: E402
+from radar.models import Page, Redirect  # noqa: E402
+from radar.redirects import load_redirects, output_paths, render_redirect  # noqa: E402
+from radar.render import make_env, render_page  # noqa: E402
+from radar.seo import SITE, rss_xml, sitemap_xml  # noqa: E402
+from radar.tools import CATEGORIES, load_tools  # noqa: E402
+
+LISTINGS = [
+    # (url, tipo listado, título, descripción)
+    ('/noticias/', 'noticia', 'Noticias de inteligencia artificial',
+     'Las novedades de IA que importan, explicadas en español y con lo que cambian para ti.'),
+    ('/guias/', 'guia', 'Guías prácticas de IA',
+     'Guías paso a paso para sacar partido a la inteligencia artificial en el estudio, el trabajo y el día a día.'),
+    ('/mejor-ia/', 'comparativa', 'Comparativas: la mejor IA para cada tarea',
+     'Comparativas actualizadas para elegir la herramienta de IA adecuada según lo que necesitas hacer.'),
+    ('/herramientas/', 'ficha', 'Análisis de herramientas de IA',
+     'Fichas completas de las herramientas de IA más usadas: qué hacen, cuánto cuestan y para quién son.'),
+    ('/herramientas-radar/', 'utilidad', 'Utilidades gratuitas de Radar IA',
+     'Pequeñas herramientas gratuitas que funcionan en tu navegador para preparar prompts, títulos, hashtags y textos.'),
+]
+
+
+def _synthetic(url: str, title: str, description: str, noindex: bool = False) -> Page:
+    return Page(kind='pagina', slug=url.strip('/') or 'inicio', url=url, title=title,
+                description=description, body_html='', date=None, updated=None,
+                author='Cristian Arango', sources=[], draft=False, word_count=0,
+                extra={'noindex': 'si'} if noindex else {})
+
+
+class Writer:
+    """Escribe archivos en `out` y detecta dos orígenes para la misma ruta."""
+
+    def __init__(self, out: Path):
+        self.out = out
+        self.owners: Dict[str, str] = {}
+
+    def write(self, rel: str, text: str, owner: str) -> None:
+        if rel in self.owners:
+            raise ValueError(f'Ruta duplicada {rel}: la generan «{self.owners[rel]}» y «{owner}»')
+        self.owners[rel] = owner
+        dest = self.out / rel
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        dest.write_text(text, encoding='utf-8')
+
+
+def _out_path(url: str) -> str:
+    return 'index.html' if url == '/' else url.strip('/') + '/index.html'
+
+
+def build(root: Path, out: Path) -> None:
+    root, out = Path(root), Path(out)
+    if (out / 'scripts' / 'build.py').exists() or (out / 'content').is_dir():
+        raise ValueError(f'{out} contiene código fuente; elige otra carpeta de salida')
+    if out.exists():
+        shutil.rmtree(out)
+    out.mkdir(parents=True)
+
+    env = make_env(root / 'templates')
+    pages = load_pages(root / 'content')
+    tools = load_tools(root / 'data' / 'tools.json', root / 'content')
+    by_url = {p.url: p for p in pages}
+    news = sorted((p for p in pages if p.kind == 'noticia' and p.indexable),
+                  key=lambda p: p.date, reverse=True)
+    def featured(kind):
+        return sorted((p for p in pages if p.kind == kind and p.indexable), key=lambda p: p.title)
+    base_ctx = dict(tools=tools, categories=CATEGORIES, latest_news=news[:6], listing=None,
+                    comparativas=featured('comparativa'), guias=featured('guia'),
+                    utilidades=featured('utilidad'))
+    w = Writer(out)
+
+    all_pages: List[Page] = list(pages)
+    for p in pages:
+        w.write(_out_path(p.url), render_page(env, p, base_ctx), f'content {p.url}')
+
+    for url, kind, title, desc in LISTINGS:
+        if kind == 'utilidad' and not (root / 'content' / 'utilidades').is_dir():
+            continue
+        items = sorted((p for p in pages if p.kind == kind and p.indexable),
+                       key=lambda p: (p.date is None, p.date), reverse=(kind == 'noticia'))
+        if kind != 'noticia':
+            items = sorted(items, key=lambda p: p.title)
+        page = by_url.get(url) or _synthetic(url, title, desc, noindex=not items)
+        if url in by_url:
+            del w.owners[_out_path(url)]
+        else:
+            all_pages.append(page)
+        w.write(_out_path(url), render_page(env, page, dict(base_ctx, listing=items)), f'listado {url}')
+
+    redirects = load_redirects(root / 'data' / 'redirects.yml')
+    redirects += [Redirect(f'/herramientas/{t.id}/', f'/#cat-{t.cat}')
+                  for t in tools.values() if not t.has_page]
+    for r in redirects:
+        for rel in output_paths(r):
+            w.write(rel, render_redirect(env, r), f'redirección {r.source}')
+
+    not_found = _synthetic('/404/', 'Página no encontrada',
+                           'La página que buscas no existe o se ha movido.', noindex=True)
+    not_found.body_html = ('<p>Puede que la dirección haya cambiado. Prueba desde la '
+                           '<a href="/">portada</a>, las <a href="/noticias/">noticias</a> '
+                           'o las <a href="/mejor-ia/">comparativas</a>.</p>')
+    w.write('404.html', render_page(env, not_found, base_ctx), '404')
+
+    w.write('sitemap.xml', sitemap_xml(all_pages), 'sitemap')
+    w.write('rss.xml', rss_xml(news), 'rss')
+    w.write('robots.txt', f'User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n', 'robots')
+
+    static = root / 'static'
+    for src in static.rglob('*'):
+        if src.is_dir():
+            continue
+        rel = src.relative_to(static).as_posix()
+        dest_rel = ('herramientas-radar/' + rel[len('utilidades/'):]) if rel.startswith('utilidades/') \
+            else 'static/' + rel
+        if dest_rel in w.owners:
+            raise ValueError(f'Ruta duplicada {dest_rel}: la generan «{w.owners[dest_rel]}» y «static/{rel}»')
+        w.owners[dest_rel] = f'static/{rel}'
+        (out / dest_rel).parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(src, out / dest_rel)
+
+    for name in ('ads.txt', 'CNAME'):
+        if (root / name).exists():
+            shutil.copyfile(root / name, out / name)
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--out', default=str(ROOT / '_site'))
+    args = parser.parse_args()
+    build(ROOT, Path(args.out))
+    print(f'OK: sitio generado en {args.out}')
+
+
+if __name__ == '__main__':
+    main()

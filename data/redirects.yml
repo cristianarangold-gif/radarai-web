@@ -1,0 +1,35 @@
+# URL antigua: URL nueva
+# Las fichas de herramientas sin análisis completo se redirigen automáticamente
+# a su categoría en la portada (lo hace scripts/build.py a partir de data/tools.json).
+
+# Secciones vacías retiradas (fase 1)
+/rankings/: /mejor-ia/
+/reviews/: /mejor-ia/
+/alternativas/: /mejor-ia/
+/precios/: /mejor-ia/
+/cambios/: /noticias/
+/publicacion/: /noticias/
+/preguntas-frecuentes/: /#preguntas-frecuentes
+
+# Páginas renombradas
+/sobre-radar-ia/: /sobre/
+/revisiones/: /metodologia/
+/legal/aviso-legal.html: /legal/aviso-legal/
+/legal/politica-privacidad.html: /legal/politica-privacidad/
+/legal/politica-cookies.html: /legal/politica-cookies/
+/legal/contacto.html: /contacto/
+
+# Duplicados eliminados del catálogo (fase 2)
+/herramientas/copyspace/: /#cat-marketing
+/herramientas/copylancer/: /#cat-marketing
+/herramientas/descript-audio/: /#cat-video
+/herramientas/gamma-ai/: /#cat-productividad
+/herramientas/gamma-docs/: /#cat-productividad
+/herramientas/gamma-presentations/: /#cat-productividad
+/herramientas/jasper-chat/: /#cat-marketing
+/herramientas/otter-transcribe/: /#cat-productividad
+/herramientas/writesonic-seo/: /#cat-marketing
+
+# Guías retiradas (fase 2)
+/guias/como-elegir-una-ia/: /mejor-ia/
+/guias/chatbot-buscador-generador/: /guias/

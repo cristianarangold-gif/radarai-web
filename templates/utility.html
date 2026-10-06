@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block main %}
+<article class="wrap article">
+  <header class="article-head">
+    <p class="eyebrow">Utilidad gratuita · funciona en tu navegador</p>
+    <h1>{{ page.title }}</h1>
+    <p class="lede">{{ page.description }}</p>
+  </header>
+  <div class="prose utility">
+    {{ page.body_html | safe }}
+  </div>
+</article>
+{% endblock %}
+{% block scripts %}{% if page.extra.get('script') %}<script src="{{ page.extra['script'] }}" defer></script>{% endif %}{% endblock %}
