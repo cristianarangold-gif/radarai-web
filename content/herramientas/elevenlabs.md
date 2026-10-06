@@ -1,4 +1,4 @@
-titulo: ElevenLabs: qué es, precios y para quién merece la pena
+titulo: ElevenLabs: voces con IA, clonación y qué plan necesitas
 descripcion: Análisis de ElevenLabs, la IA de voz: planes Free, Starter, Creator, Pro y superiores, créditos, clonación de voz, licencia comercial y alternativas.
 fecha: 2026-10-06
 web: https://elevenlabs.io/

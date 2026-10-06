@@ -1,8 +1,8 @@
-titulo: Perplexity: qué es, precios y para quién merece la pena
+titulo: Perplexity: el buscador con IA que cita sus fuentes, planes y precios
 descripcion: Análisis de Perplexity, el buscador con IA que cita sus fuentes: planes gratis, Pro y Max, precios, funciones, privacidad y alternativas en 2026.
 fecha: 2026-10-06
 web: https://www.perplexity.ai/
-plataforma: Web, iOS, Android, Windows, macOS y navegador Comet
+plataforma: Web y aplicaciones móviles
 fuentes: https://www.perplexity.ai/pro
     https://intercom.help/perplexity-ai/en/articles/11564572-data-collection-at-perplexity
 
@@ -43,8 +43,6 @@ Los importes indicados corresponden al pago anual; el pago mes a mes es algo má
 - **Investigación profunda.** Realiza decenas de búsquedas y redacta un informe estructurado sobre un tema.
 - **Elección de modelo.** En los planes de pago puedes elegir qué modelo de IA genera la respuesta.
 - **Perplexity Computer.** Un agente capaz de encadenar tareas, como recopilar información, crear un documento o preparar una pequeña aplicación.
-- **Espacios.** Agrupan búsquedas y archivos de un mismo proyecto con instrucciones propias.
-- **Comet.** Un navegador de Perplexity con el asistente integrado.
 
 ## Casos de uso con ejemplos
 
@@ -67,7 +65,7 @@ Abre siempre al menos dos de las fuentes citadas: que una respuesta tenga refere
 - **Pide el tipo de fuente que quieres.** Añadir «usa solo fuentes oficiales» o «prioriza artículos científicos revisados por pares» mejora mucho la calidad de la respuesta.
 - **Acota la fecha.** Para temas que cambian rápido, indica el periodo: «desde enero de 2026».
 - **Haz preguntas de seguimiento.** Perplexity mantiene el contexto de la conversación, así que puedes pedir «profundiza en el segundo punto» o «busca datos que contradigan esto».
-- **Usa Espacios para proyectos largos.** Guardar en un mismo espacio las búsquedas de un trabajo te permite retomarlo días después sin repetir el contexto.
+- **Guarda tus búsquedas importantes.** Volver a una conversación anterior te permite retomar un trabajo días después sin repetir el contexto.
 
 ## Limitaciones
 
@@ -78,7 +76,7 @@ Abre siempre al menos dos de las fuentes citadas: que una respuesta tenga refere
 
 ## Privacidad y uso de tus datos
 
-Según el centro de ayuda de Perplexity, en los planes Gratis, Pro y Max la opción **«AI data retention»** está activada por defecto, lo que permite usar tus búsquedas para mejorar sus modelos. Puedes desactivarla en los ajustes de tu cuenta, en *Preferencias*. Las búsquedas en **modo incógnito** no se utilizan para entrenar, y los datos de los clientes Enterprise tampoco. Ten en cuenta que la exclusión se aplica a los datos recogidos a partir de ese momento.
+Según el centro de ayuda de Perplexity, en los planes Gratis, Pro y Max la opción **«AI data retention»** está activada por defecto, lo que permite usar tus búsquedas para mejorar sus modelos. Puedes desactivarla en los ajustes de tu cuenta, en *Preferencias*. Las búsquedas en **modo incógnito** no se utilizan para entrenar, y los datos de los clientes Enterprise tampoco.
 
 Más recomendaciones en nuestra guía de [privacidad al usar IA](/guias/privacidad-en-ia/).
 
@@ -109,3 +107,7 @@ La página oficial muestra 17 US$ al mes con facturación anual (comprobado el 6
 ### ¿Perplexity usa mis búsquedas para entrenar su IA?
 
 Por defecto sí en los planes Gratis, Pro y Max, pero puedes desactivar la opción «AI data retention» en Preferencias o usar el modo incógnito.
+
+### ¿Qué diferencia hay entre Perplexity Pro y Max?
+
+Max está pensado para un uso intensivo: según la página oficial, incluye el uso máximo de Perplexity Computer, 10.000 créditos mensuales, investigación a nivel experto y acceso prioritario a nuevas funciones.

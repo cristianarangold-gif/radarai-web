@@ -49,12 +49,12 @@ Precios según las páginas oficiales consultadas el 6 de octubre de 2026:
 |---|---|---|
 | Asistente general | ChatGPT, Gemini o Claude gratis | ChatGPT Plus (23 €/mes) o Claude Pro (20 $/mes) |
 | Correo y documentos de Google | Gemini gratis | Google AI Plus (4,99 €/mes) |
-| Correo y documentos de Office | Copilot gratuito | Microsoft 365 Personal (99 €/año) o planes de empresa |
+| Correo y documentos de Office | Copilot gratuito (como chat, fuera de Office) | Microsoft 365 Personal (99 €/año) o planes de empresa |
 | Diseño y redes | Canva Gratis | Canva Pro (110 €/año) |
 | Automatización | Zapier Free (100 tareas/mes) | Zapier Professional (desde 19,99 $/mes anual) |
 | Traducción confidencial | DeepL gratis | DeepL Pro (7,49 €/mes anual) |
 
-Con un presupuesto de **unos 30–40 € al mes** se puede cubrir asistente, diseño y automatización básica. Para equipos de varias personas, conviene valorar los **planes de empresa** (ChatGPT Business, Claude Team, Gemini en Google Workspace o Microsoft 365 Copilot), que añaden administración centralizada y garantías sobre los datos.
+Con un presupuesto de **unos 30–50 € al mes** se puede cubrir asistente, diseño y automatización básica: por ejemplo, Google AI Plus, Canva Pro y Zapier Professional rondan los 31 € al mes con pago anual, y con ChatGPT Plus como asistente la cifra se acerca a los 50 €. Para equipos de varias personas, conviene valorar los **planes de empresa** (ChatGPT Business, Claude Team, Gemini en Google Workspace o Microsoft 365 Copilot), que añaden administración centralizada y garantías sobre los datos.
 
 ## Ejemplos por tipo de negocio
 
@@ -127,7 +127,7 @@ Elige un indicador sencillo para cada uso: horas ahorradas a la semana, número 
 
 ### ¿Cuánto cuesta implantar IA en una pequeña empresa?
 
-Puedes empezar gratis. Un kit básico de pago (asistente, diseño y automatización) ronda los 30–40 € al mes según las herramientas elegidas.
+Puedes empezar gratis. Un kit básico de pago (asistente, diseño y automatización) ronda los 30–50 € al mes según las herramientas elegidas.
 
 ### ¿Qué herramienta de IA debería contratar primero?
 

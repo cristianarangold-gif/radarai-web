@@ -1,4 +1,4 @@
-titulo: Claude: qué es, precios y para quién merece la pena
+titulo: Claude de Anthropic: planes, precios y para qué destaca
 descripcion: Análisis de Claude, el asistente de Anthropic: planes Free, Pro, Max y Team, precios, funciones, privacidad y alternativas en 2026.
 fecha: 2026-10-06
 web: https://claude.ai/
@@ -76,7 +76,7 @@ Claude generará un *artifact* interactivo que puedes usar en el momento.
 
 ## Privacidad y uso de tus datos
 
-Según el centro de privacidad de Anthropic, en los planes de consumo (Free, Pro y Max) las conversaciones se usan para mejorar los modelos **si tú lo permites** en los ajustes de privacidad («mejora del modelo»). Los chats en modo incógnito no se utilizan nunca para ese fin, aunque tengas el ajuste activado. Anthropic sí puede revisar conversaciones marcadas por motivos de seguridad. En los planes Team y Enterprise las condiciones son contractuales y más restrictivas.
+Según el centro de privacidad de Anthropic, en los planes de consumo (Free, Pro y Max) las conversaciones se usan para mejorar los modelos **si tú lo permites** en los ajustes de privacidad («mejora del modelo»). Los chats en modo incógnito no se utilizan nunca para ese fin, aunque tengas el ajuste activado. Anthropic sí puede revisar conversaciones marcadas por motivos de seguridad. En los planes Team y Enterprise se añaden controles de administración y, en Enterprise, opciones como la retención de datos personalizada.
 
 Aun así, conviene seguir las precauciones de siempre: nada de contraseñas, datos bancarios ni información sensible de terceros. Más consejos en nuestra guía de [privacidad al usar IA](/guias/privacidad-en-ia/).
 

@@ -23,6 +23,10 @@ Los hashtags ayudan a que tus publicaciones aparezcan en búsquedas y temas conc
 
 Pulsa el botón, revisa la propuesta y elimina los que no tengan relación directa con tu contenido.
 
+## Cómo combinar los hashtags
+
+Una buena mezcla suele incluir unos pocos hashtags generales del tema, varios específicos de tu nicho y, si la tienes, una etiqueta propia de tu marca o campaña para agrupar tus publicaciones y las de tus seguidores.
+
 ## Buenas prácticas con los hashtags
 
 - **Relevancia antes que cantidad**: los hashtags que no tienen que ver con la publicación no aportan y pueden restar credibilidad.

@@ -1,4 +1,4 @@
-titulo: Microsoft Copilot: qué es, precios en España y para quién merece la pena
+titulo: Microsoft Copilot para particulares: qué incluye cada plan de Microsoft 365
 descripcion: Análisis de Microsoft Copilot en 2026: versión gratuita, IA incluida en Microsoft 365 Personal, Familia, Premium y Pro, precios en euros y privacidad.
 fecha: 2026-10-06
 web: https://copilot.microsoft.com/
@@ -36,7 +36,7 @@ Algunos matices importantes:
 
 - En **Microsoft 365 Familia**, que se comparte con hasta seis personas, Microsoft indica que las funciones de IA son **solo para el propietario** de la suscripción.
 - **Premium** es el plan pensado para quien quiere usar Copilot de forma intensiva, con funciones que realizan tareas por ti.
-- Los planes para empresas (Microsoft 365 Copilot) se contratan por usuario y requieren una licencia base de Microsoft 365; consulta los precios actuales en la [página para empresas](https://www.microsoft.com/es-es/microsoft-365-copilot/pricing).
+- Los planes para empresas (Microsoft 365 Copilot) se contratan por usuario; consulta los requisitos y los precios actuales en la [página para empresas](https://www.microsoft.com/es-es/microsoft-365-copilot/pricing).
 
 Además de Copilot, las suscripciones incluyen las aplicaciones de Office y almacenamiento en OneDrive, algo a tener en cuenta al comparar precios con otros asistentes.
 

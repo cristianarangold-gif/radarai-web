@@ -1,4 +1,4 @@
-titulo: Midjourney: qué es, precios y para quién merece la pena
+titulo: Midjourney: planes, horas de GPU, privacidad y uso comercial
 descripcion: Análisis de Midjourney en 2026: planes Basic, Standard, Pro y Mega, horas de GPU, modo Relax y Stealth, uso comercial, vídeo y alternativas.
 fecha: 2026-10-06
 web: https://www.midjourney.com/

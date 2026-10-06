@@ -23,6 +23,10 @@ El bloqueo creativo es habitual en cualquier calendario de contenidos. Este gene
 
 Pulsa el botón, revisa la lista y quédate con las ideas que encajen con tu experiencia: el mejor contenido es el que puedes enriquecer con ejemplos propios.
 
+## Qué tipo de ideas obtendrás
+
+Las propuestas combinan formatos que suelen funcionar bien en contenidos informativos: guías paso a paso, listas de errores frecuentes, comparativas, respuestas a dudas habituales de tu audiencia y contenidos de actualidad. Úsalas como punto de partida y descarta las que no puedas desarrollar con conocimiento propio.
+
 ## Cómo convertir una idea en contenido
 
 1. Elige una idea y define **una sola pregunta** que el contenido debe responder.

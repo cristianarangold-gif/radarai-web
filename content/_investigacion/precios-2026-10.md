@@ -257,3 +257,94 @@ Uso interno: este archivo no se publica, porque el loader ignora los archivos qu
 ## ElevenLabs Music — https://elevenlabs.io/music
 - **ElevenMusic:** genera canciones; está disponible en el plan gratuito (10.000 créditos).
 - **Derechos comerciales según plan:** Starter, comercial sin streaming; Creator y Pro, comercial no empresarial; Enterprise, todo uso.
+
+# Ampliación de notas (datos leídos el 6 oct. 2026 en las mismas páginas oficiales; añadidos tras revisión)
+
+## ChatGPT — https://chatgpt.com/es-ES/pricing/
+- **Pro:** «Sesiones más largas de Codex y ChatGPT Work» y «Dot, tu agente siempre disponible».
+- **Modo estudio:** aparece en la tabla de funciones.
+- **Business/Enterprise:** SAML SSO, consola de gestión y residencia de datos (tabla «Seguridad y gestión»).
+- **Plus:** «Creación de imágenes más complejas y precisas».
+
+## Claude — https://claude.com/pricing
+- **Max:** límites de salida más altos, acceso anticipado a funciones y prioridad en horas punta.
+- **Team:** SSO y controles de administración. Precios por puesto (Premium 100 $/puesto anual o 125 $/puesto mensual).
+- **Enterprise:** acceso por roles, SCIM, registros de auditoría, API de cumplimiento y retención de datos personalizada.
+
+## Gemini — https://gemini.google/subscriptions/
+- **Plus:** 200 puntos de Google Flow.
+- **Pro:** 1.000 puntos de Flow, «Deep Search and agentic capabilities».
+- **Ultra:** YouTube Premium individual completo.
+- **Gratis:** Google Flow con acceso limitado.
+
+## Microsoft 365 Familia — https://www.microsoft.com/es-es/microsoft-365-copilot/pricing/individuals
+- Hasta 6 personas; IA solo para el propietario.
+
+## Perplexity — https://www.perplexity.ai/pro (navegador)
+- **Pro:** «Más límites de uso y memoria».
+- **Max:** «Acceso prioritario a nuevas funciones».
+
+## Midjourney — docs (navegador)
+- **GPU extra:** 4 $/h en todos los planes.
+- **Resolución de vídeo:** Basic SD; Standard, Pro y Mega SD y HD.
+- **Uso de las creaciones:** «If you have subscribed at any point, you are free to use your images/videos in just about any way you want».
+
+## Runway — https://runway.com/pricing
+- **Standard:** 625 créditos = 52 s Gen-4.5, 104 s Gen-4 Turbo o 78 imágenes Gen-4. Colaborador agéntico, 5 generaciones en paralelo, hasta 3 proyectos y 20 GB.
+- **Pro:** 2.250 créditos = 187 s Gen-4.5 o 375 s Gen-4 Turbo. 15 generaciones en paralelo, 5 proyectos, 1 Brand Kit, 1 voz clonada y 100 GB.
+- **Max:** 20 generaciones en paralelo, 10 proyectos, 3 Brand Kits, 3 voces clonadas, HDR/ProRes y 500 GB.
+
+## ElevenLabs — https://elevenlabs.io/pricing
+- **Clonación profesional:** Scale, 3 voces; Business, 10.
+- **Enterprise:** términos a medida sobre DPA/SLA.
+
+## Canva — https://www.canva.com/es_es/precios/ (navegador)
+- **Pago anual:** «Ahorra desde un 16 %».
+- **Pruebas gratuitas:** de Pro y Business.
+- **Herramientas de IA:** niveles «estándar, premium y ultra» que consumen una cuota compartida.
+- **IA Pass:** 40x el uso de Pro o 20x el de Business.
+- **Business:** «análisis inteligentes sobre el rendimiento de los anuncios».
+
+## DeepL — https://www.deepl.com/es/pro
+- **Gratis:** incluye 1 traducción guardada.
+
+## Gamma — https://gamma.app/es/pricing (navegador)
+- **Gratis:** exporta a PDF, PPTX, PNG y Google Slides.
+
+## Cursor — https://cursor.com/pricing
+- **Individual:** niveles Pro, Pro+ y Ultra. «Bugbot on usage-based billing».
+- **Teams:** niveles Standard y Premium. Facturación y administración centralizadas, marketplace interno de reglas, skills y plugins, analítica de uso, privacy mode para todo el equipo y SAML/OIDC SSO.
+- **Enterprise:** uso compartido, facturación por pedido, SCIM, controles de acceso a repositorios, modelos y MCP, registros de auditoría y soporte prioritario.
+
+## GitHub Copilot — https://github.com/features/copilot/plans
+- **Free:** incluye CLI, modo agente y Copilot Spaces.
+- **Pro:** revisión de código y agente en la nube.
+- **Pro+:** delegación en agentes de terceros (Claude, OpenAI) y servidores MCP.
+
+## Notion — https://www.notion.com/es-es/pricing
+- **Anotador con IA:** «sin necesidad de bots».
+- **Búsqueda Enterprise (beta):** busca en apps conectadas «como Slack y GitHub».
+
+## Jasper — https://www.jasper.ai/pricing
+- **Pro:** 2 Brand Voices, 5 Knowledge assets y 3 Audiences.
+- **Business:** agentes para GEO, traducciones e investigación profunda, más API.
+
+## Zapier — https://zapier.com/pricing
+- **Professional:** Zaps de varios pasos, apps premium ilimitadas y webhooks.
+
+## Soundraw — https://soundraw.io/pricing
+- **Creator:** solo MP3.
+- **Artist Pro y Unlimited:** MP3, WAV y STEMS.
+- **Distribución:** en Spotify, Apple Music y similares.
+
+## AIVA — https://www.aiva.ai/pricing
+- **Monetización limitada de Standard:** YouTube, Twitch, TikTok e Instagram.
+
+## Gemini Notebook — https://support.google.com/notebooklm/answer/16213268?hl=es
+- **Cuotas diarias:** se renuevan cada 24 horas.
+
+## Synthesia — https://www.synthesia.io/pricing
+- **Más avatares en planes superiores:** 9, 125+, 180+ y 240+. El sitio no confirma avatares personalizados por plan.
+
+## Replit — https://replit.com/pricing
+- No figura un plan gratuito independiente; «Free Mode» forma parte de los planes de pago.

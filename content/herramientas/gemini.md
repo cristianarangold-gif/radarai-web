@@ -1,4 +1,4 @@
-titulo: Gemini: qué es, precios en euros y para quién merece la pena
+titulo: Gemini de Google: plan gratuito, Google AI Plus, Pro y Ultra explicados
 descripcion: Análisis de Gemini, la IA de Google: plan gratuito, Google AI Plus, Pro y Ultra con precios en euros, funciones, privacidad y alternativas.
 fecha: 2026-10-06
 web: https://gemini.google.com/

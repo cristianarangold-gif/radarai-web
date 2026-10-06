@@ -1,4 +1,4 @@
-titulo: ChatGPT: qué es, precios en España y para quién merece la pena
+titulo: ChatGPT en España: planes, precios en euros y cuál elegir
 descripcion: Análisis de ChatGPT en 2026: planes Gratis, Go, Plus y Pro con precios en euros, funciones, límites, privacidad y alternativas.
 fecha: 2026-10-06
 web: https://chatgpt.com/
@@ -75,7 +75,7 @@ Si quieres sacar más partido a estas peticiones, consulta nuestra guía sobre [
 
 ## Privacidad y uso de tus datos
 
-En los planes individuales, la tabla oficial de OpenAI indica que el contenido se utiliza para entrenar sus modelos, con una opción de exclusión disponible en los ajustes de control de datos. Si no quieres que tus conversaciones sirvan para mejorar los modelos, desactiva esa opción. En los planes Business y Enterprise, OpenAI ofrece más controles de administración y garantías contractuales.
+En los planes individuales, la tabla oficial de OpenAI indica que el contenido se utiliza para entrenar sus modelos, con una opción de exclusión disponible en la configuración de tu cuenta. Si no quieres que tus conversaciones sirvan para mejorar los modelos, desactiva esa opción. En los planes Business y Enterprise, OpenAI ofrece más controles de administración, como inicio de sesión único (SSO) y consola de gestión.
 
 En cualquier caso, la regla general es la misma para cualquier chatbot: **no pegues contraseñas, datos bancarios, información médica ni datos personales de terceros**. Lo explicamos con detalle en la guía de [privacidad al usar IA](/guias/privacidad-en-ia/).
 
@@ -106,4 +106,4 @@ La página oficial muestra 23 € al mes para España (comprobado el 6 de octubr
 
 ### ¿Puedo evitar que ChatGPT use mis conversaciones para entrenar?
 
-Sí. En los planes individuales existe una opción de exclusión en los ajustes de control de datos de tu cuenta.
+Sí. En los planes individuales existe una opción de exclusión en la configuración de tu cuenta.

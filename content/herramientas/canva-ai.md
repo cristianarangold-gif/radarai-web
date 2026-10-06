@@ -1,4 +1,4 @@
-titulo: Canva IA: qué es, precios en euros y para quién merece la pena
+titulo: Canva IA: funciones de inteligencia artificial y precios en euros
 descripcion: Análisis de las funciones de IA de Canva en 2026: planes Gratis, Pro y Business con precios en euros, cuota de IA, IA Pass, usos y alternativas.
 fecha: 2026-10-06
 web: https://www.canva.com/ai/

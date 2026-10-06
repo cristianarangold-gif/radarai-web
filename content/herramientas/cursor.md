@@ -1,4 +1,4 @@
-titulo: Cursor: qué es, precios y para quién merece la pena
+titulo: Cursor: el editor de código con agentes de IA, planes y precios
 descripcion: Análisis de Cursor, el editor de código con IA: plan Hobby gratuito, Pro desde 20 $/mes, Teams, agentes, privacidad y alternativas en 2026.
 fecha: 2026-10-06
 web: https://cursor.com/

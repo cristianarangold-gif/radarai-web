@@ -34,7 +34,7 @@ Hemos revisado las páginas oficiales de precios y funciones (consultadas el 6 d
 | Cursor | Editor propio (basado en VS Code) | Sí (Hobby) | 20 $/mes | 6 oct. 2026 |
 | Claude Code | Terminal y editor | Incluido desde Claude Pro | 20 $/mes (17 $ anual) | 6 oct. 2026 |
 | ChatGPT (Codex) | App, web y editor | Acceso limitado | 23 €/mes (Plus) | 6 oct. 2026 |
-| Replit | Navegador | Modo gratuito limitado | 20 $/mes (18 $ anual) | 6 oct. 2026 |
+| Replit | Navegador | No figura plan gratuito independiente | 20 $/mes (18 $ anual) | 6 oct. 2026 |
 | Lovable | Navegador | Sí (5 créditos diarios) | Consultar web oficial | 6 oct. 2026 |
 
 ## Análisis de cada herramienta
@@ -90,7 +90,7 @@ Antes de elegir, piensa en cuántas tareas largas vas a encargar a los agentes: 
 
 ## Alternativas gratuitas
 
-Puedes empezar sin pagar con **GitHub Copilot Free**, **Cursor Hobby**, el modo gratuito de **Replit**, los créditos diarios de **Lovable** y los planes gratuitos de **ChatGPT y Claude** para resolver dudas.
+Puedes empezar sin pagar con **GitHub Copilot Free**, **Cursor Hobby**, los créditos diarios de **Lovable** y los planes gratuitos de **ChatGPT y Claude** para resolver dudas.
 
 ## Privacidad del código
 

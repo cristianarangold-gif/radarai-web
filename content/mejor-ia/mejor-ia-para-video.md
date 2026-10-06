@@ -34,7 +34,7 @@ Hemos revisado las páginas oficiales de precios y funciones (consultadas el 6 d
 | Runway | Vídeo generativo y edición | 125 créditos una vez | 15 $/mes (12 $ anual) | 6 oct. 2026 |
 | HeyGen | Avatares y traducción | 3 vídeos/mes de 1 min, con marca de agua | 29 $/mes (24 $ anual) | 6 oct. 2026 |
 | Synthesia | Avatares para formación | 10 min/mes | 29 $/mes (Starter) | 6 oct. 2026 |
-| Gemini (Google AI) | Vídeo generativo desde la app | Sin vídeo en el plan gratuito | 4,99 €/mes (AI Plus) | 6 oct. 2026 |
+| Gemini (Google AI) | Vídeo generativo desde la app | Acceso limitado a Google Flow | 4,99 €/mes (AI Plus) | 6 oct. 2026 |
 | ElevenLabs | Voz, doblaje y efectos | 10.000 créditos, sin uso comercial | 6 $/mes (Starter) | 6 oct. 2026 |
 | Midjourney | Animar imágenes | No | 10 $/mes (Basic) | 6 oct. 2026 |
 | Canva | Montaje con plantillas | Sí | 110 €/año (Pro) | 6 oct. 2026 |
@@ -109,7 +109,7 @@ Para probar, Runway ofrece 125 créditos, HeyGen 3 vídeos al mes de un minuto y
 
 ### ¿Puedo hacer un vídeo con mi avatar?
 
-Sí. HeyGen permite crear un avatar de vídeo propio incluso en el plan gratuito, y Synthesia ofrece avatares en todos sus planes.
+Sí. HeyGen permite crear un avatar de vídeo propio incluso en su plan gratuito, según su página de precios. Synthesia ofrece avatares de catálogo en todos sus planes; consulta su web para los avatares personalizados.
 
 ### ¿Los vídeos generados con IA tienen marca de agua?
 

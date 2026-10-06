@@ -1,4 +1,4 @@
-titulo: GitHub Copilot: qué es, precios y para quién merece la pena
+titulo: GitHub Copilot: plan gratuito, Pro, Pro+ y créditos de IA
 descripcion: Análisis de GitHub Copilot en 2026: planes Free, Pro, Pro+ y Max, créditos de IA, modo agente, acceso gratuito para estudiantes y alternativas.
 fecha: 2026-10-06
 web: https://github.com/features/copilot

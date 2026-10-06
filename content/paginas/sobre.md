@@ -18,7 +18,7 @@ Radar IA lo crea y edita [Cristian Arango](/autor/) desde Valladolid (España). 
 ## Cómo trabajamos
 
 - **Fuentes oficiales y fechas.** Los precios, planes y funciones se consultan en las páginas oficiales de cada herramienta y se indica la fecha de comprobación.
-- **Honestidad.** Distinguimos entre lo que procede de la documentación oficial y lo que hemos comprobado por nuestra cuenta. Nunca afirmamos haber probado algo que no hemos probado.
+- **Honestidad.** Distinguimos entre lo que procede de la documentación oficial y las pruebas propias, que identificamos expresamente cuando las hay. Nunca afirmamos haber probado algo que no hemos probado.
 - **Independencia.** Ninguna herramienta paga por aparecer ni por obtener una mejor recomendación.
 - **Correcciones.** Si detectas un error, lo corregimos y lo indicamos.
 

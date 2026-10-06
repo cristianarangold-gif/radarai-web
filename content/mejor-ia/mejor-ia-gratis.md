@@ -11,6 +11,10 @@ fuentes: https://chatgpt.com/es-ES/pricing/
     https://elevenlabs.io/pricing
     https://runway.com/pricing
     https://suno.com/pricing
+    https://www.perplexity.ai/pro
+    https://cursor.com/pricing
+    https://ideogram.ai/pricing
+    https://www.canva.com/es_es/precios/
 
 No hace falta pagar para aprovechar la inteligencia artificial. Las principales empresas ofrecen planes gratuitos muy capaces y, combinándolos bien, puedes cubrir casi todas las tareas del día a día: escribir, estudiar, crear imágenes, traducir o programar. Eso sí, «gratis» casi siempre significa **con límites**. En esta guía repasamos las mejores opciones gratuitas por tarea y qué limitaciones tiene cada una, según las páginas oficiales consultadas el 6 de octubre de 2026.
 
@@ -63,7 +67,7 @@ Hemos seleccionado herramientas con un **plan gratuito permanente** (no solo una
 
 ### Para voz, vídeo y música
 
-**ElevenLabs** ofrece 10.000 créditos de voz al mes, **Runway** 125 créditos de vídeo una sola vez y **Suno** 50 créditos diarios para crear canciones. En los tres casos, el plan gratuito **no permite el uso comercial** (en Suno ni siquiera descargar las canciones). Más en [la mejor IA para vídeo](/mejor-ia-para-video/) y [la mejor IA para crear música](/mejor-ia-para-crear-musica/).
+**ElevenLabs** ofrece 10.000 créditos de voz al mes, **Runway** 125 créditos de vídeo una sola vez y **Suno** 50 créditos diarios para crear canciones. En ElevenLabs y Suno, el plan gratuito **no permite el uso comercial** (en Suno ni siquiera descargar las canciones); en Runway, revisa sus condiciones antes de publicar. Más en [la mejor IA para vídeo](/mejor-ia-para-video/) y [la mejor IA para crear música](/mejor-ia-para-crear-musica/).
 
 ## Un kit gratuito según tu perfil
 

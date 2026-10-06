@@ -93,11 +93,11 @@ Encontrarás herramientas para ello en [la mejor IA para crear imágenes](/mejor
 
 Puedes guardar esta plantilla y rellenarla cada vez:
 
-> **Papel:** actúa como [experto en…].
-> **Tarea:** [verbo + lo que necesitas].
-> **Contexto:** [para quién es, qué ha pasado, qué sabes, restricciones].
-> **Formato:** [lista / tabla / correo de X palabras / tres opciones].
-> **Tono y límites:** [tono] · [lo que no quieres] · si no estás seguro de un dato, indícalo.
+- **Papel:** actúa como [experto en…].
+- **Tarea:** [verbo + lo que necesitas].
+- **Contexto:** [para quién es, qué ha pasado, qué sabes, restricciones].
+- **Formato:** [lista / tabla / correo de X palabras / tres opciones].
+- **Tono y límites:** [tono] · [lo que no quieres] · si no estás seguro de un dato, indícalo.
 
 Si usas siempre las mismas instrucciones, guárdalas en las funciones de proyectos o instrucciones personalizadas de tu asistente, o prueba nuestro [generador de prompts](/herramientas-radar/generador-de-prompts/), que funciona en tu navegador.
 

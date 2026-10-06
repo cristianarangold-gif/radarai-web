@@ -1,4 +1,4 @@
-titulo: DeepL (Translator y Write): qué es, precios en euros y para quién merece la pena
+titulo: DeepL Translator y DeepL Write: precios, límites y privacidad
 descripcion: Análisis de DeepL Translator y DeepL Write en 2026: plan gratuito, DeepL Pro con precios en euros, privacidad de tus textos y alternativas.
 fecha: 2026-10-06
 web: https://www.deepl.com/write

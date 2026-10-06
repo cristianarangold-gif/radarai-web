@@ -1,4 +1,4 @@
-titulo: Suno: qué es, precios y para quién merece la pena
+titulo: Suno: crear canciones con IA, planes y derechos de uso
 descripcion: Análisis de Suno, la IA para crear canciones: planes Free, Pro y Premier, créditos, descargas, derechos comerciales, ejemplos y alternativas en 2026.
 fecha: 2026-10-06
 web: https://suno.com/
@@ -31,7 +31,7 @@ Suno factura en dólares estadounidenses. Datos de su página oficial de precios
 Otros detalles de la página oficial:
 
 - El plan **Free** usa los modelos gratuitos (v6-mini) y **no permite descargar** las canciones ni usarlas comercialmente.
-- **Pro y Premier** dan acceso a sus mejores modelos (v6 y v6-wild) y a los **derechos de uso comercial** de lo que generes mientras estés suscrito.
+- **Pro y Premier** dan acceso a sus mejores modelos (v6 y v6-wild) y a los **derechos de uso comercial**.
 - El pago anual supone un ahorro del 20 %.
 
 ## Derechos y uso comercial

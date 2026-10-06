@@ -7,6 +7,7 @@ fuentes: https://claude.com/pricing
     https://www.deepl.com/es/pro
     https://www.grammarly.com/plans
     https://www.notion.com/es-es/pricing
+    https://www.microsoft.com/es-es/microsoft-365-copilot/pricing/individuals
 
 Escribir es probablemente el uso más extendido de la inteligencia artificial: correos, trabajos, artículos, publicaciones para redes, informes o cartas de presentación. Pero no todas las herramientas sirven igual para todo. Algunas destacan redactando desde cero, otras corrigiendo y puliendo lo que ya has escrito, y otras traduciendo con naturalidad. En esta comparativa te ayudamos a elegir según lo que escribes y cuánto quieres gastar.
 

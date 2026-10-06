@@ -1,4 +1,4 @@
-titulo: Runway: qué es, precios y para quién merece la pena
+titulo: Runway: vídeo con IA, créditos por plan y cuánto rinde cada uno
 descripcion: Análisis de Runway, la plataforma de vídeo con IA: planes Free, Standard, Pro y Max, créditos, modelos Gen-4.5, funciones y alternativas en 2026.
 fecha: 2026-10-06
 web: https://runway.com/

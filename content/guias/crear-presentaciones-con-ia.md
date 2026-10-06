@@ -121,7 +121,7 @@ Sí, si le das los datos. Copilot en Excel y PowerPoint o los asistentes con an�
 
 ### ¿Cuántas diapositivas debería tener mi presentación?
 
-Depende del tiempo y del público. Como orientación, una o dos diapositivas por minuto y una sola idea en cada una.
+Depende del tiempo y del público. Como orientación, uno o dos minutos por diapositiva y una sola idea en cada una.
 
 ### ¿Se nota que una presentación está hecha con IA?
 

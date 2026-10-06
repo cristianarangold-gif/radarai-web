@@ -1,4 +1,4 @@
-titulo: Notion AI: qué es, precios en euros y para quién merece la pena
+titulo: Notion AI: qué plan necesitas para usar la IA y cuánto cuesta
 descripcion: Análisis de Notion AI en 2026: qué incluye cada plan de Notion (Gratis, Plus, Business, Enterprise), precios en euros, agentes, privacidad y alternativas.
 fecha: 2026-10-06
 web: https://www.notion.com/product/ai

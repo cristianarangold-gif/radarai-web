@@ -35,3 +35,12 @@ def test_every_ficha_id_exists_in_catalog():
     ids = set(json.loads((ROOT / 'data' / 'tools.json').read_text(encoding='utf-8')))
     fichas = {p.stem for p in (ROOT / 'content' / 'herramientas').glob('*.md')}
     assert fichas <= ids, fichas - ids
+
+
+def test_every_utility_has_app_js_entry():
+    import re
+    app = (ROOT / 'static' / 'utilidades' / 'app.js').read_text(encoding='utf-8')
+    for md in (ROOT / 'content' / 'utilidades').glob('*.md'):
+        tool = re.search(r'data-tool="([a-z-]+)"', md.read_text(encoding='utf-8')).group(1)
+        assert tool == md.stem
+        assert f"'{tool}':[" in app, tool

@@ -1,4 +1,4 @@
-titulo: Gemini Notebook (antes NotebookLM): qué es, límites y para quién merece la pena
+titulo: Gemini Notebook (antes NotebookLM): estudiar con tus fuentes, límites y planes
 descripcion: Análisis de Gemini Notebook, el antiguo NotebookLM de Google: cómo funciona, límites del plan gratuito y de pago, resúmenes en audio y vídeo, y alternativas.
 fecha: 2026-10-06
 web: https://notebooklm.google.com/

@@ -37,7 +37,7 @@ Resumimos lo que indican las fuentes oficiales de cada servicio (consultadas el 
 
 ### ChatGPT
 
-En los planes individuales, la tabla oficial de OpenAI indica que el contenido se utiliza para entrenar sus modelos, con una **opción de exclusión** disponible en los ajustes de control de datos de tu cuenta. Los planes Business y Enterprise ofrecen más controles de administración. Más en la [ficha de ChatGPT](/herramientas/chatgpt/).
+En los planes individuales, la tabla oficial de OpenAI indica que el contenido se utiliza para entrenar sus modelos, con una **opción de exclusión** disponible en la configuración de tu cuenta. Los planes Business y Enterprise ofrecen más controles de administración. Más en la [ficha de ChatGPT](/herramientas/chatgpt/).
 
 ### Claude
 
