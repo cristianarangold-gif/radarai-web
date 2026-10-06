@@ -12,5 +12,6 @@ def make_page(**kw):
 
 
 def news(slug, day, **kw):
-    return make_page(kind='noticia', slug=slug, url=f'/noticias/{slug}/', title=slug,
+    kw.setdefault('title', slug)
+    return make_page(kind='noticia', slug=slug, url=f'/noticias/{slug}/',
                      date=date(2026, 10, day), **kw)

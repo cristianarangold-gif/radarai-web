@@ -1,0 +1,10 @@
+{% if page.sources %}
+<section class="sources" aria-labelledby="fuentes">
+  <h2 id="fuentes">Fuentes</h2>
+  <ul>
+    {% for src in page.sources %}
+    <li><a href="{{ src }}" rel="noopener" target="_blank">{{ src }}</a></li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}

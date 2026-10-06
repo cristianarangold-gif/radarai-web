@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block main %}
+<section class="wrap article">
+  <header class="article-head">
+    <h1>{{ page.title }}</h1>
+    <p class="lede">{{ page.description }}</p>
+  </header>
+  {% if page.body_html %}<div class="prose">{{ page.body_html | safe }}</div>{% endif %}
+  {% if listing %}
+  <ul class="card-list">
+    {% for item in listing %}
+    <li class="card">
+      <a class="card-link" href="{{ item.url }}">
+        <h2>{{ item.title }}</h2>
+        <p>{{ item.description }}</p>
+        {% if item.date %}<time datetime="{{ item.date.isoformat() }}">{{ item.date | fecha_es }}</time>{% endif %}
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p class="muted">Muy pronto publicaremos aquí nuevo contenido.</p>
+  {% endif %}
+</section>
+{% endblock %}

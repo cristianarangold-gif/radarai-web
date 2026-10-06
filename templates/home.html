@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block title %}Radar IA · {{ page.title }}{% endblock %}
+{% block main %}
+<section class="hero">
+  <div class="wrap">
+    <p class="eyebrow">La IA en tu día</p>
+    <h1>{{ page.title }}</h1>
+    <p class="lede">{{ page.description }}</p>
+    <p class="hero-actions">
+      <a class="btn btn-primary" href="/mejor-ia/">Ver comparativas</a>
+      <a class="btn btn-ghost" href="#herramientas">Explorar herramientas</a>
+    </p>
+  </div>
+</section>
+
+{% if latest_news %}
+<section class="wrap section" aria-labelledby="ultimas">
+  <div class="section-head"><h2 id="ultimas">Últimas noticias</h2><a href="/noticias/">Todas las noticias</a></div>
+  <ul class="card-list">
+    {% for item in latest_news %}
+    <li class="card"><a class="card-link" href="{{ item.url }}"><h3>{{ item.title }}</h3><p>{{ item.description }}</p><time datetime="{{ item.date.isoformat() }}">{{ item.date | fecha_es }}</time></a></li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
+<section class="wrap section prose home-prose">
+  {{ page.body_html | safe }}
+</section>
+
+<section class="wrap section" id="herramientas" aria-labelledby="catalogo">
+  <div class="section-head"><h2 id="catalogo">Catálogo de herramientas de IA</h2></div>
+  <p class="muted">{{ tools | length }} herramientas organizadas por categoría. Las que tienen ficha completa enlazan a nuestro análisis; el resto, a su web oficial.</p>
+  <label class="search"><span class="sr-only">Buscar herramienta</span>
+    <input id="catalog-search" type="search" placeholder="Buscar por nombre, uso o etiqueta…" autocomplete="off">
+  </label>
+  <div class="catalog">
+    {% for key, label in categories %}
+    {% set items = tools.values() | selectattr('cat', 'equalto', key) | list %}
+    <details class="catalog-group" id="cat-{{ key }}"{% if loop.first %} open{% endif %}>
+      <summary><strong>{{ label }}</strong> <small>{{ items | length }} herramientas</small></summary>
+      <div class="tool-grid">
+        {% for t in items %}
+        <article class="tool-card" data-search="{{ (t.name ~ ' ' ~ t.desc ~ ' ' ~ (t.tags | join(' '))) | lower }}">
+          <h3>{{ t.name }}</h3>
+          <p>{{ t.desc }}</p>
+          <p class="tags">{% for tag in t.tags[:3] %}<span>{{ tag }}</span>{% endfor %}</p>
+          <p class="tool-meta"><span>{{ {'gratis': 'Gratis', 'freemium': 'Gratis + pago', 'pago': 'De pago'}.get(t.price, t.price) }}</span>
+          {% if t.has_page %}
+          <a href="/herramientas/{{ t.id }}/">Leer análisis</a>
+          {% else %}
+          <a href="{{ t.url }}" rel="noopener nofollow" target="_blank">Web oficial</a>
+          {% endif %}
+          </p>
+        </article>
+        {% endfor %}
+      </div>
+    </details>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
+{% block scripts %}<script src="/static/js/catalog.js" defer></script>{% endblock %}
