@@ -1,0 +1,29 @@
+name: Noticias candidatas
+
+on:
+  schedule:
+    - cron: '0 5 * * *'   # 07:00 en Madrid (horario de verano), 06:00 en invierno
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Recoger candidatas
+        run: python scripts/news_collect.py > candidatas.md
+      - name: Crear issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ ! -s candidatas.md ]; then echo "Sin candidatas hoy"; exit 0; fi
+          gh label create noticias --color FFB86B --description "Candidatas de noticias" 2>/dev/null || true
+          gh issue create --title "Noticias candidatas $(date -u +%Y-%m-%d)" --label noticias --body-file candidatas.md
