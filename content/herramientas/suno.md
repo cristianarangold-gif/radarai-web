@@ -85,7 +85,7 @@ Las letras y descripciones que introduces se procesan en los servidores de Suno.
 
 - **[ElevenLabs](/herramientas/elevenlabs/)**: más centrado en voz, doblaje y efectos de sonido, aunque también ofrece música.
 - **[Runway](/herramientas/runway/)**: incluye generación de música y sonido dentro de su plataforma de vídeo.
-- Otras herramientas musicales de nuestro catálogo, como Udio o Soundraw, aparecen en la sección de [audio y música](/#cat-audio) de la portada.
+- Otras herramientas musicales de nuestro catálogo, como Udio o Soundraw, aparecen en la sección de [audio y música](/herramientas/#cat-audio) del catálogo.
 
 Las comparamos en [la mejor IA para crear música](/mejor-ia-para-crear-musica/).
 

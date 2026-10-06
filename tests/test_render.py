@@ -55,19 +55,19 @@ def test_basic_head(env):
 
 
 def test_catalog_card_without_page_links_official_nofollow(env):
-    html = render_page(env, make_page(url='/'), ctx(tools={'foo': tool('foo', False)}))
+    html = render_page(env, make_page(url='/herramientas/'), ctx(tools={'foo': tool('foo', False)}, listing=[]))
     assert 'href="https://foo.example/" rel="noopener nofollow" target="_blank"' in html
     assert '/herramientas/foo/' not in html
 
 
 def test_catalog_card_with_page_links_internal(env):
-    html = render_page(env, make_page(url='/'), ctx(tools={'bar': tool('bar', True)}))
+    html = render_page(env, make_page(url='/herramientas/'), ctx(tools={'bar': tool('bar', True)}, listing=[]))
     assert 'href="/herramientas/bar/"' in html
 
 
 def test_catalog_groups_have_category_anchor(env):
-    html = render_page(env, make_page(url='/'), ctx(tools={'bar': tool('bar', True)}))
-    assert 'id="cat-escritura"' in html
+    html = render_page(env, make_page(url='/herramientas/'), ctx(tools={'bar': tool('bar', True)}, listing=[]))
+    assert 'id="cat-escritura"' in html and '/static/js/catalog.js' in html
 
 
 def test_title_escaping(env):
@@ -120,3 +120,13 @@ def test_no_google_fonts_and_fonts_preloaded(env):
 def test_footer_has_motto_and_brand(env):
     html = render_page(env, news('n', 1), ctx())
     assert 'La IA en tu día' in html and 'class="site-footer"' in html
+
+
+def test_home_has_no_catalog(env):
+    html = render_page(env, make_page(url='/'), ctx(tools={'bar': tool('bar', True)}))
+    assert 'id="cat-' not in html and 'catalog.js' not in html
+
+
+def test_home_title_emphasis_is_escaped(env):
+    html = render_page(env, make_page(url='/', title='Tu <b> & la inteligencia artificial'), ctx())
+    assert 'Tu &lt;b&gt; &amp; la <em>inteligencia artificial</em>' in html

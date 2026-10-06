@@ -1,14 +1,15 @@
-// Buscador del catálogo de la portada: filtra tarjetas y abre los grupos con resultados.
+// Buscador del catálogo de /herramientas/: filtra tarjetas y abre los grupos con resultados.
 (function () {
   function openFromHash() {
     var group = location.hash.indexOf('#cat-') === 0 && document.getElementById(location.hash.slice(1));
     if (group && group.tagName === 'DETAILS') {
       group.open = true;
-      // Tras cargar fuentes y estilos, para que el salto no se pierda.
-      window.requestAnimationFrame(function () { setTimeout(function () { group.scrollIntoView({ behavior: 'instant', block: 'start' }); }, 50); });
+      group.scrollIntoView({ behavior: 'instant', block: 'start' });
     }
   }
   openFromHash();
+  // Repetir cuando terminan de cargar fuentes e imágenes: cambian la altura de lo que hay encima.
+  window.addEventListener('load', function () { setTimeout(openFromHash, 0); });
   window.addEventListener('hashchange', openFromHash);
 
   var input = document.getElementById('catalog-search');

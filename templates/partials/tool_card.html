@@ -1,0 +1,12 @@
+{% set ficha = fichas.get(t.id) %}
+{% set ideal = ficha.extra.get('ideal_para') if ficha else '' %}
+{% set desde = ficha.extra.get('precio_desde') if ficha else '' %}
+{% set pago = ficha.extra.get('plan_pago') if ficha else '' %}
+<a class="tool2" href="/herramientas/{{ t.id }}/">
+  {{ t.id | logo(48, t.name) }}
+  <span class="tool2-body">
+    <strong>{{ t.name }}</strong>
+    <span class="tool2-ideal">{{ ideal or t.desc }}</span>
+    {% if desde %}<span class="pill">Desde {{ desde }}{% if pago %} · {{ pago }}{% endif %}</span>{% endif %}
+  </span>
+</a>

@@ -2,14 +2,17 @@
 from __future__ import annotations
 
 import json
+import math
 from datetime import date
 from pathlib import Path
 
 import jinja2
-from markupsafe import Markup
+from markupsafe import Markup, escape
 
+from .brands import logo_html
 from .covers import cover_for, cover_svg, og_rel
-from .models import Page
+from .editorial import reading_minutes
+from .models import Brand, Page
 from .seo import SITE, canonical, jsonld
 
 MONTHS = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio',
@@ -26,6 +29,22 @@ NAV = [
     ('Utilidades', '/herramientas-radar/'),
 ]
 
+KIND_LABEL = {'noticia': 'Noticia', 'guia': 'Guía', 'comparativa': 'Comparativa', 'ficha': 'Ficha',
+              'utilidad': 'Utilidad', 'pagina': 'Página'}
+
+
+def _radar_slots():
+    """Posición de los 5 blips (en % del disco) y retardo para que se iluminen al pasar el barrido de 6 s."""
+    slots = []
+    for angle in (30, 100, 170, 245, 315):
+        a = math.radians(angle)
+        slots.append({'left': round(50 + 33 * math.sin(a), 1), 'top': round(50 - 33 * math.cos(a), 1),
+                      'delay': round(angle / 360 * 6, 2)})
+    return slots
+
+
+RADAR_SLOTS = _radar_slots()
+
 TEMPLATE_BY_KIND = {
     'ficha': 'tool.html',
     'noticia': 'article.html',
@@ -38,6 +57,24 @@ TEMPLATE_BY_KIND = {
 
 def fecha_es(value: date) -> str:
     return f'{value.day} de {MONTHS[value.month - 1]} de {value.year}'
+
+
+def em_phrase(title: str, phrase: str = 'inteligencia artificial') -> Markup:
+    """Escapa el título y resalta `phrase` con <em> si aparece."""
+    return Markup(str(escape(title)).replace(phrase, f'<em>{phrase}</em>', 1))
+
+
+@jinja2.pass_context
+def cover_filter(ctx, page: Page) -> Markup:
+    return cover_svg(cover_for(page, ctx.get('brands', {}), ctx.get('tools', {})), ctx['logos_dir'])
+
+
+@jinja2.pass_context
+def logo_filter(ctx, brand_id: str, size: int = 40, name: str = '') -> Markup:
+    brand = ctx.get('brands', {}).get(brand_id)
+    if brand is None:  # sin marca registrada: inicial sobre tinta
+        brand = Brand(brand_id, name or brand_id, '#151515', None, (name or brand_id)[:1].upper())
+    return logo_html(brand, size, ctx['logos_dir'])
 
 
 def to_json(value) -> Markup:
@@ -55,7 +92,11 @@ def make_env(templates_dir: Path) -> jinja2.Environment:
     )
     env.filters['fecha_es'] = fecha_es
     env.filters['to_json'] = to_json
-    env.globals.update(SITE=SITE, NAV=NAV, ADSENSE_CLIENT=ADSENSE_CLIENT, ads_enabled=False)
+    env.filters['em_phrase'] = em_phrase
+    env.filters['cover'] = cover_filter
+    env.filters['logo'] = logo_filter
+    env.globals.update(SITE=SITE, NAV=NAV, ADSENSE_CLIENT=ADSENSE_CLIENT, ads_enabled=False,
+                       KIND_LABEL=KIND_LABEL, RADAR_SLOTS=RADAR_SLOTS, reading_minutes=reading_minutes)
     return env
 
 
@@ -88,4 +129,6 @@ def render_page(env: jinja2.Environment, page: Page, ctx: dict) -> str:
         brands=ctx.get('brands', {}),
         radar=ctx.get('radar', []),
         imprescindibles=ctx.get('imprescindibles', []),
+        fichas=ctx.get('fichas', {}),
+        logos_dir=logos_dir,
     )

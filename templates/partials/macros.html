@@ -1,0 +1,8 @@
+{% macro kicker(item) -%}
+{%- set empresa = brands.get(item.extra.get('empresa', '') | lower) if item.kind == 'noticia' else none -%}
+{{ KIND_LABEL.get(item.kind, '') }}{% if empresa %} · {{ empresa.name }}{% endif %}
+{%- endmacro %}
+
+{% macro card_meta(item) -%}
+{% if item.date %}<time datetime="{{ item.date.isoformat() }}">{{ item.date | fecha_es }}</time> · {% endif %}{{ reading_minutes(item) }} min de lectura
+{%- endmacro %}

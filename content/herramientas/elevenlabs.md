@@ -84,7 +84,7 @@ Clonar una voz es una función potente que exige responsabilidad: **clona solo t
 
 - **[Runway](/herramientas/runway/)**: incluye voz y música dentro de su plataforma de vídeo, con clonación de voz desde Pro.
 - **[Suno](/herramientas/suno/)**: si lo que buscas es crear canciones completas.
-- Otras herramientas de voz de nuestro catálogo, como Murf o Play.ht, aparecen en la sección de [audio y música](/#cat-audio) de la portada.
+- Otras herramientas de voz de nuestro catálogo, como Murf o Play.ht, aparecen en la sección de [audio y música](/herramientas/#cat-audio) del catálogo.
 
 Las comparamos en [la mejor IA para vídeo](/mejor-ia-para-video/).
 

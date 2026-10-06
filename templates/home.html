@@ -1,54 +1,87 @@
 {% extends 'base.html' %}
+{% from 'partials/macros.html' import kicker with context %}
 {% block title %}Radar IA · {{ page.title }}{% endblock %}
 {% block main %}
+<div class="wrap">
 <section class="hero">
-  <div class="wrap">
+  <div class="hero-top">
     <p class="eyebrow">La IA en tu día</p>
-    <h1>{{ page.title }}</h1>
+    <h1>{{ page.title | em_phrase }}</h1>
+  </div>
+  {% if radar %}<div class="hero-radar">{% include 'partials/radar.html' %}</div>{% endif %}
+  <div class="hero-bottom">
     <p class="lede">{{ page.description }}</p>
     <p class="hero-actions">
-      <a class="btn btn-primary" href="/mejor-ia/">Ver comparativas</a>
-      <a class="btn btn-ghost" href="#herramientas">Explorar herramientas</a>
+      <a class="btn" href="/mejor-ia/">Ver comparativas</a>
+      <a class="btn btn-ghost" href="/herramientas/">Explorar herramientas</a>
     </p>
   </div>
 </section>
 
 {% if latest_news %}
-<section class="wrap section" aria-labelledby="ultimas">
-  <div class="section-head"><h2 id="ultimas">Últimas noticias</h2><a href="/noticias/">Todas las noticias</a></div>
-  <ul class="card-list">
-    {% for item in latest_news %}
-    <li class="card"><a class="card-link" href="{{ item.url }}"><h3>{{ item.title }}</h3><p>{{ item.description }}</p><time datetime="{{ item.date.isoformat() }}">{{ item.date | fecha_es }}</time></a></li>
-    {% endfor %}
-  </ul>
+{% set lead = latest_news[0] %}
+<section class="section lead{% if not imprescindibles %} lead-solo{% endif %}" aria-label="Destacado">
+  <article class="feat">
+    <a href="{{ lead.url }}">
+      {{ lead | cover }}
+      <span class="kicker">{{ kicker(lead) }}</span>
+      <h2>{{ lead.title }}</h2>
+      <p>{{ lead.description }}</p>
+    </a>
+  </article>
+  {% if imprescindibles %}
+  <aside class="must" aria-labelledby="imprescindibles">
+    <h2 id="imprescindibles">Imprescindibles</h2>
+    <ol>
+      {% for item in imprescindibles %}
+      <li><a href="{{ item.url }}"><span class="n" aria-hidden="true">{{ loop.index }}</span><span><strong>{{ item.title }}</strong><small>{{ KIND_LABEL.get(item.kind, '') }}</small></span></a></li>
+      {% endfor %}
+    </ol>
+  </aside>
+  {% endif %}
+</section>
+{% endif %}
+
+{% if latest_news[1:] %}
+<section class="section" aria-labelledby="ultimas">
+  <div class="section-head"><h2 id="ultimas">Últimas noticias</h2><a href="/noticias/">Todas las noticias →</a></div>
+  <div class="grid3">
+    {% for item in latest_news[1:7] %}{% include 'partials/card.html' %}{% endfor %}
+  </div>
 </section>
 {% endif %}
 
 {% if comparativas %}
-<section class="wrap section" aria-labelledby="comparativas">
-  <div class="section-head"><h2 id="comparativas">Comparativas: la mejor IA para cada tarea</h2><a href="/mejor-ia/">Ver todas</a></div>
-  <ul class="card-list">
-    {% for item in comparativas %}
-    <li class="card"><a class="card-link" href="{{ item.url }}"><h3>{{ item.title }}</h3><p>{{ item.description }}</p></a></li>
-    {% endfor %}
-  </ul>
+<section class="section" aria-labelledby="comparativas">
+  <div class="section-head"><h2 id="comparativas">Comparativas: la mejor IA para cada tarea</h2><a href="/mejor-ia/">Ver todas →</a></div>
+  <div class="grid3">
+    {% for item in comparativas %}{% include 'partials/card.html' %}{% endfor %}
+  </div>
+</section>
+{% endif %}
+
+{% set analizadas = tools.values() | selectattr('has_page') | sort(attribute='name') | list %}
+{% if analizadas %}
+<section class="section" aria-labelledby="analizadas">
+  <div class="section-head"><h2 id="analizadas">Herramientas analizadas</h2><a href="/herramientas/">Ver las {{ tools | length }} →</a></div>
+  <div class="grid3 tools-grid">
+    {% for t in analizadas %}{% include 'partials/tool_card.html' %}{% endfor %}
+  </div>
 </section>
 {% endif %}
 
 {% if guias %}
-<section class="wrap section" aria-labelledby="guias-home">
-  <div class="section-head"><h2 id="guias-home">Guías prácticas</h2><a href="/guias/">Todas las guías</a></div>
-  <ul class="card-list">
-    {% for item in guias %}
-    <li class="card"><a class="card-link" href="{{ item.url }}"><h3>{{ item.title }}</h3><p>{{ item.description }}</p></a></li>
-    {% endfor %}
-  </ul>
+<section class="section" aria-labelledby="guias-home">
+  <div class="section-head"><h2 id="guias-home">Guías prácticas</h2><a href="/guias/">Todas las guías →</a></div>
+  <div class="grid3">
+    {% for item in guias %}{% include 'partials/card.html' %}{% endfor %}
+  </div>
 </section>
 {% endif %}
 
 {% if utilidades %}
-<section class="wrap section" aria-labelledby="utilidades-home">
-  <div class="section-head"><h2 id="utilidades-home">Utilidades gratuitas</h2><a href="/herramientas-radar/">Ver utilidades</a></div>
+<section class="section" aria-labelledby="utilidades-home">
+  <div class="section-head"><h2 id="utilidades-home">Utilidades gratuitas</h2><a href="/herramientas-radar/">Ver utilidades →</a></div>
   <ul class="chip-list">
     {% for item in utilidades %}
     <li><a href="{{ item.url }}">{{ item.title }}</a></li>
@@ -57,40 +90,8 @@
 </section>
 {% endif %}
 
-<section class="wrap section prose home-prose">
+<section class="section prose home-prose">
   {{ page.body_html | safe }}
 </section>
-
-<section class="wrap section" id="herramientas" aria-labelledby="catalogo">
-  <div class="section-head"><h2 id="catalogo">Catálogo de herramientas de IA</h2></div>
-  <p class="muted">{{ tools | length }} herramientas organizadas por categoría. Las que tienen ficha completa enlazan a nuestro análisis; el resto, a su web oficial.</p>
-  <label class="search"><span class="sr-only">Buscar herramienta</span>
-    <input id="catalog-search" type="search" placeholder="Buscar por nombre, uso o etiqueta…" autocomplete="off">
-  </label>
-  <div class="catalog">
-    {% for key, label in categories %}
-    {% set items = tools.values() | selectattr('cat', 'equalto', key) | list %}
-    <details class="catalog-group" id="cat-{{ key }}"{% if loop.first %} open{% endif %}>
-      <summary><strong>{{ label }}</strong> <small>{{ items | length }} herramientas</small></summary>
-      <div class="tool-grid">
-        {% for t in items %}
-        <article class="tool-card" data-search="{{ (t.name ~ ' ' ~ t.desc ~ ' ' ~ (t.tags | join(' '))) | lower }}">
-          <h3>{{ t.name }}</h3>
-          <p>{{ t.desc }}</p>
-          <p class="tags">{% for tag in t.tags[:3] %}<span>{{ tag }}</span>{% endfor %}</p>
-          <p class="tool-meta"><span>{{ {'gratis': 'Gratis', 'freemium': 'Gratis + pago', 'pago': 'De pago'}.get(t.price, t.price) }}</span>
-          {% if t.has_page %}
-          <a href="/herramientas/{{ t.id }}/">Leer análisis</a>
-          {% else %}
-          <a href="{{ t.url }}" rel="noopener nofollow" target="_blank">Web oficial</a>
-          {% endif %}
-          </p>
-        </article>
-        {% endfor %}
-      </div>
-    </details>
-    {% endfor %}
-  </div>
-</section>
+</div>
 {% endblock %}
-{% block scripts %}<script src="/static/js/catalog.js" defer></script>{% endblock %}

@@ -1,4 +1,5 @@
 import json
+import re
 import shutil
 from pathlib import Path
 
@@ -72,7 +73,7 @@ def test_old_tool_url_redirects(tmp_path):
     root, out = make_root(tmp_path), tmp_path / '_site'
     build(root, out)
     html = (out / 'herramientas' / 'runway' / 'index.html').read_text()
-    assert 'url=/#cat-video' in html
+    assert 'url=/herramientas/#cat-video' in html
 
 
 def test_duplicate_output_path_raises(tmp_path):
@@ -176,3 +177,21 @@ def test_css_defines_editorial_tokens():
                   '--rule: #e0d9cc', '--accent: #e4572e', '--amber: #f3a712'):
         assert token in css, token
     assert css.count('@font-face') == 7 and 'font-display: swap' in css
+
+
+def test_home_radar_and_catalog_in_tools_page(tmp_path):
+    root, out = make_root(tmp_path), tmp_path / '_site'
+    (root / 'content' / 'herramientas').mkdir()
+    (root / 'content' / 'herramientas' / 'claude.md').write_text(
+        'titulo: Claude\ndescripcion: dc\nfecha: 2026-10-01\nideal_para: Escribir\nprecio_desde: 0 $\n\n'
+        + 'palabra ' * 1100, encoding='utf-8')
+    (root / 'data' / 'imprescindibles.txt').write_text('/herramientas/claude/\n', encoding='utf-8')
+    build(root, out)
+    home = (out / 'index.html').read_text()
+    assert 'class="radar"' in home and 'En el radar esta semana' in home
+    blips = re.findall(r'<a class="blip" href="([^"]+)"', home)
+    assert blips == ['/herramientas/claude/']  # solo herramientas con ficha
+    assert 'Imprescindibles' in home and 'id="cat-' not in home
+    assert 'href="/herramientas/"' in home and '0 $' in home
+    tools_page = (out / 'herramientas' / 'index.html').read_text()
+    assert 'id="cat-ia-general"' in tools_page and '/static/js/catalog.js' in tools_page

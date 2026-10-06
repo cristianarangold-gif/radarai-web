@@ -81,7 +81,7 @@ Al usar las funciones de IA, el contenido que generas o subes se procesa en los 
 - **[Midjourney](/herramientas/midjourney/)**: mayor calidad artística en la generación de imágenes, aunque sin editor de diseño.
 - **[ChatGPT](/herramientas/chatgpt/)** y **[Gemini](/herramientas/gemini/)**: generan imágenes desde el chat.
 - **[Microsoft Copilot](/herramientas/copilot/)**: crea presentaciones dentro de PowerPoint si trabajas con Office.
-- Gamma y otras herramientas de presentaciones aparecen en la sección de [productividad](/#cat-productividad) de la portada.
+- Gamma y otras herramientas de presentaciones aparecen en la sección de [productividad](/herramientas/#cat-productividad) del catálogo.
 
 Las comparamos en [la mejor IA para marketing](/mejor-ia-para-marketing/) y [la mejor IA para crear imágenes](/mejor-ia-para-imagenes/).
 

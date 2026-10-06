@@ -9,7 +9,7 @@ Radar IA ayuda a encontrar la herramienta de inteligencia artificial adecuada se
 - **Guías prácticas** para sacar partido a la IA en el estudio, el trabajo y el día a día: cómo escribir buenos *prompts*, qué no compartir nunca con un chatbot o cómo automatizar tareas repetitivas.
 - **Noticias** de inteligencia artificial explicadas en español, con lo que cambian en la práctica para usuarios de España y Latinoamérica.
 
-Cada ficha y cada comparativa se elaboran consultando la documentación y las páginas de precios oficiales, con la fecha de comprobación y las fuentes enlazadas. Evitamos incluir funciones o valoraciones que no podamos confirmar y distinguimos siempre entre lo que procede de fuentes oficiales y las pruebas propias, que señalamos expresamente cuando las hay. El catálogo de la portada reúne más herramientas: las que todavía no tienen análisis completo enlazan directamente a su web oficial. Puedes leer cómo trabajamos en nuestra [metodología](/metodologia/) y en la [política editorial](/politica-editorial/).
+Cada ficha y cada comparativa se elaboran consultando la documentación y las páginas de precios oficiales, con la fecha de comprobación y las fuentes enlazadas. Evitamos incluir funciones o valoraciones que no podamos confirmar y distinguimos siempre entre lo que procede de fuentes oficiales y las pruebas propias, que señalamos expresamente cuando las hay. El [catálogo de herramientas](/herramientas/) reúne muchas más: las que todavía no tienen análisis completo enlazan directamente a su web oficial. Puedes leer cómo trabajamos en nuestra [metodología](/metodologia/) y en la [política editorial](/politica-editorial/).
 
 <section id="preguntas-frecuentes" markdown="1">
 

@@ -39,6 +39,17 @@ def _target_exists(site: Path, href: str) -> bool:
     return (site / rel).exists()
 
 
+def _anchor_missing(site: Path, href: str) -> bool:
+    """True si `href` apunta a una categoría del catálogo (#cat-…) que no existe en la página destino."""
+    if '#cat-' not in href:
+        return False
+    path, frag = href.split('#', 1)
+    path = path or '/'
+    rel = 'index.html' if path == '/' else path.lstrip('/') + ('index.html' if path.endswith('/') else '')
+    target = site / rel
+    return not target.is_file() or f'id="{frag}"' not in target.read_text(encoding='utf-8')
+
+
 def _visible_text(html: str) -> str:
     body = re.sub(r'(?is)<(script|style)\b.*?</\1>', ' ', html)
     return text_of(body)
@@ -60,10 +71,8 @@ def check_site(site_dir: Path) -> List[str]:
             if target.startswith('/'):
                 if not _target_exists(site, target):
                     errors.append(f'{rel}: redirección a destino inexistente {target}')
-                elif target.startswith('/#cat-'):
-                    home = (site / 'index.html').read_text(encoding='utf-8')
-                    if f'id="{target[2:]}"' not in home:
-                        errors.append(f'{rel}: redirección a ancla inexistente {target}')
+                elif _anchor_missing(site, target):
+                    errors.append(f'{rel}: redirección a ancla inexistente {target}')
             continue
         url = _url_of(rel)
         noindex = 'name="robots" content="noindex' in html
@@ -82,6 +91,8 @@ def check_site(site_dir: Path) -> List[str]:
         for href in HREF_RE.findall(html):
             if not _target_exists(site, href):
                 errors.append(f'{rel}: enlace interno roto {href}')
+            elif _anchor_missing(site, href):
+                errors.append(f'{rel}: enlace a ancla inexistente {href}')
 
         if noindex or rel == '404.html':
             noindex_urls.add(url)

@@ -25,8 +25,8 @@ def sitemap(site, *urls):
 
 
 def test_clean_site_has_no_errors(tmp_path):
-    page(tmp_path, 'index.html', '/', body='<a href="/a/">a</a> <a href="/#cat-x">c</a>')
-    page(tmp_path, 'a/index.html', '/a/', title='A')
+    page(tmp_path, 'index.html', '/', body='<a href="/a/">a</a> <a href="/a/#cat-x">c</a>')
+    page(tmp_path, 'a/index.html', '/a/', title='A', body='<details id="cat-x"></details>')
     sitemap(tmp_path, '/', '/a/')
     assert check_site(tmp_path) == []
 
@@ -151,3 +151,21 @@ def test_noindex_page_needs_no_og_image(tmp_path):
     page(tmp_path, 'b/index.html', '/b/', title='B', og='', robots='<meta name="robots" content="noindex,follow">')
     sitemap(tmp_path, '/')
     assert check_site(tmp_path) == []
+
+
+def test_redirect_to_missing_catalog_anchor(tmp_path):
+    page(tmp_path, 'index.html', '/')
+    page(tmp_path, 'herramientas/index.html', '/herramientas/', title='H', body='<details id="cat-video"></details>')
+    sitemap(tmp_path, '/', '/herramientas/')
+    (tmp_path / 'herramientas' / 'x').mkdir()
+    (tmp_path / 'herramientas' / 'x' / 'index.html').write_text(
+        '<html><head><meta http-equiv="refresh" content="0; url=/herramientas/#cat-nada"></head></html>')
+    errors = check_site(tmp_path)
+    assert any('ancla inexistente /herramientas/#cat-nada' in e for e in errors)
+
+
+def test_content_link_to_old_home_anchor(tmp_path):
+    page(tmp_path, 'index.html', '/', body='<p>portada</p>')
+    page(tmp_path, 'a/index.html', '/a/', title='A', body='<a href="/#cat-video">vídeo</a>')
+    sitemap(tmp_path, '/', '/a/')
+    assert any('ancla inexistente /#cat-video' in e for e in check_site(tmp_path))

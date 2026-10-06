@@ -83,10 +83,11 @@ def build(root: Path, out: Path) -> None:
                   key=lambda p: p.date, reverse=True)
     def featured(kind):
         return sorted((p for p in pages if p.kind == kind and p.indexable), key=lambda p: p.title)
-    base_ctx = dict(tools=tools, categories=CATEGORIES, latest_news=news[:6], listing=None,
+    base_ctx = dict(tools=tools, categories=CATEGORIES, latest_news=news[:7], listing=None,
                     comparativas=featured('comparativa'), guias=featured('guia'),
                     utilidades=featured('utilidad'), brands=brands, radar=radar_tools(news, tools),
-                    imprescindibles=[], logos_dir=root / 'static' / 'logos')
+                    imprescindibles=[], logos_dir=root / 'static' / 'logos',
+                    fichas={p.slug: p for p in pages if p.kind == 'ficha' and p.indexable})
     imprescindibles = root / 'data' / 'imprescindibles.txt'
     if imprescindibles.exists():
         base_ctx['imprescindibles'] = load_imprescindibles(imprescindibles, by_url)
@@ -111,7 +112,7 @@ def build(root: Path, out: Path) -> None:
         w.write(_out_path(url), render_page(env, page, dict(base_ctx, listing=items)), f'listado {url}')
 
     redirects = load_redirects(root / 'data' / 'redirects.yml')
-    redirects += [Redirect(f'/herramientas/{t.id}/', f'/#cat-{t.cat}')
+    redirects += [Redirect(f'/herramientas/{t.id}/', f'/herramientas/#cat-{t.cat}')
                   for t in tools.values() if not t.has_page]
     for r in redirects:
         for rel in output_paths(r):

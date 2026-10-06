@@ -86,7 +86,7 @@ Este es uno de los grandes puntos fuertes de DeepL Pro. Según su página oficia
 ## Alternativas a DeepL
 
 - **[ChatGPT](/herramientas/chatgpt/)**, **[Claude](/herramientas/claude/)** y **[Gemini](/herramientas/gemini/)**: traducen y reescriben textos, y además permiten dar instrucciones detalladas sobre el estilo.
-- Grammarly, QuillBot o Wordtune, presentes en la sección de [escritura](/#cat-escritura) de la portada, como alternativas para corregir y reformular.
+- Grammarly, QuillBot o Wordtune, presentes en la sección de [escritura](/herramientas/#cat-escritura) del catálogo, como alternativas para corregir y reformular.
 
 Las comparamos en [la mejor IA para escribir](/mejor-ia-para-escribir/).
 
