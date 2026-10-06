@@ -171,3 +171,89 @@ Uso interno: este archivo no se publica, porque el loader ignora los archivos qu
   | Ultra | 500 | 500–600 | 2.500–5.000 | 100–200 | 100–200 |
 
 - **Planes de pago:** son los de Google AI (precios en la sección Gemini).
+
+# Herramientas adicionales para comparativas (consultado el 6 de octubre de 2026)
+
+## Grammarly — https://www.grammarly.com/plans
+- **Free:** 0 €. Ortografía, gramática y tono; 100 prompts de IA.
+- **Pro:** 12 €/mes (prueba gratis). Reescritura de frases, ajuste de tono, detector de plagio y de texto IA, y 2.000 prompts/mes.
+- **Idioma:** la página no menciona soporte en español; las funciones de fluidez son para inglés.
+
+## Adobe Firefly — https://www.adobe.com/es/products/firefly/plans.html
+- **Gratis:** creaciones generativas diarias con modelos populares.
+- **Planes de pago (IVA incluido):**
+
+  | Plan | Precio | Créditos/mes |
+  |---|---|---|
+  | Standard | 11,17 €/mes | 2.000 |
+  | Pro | 22,36 €/mes | 4.000 |
+  | Pro Plus | 39,12 €/mes en promoción (normal 55,91 €) | 10.000 |
+  | Premium | 156,49 €/mes en promoción (normal 223,68 €) | 50.000 |
+
+- **Uso comercial:** «seguros para uso comercial», entrenados con contenido con licencia y de dominio público. Generación estándar de imágenes y vectores ilimitada en los planes de pago.
+
+## Ideogram — https://ideogram.ai/pricing (navegador)
+- **Free:** 0 $, créditos lentos semanales.
+- **Plus:** 20 $/mes o 15 $/mes anual (180 $/año). 2.400 créditos prioritarios.
+- **Pro:** 60 $/mes o 42 $/mes anual (504 $/año). 7.500 créditos.
+- **Team:** 30 $/usuario/mes anual (mínimo 2 usuarios).
+- **Generaciones privadas:** no disponibles en Free.
+
+## Gamma — https://gamma.app/es/pricing (navegador)
+- **Free:** 400 créditos al registrarse, hasta 10 diapositivas por prompt, exportación a PDF, PPTX y Google Slides.
+- **Plus:** 8 €/mes (96 €/año). 1.000 créditos/mes, hasta 100 diapositivas y sin marca Gamma.
+- **Pro:** 18 €/mes (216 €/año). 4.000 créditos, personalización de marca y API.
+- **Ultra:** 77,33 €/mes (928 €/año). 20.000 créditos.
+
+## HeyGen — https://www.heygen.com/pricing
+- **Free:** 0 $. Hasta 3 vídeos/mes de 1 minuto como máximo, 1 avatar de vídeo propio, 500+ avatares y 30+ idiomas, con marca de agua.
+- **Creator:** 29 $/mes (24 $ anual). 600 créditos, vídeos de hasta 30 min, 1080p, clonación de voz, 175+ idiomas y sin marca de agua.
+- **Pro:** 49 $/mes. 4K.
+- **Business:** 149 $/mes + 20 $ por puesto.
+- **Traducción de vídeo:** con sincronización labial.
+
+## Synthesia — https://www.synthesia.io/pricing
+- **Basic:** gratis, 10 min/mes y 9 avatares.
+- **Starter:** 29 $/mes, 125+ avatares.
+- **Pro:** 89 $/mes, 180+ avatares.
+- **Enterprise:** a medida.
+- **Idiomas:** 140+ idiomas y voces.
+
+## Replit — https://replit.com/pricing
+- **Core:** 20 $/mes o 18 $/mes anual. Incluye 20 $ para los modelos más potentes.
+- **Pro:** 100 $/mes o 90 $ anual. 10 agentes en paralelo.
+- **Enterprise:** a medida.
+
+## Lovable — https://lovable.dev/pricing
+- **Free:** 5 créditos de construcción diarios (hasta 30 al mes). Los precios de pago no se pudieron leer: no se citan.
+
+## Zapier — https://zapier.com/pricing
+- **Free:** 100 tareas/mes y Zaps de dos pasos. Copilot con límite diario y acceso básico a Agents.
+- **Professional:** desde 29,99 $/mes (19,99 $ anual) con 750 tareas.
+- **Team:** desde 103,50 $/mes (69 $ anual) con 2.000 tareas.
+
+## Jasper — https://www.jasper.ai/pricing
+- **Pro:** 69 $/mes por puesto o 59 $ anual. Prueba de 7 días, 2 voces de marca y agentes de marketing.
+- **Business:** a medida.
+
+## AIVA — https://www.aiva.ai/pricing
+- **Free:** 0 €. 3 descargas/mes; el copyright es de AIVA; no permite monetizar.
+- **Standard:** 11 €/mes anual + IVA. 15 descargas; monetización limitada.
+- **Pro:** 33 €/mes anual + IVA. 300 descargas; el copyright es tuyo; monetización completa.
+
+## Soundraw — https://soundraw.io/pricing
+- **Sin plan gratuito**, aunque se puede probar el generador.
+- **Planes:**
+
+  | Plan | Precio (facturación anual) | Descargas |
+  |---|---|---|
+  | Creator | 5,83 €/mes | ilimitadas |
+  | Artist Starter | 10,75 €/mes | 10 |
+  | Artist Pro | 12,42 €/mes | 20 |
+  | Artist Unlimited | 17,42 €/mes | ilimitadas |
+
+- **Licencia:** uso comercial y distribución en plataformas, conservando el 100 % de los royalties.
+
+## ElevenLabs Music — https://elevenlabs.io/music
+- **ElevenMusic:** genera canciones; está disponible en el plan gratuito (10.000 créditos).
+- **Derechos comerciales según plan:** Starter, comercial sin streaming; Creator y Pro, comercial no empresarial; Enterprise, todo uso.
