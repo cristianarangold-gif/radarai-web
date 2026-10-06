@@ -1,5 +1,16 @@
 // Buscador del catálogo de la portada: filtra tarjetas y abre los grupos con resultados.
 (function () {
+  function openFromHash() {
+    var group = location.hash.indexOf('#cat-') === 0 && document.getElementById(location.hash.slice(1));
+    if (group && group.tagName === 'DETAILS') {
+      group.open = true;
+      // Tras cargar fuentes y estilos, para que el salto no se pierda.
+      window.requestAnimationFrame(function () { setTimeout(function () { group.scrollIntoView({ behavior: 'instant', block: 'start' }); }, 50); });
+    }
+  }
+  openFromHash();
+  window.addEventListener('hashchange', openFromHash);
+
   var input = document.getElementById('catalog-search');
   if (!input) return;
   var norm = function (s) { return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); };
