@@ -1,6 +1,7 @@
 """Render de páginas con Jinja2."""
 from __future__ import annotations
 
+import hashlib
 import json
 import math
 from datetime import date
@@ -83,6 +84,12 @@ def to_json(value) -> Markup:
     return Markup(text)
 
 
+def asset_url(static_dir: Path, rel: str) -> str:
+    """URL de un archivo de static/ con su versión (hash del contenido) para que el navegador no use una copia vieja."""
+    digest = hashlib.sha256((Path(static_dir) / rel).read_bytes()).hexdigest()[:10]
+    return f'/static/{rel}?v={digest}'
+
+
 def make_env(templates_dir: Path) -> jinja2.Environment:
     env = jinja2.Environment(
         loader=jinja2.FileSystemLoader(str(templates_dir)),
@@ -93,6 +100,8 @@ def make_env(templates_dir: Path) -> jinja2.Environment:
     )
     env.filters['fecha_es'] = fecha_es
     env.filters['to_json'] = to_json
+    static_dir = Path(templates_dir).resolve().parent / 'static'
+    env.globals['asset'] = lambda rel: asset_url(static_dir, rel)
     env.filters['em_phrase'] = em_phrase
     env.filters['cover'] = cover_filter
     env.filters['logo'] = logo_filter

@@ -23,4 +23,4 @@
   {% endif %}
 </section>
 {% endblock %}
-{% block scripts %}{% if page.url == '/herramientas/' %}<script src="/static/js/catalog.js" defer></script>{% endif %}{% endblock %}
+{% block scripts %}{% if page.url == '/herramientas/' %}<script src="{{ asset('js/catalog.js') }}" defer></script>{% endif %}{% endblock %}

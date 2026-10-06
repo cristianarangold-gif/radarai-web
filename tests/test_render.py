@@ -177,3 +177,13 @@ def test_card_covers_are_decorative(env):
     svg = html[html.index('<svg class="cover"'):]
     svg = svg[:svg.index('>')]
     assert 'aria-hidden="true"' in svg and 'role="img"' not in svg
+
+
+def test_assets_are_versioned_by_content(env):
+    import hashlib
+    html = render_page(env, news('n', 1), ctx())
+    css = (ROOT / 'static' / 'css' / 'radar.css').read_bytes()
+    v = hashlib.sha256(css).hexdigest()[:10]
+    assert f'href="/static/css/radar.css?v={v}"' in html
+    assert re.search(r'src="/static/js/site\.js\?v=[0-9a-f]{10}"', html)
+    assert re.search(r'src="/static/js/toc\.js\?v=[0-9a-f]{10}"', html)
