@@ -33,3 +33,11 @@
 # Guías retiradas (fase 2)
 /guias/como-elegir-una-ia/: /mejor-ia/
 /guias/chatbot-buscador-generador/: /guias/
+
+# Noticias antiguas sin contenido (fase 3)
+/noticias/anthropic-misuse-september-2026/: /noticias/
+/noticias/ia-seguridad-septiembre-2026/: /noticias/
+/noticias/mistral-ai-now-2026/: /noticias/
+/noticias/openai-agents-api/: /noticias/
+/noticias/openai-financial-services/: /noticias/
+/noticias/openai-gpt6-astra/: /noticias/
