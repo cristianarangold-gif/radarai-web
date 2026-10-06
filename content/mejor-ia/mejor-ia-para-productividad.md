@@ -124,4 +124,4 @@ Google AI Plus (4,99 €/mes) y ChatGPT Go (8 €/mes) son las opciones de pago 
 
 ### ¿Qué IA resume mejor las reuniones?
 
-Si tu equipo trabaja en Notion, su Anotador con IA (plan Business) toma notas sin bots. En Microsoft 365, Copilot resume reuniones y correos dentro de Office.
+Si tu equipo trabaja en Notion, su Anotador con IA (plan Business) transcribe y resume reuniones sin añadir bots a la llamada. Para correos largos, Copilot en Outlook y Gemini en Gmail resumen hilos completos.
