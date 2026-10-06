@@ -7,9 +7,9 @@ ROOT = Path(__file__).resolve().parent.parent
 CAT_KEYS = {k for k, _ in CATEGORIES}
 
 
-def test_catalog_has_135_tools_with_required_fields(tmp_path):
+def test_catalog_has_126_tools_with_required_fields(tmp_path):
     tools = load_tools(ROOT / 'data' / 'tools.json', tmp_path)
-    assert len(tools) == 135
+    assert len(tools) == 126
     for tid, t in tools.items():
         assert t.id == tid
         assert t.name.strip(), tid

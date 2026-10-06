@@ -18,3 +18,14 @@
 /legal/politica-privacidad.html: /legal/politica-privacidad/
 /legal/politica-cookies.html: /legal/politica-cookies/
 /legal/contacto.html: /contacto/
+
+# Duplicados eliminados del catálogo (fase 2)
+/herramientas/copyspace/: /#cat-marketing
+/herramientas/copylancer/: /#cat-marketing
+/herramientas/descript-audio/: /#cat-video
+/herramientas/gamma-ai/: /#cat-productividad
+/herramientas/gamma-docs/: /#cat-productividad
+/herramientas/gamma-presentations/: /#cat-productividad
+/herramientas/jasper-chat/: /#cat-marketing
+/herramientas/otter-transcribe/: /#cat-productividad
+/herramientas/writesonic-seo/: /#cat-marketing

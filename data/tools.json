@@ -434,36 +434,6 @@
   ],
   "url": "https://www.copy.ai/"
  },
- "copylancer": {
-  "name": "Copy.ai",
-  "cat": "escritura",
-  "desc": "Asistencia de IA para redactar, reescribir y generar contenido.",
-  "price": "freemium",
-  "level": "principiante",
-  "platform": "web",
-  "lang": "en",
-  "tags": [
-   "Copywriting",
-   "Contenido",
-   "Reescritura"
-  ],
-  "url": "https://www.copy.ai/"
- },
- "copyspace": {
-  "name": "Anyword",
-  "cat": "marketing",
-  "desc": "Generación y optimización de copy orientada al rendimiento.",
-  "price": "pago",
-  "level": "intermedio",
-  "platform": "web",
-  "lang": "en",
-  "tags": [
-   "Copywriting",
-   "Rendimiento",
-   "Marketing"
-  ],
-  "url": "https://www.anyword.com/"
- },
  "cursor": {
   "name": "Cursor",
   "cat": "programacion",
@@ -551,21 +521,6 @@
    "Edición",
    "Transcripción",
    "Vídeo"
-  ],
-  "url": "https://www.descript.com/"
- },
- "descript-audio": {
-  "name": "Descript",
-  "cat": "audio",
-  "desc": "Edición de audio y voz mediante transcripción y herramientas de IA.",
-  "price": "freemium",
-  "level": "intermedio",
-  "platform": "desktop",
-  "lang": "multi",
-  "tags": [
-   "Audio",
-   "Edición",
-   "Transcripción"
   ],
   "url": "https://www.descript.com/"
  },
@@ -671,51 +626,6 @@
    "Presentaciones",
    "Documentos",
    "Web"
-  ],
-  "url": "https://gamma.app/es"
- },
- "gamma-ai": {
-  "name": "Gamma",
-  "cat": "productividad",
-  "desc": "Creación rápida de presentaciones, documentos y páginas con IA.",
-  "price": "freemium",
-  "level": "principiante",
-  "platform": "web",
-  "lang": "multi",
-  "tags": [
-   "Presentaciones",
-   "Documentos",
-   "Web"
-  ],
-  "url": "https://gamma.app/es"
- },
- "gamma-docs": {
-  "name": "Gamma Docs",
-  "cat": "productividad",
-  "desc": "Documentos visuales y páginas generadas a partir de instrucciones.",
-  "price": "freemium",
-  "level": "principiante",
-  "platform": "web",
-  "lang": "multi",
-  "tags": [
-   "Documentos",
-   "Web",
-   "Presentaciones"
-  ],
-  "url": "https://gamma.app/es"
- },
- "gamma-presentations": {
-  "name": "Gamma",
-  "cat": "productividad",
-  "desc": "Generación de presentaciones y documentos visuales con IA.",
-  "price": "freemium",
-  "level": "principiante",
-  "platform": "web",
-  "lang": "multi",
-  "tags": [
-   "Presentaciones",
-   "Diseño",
-   "Documentos"
   ],
   "url": "https://gamma.app/es"
  },
@@ -881,21 +791,6 @@
    "Marketing",
    "Contenido",
    "Marca"
-  ],
-  "url": "https://www.jasper.ai/"
- },
- "jasper-chat": {
-  "name": "Jasper",
-  "cat": "escritura",
-  "desc": "Asistente de escritura y contenido orientado a equipos y marcas.",
-  "price": "pago",
-  "level": "intermedio",
-  "platform": "web",
-  "lang": "en",
-  "tags": [
-   "Contenido",
-   "Marca",
-   "Copywriting"
   ],
   "url": "https://www.jasper.ai/"
  },
@@ -1256,21 +1151,6 @@
    "Reuniones",
    "Transcripción",
    "Notas"
-  ],
-  "url": "https://otter.ai/"
- },
- "otter-transcribe": {
-  "name": "Otter.ai",
-  "cat": "productividad",
-  "desc": "Transcripción y resumen automático de conversaciones y reuniones.",
-  "price": "freemium",
-  "level": "principiante",
-  "platform": "app",
-  "lang": "en",
-  "tags": [
-   "Transcripción",
-   "Reuniones",
-   "Resumen"
   ],
   "url": "https://otter.ai/"
  },
@@ -1968,21 +1848,6 @@
   "name": "Writesonic",
   "cat": "marketing",
   "desc": "Suite de IA para contenido, SEO, chat y marketing digital.",
-  "price": "freemium",
-  "level": "intermedio",
-  "platform": "web",
-  "lang": "en",
-  "tags": [
-   "SEO",
-   "Contenido",
-   "Marketing"
-  ],
-  "url": "https://writesonic.com/"
- },
- "writesonic-seo": {
-  "name": "Writesonic",
-  "cat": "marketing",
-  "desc": "Contenido y herramientas de SEO asistidas por IA para marketing digital.",
   "price": "freemium",
   "level": "intermedio",
   "platform": "web",
