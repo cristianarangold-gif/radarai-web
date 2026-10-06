@@ -76,7 +76,11 @@ def build(root: Path, out: Path) -> None:
     by_url = {p.url: p for p in pages}
     news = sorted((p for p in pages if p.kind == 'noticia' and p.indexable),
                   key=lambda p: p.date, reverse=True)
-    base_ctx = dict(tools=tools, categories=CATEGORIES, latest_news=news[:6], listing=None)
+    def featured(kind):
+        return sorted((p for p in pages if p.kind == kind and p.indexable), key=lambda p: p.title)
+    base_ctx = dict(tools=tools, categories=CATEGORIES, latest_news=news[:6], listing=None,
+                    comparativas=featured('comparativa'), guias=featured('guia'),
+                    utilidades=featured('utilidad'))
     w = Writer(out)
 
     all_pages: List[Page] = list(pages)

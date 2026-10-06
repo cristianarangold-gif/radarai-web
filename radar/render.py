@@ -78,4 +78,7 @@ def render_page(env: jinja2.Environment, page: Page, ctx: dict) -> str:
         categories=ctx.get('categories', []),
         latest_news=ctx.get('latest_news', []),
         listing=ctx.get('listing'),
+        comparativas=ctx.get('comparativas', []),
+        guias=ctx.get('guias', []),
+        utilidades=ctx.get('utilidades', []),
     )

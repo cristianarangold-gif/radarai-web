@@ -1,8 +1,50 @@
-titulo: Metodología de Radar IA
-descripcion: Conoce los criterios editoriales que Radar IA utiliza para analizar, comparar y puntuar herramientas de inteligencia artificial.
+titulo: Metodología: cómo analizamos y comparamos herramientas de IA
+descripcion: Los criterios y el proceso que sigue Radar IA para elaborar sus fichas, comparativas, guías y noticias de inteligencia artificial, y cómo las mantenemos actualizadas.
 
-<div markdown="0">
-<section class="section"><h2>Un sistema pensado para ayudar a decidir</h2><p>Radar IA utiliza una metodología editorial para ordenar herramientas según su utilidad práctica. La puntuación no representa una verdad absoluta ni sustituye la experiencia directa con cada servicio.</p><div class="grid"><div class="card"><h2>Utilidad · 25%</h2><p>Qué problemas reales puede resolver y para cuántos perfiles resulta útil.</p></div><div class="card"><h2>Funciones · 20%</h2><p>Profundidad, variedad y madurez de las funciones relevantes.</p></div><div class="card"><h2>Facilidad · 20%</h2><p>Curva de aprendizaje, claridad de interfaz y facilidad para empezar.</p></div><div class="card"><h2>Precio · 15%</h2><p>Relación entre coste, límites y valor disponible en cada modalidad.</p></div><div class="card"><h2>Experiencia · 10%</h2><p>Flujo de uso, estabilidad percibida y calidad general de la experiencia.</p></div><div class="card"><h2>Privacidad · 10%</h2><p>Transparencia y controles de privacidad disponibles según la información pública del servicio.</p></div></div></section><section class="section"><h2>Qué significa el Radar Score</h2><p>La puntuación de Radar IA es una valoración editorial de 0 a 10. Puede cambiar cuando cambian las funciones, precios, políticas o el contexto competitivo.</p><div class="note"><strong>Importante:</strong> no presentamos los indicadores de tendencias como datos de Google ni como votos globales de usuarios. Cuando una cifra es editorial, lo indicamos expresamente.</div></section><section class="section"><h2>Cómo interpretar nuestras fichas</h2><ul><li>Comprobamos el propósito principal de la herramienta y su encaje por categoría.</li><li>Priorizamos información útil para elegir: para quién sirve, puntos fuertes, límites y alternativas.</li><li>Los precios y condiciones pueden cambiar; recomendamos comprobar siempre la web oficial antes de contratar.</li><li>Los enlaces de producto dirigen al sitio oficial del servicio cuando está disponible.</li></ul></section><a class="back" href="/">← Volver a Radar IA</a>
-<h2>Sistema de revisiones</h2>
-<section class="section"><h2>Un catálogo que debe mantenerse vivo</h2><p>La inteligencia artificial cambia rápido: aparecen funciones nuevas, cambian los planes y algunas herramientas modifican su enfoque. Por eso Radar IA trata sus fichas como contenidos revisables, no como páginas estáticas.</p></section><section class="section"><h2>Qué revisamos</h2><div class="grid"><div class="card"><h2>Funciones</h2><p>Si el servicio mantiene el enfoque descrito y qué capacidades son relevantes.</p></div><div class="card"><h2>Acceso</h2><p>Modalidades gratuitas, freemium o de pago y cambios importantes de disponibilidad.</p></div><div class="card"><h2>Alternativas</h2><p>Qué otras herramientas pueden ser más adecuadas para determinados casos de uso.</p></div></div></section><div class="note"><strong>Fecha de referencia de esta fase:</strong> 11 de septiembre de 2026. Las fichas se irán actualizando de forma progresiva.</div><a class="back" href="/">← Volver a Radar IA</a>
-</div>
+En Radar IA queremos que cada página te ayude a tomar una decisión: qué herramienta elegir, cuánto cuesta y si encaja con lo que necesitas. Esta página explica cómo elaboramos nuestro contenido y qué puedes esperar de él.
+
+## Cómo elaboramos una ficha de herramienta
+
+1. **Consultamos las fuentes oficiales**: la página de precios, la documentación, el centro de ayuda y las políticas de privacidad de la herramienta.
+2. **Anotamos los datos con su fecha**: planes, precios (en euros cuando la empresa los publica), límites de los planes gratuitos y condiciones de uso de los datos.
+3. **Explicamos para quién es**: casos de uso concretos, ejemplos de peticiones y limitaciones.
+4. **Comparamos con alternativas** y damos un veredicto por perfil (estudiante, profesional, empresa).
+5. **Enlazamos las fuentes** al final de cada página.
+
+## Cómo elegimos en las comparativas
+
+En cada comparativa explicamos los criterios utilizados, que normalmente incluyen:
+
+- **Utilidad para la tarea**: qué problemas resuelve y para qué perfiles.
+- **Calidad y funciones** relevantes para esa tarea.
+- **Facilidad de uso** para personas sin conocimientos técnicos.
+- **Precio y plan gratuito**, con la fecha de comprobación.
+- **Privacidad**: qué ocurre con tus datos y qué controles ofrece.
+- **Condiciones de uso comercial**, en herramientas creativas.
+
+No asignamos puntuaciones numéricas: preferimos explicar en qué destaca cada herramienta y para quién es más adecuada, porque la mejor opción depende de tu situación.
+
+## Investigación frente a pruebas propias
+
+Distinguimos dos tipos de información:
+
+- **Investigación**: datos procedentes de fuentes oficiales, como precios, planes, funciones y políticas. Siempre se indica la fecha y la fuente.
+- **Pruebas propias**: experiencias de uso directo del autor. Solo aparecen cuando realmente se han realizado y se identifican de forma explícita.
+
+Nunca presentamos como prueba propia algo que procede de la documentación de una empresa.
+
+## Noticias
+
+Las noticias se basan en fuentes primarias (anuncios oficiales, documentación, comunicados) y en medios de referencia. Cada noticia explica qué ha pasado, por qué importa a un usuario de habla hispana y qué cambia en la práctica, y enlaza las fuentes. Usamos herramientas de IA como apoyo para detectar novedades y preparar borradores, pero cada noticia la revisa y aprueba una persona antes de publicarse.
+
+## Actualización y correcciones
+
+Los precios y las funciones de las herramientas de IA cambian con frecuencia. Por eso:
+
+- Cada página muestra su **fecha de publicación** y, cuando procede, la de **última actualización**.
+- Revisamos periódicamente las fichas y comparativas, empezando por las herramientas más consultadas.
+- Si detectas un dato desactualizado o un error, escríbenos a [contacto@radarai.es](mailto:contacto@radarai.es) y lo corregiremos.
+
+## Independencia
+
+Ninguna empresa paga por aparecer en Radar IA ni por mejorar su posición en una comparativa. La publicidad que pueda mostrar la web no influye en el contenido. Más información en nuestra [política editorial](/politica-editorial/).

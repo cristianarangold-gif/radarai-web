@@ -24,6 +24,39 @@
 </section>
 {% endif %}
 
+{% if comparativas %}
+<section class="wrap section" aria-labelledby="comparativas">
+  <div class="section-head"><h2 id="comparativas">Comparativas: la mejor IA para cada tarea</h2><a href="/mejor-ia/">Ver todas</a></div>
+  <ul class="card-list">
+    {% for item in comparativas %}
+    <li class="card"><a class="card-link" href="{{ item.url }}"><h3>{{ item.title }}</h3><p>{{ item.description }}</p></a></li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
+{% if guias %}
+<section class="wrap section" aria-labelledby="guias-home">
+  <div class="section-head"><h2 id="guias-home">Guías prácticas</h2><a href="/guias/">Todas las guías</a></div>
+  <ul class="card-list">
+    {% for item in guias %}
+    <li class="card"><a class="card-link" href="{{ item.url }}"><h3>{{ item.title }}</h3><p>{{ item.description }}</p></a></li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
+{% if utilidades %}
+<section class="wrap section" aria-labelledby="utilidades-home">
+  <div class="section-head"><h2 id="utilidades-home">Utilidades gratuitas</h2><a href="/herramientas-radar/">Ver utilidades</a></div>
+  <ul class="chip-list">
+    {% for item in utilidades %}
+    <li><a href="{{ item.url }}">{{ item.title }}</a></li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
 <section class="wrap section prose home-prose">
   {{ page.body_html | safe }}
 </section>

@@ -101,3 +101,17 @@ def test_utilities_listing(tmp_path):
         'titulo: Contador\ndescripcion: Cuenta palabras\n\n' + 'palabra ' * 320, encoding='utf-8')
     build(root, out)
     assert 'href="/herramientas-radar/contador/"' in (out / 'herramientas-radar' / 'index.html').read_text()
+
+
+def test_home_shows_featured_sections(tmp_path):
+    root, out = make_root(tmp_path), tmp_path / '_site'
+    (root / 'content' / 'mejor-ia').mkdir()
+    (root / 'content' / 'mejor-ia' / 'mejor-ia-para-x.md').write_text(
+        'titulo: Comparativa X\ndescripcion: dx\n\n' + 'palabra ' * 1300, encoding='utf-8')
+    (root / 'content' / 'guias').mkdir()
+    (root / 'content' / 'guias' / 'guia-y.md').write_text(
+        'titulo: Guía Y\ndescripcion: dy\n\n' + 'palabra ' * 1300, encoding='utf-8')
+    build(root, out)
+    home = (out / 'index.html').read_text()
+    assert 'href="/mejor-ia-para-x/"' in home
+    assert 'href="/guias/guia-y/"' in home
