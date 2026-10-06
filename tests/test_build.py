@@ -195,3 +195,18 @@ def test_home_radar_and_catalog_in_tools_page(tmp_path):
     assert 'href="/herramientas/"' in home and '0 $' in home
     tools_page = (out / 'herramientas' / 'index.html').read_text()
     assert 'id="cat-ia-general"' in tools_page and '/static/js/catalog.js' in tools_page
+
+
+def test_404_is_radar_page_without_canonical(tmp_path):
+    root, out = make_root(tmp_path), tmp_path / '_site'
+    build(root, out)
+    html = (out / '404.html').read_text()
+    assert 'Esta página ha desaparecido del radar' in html and 'class="radar' in html
+    assert 'rel="canonical"' not in html and 'href="/noticias/"' in html
+
+
+def test_news_listing_has_covers(tmp_path):
+    root, out = make_root(tmp_path), tmp_path / '_site'
+    build(root, out)
+    html = (out / 'noticias' / 'index.html').read_text()
+    assert html.count('<svg class="cover"') == 1 and 'href="/noticias/buena/"' in html

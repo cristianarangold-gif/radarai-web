@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block main %}
+<section class="wrap not-found">
+  <div class="radar radar-small" aria-hidden="true">
+    <span class="radar-rings"></span>
+    <span class="radar-sweep"></span>
+  </div>
+  <p class="eyebrow">Error 404</p>
+  <h1>Esta página ha desaparecido del radar</h1>
+  <div class="prose">{{ page.body_html | safe }}</div>
+</section>
+{% endblock %}

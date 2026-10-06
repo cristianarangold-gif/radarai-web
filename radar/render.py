@@ -103,6 +103,8 @@ def make_env(templates_dir: Path) -> jinja2.Environment:
 def template_for(page: Page, ctx: dict) -> str:
     if page.url == '/':
         return 'home.html'
+    if page.url == '/404/':
+        return '404.html'
     if ctx.get('listing') is not None:
         return 'listing.html'
     return TEMPLATE_BY_KIND[page.kind]

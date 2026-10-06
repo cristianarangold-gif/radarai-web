@@ -5,12 +5,24 @@ Código y contenido de [radarai.es](https://radarai.es). Un generador estático 
 ## Estructura
 
 - `content/`: páginas en Markdown con metadatos (`titulo`, `descripcion`, `fecha`, `actualizado`, `fuentes`, `borrador`). Las reglas están en `content/GUIA_EDITORIAL.md`.
-- `data/tools.json`: catálogo de herramientas de la portada.
+- `data/tools.json`: catálogo de herramientas (se muestra en `/herramientas/`).
 - `data/redirects.yml`: redirecciones de URLs antiguas.
 - `templates/` y `static/`: plantillas Jinja2, CSS y JS.
 - `radar/`: código del generador.
 - `scripts/build.py`: genera la web en `_site/`.
 - `scripts/check.py`: valida el resultado antes de publicar.
+
+## Diseño
+
+- **Estilo:** «Editorial claro» (crema, tinta y naranja). Colores y componentes en `static/css/radar.css`; fuentes Fraunces e Inter alojadas en `static/fonts/` (licencia OFL), sin Google Fonts.
+- **Marcas y logotipos:** `data/brands.json` guarda el color, el icono y la inicial de cada herramienta o empresa. Los iconos (Simple Icons, CC0) se descargan una sola vez con `python scripts/fetch_logos.py` a `static/logos/`. Si una marca no tiene icono, se usa su inicial.
+- **Radar de la portada:** muestra las herramientas del metadato `herramientas:` de las 6 noticias más recientes y se completa con ChatGPT, Claude, Gemini, Midjourney y Perplexity. Solo aparecen herramientas con ficha.
+- **Imprescindibles:** `data/imprescindibles.txt`, una URL por línea (máximo 4).
+- **Metadatos nuevos:**
+  - noticias: `empresa` (id de `brands.json`) y `herramientas` (ids de `tools.json`, separados por comas);
+  - fichas: `precio_desde`, `plan_pago`, `ideal_para` y `veredicto` (una frase), siempre tomados del propio texto de la ficha.
+- **Imágenes de portada:** se generan solas en cada build (SVG en la página y PNG 1200×630 en `_site/og/` para compartir en redes). No se guardan en git.
+- **Validaciones:** el build falla si una noticia cita una herramienta o empresa inexistente, si `imprescindibles.txt` apunta a una página que no existe o si una ficha no tiene ningún dato de resumen. `check.py` falla si una página indexable no tiene imagen para compartir o si un enlace apunta a una categoría del catálogo (`#cat-…`) que no existe.
 
 ## Uso local
 

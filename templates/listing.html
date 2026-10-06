@@ -15,17 +15,9 @@
   {% endif %}
   {% include 'partials/catalog.html' %}
   {% elif listing %}
-  <ul class="card-list">
-    {% for item in listing %}
-    <li class="card">
-      <a class="card-link" href="{{ item.url }}">
-        <h2>{{ item.title }}</h2>
-        <p>{{ item.description }}</p>
-        {% if item.date %}<time datetime="{{ item.date.isoformat() }}">{{ item.date | fecha_es }}</time>{% endif %}
-      </a>
-    </li>
-    {% endfor %}
-  </ul>
+  <div class="grid3 listing-grid">
+    {% for item in listing %}{% include 'partials/card.html' %}{% endfor %}
+  </div>
   {% else %}
   <p class="muted">Muy pronto publicaremos aquí nuevo contenido.</p>
   {% endif %}
