@@ -1,0 +1,2027 @@
+{
+ "adcreative-ai": {
+  "name": "AdCreative.ai",
+  "cat": "marketing",
+  "desc": "Generación y análisis de creatividades publicitarias con IA.",
+  "price": "pago",
+  "level": "intermedio",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Publicidad",
+   "Creatividades",
+   "Marketing"
+  ],
+  "url": "https://www.adcreative.ai/"
+ },
+ "adobe-express": {
+  "name": "Adobe Express",
+  "cat": "marketing",
+  "desc": "Creación rápida de contenido visual con plantillas y funciones de IA.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "app",
+  "lang": "multi",
+  "tags": [
+   "Diseño",
+   "Social",
+   "Contenido"
+  ],
+  "url": "https://www.adobe.com/express/"
+ },
+ "adobe-firefly": {
+  "name": "Adobe Firefly",
+  "cat": "imagenes",
+  "desc": "Herramientas generativas de Adobe para crear y editar imágenes y recursos visuales.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "multi",
+  "tags": [
+   "Imagen",
+   "Diseño",
+   "Adobe"
+  ],
+  "url": "https://firefly.adobe.com/"
+ },
+ "aider": {
+  "name": "Aider",
+  "cat": "programacion",
+  "desc": "Asistente de programación que trabaja con repositorios desde el terminal.",
+  "price": "gratis",
+  "level": "avanzado",
+  "platform": "desktop",
+  "lang": "en",
+  "tags": [
+   "Git",
+   "Terminal",
+   "Código"
+  ],
+  "url": "https://aider.chat/"
+ },
+ "airtable-ai": {
+  "name": "Airtable AI",
+  "cat": "productividad",
+  "desc": "Funciones de IA integradas en bases de datos y flujos de trabajo de Airtable.",
+  "price": "freemium",
+  "level": "intermedio",
+  "platform": "web",
+  "lang": "multi",
+  "tags": [
+   "Datos",
+   "Automatización",
+   "Equipos"
+  ],
+  "url": "https://www.airtable.com/ai"
+ },
+ "aiva": {
+  "name": "AIVA",
+  "cat": "audio",
+  "desc": "Composición musical asistida por IA para creadores y proyectos audiovisuales.",
+  "price": "freemium",
+  "level": "intermedio",
+  "platform": "web",
+  "lang": "multi",
+  "tags": [
+   "Música",
+   "Composición",
+   "Audio"
+  ],
+  "url": "https://www.aiva.ai/"
+ },
+ "amazon-q": {
+  "name": "Amazon Q Developer",
+  "cat": "programacion",
+  "desc": "Asistente de IA de AWS para desarrollo de software y tareas relacionadas con la nube.",
+  "price": "freemium",
+  "level": "avanzado",
+  "platform": "desktop",
+  "lang": "en",
+  "tags": [
+   "AWS",
+   "Código",
+   "Cloud"
+  ],
+  "url": "https://aws.amazon.com/q/developer/"
+ },
+ "anyword": {
+  "name": "Anyword",
+  "cat": "marketing",
+  "desc": "Plataforma de IA para copywriting y contenido orientado al rendimiento.",
+  "price": "pago",
+  "level": "intermedio",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Copywriting",
+   "Marketing",
+   "Rendimiento"
+  ],
+  "url": "https://www.anyword.com/"
+ },
+ "beatoven": {
+  "name": "Beatoven.ai",
+  "cat": "audio",
+  "desc": "Generación de música para vídeos y contenidos mediante IA.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Música",
+   "Vídeo",
+   "Composición"
+  ],
+  "url": "https://www.beatoven.ai/"
+ },
+ "beautiful-ai": {
+  "name": "Beautiful.ai",
+  "cat": "productividad",
+  "desc": "Creación de presentaciones con diseño asistido por IA.",
+  "price": "pago",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Presentaciones",
+   "Diseño",
+   "Empresa"
+  ],
+  "url": "https://www.beautiful.ai/"
+ },
+ "beehiiv-ai": {
+  "name": "beehiiv",
+  "cat": "marketing",
+  "desc": "Plataforma de newsletters con funciones de IA y herramientas de crecimiento.",
+  "price": "freemium",
+  "level": "intermedio",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Newsletter",
+   "Contenido",
+   "Audiencia"
+  ],
+  "url": "https://www.beehiiv.com/"
+ },
+ "blackbox-ai": {
+  "name": "BLACKBOX AI",
+  "cat": "programacion",
+  "desc": "Herramientas de IA para generar, explicar y transformar código.",
+  "price": "freemium",
+  "level": "intermedio",
+  "platform": "desktop",
+  "lang": "en",
+  "tags": [
+   "Código",
+   "Generación",
+   "IDE"
+  ],
+  "url": "https://www.blackbox.ai/"
+ },
+ "bolt-new": {
+  "name": "Bolt.new",
+  "cat": "programacion",
+  "desc": "Generación de aplicaciones web mediante conversación y agentes de código.",
+  "price": "freemium",
+  "level": "intermedio",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Apps",
+   "Código",
+   "Prototipos"
+  ],
+  "url": "https://bolt.new/"
+ },
+ "boomy": {
+  "name": "Boomy",
+  "cat": "audio",
+  "desc": "Creación sencilla de canciones mediante inteligencia artificial.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Música",
+   "Canciones",
+   "Creación"
+  ],
+  "url": "https://boomy.com/"
+ },
+ "buffer-ai": {
+  "name": "Buffer AI",
+  "cat": "marketing",
+  "desc": "Funciones de IA para idear y mejorar contenido de redes sociales.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Social",
+   "Contenido",
+   "Publicación"
+  ],
+  "url": "https://buffer.com/"
+ },
+ "canva-ai": {
+  "name": "Canva AI",
+  "cat": "imagenes",
+  "desc": "Funciones de IA integradas en Canva para diseñar, generar y editar contenido visual.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "app",
+  "lang": "multi",
+  "tags": [
+   "Diseño",
+   "Plantillas",
+   "IA creativa"
+  ],
+  "url": "https://www.canva.com/ai/"
+ },
+ "capcut": {
+  "name": "CapCut",
+  "cat": "video",
+  "desc": "Editor de vídeo con herramientas de IA para creación rápida y contenido social.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "app",
+  "lang": "multi",
+  "tags": [
+   "Vídeo",
+   "Social",
+   "Edición"
+  ],
+  "url": "https://www.capcut.com/"
+ },
+ "character-ai": {
+  "name": "Character.AI",
+  "cat": "ia-general",
+  "desc": "Plataforma de conversación con personajes y asistentes creados por la comunidad.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "app",
+  "lang": "multi",
+  "tags": [
+   "Personajes",
+   "Chat",
+   "Comunidad"
+  ],
+  "url": "https://character.ai/"
+ },
+ "chatgpt": {
+  "name": "ChatGPT",
+  "cat": "ia-general",
+  "desc": "Asistente de IA de propósito general para conversar, redactar, analizar y trabajar con información.",
+  "price": "gratis",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "multi",
+  "tags": [
+   "Chat",
+   "Multiuso",
+   "Archivos"
+  ],
+  "url": "https://chatgpt.com/"
+ },
+ "claude": {
+  "name": "Claude",
+  "cat": "ia-general",
+  "desc": "Asistente de IA para conversación, análisis, escritura y trabajo con documentos.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "multi",
+  "tags": [
+   "Chat",
+   "Documentos",
+   "Razonamiento"
+  ],
+  "url": "https://claude.ai/"
+ },
+ "cleanvoice": {
+  "name": "Cleanvoice",
+  "cat": "audio",
+  "desc": "Limpieza automática de grabaciones de voz y podcasts.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Podcast",
+   "Limpieza",
+   "Audio"
+  ],
+  "url": "https://cleanvoice.ai/"
+ },
+ "clickup-ai": {
+  "name": "ClickUp Brain",
+  "cat": "productividad",
+  "desc": "Asistencia de IA integrada en ClickUp para documentos, tareas y conocimiento del trabajo.",
+  "price": "freemium",
+  "level": "intermedio",
+  "platform": "web",
+  "lang": "multi",
+  "tags": [
+   "Tareas",
+   "Equipos",
+   "Automatización"
+  ],
+  "url": "https://clickup.com/ai"
+ },
+ "cline": {
+  "name": "Cline",
+  "cat": "programacion",
+  "desc": "Agente de código para trabajar con proyectos desde un entorno de desarrollo.",
+  "price": "gratis",
+  "level": "avanzado",
+  "platform": "desktop",
+  "lang": "en",
+  "tags": [
+   "Agentes",
+   "Código",
+   "IDE"
+  ],
+  "url": "https://cline.bot/"
+ },
+ "clipdrop": {
+  "name": "Clipdrop",
+  "cat": "imagenes",
+  "desc": "Herramientas rápidas de IA para limpiar, ampliar, generar y editar imágenes.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "multi",
+  "tags": [
+   "Edición",
+   "Fondos",
+   "Imagen"
+  ],
+  "url": "https://clipdrop.co/"
+ },
+ "codeium": {
+  "name": "Codeium",
+  "cat": "programacion",
+  "desc": "Asistencia de programación con autocompletado y chat para desarrolladores.",
+  "price": "gratis",
+  "level": "intermedio",
+  "platform": "desktop",
+  "lang": "en",
+  "tags": [
+   "Código",
+   "Autocompletado",
+   "IDE"
+  ],
+  "url": "https://codeium.com/"
+ },
+ "consensus": {
+  "name": "Consensus",
+  "cat": "educacion",
+  "desc": "Motor de búsqueda para encontrar y sintetizar evidencia de artículos científicos.",
+  "price": "freemium",
+  "level": "intermedio",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Ciencia",
+   "Investigación",
+   "Fuentes"
+  ],
+  "url": "https://consensus.app/"
+ },
+ "continue": {
+  "name": "Continue",
+  "cat": "programacion",
+  "desc": "Asistente de código open source integrable en entornos de desarrollo.",
+  "price": "gratis",
+  "level": "avanzado",
+  "platform": "desktop",
+  "lang": "en",
+  "tags": [
+   "Open source",
+   "IDE",
+   "Código"
+  ],
+  "url": "https://www.continue.dev/"
+ },
+ "copilot": {
+  "name": "Microsoft Copilot",
+  "cat": "ia-general",
+  "desc": "Asistente de Microsoft para productividad, conversación y creación de contenido.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "app",
+  "lang": "multi",
+  "tags": [
+   "Chat",
+   "Microsoft",
+   "Productividad"
+  ],
+  "url": "https://copilot.microsoft.com/"
+ },
+ "copy-ai": {
+  "name": "Copy.ai",
+  "cat": "marketing",
+  "desc": "Herramientas de IA para generación de contenido y automatización de flujos de marketing.",
+  "price": "freemium",
+  "level": "intermedio",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Marketing",
+   "Contenido",
+   "Workflows"
+  ],
+  "url": "https://www.copy.ai/"
+ },
+ "copylancer": {
+  "name": "Copy.ai",
+  "cat": "escritura",
+  "desc": "Asistencia de IA para redactar, reescribir y generar contenido.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Copywriting",
+   "Contenido",
+   "Reescritura"
+  ],
+  "url": "https://www.copy.ai/"
+ },
+ "copyspace": {
+  "name": "Anyword",
+  "cat": "marketing",
+  "desc": "Generación y optimización de copy orientada al rendimiento.",
+  "price": "pago",
+  "level": "intermedio",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Copywriting",
+   "Rendimiento",
+   "Marketing"
+  ],
+  "url": "https://www.anyword.com/"
+ },
+ "cursor": {
+  "name": "Cursor",
+  "cat": "programacion",
+  "desc": "Editor de código con IA integrado para escribir, entender y modificar proyectos.",
+  "price": "freemium",
+  "level": "intermedio",
+  "platform": "desktop",
+  "lang": "en",
+  "tags": [
+   "IDE",
+   "Código",
+   "Agentes"
+  ],
+  "url": "https://www.cursor.com/"
+ },
+ "dall-e": {
+  "name": "DALL·E",
+  "cat": "imagenes",
+  "desc": "Generación de imágenes a partir de descripciones mediante modelos de OpenAI.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "multi",
+  "tags": [
+   "Imagen",
+   "OpenAI",
+   "Creatividad"
+  ],
+  "url": "https://openai.com/index/dall-e-3/"
+ },
+ "deep-translator": {
+  "name": "DeepL",
+  "cat": "escritura",
+  "desc": "Traducción y asistencia lingüística con IA para textos y documentos.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "app",
+  "lang": "multi",
+  "tags": [
+   "Traducción",
+   "Documentos",
+   "Idiomas"
+  ],
+  "url": "https://www.deepl.com/"
+ },
+ "deepl-write": {
+  "name": "DeepL Write",
+  "cat": "escritura",
+  "desc": "Asistente para mejorar redacción, estilo y claridad de textos.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "multi",
+  "tags": [
+   "Redacción",
+   "Estilo",
+   "Corrección"
+  ],
+  "url": "https://www.deepl.com/write"
+ },
+ "deepseek": {
+  "name": "DeepSeek",
+  "cat": "ia-general",
+  "desc": "Modelos de IA orientados a conversación, razonamiento y programación.",
+  "price": "gratis",
+  "level": "intermedio",
+  "platform": "web",
+  "lang": "multi",
+  "tags": [
+   "Razonamiento",
+   "Código",
+   "Chat"
+  ],
+  "url": "https://www.deepseek.com/"
+ },
+ "descript": {
+  "name": "Descript",
+  "cat": "video",
+  "desc": "Editor multimedia basado en texto para vídeo, audio, transcripción y edición asistida por IA.",
+  "price": "freemium",
+  "level": "intermedio",
+  "platform": "desktop",
+  "lang": "multi",
+  "tags": [
+   "Edición",
+   "Transcripción",
+   "Vídeo"
+  ],
+  "url": "https://www.descript.com/"
+ },
+ "descript-audio": {
+  "name": "Descript",
+  "cat": "audio",
+  "desc": "Edición de audio y voz mediante transcripción y herramientas de IA.",
+  "price": "freemium",
+  "level": "intermedio",
+  "platform": "desktop",
+  "lang": "multi",
+  "tags": [
+   "Audio",
+   "Edición",
+   "Transcripción"
+  ],
+  "url": "https://www.descript.com/"
+ },
+ "elevenlabs": {
+  "name": "ElevenLabs",
+  "cat": "audio",
+  "desc": "Generación de voz, locución y herramientas de audio mediante IA.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "multi",
+  "tags": [
+   "Voz",
+   "Locución",
+   "Audio"
+  ],
+  "url": "https://elevenlabs.io/"
+ },
+ "elicit": {
+  "name": "Elicit",
+  "cat": "educacion",
+  "desc": "Asistente de investigación para buscar, organizar y analizar literatura científica.",
+  "price": "freemium",
+  "level": "intermedio",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Investigación",
+   "Papers",
+   "Ciencia"
+  ],
+  "url": "https://elicit.com/"
+ },
+ "fathom": {
+  "name": "Fathom",
+  "cat": "productividad",
+  "desc": "Asistente para reuniones que genera transcripciones y resúmenes.",
+  "price": "gratis",
+  "level": "principiante",
+  "platform": "desktop",
+  "lang": "en",
+  "tags": [
+   "Reuniones",
+   "Notas",
+   "Resumen"
+  ],
+  "url": "https://fathom.video/"
+ },
+ "fireflies-ai": {
+  "name": "Fireflies.ai",
+  "cat": "productividad",
+  "desc": "Asistente de reuniones para transcribir, resumir y extraer información.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "multi",
+  "tags": [
+   "Reuniones",
+   "Transcripción",
+   "CRM"
+  ],
+  "url": "https://fireflies.ai/"
+ },
+ "flux": {
+  "name": "FLUX",
+  "cat": "imagenes",
+  "desc": "Modelos de generación de imágenes del ecosistema Black Forest Labs.",
+  "price": "freemium",
+  "level": "avanzado",
+  "platform": "api",
+  "lang": "en",
+  "tags": [
+   "Modelos",
+   "Imagen",
+   "API"
+  ],
+  "url": "https://bfl.ai/"
+ },
+ "frase": {
+  "name": "Frase",
+  "cat": "marketing",
+  "desc": "Herramientas de IA para investigar, crear y optimizar contenido SEO.",
+  "price": "freemium",
+  "level": "intermedio",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "SEO",
+   "Contenido",
+   "Investigación"
+  ],
+  "url": "https://www.frase.io/"
+ },
+ "gamma": {
+  "name": "Gamma",
+  "cat": "productividad",
+  "desc": "Crea presentaciones, documentos visuales y páginas web a partir de una idea o material.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "multi",
+  "tags": [
+   "Presentaciones",
+   "Documentos",
+   "Web"
+  ],
+  "url": "https://gamma.app/es"
+ },
+ "gamma-ai": {
+  "name": "Gamma",
+  "cat": "productividad",
+  "desc": "Creación rápida de presentaciones, documentos y páginas con IA.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "multi",
+  "tags": [
+   "Presentaciones",
+   "Documentos",
+   "Web"
+  ],
+  "url": "https://gamma.app/es"
+ },
+ "gamma-docs": {
+  "name": "Gamma Docs",
+  "cat": "productividad",
+  "desc": "Documentos visuales y páginas generadas a partir de instrucciones.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "multi",
+  "tags": [
+   "Documentos",
+   "Web",
+   "Presentaciones"
+  ],
+  "url": "https://gamma.app/es"
+ },
+ "gamma-presentations": {
+  "name": "Gamma",
+  "cat": "productividad",
+  "desc": "Generación de presentaciones y documentos visuales con IA.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "multi",
+  "tags": [
+   "Presentaciones",
+   "Diseño",
+   "Documentos"
+  ],
+  "url": "https://gamma.app/es"
+ },
+ "gemini": {
+  "name": "Gemini",
+  "cat": "ia-general",
+  "desc": "Asistente de Google para responder preguntas, crear contenido y trabajar con información.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "app",
+  "lang": "multi",
+  "tags": [
+   "Chat",
+   "Google",
+   "Multimodal"
+  ],
+  "url": "https://gemini.google.com/"
+ },
+ "github-copilot": {
+  "name": "GitHub Copilot",
+  "cat": "programacion",
+  "desc": "Asistencia de IA para programar, explicar código y acelerar tareas de desarrollo.",
+  "price": "pago",
+  "level": "intermedio",
+  "platform": "desktop",
+  "lang": "multi",
+  "tags": [
+   "Código",
+   "IDE",
+   "Productividad"
+  ],
+  "url": "https://github.com/features/copilot"
+ },
+ "grammarly": {
+  "name": "Grammarly",
+  "cat": "escritura",
+  "desc": "Asistencia para escribir, corregir y mejorar textos con IA.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "app",
+  "lang": "multi",
+  "tags": [
+   "Gramática",
+   "Escritura",
+   "Reescritura"
+  ],
+  "url": "https://www.grammarly.com/"
+ },
+ "groq": {
+  "name": "Groq",
+  "cat": "ia-general",
+  "desc": "Plataforma de inferencia y chat centrada en respuestas rápidas con modelos de IA.",
+  "price": "freemium",
+  "level": "intermedio",
+  "platform": "api",
+  "lang": "en",
+  "tags": [
+   "Velocidad",
+   "Modelos",
+   "API"
+  ],
+  "url": "https://groq.com/"
+ },
+ "heygen": {
+  "name": "HeyGen",
+  "cat": "video",
+  "desc": "Creación de vídeos con avatares, doblaje y traducción asistida por IA.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "multi",
+  "tags": [
+   "Avatares",
+   "Vídeo",
+   "Traducción"
+  ],
+  "url": "https://www.heygen.com/"
+ },
+ "hoppy-copy": {
+  "name": "Hoppy Copy",
+  "cat": "marketing",
+  "desc": "Generación de copy para email marketing y campañas con IA.",
+  "price": "pago",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Email",
+   "Copywriting",
+   "Marketing"
+  ],
+  "url": "https://www.hoppycopy.co/"
+ },
+ "hubspot-ai": {
+  "name": "HubSpot AI",
+  "cat": "marketing",
+  "desc": "Funciones de IA integradas en herramientas de marketing, ventas y atención al cliente.",
+  "price": "freemium",
+  "level": "intermedio",
+  "platform": "web",
+  "lang": "multi",
+  "tags": [
+   "CRM",
+   "Marketing",
+   "Ventas"
+  ],
+  "url": "https://www.hubspot.com/artificial-intelligence"
+ },
+ "huggingface": {
+  "name": "Hugging Face",
+  "cat": "programacion",
+  "desc": "Ecosistema abierto de modelos, datasets y herramientas de IA para desarrolladores.",
+  "price": "gratis",
+  "level": "avanzado",
+  "platform": "api",
+  "lang": "multi",
+  "tags": [
+   "Open source",
+   "Modelos",
+   "Datasets"
+  ],
+  "url": "https://huggingface.co/"
+ },
+ "ideogram": {
+  "name": "Ideogram",
+  "cat": "imagenes",
+  "desc": "Generador de imágenes especialmente útil para composiciones gráficas y texto dentro de imágenes.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Texto en imagen",
+   "Diseño",
+   "Imagen"
+  ],
+  "url": "https://ideogram.ai/"
+ },
+ "invideo-ai": {
+  "name": "InVideo AI",
+  "cat": "video",
+  "desc": "Generación de vídeos a partir de ideas o guiones con herramientas de edición.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "multi",
+  "tags": [
+   "Vídeo",
+   "Guiones",
+   "Edición"
+  ],
+  "url": "https://invideo.io/"
+ },
+ "jasper": {
+  "name": "Jasper",
+  "cat": "marketing",
+  "desc": "Plataforma de IA orientada a equipos de marketing, contenido y marca.",
+  "price": "pago",
+  "level": "intermedio",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Marketing",
+   "Contenido",
+   "Marca"
+  ],
+  "url": "https://www.jasper.ai/"
+ },
+ "jasper-chat": {
+  "name": "Jasper",
+  "cat": "escritura",
+  "desc": "Asistente de escritura y contenido orientado a equipos y marcas.",
+  "price": "pago",
+  "level": "intermedio",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Contenido",
+   "Marca",
+   "Copywriting"
+  ],
+  "url": "https://www.jasper.ai/"
+ },
+ "khanmigo": {
+  "name": "Khanmigo",
+  "cat": "educacion",
+  "desc": "Asistente educativo de Khan Academy para aprendizaje guiado y apoyo docente.",
+  "price": "pago",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Tutor",
+   "Educación",
+   "Aprendizaje"
+  ],
+  "url": "https://www.khanmigo.ai/"
+ },
+ "kling": {
+  "name": "Kling AI",
+  "cat": "video",
+  "desc": "Generación de vídeo mediante IA a partir de texto e imágenes.",
+  "price": "freemium",
+  "level": "intermedio",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Vídeo",
+   "Texto a vídeo",
+   "Imagen a vídeo"
+  ],
+  "url": "https://klingai.com/"
+ },
+ "krea": {
+  "name": "Krea",
+  "cat": "imagenes",
+  "desc": "Suite creativa para generación y mejora de imágenes y experiencias visuales con IA.",
+  "price": "freemium",
+  "level": "intermedio",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Imagen",
+   "Realtime",
+   "Upscaling"
+  ],
+  "url": "https://www.krea.ai/"
+ },
+ "krisp": {
+  "name": "Krisp",
+  "cat": "audio",
+  "desc": "Cancelación de ruido y mejora de audio para llamadas y reuniones.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "desktop",
+  "lang": "multi",
+  "tags": [
+   "Ruido",
+   "Reuniones",
+   "Audio"
+  ],
+  "url": "https://krisp.ai/"
+ },
+ "lalal-ai": {
+  "name": "LALAL.AI",
+  "cat": "audio",
+  "desc": "Separación de pistas vocales e instrumentales mediante IA.",
+  "price": "freemium",
+  "level": "intermedio",
+  "platform": "web",
+  "lang": "multi",
+  "tags": [
+   "Separación",
+   "Música",
+   "Audio"
+  ],
+  "url": "https://www.lalal.ai/"
+ },
+ "leonardo-ai": {
+  "name": "Leonardo AI",
+  "cat": "imagenes",
+  "desc": "Plataforma para generación y edición de imágenes, arte conceptual y recursos creativos.",
+  "price": "freemium",
+  "level": "intermedio",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Imagen",
+   "Concept art",
+   "Edición"
+  ],
+  "url": "https://leonardo.ai/"
+ },
+ "lovable": {
+  "name": "Lovable",
+  "cat": "programacion",
+  "desc": "Crea prototipos y aplicaciones web mediante lenguaje natural y código generado.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Apps",
+   "No-code",
+   "Prototipos"
+  ],
+  "url": "https://lovable.dev/"
+ },
+ "luma-dream-machine": {
+  "name": "Luma Dream Machine",
+  "cat": "video",
+  "desc": "Generación de vídeo y escenas creativas mediante modelos generativos.",
+  "price": "freemium",
+  "level": "intermedio",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Vídeo",
+   "Generación",
+   "Cine"
+  ],
+  "url": "https://lumalabs.ai/dream-machine"
+ },
+ "mailchimp-ai": {
+  "name": "Mailchimp",
+  "cat": "marketing",
+  "desc": "Herramientas de IA para email marketing, contenido y optimización de campañas.",
+  "price": "freemium",
+  "level": "intermedio",
+  "platform": "web",
+  "lang": "multi",
+  "tags": [
+   "Email",
+   "Marketing",
+   "Campañas"
+  ],
+  "url": "https://mailchimp.com/"
+ },
+ "make": {
+  "name": "Make",
+  "cat": "productividad",
+  "desc": "Automatización visual de procesos e integraciones con funciones de IA.",
+  "price": "freemium",
+  "level": "intermedio",
+  "platform": "web",
+  "lang": "multi",
+  "tags": [
+   "Automatización",
+   "Integraciones",
+   "Flujos"
+  ],
+  "url": "https://www.make.com/"
+ },
+ "mem": {
+  "name": "Mem",
+  "cat": "productividad",
+  "desc": "Espacio de notas con IA para organizar y recuperar información personal.",
+  "price": "freemium",
+  "level": "intermedio",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Notas",
+   "Memoria",
+   "Organización"
+  ],
+  "url": "https://mem.ai/"
+ },
+ "meta-ai": {
+  "name": "Meta AI",
+  "cat": "ia-general",
+  "desc": "Asistente de Meta integrado en sus servicios y disponible para tareas cotidianas.",
+  "price": "gratis",
+  "level": "principiante",
+  "platform": "app",
+  "lang": "multi",
+  "tags": [
+   "Chat",
+   "Social",
+   "Multiuso"
+  ],
+  "url": "https://www.meta.ai/"
+ },
+ "midjourney": {
+  "name": "Midjourney",
+  "cat": "imagenes",
+  "desc": "Generación creativa de imágenes a partir de indicaciones y referencias visuales.",
+  "price": "pago",
+  "level": "intermedio",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Imagen",
+   "Creatividad",
+   "Estilos"
+  ],
+  "url": "https://www.midjourney.com/"
+ },
+ "mistral-le-chat": {
+  "name": "Le Chat",
+  "cat": "ia-general",
+  "desc": "Asistente de Mistral para conversación, análisis y generación de contenido.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "multi",
+  "tags": [
+   "Chat",
+   "Razonamiento",
+   "Mistral"
+  ],
+  "url": "https://chat.mistral.ai/"
+ },
+ "motion": {
+  "name": "Motion",
+  "cat": "productividad",
+  "desc": "Planificador con IA para organizar calendario, tareas y proyectos.",
+  "price": "pago",
+  "level": "intermedio",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Calendario",
+   "Proyectos",
+   "Planificación"
+  ],
+  "url": "https://www.usemotion.com/"
+ },
+ "mubert": {
+  "name": "Mubert",
+  "cat": "audio",
+  "desc": "Generación de música para contenido, aplicaciones y experiencias.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Música",
+   "Contenido",
+   "Audio"
+  ],
+  "url": "https://mubert.com/"
+ },
+ "murf": {
+  "name": "Murf",
+  "cat": "audio",
+  "desc": "Generador de voz y locuciones para presentaciones, vídeos y contenidos profesionales.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "multi",
+  "tags": [
+   "Voz",
+   "Locución",
+   "Empresa"
+  ],
+  "url": "https://murf.ai/"
+ },
+ "mutable-ai": {
+  "name": "MutableAI",
+  "cat": "programacion",
+  "desc": "Herramientas de IA para generar, refactorizar y documentar código.",
+  "price": "freemium",
+  "level": "intermedio",
+  "platform": "desktop",
+  "lang": "en",
+  "tags": [
+   "Código",
+   "Refactor",
+   "Documentación"
+  ],
+  "url": "https://mutable.ai/"
+ },
+ "notebooklm": {
+  "name": "NotebookLM",
+  "cat": "educacion",
+  "desc": "Espacio de estudio e investigación que trabaja a partir de las fuentes que proporcionas.",
+  "price": "gratis",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "multi",
+  "tags": [
+   "Apuntes",
+   "Fuentes",
+   "Estudio"
+  ],
+  "url": "https://notebooklm.google.com/"
+ },
+ "notion-ai": {
+  "name": "Notion AI",
+  "cat": "productividad",
+  "desc": "Funciones de IA integradas en Notion para escribir, resumir, buscar y organizar trabajo.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "app",
+  "lang": "multi",
+  "tags": [
+   "Notas",
+   "Productividad",
+   "Equipos"
+  ],
+  "url": "https://www.notion.com/product/ai"
+ },
+ "ocoya": {
+  "name": "Ocoya",
+  "cat": "marketing",
+  "desc": "Creación y programación de contenido para redes sociales con IA.",
+  "price": "pago",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "multi",
+  "tags": [
+   "Redes",
+   "Contenido",
+   "Programación"
+  ],
+  "url": "https://www.ocoya.com/"
+ },
+ "openrouter": {
+  "name": "OpenRouter",
+  "cat": "programacion",
+  "desc": "Acceso unificado por API a múltiples modelos de IA.",
+  "price": "pago",
+  "level": "avanzado",
+  "platform": "api",
+  "lang": "en",
+  "tags": [
+   "API",
+   "Modelos",
+   "Desarrollo"
+  ],
+  "url": "https://openrouter.ai/"
+ },
+ "opusclip": {
+  "name": "OpusClip",
+  "cat": "video",
+  "desc": "Convierte vídeos largos en clips cortos pensados para redes sociales.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "multi",
+  "tags": [
+   "Shorts",
+   "Clips",
+   "Redes"
+  ],
+  "url": "https://www.opus.pro/"
+ },
+ "otter-ai": {
+  "name": "Otter.ai",
+  "cat": "productividad",
+  "desc": "Transcripción y resumen de reuniones y conversaciones con IA.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "app",
+  "lang": "en",
+  "tags": [
+   "Reuniones",
+   "Transcripción",
+   "Notas"
+  ],
+  "url": "https://otter.ai/"
+ },
+ "otter-transcribe": {
+  "name": "Otter.ai",
+  "cat": "productividad",
+  "desc": "Transcripción y resumen automático de conversaciones y reuniones.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "app",
+  "lang": "en",
+  "tags": [
+   "Transcripción",
+   "Reuniones",
+   "Resumen"
+  ],
+  "url": "https://otter.ai/"
+ },
+ "perplexity": {
+  "name": "Perplexity",
+  "cat": "ia-general",
+  "desc": "Buscador con IA para investigar en la web y sintetizar respuestas con fuentes.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "multi",
+  "tags": [
+   "Búsqueda",
+   "Fuentes",
+   "Investigación"
+  ],
+  "url": "https://www.perplexity.ai/"
+ },
+ "phind": {
+  "name": "Phind",
+  "cat": "ia-general",
+  "desc": "Asistente de búsqueda y programación orientado a desarrolladores y problemas técnicos.",
+  "price": "gratis",
+  "level": "intermedio",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Código",
+   "Búsqueda",
+   "Desarrollo"
+  ],
+  "url": "https://www.phind.com/"
+ },
+ "photomath": {
+  "name": "Photomath",
+  "cat": "educacion",
+  "desc": "Aplicación para resolver y explicar problemas matemáticos paso a paso.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "app",
+  "lang": "multi",
+  "tags": [
+   "Matemáticas",
+   "Móvil",
+   "Explicaciones"
+  ],
+  "url": "https://photomath.com/"
+ },
+ "photoroom": {
+  "name": "Photoroom",
+  "cat": "imagenes",
+  "desc": "Editor de imágenes con IA especializado en productos, fondos y contenido para comercio.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "app",
+  "lang": "multi",
+  "tags": [
+   "Ecommerce",
+   "Fondos",
+   "Edición"
+  ],
+  "url": "https://www.photoroom.com/"
+ },
+ "pi": {
+  "name": "Pi",
+  "cat": "ia-general",
+  "desc": "Asistente conversacional diseñado para conversaciones naturales y apoyo en tareas personales.",
+  "price": "gratis",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "multi",
+  "tags": [
+   "Conversación",
+   "Ideas",
+   "Personal"
+  ],
+  "url": "https://pi.ai/"
+ },
+ "pika": {
+  "name": "Pika",
+  "cat": "video",
+  "desc": "Herramientas generativas para crear y transformar vídeos a partir de texto e imágenes.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Vídeo",
+   "Efectos",
+   "Generación"
+  ],
+  "url": "https://pika.art/"
+ },
+ "play-ht": {
+  "name": "PlayHT",
+  "cat": "audio",
+  "desc": "Plataforma de texto a voz y generación de voces para contenidos y aplicaciones.",
+  "price": "freemium",
+  "level": "intermedio",
+  "platform": "api",
+  "lang": "multi",
+  "tags": [
+   "Text-to-speech",
+   "API",
+   "Voz"
+  ],
+  "url": "https://play.ht/"
+ },
+ "playground-ai": {
+  "name": "Playground AI",
+  "cat": "imagenes",
+  "desc": "Herramientas para crear y editar imágenes con inteligencia artificial.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Imagen",
+   "Edición",
+   "Creatividad"
+  ],
+  "url": "https://playground.com/"
+ },
+ "podcastle": {
+  "name": "Podcastle",
+  "cat": "audio",
+  "desc": "Suite de creación y edición de podcasts con herramientas de IA.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Podcast",
+   "Voz",
+   "Edición"
+  ],
+  "url": "https://podcastle.ai/"
+ },
+ "poe": {
+  "name": "Poe",
+  "cat": "ia-general",
+  "desc": "Plataforma para acceder a distintos modelos y asistentes de IA desde un mismo lugar.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "app",
+  "lang": "multi",
+  "tags": [
+   "Modelos",
+   "Chat",
+   "Bots"
+  ],
+  "url": "https://poe.com/"
+ },
+ "predis-ai": {
+  "name": "Predis.ai",
+  "cat": "marketing",
+  "desc": "Generación de publicaciones, creatividades y contenido social mediante IA.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Social",
+   "Creatividades",
+   "Contenido"
+  ],
+  "url": "https://predis.ai/"
+ },
+ "prowritingaid": {
+  "name": "ProWritingAid",
+  "cat": "escritura",
+  "desc": "Herramientas de edición y análisis de estilo para mejorar textos largos.",
+  "price": "freemium",
+  "level": "intermedio",
+  "platform": "desktop",
+  "lang": "en",
+  "tags": [
+   "Edición",
+   "Estilo",
+   "Escritura"
+  ],
+  "url": "https://prowritingaid.com/"
+ },
+ "quillbot": {
+  "name": "QuillBot",
+  "cat": "escritura",
+  "desc": "Suite para parafrasear, corregir, resumir y mejorar textos.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "multi",
+  "tags": [
+   "Paráfrasis",
+   "Gramática",
+   "Resúmenes"
+  ],
+  "url": "https://quillbot.com/es/"
+ },
+ "quizlet-ai": {
+  "name": "Quizlet",
+  "cat": "educacion",
+  "desc": "Plataforma de estudio con funciones de IA para practicar y crear materiales.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "app",
+  "lang": "multi",
+  "tags": [
+   "Flashcards",
+   "Test",
+   "Estudio"
+  ],
+  "url": "https://quizlet.com/"
+ },
+ "reclaim-ai": {
+  "name": "Reclaim AI",
+  "cat": "productividad",
+  "desc": "Planificación inteligente de calendario y tareas para proteger tiempo de trabajo.",
+  "price": "freemium",
+  "level": "intermedio",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Calendario",
+   "Tareas",
+   "Planificación"
+  ],
+  "url": "https://reclaim.ai/"
+ },
+ "recraft": {
+  "name": "Recraft",
+  "cat": "imagenes",
+  "desc": "Generación y edición de gráficos, ilustraciones, iconos y diseños visuales.",
+  "price": "freemium",
+  "level": "intermedio",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Diseño",
+   "Vectores",
+   "Imagen"
+  ],
+  "url": "https://www.recraft.ai/"
+ },
+ "remove-bg": {
+  "name": "remove.bg",
+  "cat": "imagenes",
+  "desc": "Elimina fondos de imágenes automáticamente con IA.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "multi",
+  "tags": [
+   "Fondos",
+   "Automático",
+   "Imagen"
+  ],
+  "url": "https://www.remove.bg/"
+ },
+ "replicate": {
+  "name": "Replicate",
+  "cat": "programacion",
+  "desc": "Plataforma para ejecutar modelos de IA mediante API.",
+  "price": "pago",
+  "level": "avanzado",
+  "platform": "api",
+  "lang": "en",
+  "tags": [
+   "API",
+   "Modelos",
+   "Desarrollo"
+  ],
+  "url": "https://replicate.com/"
+ },
+ "replika": {
+  "name": "Replika",
+  "cat": "ia-general",
+  "desc": "Compañero conversacional de IA para conversaciones y experiencias personalizadas.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "app",
+  "lang": "multi",
+  "tags": [
+   "Compañero",
+   "Chat",
+   "Móvil"
+  ],
+  "url": "https://replika.com/"
+ },
+ "replit": {
+  "name": "Replit",
+  "cat": "programacion",
+  "desc": "Entorno de desarrollo online con funciones de IA para crear y desplegar proyectos.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Web",
+   "Código",
+   "Despliegue"
+  ],
+  "url": "https://replit.com/"
+ },
+ "resemble-ai": {
+  "name": "Resemble AI",
+  "cat": "audio",
+  "desc": "Herramientas de voz generativa para aplicaciones, contenidos y experiencias.",
+  "price": "pago",
+  "level": "avanzado",
+  "platform": "api",
+  "lang": "en",
+  "tags": [
+   "Voz",
+   "API",
+   "Desarrollo"
+  ],
+  "url": "https://www.resemble.ai/"
+ },
+ "runway": {
+  "name": "Runway",
+  "cat": "video",
+  "desc": "Plataforma generativa para crear, transformar y editar vídeo con IA.",
+  "price": "freemium",
+  "level": "intermedio",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Vídeo",
+   "Generación",
+   "Edición"
+  ],
+  "url": "https://runwayml.com/"
+ },
+ "rytr": {
+  "name": "Rytr",
+  "cat": "escritura",
+  "desc": "Asistente de escritura para crear textos, ideas y contenido corto.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "multi",
+  "tags": [
+   "Copywriting",
+   "Ideas",
+   "Contenido"
+  ],
+  "url": "https://rytr.me/"
+ },
+ "scite": {
+  "name": "scite",
+  "cat": "educacion",
+  "desc": "Herramienta para descubrir literatura científica y analizar cómo se citan los trabajos.",
+  "price": "freemium",
+  "level": "avanzado",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Ciencia",
+   "Citas",
+   "Investigación"
+  ],
+  "url": "https://scite.ai/"
+ },
+ "semrush-ai": {
+  "name": "Semrush",
+  "cat": "marketing",
+  "desc": "Suite de marketing digital con herramientas de IA para SEO, contenido y campañas.",
+  "price": "pago",
+  "level": "avanzado",
+  "platform": "web",
+  "lang": "multi",
+  "tags": [
+   "SEO",
+   "Marketing",
+   "Datos"
+  ],
+  "url": "https://www.semrush.com/"
+ },
+ "socratic": {
+  "name": "Socratic",
+  "cat": "educacion",
+  "desc": "Aplicación educativa para ayudar a comprender preguntas y contenidos de estudio.",
+  "price": "gratis",
+  "level": "principiante",
+  "platform": "app",
+  "lang": "multi",
+  "tags": [
+   "Estudio",
+   "Móvil",
+   "Preguntas"
+  ],
+  "url": "https://socratic.org/"
+ },
+ "soundraw": {
+  "name": "SOUNDRAW",
+  "cat": "audio",
+  "desc": "Generación de música para creadores con opciones de personalización.",
+  "price": "pago",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Música",
+   "Creadores",
+   "Audio"
+  ],
+  "url": "https://soundraw.io/"
+ },
+ "sourcegraph-cody": {
+  "name": "Sourcegraph Cody",
+  "cat": "programacion",
+  "desc": "Asistente para comprender, escribir y navegar grandes bases de código.",
+  "price": "freemium",
+  "level": "avanzado",
+  "platform": "desktop",
+  "lang": "en",
+  "tags": [
+   "Código",
+   "Repositorios",
+   "IDE"
+  ],
+  "url": "https://sourcegraph.com/cody"
+ },
+ "speechify": {
+  "name": "Speechify",
+  "cat": "audio",
+  "desc": "Lector de texto a voz para escuchar documentos, artículos y otros contenidos.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "app",
+  "lang": "multi",
+  "tags": [
+   "Lectura",
+   "Voz",
+   "Accesibilidad"
+  ],
+  "url": "https://speechify.com/"
+ },
+ "stable-diffusion": {
+  "name": "Stable Diffusion",
+  "cat": "imagenes",
+  "desc": "Familia de modelos y ecosistema para generación y edición de imágenes con IA.",
+  "price": "gratis",
+  "level": "avanzado",
+  "platform": "desktop",
+  "lang": "en",
+  "tags": [
+   "Open source",
+   "Imagen",
+   "Modelos"
+  ],
+  "url": "https://stability.ai/stable-image"
+ },
+ "sudowrite": {
+  "name": "Sudowrite",
+  "cat": "escritura",
+  "desc": "Asistente creativo para escritores de ficción y narración.",
+  "price": "pago",
+  "level": "intermedio",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Ficción",
+   "Ideas",
+   "Narrativa"
+  ],
+  "url": "https://sudowrite.com/"
+ },
+ "suno": {
+  "name": "Suno",
+  "cat": "audio",
+  "desc": "Creación de canciones y música mediante indicaciones de texto.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "multi",
+  "tags": [
+   "Música",
+   "Canciones",
+   "Generación"
+  ],
+  "url": "https://suno.com/"
+ },
+ "surfer-seo": {
+  "name": "Surfer",
+  "cat": "marketing",
+  "desc": "Plataforma SEO con IA para investigación, optimización y creación de contenido.",
+  "price": "pago",
+  "level": "intermedio",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "SEO",
+   "Contenido",
+   "Optimización"
+  ],
+  "url": "https://surferseo.com/"
+ },
+ "synthesia": {
+  "name": "Synthesia",
+  "cat": "video",
+  "desc": "Creación de vídeos corporativos con avatares y voces generadas por IA.",
+  "price": "pago",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "multi",
+  "tags": [
+   "Avatares",
+   "Empresa",
+   "Vídeo"
+  ],
+  "url": "https://www.synthesia.io/"
+ },
+ "tabnine": {
+  "name": "Tabnine",
+  "cat": "programacion",
+  "desc": "Asistente de programación con autocompletado y generación de código.",
+  "price": "freemium",
+  "level": "intermedio",
+  "platform": "desktop",
+  "lang": "multi",
+  "tags": [
+   "Código",
+   "IDE",
+   "Empresa"
+  ],
+  "url": "https://www.tabnine.com/"
+ },
+ "tana": {
+  "name": "Tana",
+  "cat": "productividad",
+  "desc": "Espacio de trabajo estructurado con automatizaciones y funciones de IA.",
+  "price": "freemium",
+  "level": "avanzado",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Notas",
+   "Estructura",
+   "IA"
+  ],
+  "url": "https://tana.inc/"
+ },
+ "taplio": {
+  "name": "Taplio",
+  "cat": "marketing",
+  "desc": "Asistencia de IA para crear contenido y gestionar presencia en LinkedIn.",
+  "price": "pago",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "LinkedIn",
+   "Contenido",
+   "Marca personal"
+  ],
+  "url": "https://taplio.com/"
+ },
+ "tome": {
+  "name": "Tome",
+  "cat": "productividad",
+  "desc": "Creación de presentaciones y narrativas visuales con IA.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Presentaciones",
+   "Storytelling",
+   "Diseño"
+  ],
+  "url": "https://tome.app/"
+ },
+ "udio": {
+  "name": "Udio",
+  "cat": "audio",
+  "desc": "Generación de música y canciones mediante inteligencia artificial.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Música",
+   "Canciones",
+   "Audio"
+  ],
+  "url": "https://www.udio.com/"
+ },
+ "v0": {
+  "name": "v0",
+  "cat": "programacion",
+  "desc": "Generación de interfaces y aplicaciones web a partir de lenguaje natural.",
+  "price": "freemium",
+  "level": "intermedio",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "UI",
+   "Web",
+   "Código"
+  ],
+  "url": "https://v0.dev/"
+ },
+ "vercel-ai": {
+  "name": "Vercel AI",
+  "cat": "programacion",
+  "desc": "Herramientas y SDK para integrar IA generativa en aplicaciones web.",
+  "price": "gratis",
+  "level": "avanzado",
+  "platform": "api",
+  "lang": "en",
+  "tags": [
+   "SDK",
+   "Web",
+   "API"
+  ],
+  "url": "https://vercel.com/ai"
+ },
+ "voicemod": {
+  "name": "Voicemod",
+  "cat": "audio",
+  "desc": "Modulación de voz y efectos de audio para streaming, juegos y creación de contenido.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "desktop",
+  "lang": "multi",
+  "tags": [
+   "Voz",
+   "Streaming",
+   "Efectos"
+  ],
+  "url": "https://www.voicemod.net/"
+ },
+ "windsurf": {
+  "name": "Windsurf",
+  "cat": "programacion",
+  "desc": "Entorno de desarrollo con agentes de IA para crear y modificar software.",
+  "price": "freemium",
+  "level": "intermedio",
+  "platform": "desktop",
+  "lang": "en",
+  "tags": [
+   "IDE",
+   "Agentes",
+   "Código"
+  ],
+  "url": "https://windsurf.com/"
+ },
+ "wolfram-alpha": {
+  "name": "Wolfram Alpha",
+  "cat": "educacion",
+  "desc": "Motor computacional para cálculos, matemáticas, ciencia y consultas estructuradas.",
+  "price": "freemium",
+  "level": "intermedio",
+  "platform": "web",
+  "lang": "multi",
+  "tags": [
+   "Cálculo",
+   "Ciencia",
+   "Matemáticas"
+  ],
+  "url": "https://www.wolframalpha.com/"
+ },
+ "wordtune": {
+  "name": "Wordtune",
+  "cat": "escritura",
+  "desc": "Reescritura y mejora de textos para hacerlos más claros y naturales.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Reescritura",
+   "Claridad",
+   "Escritura"
+  ],
+  "url": "https://www.wordtune.com/"
+ },
+ "wordvice-ai": {
+  "name": "Wordvice AI",
+  "cat": "escritura",
+  "desc": "Corrección y mejora de escritura académica y profesional con IA.",
+  "price": "freemium",
+  "level": "intermedio",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Académico",
+   "Corrección",
+   "Inglés"
+  ],
+  "url": "https://wordvice.ai/"
+ },
+ "writesonic": {
+  "name": "Writesonic",
+  "cat": "marketing",
+  "desc": "Suite de IA para contenido, SEO, chat y marketing digital.",
+  "price": "freemium",
+  "level": "intermedio",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "SEO",
+   "Contenido",
+   "Marketing"
+  ],
+  "url": "https://writesonic.com/"
+ },
+ "writesonic-seo": {
+  "name": "Writesonic",
+  "cat": "marketing",
+  "desc": "Contenido y herramientas de SEO asistidas por IA para marketing digital.",
+  "price": "freemium",
+  "level": "intermedio",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "SEO",
+   "Contenido",
+   "Marketing"
+  ],
+  "url": "https://writesonic.com/"
+ },
+ "you.com": {
+  "name": "You.com",
+  "cat": "ia-general",
+  "desc": "Motor de búsqueda y asistentes de IA para investigar, escribir y trabajar con información.",
+  "price": "freemium",
+  "level": "principiante",
+  "platform": "web",
+  "lang": "en",
+  "tags": [
+   "Búsqueda",
+   "Agentes",
+   "Investigación"
+  ],
+  "url": "https://you.com/"
+ },
+ "zapier-ai": {
+  "name": "Zapier AI",
+  "cat": "productividad",
+  "desc": "Automatización de flujos entre aplicaciones con funciones y agentes de IA.",
+  "price": "freemium",
+  "level": "intermedio",
+  "platform": "web",
+  "lang": "multi",
+  "tags": [
+   "Automatización",
+   "Integraciones",
+   "Agentes"
+  ],
+  "url": "https://zapier.com/ai"
+ }
+}
