@@ -87,7 +87,7 @@ Las letras y descripciones que introduces se procesan en los servidores de Suno.
 - **[Runway](/herramientas/runway/)**: incluye generación de música y sonido dentro de su plataforma de vídeo.
 - Otras herramientas musicales de nuestro catálogo, como Udio o Soundraw, aparecen en la sección de [audio y música](/#cat-audio) de la portada.
 
-Puedes ver todas nuestras comparativas en el [índice de comparativas](/mejor-ia/).
+Las comparamos en [la mejor IA para crear música](/mejor-ia-para-crear-musica/).
 
 ## Veredicto
 
