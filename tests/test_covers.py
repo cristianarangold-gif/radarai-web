@@ -77,3 +77,10 @@ def test_fonts_load_with_pillow():
     assert len(fonts) == 7
     for f in fonts:
         ImageFont.truetype(str(f), 20)
+
+
+def test_decorative_cover_is_hidden_from_screen_readers():
+    svg = str(cover_svg(CoverSpec('A & B', None, None), LOGOS, decorative=True))
+    head = svg[:svg.index('>')]
+    assert 'aria-hidden="true"' in head and 'role="img"' not in head and 'aria-label' not in head
+    ET.fromstring(svg)

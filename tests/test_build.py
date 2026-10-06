@@ -210,3 +210,26 @@ def test_news_listing_has_covers(tmp_path):
     build(root, out)
     html = (out / 'noticias' / 'index.html').read_text()
     assert html.count('<svg class="cover"') == 1 and 'href="/noticias/buena/"' in html
+
+
+def test_radar_labels_keep_readable_opacity():
+    css = (ROOT / 'static' / 'css' / 'radar.css').read_text()
+    block = css[css.index('@keyframes radar-ping'):]
+    block = block[:block.index('}\n') + 2]
+    rule = css[css.index('.blip-in {'):]
+    rule = rule[:rule.index('}')]
+    import re as _re
+    values = [float(v) for v in _re.findall(r'opacity:\s*([\d.]+)', block + rule)]
+    assert values and min(values) >= .75, values
+
+
+def test_real_fichas_price_pill_reads_well():
+    from radar.content import load_pages
+    for p in load_pages(ROOT / 'content'):
+        if p.kind == 'ficha':
+            assert not p.extra.get('plan_pago', '').lower().startswith('desde'), p.slug
+
+
+def test_catalog_js_does_not_yank_reader_after_load():
+    js = (ROOT / 'static' / 'js' / 'catalog.js').read_text()
+    assert 'scrollY' in js

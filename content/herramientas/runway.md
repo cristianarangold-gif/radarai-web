@@ -4,7 +4,7 @@ fecha: 2026-10-06
 web: https://runway.com/
 plataforma: Web e iOS
 precio_desde: 0 $
-plan_pago: Desde 15 $/mes
+plan_pago: Standard 15 $/mes
 ideal_para: Vídeo con IA
 veredicto: Una de las opciones más completas para generar vídeo con IA; Pro (35 $/mes) es el plan razonable para quien publica con regularidad.
 fuentes: https://runway.com/pricing

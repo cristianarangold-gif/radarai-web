@@ -8,8 +8,12 @@
     }
   }
   openFromHash();
-  // Repetir cuando terminan de cargar fuentes e imágenes: cambian la altura de lo que hay encima.
-  window.addEventListener('load', function () { setTimeout(openFromHash, 0); });
+  // Repetir cuando terminan de cargar las fuentes (cambian la altura de lo que hay encima),
+  // pero solo si el lector no se ha movido desde el primer salto.
+  var firstY = window.scrollY;
+  window.addEventListener('load', function () {
+    setTimeout(function () { if (Math.abs(window.scrollY - firstY) < 2) openFromHash(); }, 0);
+  });
   window.addEventListener('hashchange', openFromHash);
 
   var input = document.getElementById('catalog-search');

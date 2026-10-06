@@ -111,10 +111,10 @@ def _f(x: float) -> str:
     return f'{x:.1f}'.rstrip('0').rstrip('.')
 
 
-def cover_svg(spec: CoverSpec, logos_dir: Path) -> Markup:
+def cover_svg(spec: CoverSpec, logos_dir: Path, decorative: bool = False) -> Markup:
     bg, fg = _disc(spec)
-    parts = [f'<svg class="cover" viewBox="0 0 {W} {H}" xmlns="http://www.w3.org/2000/svg" '
-             f'role="img" aria-label="{escape(spec.label)}">',
+    a11y = 'aria-hidden="true" focusable="false"' if decorative else f'role="img" aria-label="{escape(spec.label)}"'
+    parts = [f'<svg class="cover" viewBox="0 0 {W} {H}" xmlns="http://www.w3.org/2000/svg" {a11y}>',
              f'<rect width="{W}" height="{H}" fill="{_css(EDGE)}"/>',
              f'<g transform="translate({CX} {CY})">']
     parts += [f'<circle r="{r}" fill="{_css(c)}"/>' for r, c in _gradient()]

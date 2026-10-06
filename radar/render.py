@@ -66,7 +66,8 @@ def em_phrase(title: str, phrase: str = 'inteligencia artificial') -> Markup:
 
 @jinja2.pass_context
 def cover_filter(ctx, page: Page) -> Markup:
-    return cover_svg(cover_for(page, ctx.get('brands', {}), ctx.get('tools', {})), ctx['logos_dir'])
+    # Siempre acompaña a un titular visible: es decorativa para los lectores de pantalla.
+    return cover_svg(cover_for(page, ctx.get('brands', {}), ctx.get('tools', {})), ctx['logos_dir'], decorative=True)
 
 
 @jinja2.pass_context

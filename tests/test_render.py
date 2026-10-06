@@ -169,3 +169,11 @@ def test_news_related_excludes_self(env):
 def test_article_has_cover_and_two_columns(env):
     html = render_page(env, make_page(kind='guia', url='/guias/g/', body_html=FICHA_BODY), ctx())
     assert 'class="article-grid"' in html and '<svg class="cover"' in html and 'class="toc"' in html
+
+
+def test_card_covers_are_decorative(env):
+    page = make_page(url='/noticias/', title='Noticias')
+    html = render_page(env, page, ctx(listing=[news('uno', 1)]))
+    svg = html[html.index('<svg class="cover"'):]
+    svg = svg[:svg.index('>')]
+    assert 'aria-hidden="true"' in svg and 'role="img"' not in svg

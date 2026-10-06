@@ -4,7 +4,7 @@ fecha: 2026-10-06
 web: https://cursor.com/
 plataforma: Windows, macOS y Linux
 precio_desde: 0 $
-plan_pago: Desde 20 $/mes
+plan_pago: Individual desde 20 $/mes
 ideal_para: Programar con agentes
 veredicto: Una de las mejores opciones para programar con agentes de IA; el plan Individual desde 20 $/mes es el punto de partida profesional.
 fuentes: https://cursor.com/pricing
