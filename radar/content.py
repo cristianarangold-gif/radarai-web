@@ -66,7 +66,7 @@ def load_page(path: Path, kind_dir: str, rel: Path) -> Page:
     meta = {k: [v.strip() for v in vals if v.strip()] for k, vals in md.Meta.items()}
 
     def one(key: str) -> str:
-        return ' '.join(meta.get(key, [])).strip()
+        return html.unescape(' '.join(meta.get(key, []))).strip()
 
     kind = KIND_BY_DIR[kind_dir]
     for required in ('titulo', 'descripcion'):

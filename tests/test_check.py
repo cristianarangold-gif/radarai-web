@@ -103,3 +103,27 @@ def test_redirect_pages_skipped(tmp_path):
         '<html><head><meta http-equiv="refresh" content="0; url=/"></head></html>')
     sitemap(tmp_path, '/')
     assert check_site(tmp_path) == []
+
+
+def test_double_escaped_entity_reported(tmp_path):
+    page(tmp_path, 'index.html', '/', title='Guía &amp;amp; trucos')
+    sitemap(tmp_path, '/')
+    assert any('doble escape' in e for e in check_site(tmp_path))
+
+
+def test_redirect_to_missing_target_reported(tmp_path):
+    page(tmp_path, 'index.html', '/')
+    (tmp_path / 'old').mkdir()
+    (tmp_path / 'old' / 'index.html').write_text(
+        '<html><head><meta http-equiv="refresh" content="0; url=/no-existe/"></head></html>')
+    sitemap(tmp_path, '/')
+    assert any('/no-existe/' in e for e in check_site(tmp_path))
+
+
+def test_redirect_to_missing_category_anchor_reported(tmp_path):
+    page(tmp_path, 'index.html', '/', body='<details id="cat-video"></details>')
+    (tmp_path / 'old').mkdir()
+    (tmp_path / 'old' / 'index.html').write_text(
+        '<html><head><meta http-equiv="refresh" content="0; url=/#cat-nada"></head></html>')
+    sitemap(tmp_path, '/')
+    assert any('#cat-nada' in e for e in check_site(tmp_path))

@@ -86,3 +86,10 @@ def test_word_count_excludes_markup(tmp_path):
 def test_markdown_tables_rendered(tmp_path):
     write(tmp_path, 'paginas/t.md', BASIC.replace('Cuerpo', '| a | b |\n|---|---|\n| 1 | 2 |'))
     assert '<table>' in load_pages(tmp_path)[0].body_html
+
+
+def test_entities_in_meta_are_decoded(tmp_path):
+    write(tmp_path, 'paginas/e.md', 'titulo: Guía &amp; trucos\ndescripcion: A &quot;B&quot;\n\nx')
+    p = load_pages(tmp_path)[0]
+    assert p.title == 'Guía & trucos'
+    assert p.description == 'A "B"'

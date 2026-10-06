@@ -11,6 +11,8 @@ from .seo import SITE
 
 ESCAPE_RE = re.compile(r'\\u[0-9a-fA-F]{4}')
 HREF_RE = re.compile(r'href="(/[^"]*)"')
+DOUBLE_ESCAPE_RE = re.compile(r'&amp;(amp|quot|lt|gt|#\d+|[a-z]+);')
+REFRESH_RE = re.compile(r'http-equiv="refresh" content="0; url=([^"]+)"')
 
 
 def _meta(html: str, name: str) -> Optional[str]:
@@ -51,7 +53,16 @@ def check_site(site_dir: Path) -> List[str]:
     for path in sorted(site.rglob('*.html')):
         rel = path.relative_to(site).as_posix()
         html = path.read_text(encoding='utf-8')
-        if 'http-equiv="refresh"' in html:
+        refresh = REFRESH_RE.search(html)
+        if refresh:
+            target = refresh.group(1)
+            if target.startswith('/'):
+                if not _target_exists(site, target):
+                    errors.append(f'{rel}: redirección a destino inexistente {target}')
+                elif target.startswith('/#cat-'):
+                    home = (site / 'index.html').read_text(encoding='utf-8')
+                    if f'id="{target[2:]}"' not in home:
+                        errors.append(f'{rel}: redirección a ancla inexistente {target}')
             continue
         url = _url_of(rel)
         noindex = 'name="robots" content="noindex' in html
@@ -63,6 +74,8 @@ def check_site(site_dir: Path) -> List[str]:
         found_titles = re.findall(r'<title>(.*?)</title>', html, re.S)
         if len(found_titles) != 1 or not found_titles[0].strip():
             errors.append(f'{rel}: debe tener exactamente un <title> no vacío')
+        if DOUBLE_ESCAPE_RE.search(html):
+            errors.append(f'{rel}: entidad HTML con doble escape (p. ej. &amp;amp;)')
         if ESCAPE_RE.search(_visible_text(html)):
             errors.append(f'{rel}: contiene escapes \\uXXXX literales en el texto')
         for href in HREF_RE.findall(html):
