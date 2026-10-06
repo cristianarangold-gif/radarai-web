@@ -1,0 +1,11 @@
+# tipo · nombre · URL del feed (RSS o Atom)
+oficial · OpenAI · https://openai.com/news/rss.xml
+oficial · Google (IA) · https://blog.google/technology/ai/rss/
+oficial · Google DeepMind · https://deepmind.google/blog/rss.xml
+oficial · Hugging Face · https://huggingface.co/blog/feed.xml
+oficial · NVIDIA · https://blogs.nvidia.com/feed/
+oficial · Apple Machine Learning · https://machinelearning.apple.com/rss.xml
+medio · The Verge (IA) · https://www.theverge.com/rss/ai-artificial-intelligence/index.xml
+medio · TechCrunch (IA) · https://techcrunch.com/category/artificial-intelligence/feed/
+medio · Xataka (IA) · https://www.xataka.com/tag/inteligencia-artificial/rss2.xml
+medio · Genbeta (IA) · https://www.genbeta.com/tag/inteligencia-artificial/rss2.xml

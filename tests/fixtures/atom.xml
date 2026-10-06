@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Blog</title>
+<entry><title>Anuncio oficial</title><link rel="alternate" href="https://oficial.com/x"/><updated>2026-10-05T18:30:00Z</updated></entry>
+<entry><title>Sin zona</title><link href="https://oficial.com/y"/><published>2026-10-05T08:00:00</published></entry>
+</feed>
