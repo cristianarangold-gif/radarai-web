@@ -113,11 +113,6 @@ h3 { font-size: 1.2rem; margin: 1.6em 0 .5em; }
 .footer-base { padding-top: 16px; padding-bottom: 24px; border-top: 1px solid var(--border-soft); color: var(--text-3); font-size: .85rem; }
 @media (max-width: 700px) { .footer-in { grid-template-columns: 1fr; } }
 
-/* Aviso de cookies */
-.cookie-banner[hidden] { display: none; }
-.cookie-banner { position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 80; max-width: 760px; margin: 0 auto; display: flex; gap: 16px; align-items: center; justify-content: space-between; flex-wrap: wrap; padding: 16px 20px; background: var(--bg-elevated); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: 0 20px 60px -20px rgba(0, 0, 0, .6); font-size: .93rem; }
-.cookie-banner p { margin: 4px 0 0; color: var(--text-2); }
-.cookie-actions { display: flex; gap: 8px; flex-wrap: wrap; }
 
 /* Utilidades interactivas (herramientas-radar) */
 .utility-app { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 20px; margin: 24px 0 32px; max-width: none; }

@@ -96,3 +96,9 @@ def test_listing_renders_items(env):
     page = make_page(url='/noticias/', title='Noticias')
     html = render_page(env, page, ctx(listing=[news('uno', 1), news('dos', 2)]))
     assert 'href="/noticias/uno/"' in html and 'href="/noticias/dos/"' in html
+
+
+def test_no_custom_cookie_banner(env):
+    # El consentimiento lo gestiona el CMP certificado de Google (AdSense > Privacidad y mensajes).
+    html = render_page(env, news('n', 1), ctx())
+    assert 'cookie-banner' not in html
