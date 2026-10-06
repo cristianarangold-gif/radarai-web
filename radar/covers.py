@@ -71,7 +71,12 @@ def _gradient() -> List[Tuple[int, Tuple[int, int, int]]]:
         r = outer * (1 - i / GRADIENT_STEPS)
         t = min(1.0, r / full)
         rings.append((max(1, round(r)), _lerp(CENTER, EDGE, t)))
-    return rings
+    # Los círculos exteriores con el color del fondo no aportan nada: se omiten.
+    return [(r, c) for r, c in rings if c != EDGE]
+
+
+def _css(c: Tuple[int, int, int]) -> str:
+    return '#%02x%02x%02x' % c
 
 
 def _polar(deg: float, r: float) -> Point:
@@ -110,14 +115,15 @@ def cover_svg(spec: CoverSpec, logos_dir: Path) -> Markup:
     bg, fg = _disc(spec)
     parts = [f'<svg class="cover" viewBox="0 0 {W} {H}" xmlns="http://www.w3.org/2000/svg" '
              f'role="img" aria-label="{escape(spec.label)}">',
-             f'<rect width="{W}" height="{H}" fill="rgb{EDGE}"/>']
-    parts += [f'<circle cx="{CX}" cy="{CY}" r="{r}" fill="rgb{c}"/>' for r, c in _gradient()]
-    parts += [f'<circle cx="{CX}" cy="{CY}" r="{r}" fill="none" stroke="rgba{LINE + (.22,)}" stroke-width="2"/>'
-              for r in RINGS]
+             f'<rect width="{W}" height="{H}" fill="{_css(EDGE)}"/>',
+             f'<g transform="translate({CX} {CY})">']
+    parts += [f'<circle r="{r}" fill="{_css(c)}"/>' for r, c in _gradient()]
+    parts += [f'<circle r="{r}" fill="none" stroke="#82c8d2" stroke-opacity=".22" stroke-width="2"/>' for r in RINGS]
+    parts.append('</g>')
     for start, end, alpha in SWEEP:
         (x1, y1), (x2, y2) = _polar(start, 700), _polar(end, 700)
         parts.append(f'<path d="M{CX} {CY}L{_f(x1)} {_f(y1)}A700 700 0 0 1 {_f(x2)} {_f(y2)}Z" '
-                     f'fill="rgba{LINE + (alpha,)}"/>')
+                     f'fill="#82c8d2" fill-opacity="{alpha}"/>')
     parts.append(f'<circle cx="{CX}" cy="{CY}" r="{DISC + 12}" fill="rgba(255,255,255,.08)"/>')
     parts.append(f'<circle cx="{CX}" cy="{CY}" r="{DISC}" fill="{bg}"/>')
     d = icon_path(spec.brand, logos_dir) if spec.brand else None
