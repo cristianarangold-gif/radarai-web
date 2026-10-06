@@ -3,6 +3,10 @@ descripcion: Análisis de Perplexity, el buscador con IA que cita sus fuentes: p
 fecha: 2026-10-06
 web: https://www.perplexity.ai/
 plataforma: Web y aplicaciones móviles
+precio_desde: 0 $
+plan_pago: Pro 17 $/mes (anual)
+ideal_para: Buscar con fuentes
+veredicto: La mejor opción para encontrar información actual y saber de dónde sale; el plan gratuito ya es muy útil en el día a día.
 fuentes: https://www.perplexity.ai/pro
     https://intercom.help/perplexity-ai/en/articles/11564572-data-collection-at-perplexity
 

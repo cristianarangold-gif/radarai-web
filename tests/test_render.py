@@ -55,19 +55,19 @@ def test_basic_head(env):
 
 
 def test_catalog_card_without_page_links_official_nofollow(env):
-    html = render_page(env, make_page(url='/'), ctx(tools={'foo': tool('foo', False)}))
+    html = render_page(env, make_page(url='/herramientas/'), ctx(tools={'foo': tool('foo', False)}, listing=[]))
     assert 'href="https://foo.example/" rel="noopener nofollow" target="_blank"' in html
     assert '/herramientas/foo/' not in html
 
 
 def test_catalog_card_with_page_links_internal(env):
-    html = render_page(env, make_page(url='/'), ctx(tools={'bar': tool('bar', True)}))
+    html = render_page(env, make_page(url='/herramientas/'), ctx(tools={'bar': tool('bar', True)}, listing=[]))
     assert 'href="/herramientas/bar/"' in html
 
 
 def test_catalog_groups_have_category_anchor(env):
-    html = render_page(env, make_page(url='/'), ctx(tools={'bar': tool('bar', True)}))
-    assert 'id="cat-escritura"' in html
+    html = render_page(env, make_page(url='/herramientas/'), ctx(tools={'bar': tool('bar', True)}, listing=[]))
+    assert 'id="cat-escritura"' in html and '/static/js/catalog.js' in html
 
 
 def test_title_escaping(env):
@@ -102,3 +102,78 @@ def test_no_custom_cookie_banner(env):
     # El consentimiento lo gestiona el CMP certificado de Google (AdSense > Privacidad y mensajes).
     html = render_page(env, news('n', 1), ctx())
     assert 'cookie-banner' not in html
+
+
+def test_nav_order_and_targets():
+    from radar.render import NAV
+    assert NAV == [('Comparativas', '/mejor-ia/'), ('Herramientas', '/herramientas/'), ('Guías', '/guias/'),
+                   ('Noticias', '/noticias/'), ('Utilidades', '/herramientas-radar/')]
+
+
+def test_no_google_fonts_and_fonts_preloaded(env):
+    html = render_page(env, news('n', 1), ctx())
+    assert 'fonts.googleapis' not in html and 'fonts.gstatic' not in html
+    assert '<link rel="preload" href="/static/fonts/fraunces-latin-800-normal.woff2" as="font" type="font/woff2" crossorigin>' in html
+    assert '/static/fonts/inter-latin-400-normal.woff2' in html
+
+
+def test_footer_has_motto_and_brand(env):
+    html = render_page(env, news('n', 1), ctx())
+    assert 'La IA en tu día' in html and 'class="site-footer"' in html
+
+
+def test_home_has_no_catalog(env):
+    html = render_page(env, make_page(url='/'), ctx(tools={'bar': tool('bar', True)}))
+    assert 'id="cat-' not in html and 'catalog.js' not in html
+
+
+def test_home_title_emphasis_is_escaped(env):
+    html = render_page(env, make_page(url='/', title='Tu <b> & la inteligencia artificial'), ctx())
+    assert 'Tu &lt;b&gt; &amp; la <em>inteligencia artificial</em>' in html
+
+
+FICHA_BODY = '<h2 id="planes">Planes y precios</h2><p>x</p><h2 id="faq">Preguntas frecuentes</h2><p>y</p>'
+
+
+def ficha(**extra):
+    return make_page(kind='ficha', slug='bar', url='/herramientas/bar/', title='Bar', body_html=FICHA_BODY,
+                     word_count=1100, date=date(2026, 10, 1), extra=dict({'web': 'https://bar.example/'}, **extra))
+
+
+def test_ficha_summary_verdict_toc(env):
+    html = render_page(env, ficha(precio_desde='0 €', plan_pago='8 €/mes', ideal_para='Uso general',
+                                  plataforma='Web', veredicto='Muy útil.'),
+                       ctx(tools={'bar': tool('bar', True)}))
+    assert 'class="summary"' in html and 'Precio desde' in html and 'Plan de pago' in html
+    assert 'class="verdict"' in html and 'Muy útil.' in html
+    toc_html = html[html.index('class="toc"'):]
+    assert 'href="#planes"' in toc_html and 'href="#faq"' in toc_html
+    assert '5 min de lectura' in html
+    assert 'Visitar Bar' in html and 'href="https://bar.example/" rel="noopener nofollow" target="_blank"' in html
+    assert 'Ficha · Escritura' in html and '/static/js/toc.js' in html
+
+
+def test_ficha_hides_empty_summary_boxes(env):
+    html = render_page(env, ficha(precio_desde='0 €'), ctx(tools={'bar': tool('bar', True)}))
+    assert 'Precio desde' in html and 'Plan de pago' not in html and 'class="verdict"' not in html
+
+
+def test_news_related_excludes_self(env):
+    items = [news(f'n{i}', 10 - i) for i in range(5)]
+    html = render_page(env, items[1], ctx(news=items))
+    rel = html[html.index('class="related"'):]
+    assert 'href="/noticias/n0/"' in rel and 'href="/noticias/n3/"' in rel
+    assert 'href="/noticias/n1/"' not in rel and 'href="/noticias/n4/"' not in rel
+
+
+def test_article_has_cover_and_two_columns(env):
+    html = render_page(env, make_page(kind='guia', url='/guias/g/', body_html=FICHA_BODY), ctx())
+    assert 'class="article-grid"' in html and '<svg class="cover"' in html and 'class="toc"' in html
+
+
+def test_card_covers_are_decorative(env):
+    page = make_page(url='/noticias/', title='Noticias')
+    html = render_page(env, page, ctx(listing=[news('uno', 1)]))
+    svg = html[html.index('<svg class="cover"'):]
+    svg = svg[:svg.index('>')]
+    assert 'aria-hidden="true"' in svg and 'role="img"' not in svg

@@ -3,6 +3,10 @@ descripcion: Análisis de ChatGPT en 2026: planes Gratis, Go, Plus y Pro con pre
 fecha: 2026-10-06
 web: https://chatgpt.com/
 plataforma: Web, iOS, Android, Windows y macOS
+precio_desde: 0 €
+plan_pago: 8–23 €/mes
+ideal_para: Uso general
+veredicto: La opción más completa para quien quiere una sola herramienta para casi todo; Plus (23 €/mes) es el plan razonable para uso profesional.
 fuentes: https://chatgpt.com/es-ES/pricing/
 
 ChatGPT es el asistente de inteligencia artificial de OpenAI y, para muchas personas, la puerta de entrada a la IA generativa. Sirve para conversar, redactar y corregir textos, resumir documentos, analizar datos, generar imágenes, programar y, en los planes de pago, delegar tareas más largas a agentes. En esta ficha repasamos qué ofrece cada plan con los precios que OpenAI muestra para España, qué límites tiene la versión gratuita y en qué casos compensa pagar.

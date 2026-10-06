@@ -1,0 +1,31 @@
+<section class="section catalog-section" id="catalogo-completo" aria-labelledby="catalogo">
+  <div class="section-head"><h2 id="catalogo">Catálogo completo: {{ tools | length }} herramientas</h2></div>
+  <p class="muted">Organizadas por categoría. Las que tienen ficha completa enlazan a nuestro análisis; el resto, a su web oficial.</p>
+  <label class="search"><span class="sr-only">Buscar herramienta</span>
+    <input id="catalog-search" type="search" placeholder="Buscar por nombre, uso o etiqueta…" autocomplete="off">
+  </label>
+  <div class="catalog">
+    {% for key, label in categories %}
+    {% set items = tools.values() | selectattr('cat', 'equalto', key) | list %}
+    <details class="catalog-group" id="cat-{{ key }}"{% if loop.first %} open{% endif %}>
+      <summary><strong>{{ label }}</strong> <small>{{ items | length }} herramientas</small></summary>
+      <div class="tool-grid">
+        {% for t in items %}
+        <article class="tool-card" data-search="{{ (t.name ~ ' ' ~ t.desc ~ ' ' ~ (t.tags | join(' '))) | lower }}">
+          <h3>{{ t.name }}</h3>
+          <p>{{ t.desc }}</p>
+          <p class="tags">{% for tag in t.tags[:3] %}<span>{{ tag }}</span>{% endfor %}</p>
+          <p class="tool-meta"><span>{{ {'gratis': 'Gratis', 'freemium': 'Gratis + pago', 'pago': 'De pago'}.get(t.price, t.price) }}</span>
+          {% if t.has_page %}
+          <a href="/herramientas/{{ t.id }}/">Leer análisis</a>
+          {% else %}
+          <a href="{{ t.url }}" rel="noopener nofollow" target="_blank">Web oficial</a>
+          {% endif %}
+          </p>
+        </article>
+        {% endfor %}
+      </div>
+    </details>
+    {% endfor %}
+  </div>
+</section>

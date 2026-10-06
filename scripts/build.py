@@ -13,7 +13,10 @@ from typing import Dict, List
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
+from radar.brands import load_brands  # noqa: E402
 from radar.content import load_pages  # noqa: E402
+from radar.covers import cover_for, og_rel, write_cover_png  # noqa: E402
+from radar.editorial import load_imprescindibles, radar_tools, validate_fichas, validate_news_meta  # noqa: E402
 from radar.models import Page, Redirect  # noqa: E402
 from radar.redirects import load_redirects, output_paths, render_redirect  # noqa: E402
 from radar.render import make_env, render_page  # noqa: E402
@@ -73,14 +76,22 @@ def build(root: Path, out: Path) -> None:
     env = make_env(root / 'templates')
     pages = load_pages(root / 'content')
     tools = load_tools(root / 'data' / 'tools.json', root / 'content')
+    brands = load_brands(root / 'data' / 'brands.json', root / 'static' / 'logos')
+    validate_news_meta(pages, tools, brands)
+    validate_fichas(pages)
     by_url = {p.url: p for p in pages}
     news = sorted((p for p in pages if p.kind == 'noticia' and p.indexable),
                   key=lambda p: p.date, reverse=True)
     def featured(kind):
         return sorted((p for p in pages if p.kind == kind and p.indexable), key=lambda p: p.title)
-    base_ctx = dict(tools=tools, categories=CATEGORIES, latest_news=news[:6], listing=None,
+    base_ctx = dict(tools=tools, categories=CATEGORIES, latest_news=news[:7], news=news, listing=None,
                     comparativas=featured('comparativa'), guias=featured('guia'),
-                    utilidades=featured('utilidad'))
+                    utilidades=featured('utilidad'), brands=brands, radar=radar_tools(news, tools),
+                    imprescindibles=[], logos_dir=root / 'static' / 'logos',
+                    fichas={p.slug: p for p in pages if p.kind == 'ficha' and p.indexable})
+    imprescindibles = root / 'data' / 'imprescindibles.txt'
+    if imprescindibles.exists():
+        base_ctx['imprescindibles'] = load_imprescindibles(imprescindibles, by_url)
     w = Writer(out)
 
     all_pages: List[Page] = list(pages)
@@ -102,7 +113,7 @@ def build(root: Path, out: Path) -> None:
         w.write(_out_path(url), render_page(env, page, dict(base_ctx, listing=items)), f'listado {url}')
 
     redirects = load_redirects(root / 'data' / 'redirects.yml')
-    redirects += [Redirect(f'/herramientas/{t.id}/', f'/#cat-{t.cat}')
+    redirects += [Redirect(f'/herramientas/{t.id}/', f'/herramientas/#cat-{t.cat}')
                   for t in tools.values() if not t.has_page]
     for r in redirects:
         for rel in output_paths(r):
@@ -114,6 +125,15 @@ def build(root: Path, out: Path) -> None:
                            '<a href="/">portada</a>, las <a href="/noticias/">noticias</a> '
                            'o las <a href="/mejor-ia/">comparativas</a>.</p>')
     w.write('404.html', render_page(env, not_found, base_ctx), '404')
+
+    for p in all_pages:
+        if not p.indexable:
+            continue
+        rel = og_rel(p.url)
+        if rel in w.owners:
+            raise ValueError(f'Ruta duplicada {rel}: la generan «{w.owners[rel]}» y «portada {p.url}»')
+        w.owners[rel] = f'portada {p.url}'
+        write_cover_png(cover_for(p, brands, tools), out / rel, root / 'static' / 'fonts')
 
     w.write('sitemap.xml', sitemap_xml(all_pages), 'sitemap')
     w.write('rss.xml', rss_xml(news), 'rss')

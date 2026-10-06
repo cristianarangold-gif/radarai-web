@@ -1,0 +1,11 @@
+<figure class="radar-box">
+  <div class="radar" role="group" aria-label="Radar de herramientas de IA destacadas">
+    <span class="radar-rings" aria-hidden="true"></span>
+    <span class="radar-sweep" aria-hidden="true"></span>
+    {% for t in radar %}
+    {% set slot = RADAR_SLOTS[loop.index0] %}
+    <a class="blip" href="/herramientas/{{ t.id }}/" style="left:{{ slot.left }}%;top:{{ slot.top }}%;--d:{{ slot.delay }}s"><span class="blip-in">{{ t.id | logo(26, t.name) }}{{ t.name }}</span></a>
+    {% endfor %}
+  </div>
+  <figcaption>En el radar esta semana</figcaption>
+</figure>

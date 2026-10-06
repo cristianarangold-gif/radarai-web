@@ -10,3 +10,4 @@ Se aplica a todo el contenido, incluidos los borradores automáticos de noticias
 6. **Estructura de noticia:** qué ha pasado · por qué importa a un usuario hispanohablante · qué cambia en la práctica (precio, disponibilidad en España/UE) · opinión de Radar IA · fuentes.
 7. **Autor:** Cristian Arango. Español de España, tono cercano y claro, sin tecnicismos innecesarios.
 8. **Nunca** publicar sin revisión humana ni traducir artículos enteros de otros medios.
+9. **Metadatos de diseño en noticias:** `empresa` (id de `data/brands.json`) y `herramientas` (ids de `data/tools.json`, separados por comas). Alimentan la imagen de portada y el radar de la portada; un id inexistente hace fallar el build.

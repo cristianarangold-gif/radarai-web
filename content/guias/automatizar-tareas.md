@@ -37,7 +37,7 @@ Ejemplos típicos: registrar contactos de un formulario, clasificar correos entr
 - **Professional**: desde 29,99 $/mes (19,99 $ con pago anual) con 750 tareas, Zaps de varios pasos y aplicaciones premium.
 - **Team**: desde 103,50 $/mes (69 $ anual) con 2.000 tareas, para equipos.
 
-Existen otras plataformas similares, como Make, que aparecen en la sección de [productividad](/#cat-productividad) de nuestra portada.
+Existen otras plataformas similares, como Make, que aparecen en la sección de [productividad](/herramientas/#cat-productividad) de nuestro catálogo de herramientas.
 
 ### Agentes y tareas programadas en los asistentes
 

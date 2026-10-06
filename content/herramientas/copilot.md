@@ -3,6 +3,10 @@ descripcion: Análisis de Microsoft Copilot en 2026: versión gratuita, IA inclu
 fecha: 2026-10-06
 web: https://copilot.microsoft.com/
 plataforma: Web, Windows, iOS, Android y aplicaciones de Microsoft 365
+precio_desde: 0 €
+plan_pago: Microsoft 365 desde 10 €/mes
+ideal_para: Usuarios de Office
+veredicto: Si ya pagas Microsoft 365, Copilot es prácticamente un extra; sin Office, ChatGPT o Gemini ofrecen más por su precio.
 fuentes: https://www.microsoft.com/es-es/microsoft-365-copilot/pricing/individuals
     https://www.microsoft.com/es-es/microsoft-365-copilot/pricing
     https://www.microsoft.com/en-us/microsoft-copilot/blog/2024/08/16/transparency-and-control-in-consumer-data-use/

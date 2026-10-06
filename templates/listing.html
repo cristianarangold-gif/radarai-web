@@ -2,24 +2,25 @@
 {% block main %}
 <section class="wrap article">
   <header class="article-head">
+    <p class="eyebrow">{{ {'/noticias/': 'Noticias', '/guias/': 'Guías', '/mejor-ia/': 'Comparativas', '/herramientas/': 'Herramientas', '/herramientas-radar/': 'Utilidades'}.get(page.url, 'Radar IA') }}</p>
     <h1>{{ page.title }}</h1>
     <p class="lede">{{ page.description }}</p>
   </header>
   {% if page.body_html %}<div class="prose">{{ page.body_html | safe }}</div>{% endif %}
+  {% if page.url == '/herramientas/' %}
   {% if listing %}
-  <ul class="card-list">
-    {% for item in listing %}
-    <li class="card">
-      <a class="card-link" href="{{ item.url }}">
-        <h2>{{ item.title }}</h2>
-        <p>{{ item.description }}</p>
-        {% if item.date %}<time datetime="{{ item.date.isoformat() }}">{{ item.date | fecha_es }}</time>{% endif %}
-      </a>
-    </li>
-    {% endfor %}
-  </ul>
+  <div class="grid3 tools-grid">
+    {% for item in listing %}{% set t = tools.get(item.slug) %}{% if t %}{% include 'partials/tool_card.html' %}{% endif %}{% endfor %}
+  </div>
+  {% endif %}
+  {% include 'partials/catalog.html' %}
+  {% elif listing %}
+  <div class="grid3 listing-grid">
+    {% for item in listing %}{% include 'partials/card.html' %}{% endfor %}
+  </div>
   {% else %}
   <p class="muted">Muy pronto publicaremos aquí nuevo contenido.</p>
   {% endif %}
 </section>
 {% endblock %}
+{% block scripts %}{% if page.url == '/herramientas/' %}<script src="/static/js/catalog.js" defer></script>{% endif %}{% endblock %}

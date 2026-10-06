@@ -1,6 +1,8 @@
 titulo: Google presenta Gemini 4 Argon, su nuevo modelo para tareas profesionales largas
 descripcion: Gemini 4 Argon promete mejoras en programación, análisis financiero, derecho y ciberseguridad. Te contamos qué ofrece, quién puede usarlo y cuándo llegará al resto de usuarios.
 fecha: 2026-10-06
+empresa: google
+herramientas: gemini
 fuentes: https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-argon/
     https://gemini.google/subscriptions/
 

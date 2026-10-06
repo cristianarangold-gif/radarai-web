@@ -1,6 +1,8 @@
 titulo: ChatGPT probará anuncios con imágenes mientras generas imágenes
 descripcion: OpenAI ensaya un nuevo formato de anuncio visual en ChatGPT y amplía sus herramientas de medición para anunciantes. Qué significa para los usuarios y para las empresas.
 fecha: 2026-10-06
+empresa: openai
+herramientas: chatgpt
 fuentes: https://openai.com/es-ES/index/new-chatgpt-ads-format-and-measurement/
     https://chatgpt.com/es-ES/pricing/
 

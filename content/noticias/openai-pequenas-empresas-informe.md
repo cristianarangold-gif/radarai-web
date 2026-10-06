@@ -1,6 +1,8 @@
 titulo: Unos 4 millones de empleados de pequeñas empresas usan las herramientas de OpenAI cada semana
 descripcion: OpenAI publica un informe sobre el uso de la IA en pequeñas empresas y lanza un programa de formación en EE. UU. Qué tareas delegan los equipos pequeños y qué pueden aprender las pymes españolas.
 fecha: 2026-10-06
+empresa: openai
+herramientas: chatgpt
 fuentes: https://openai.com/es-ES/index/helping-small-businesses-put-ai-to-work/
 
 OpenAI ha publicado un informe titulado *Pequeñas empresas, mayores capacidades* sobre cómo los negocios pequeños están usando la inteligencia artificial, y ha anunciado una colaboración con **America's SBDC**, la red estadounidense de centros de apoyo a pequeñas empresas, para formar a asesores y propietarios. El anuncio se publicó el 30 de septiembre de 2026.

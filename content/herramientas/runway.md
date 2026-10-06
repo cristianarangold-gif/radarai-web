@@ -3,6 +3,10 @@ descripcion: Análisis de Runway, la plataforma de vídeo con IA: planes Free, S
 fecha: 2026-10-06
 web: https://runway.com/
 plataforma: Web e iOS
+precio_desde: 0 $
+plan_pago: Standard 15 $/mes
+ideal_para: Vídeo con IA
+veredicto: Una de las opciones más completas para generar vídeo con IA; Pro (35 $/mes) es el plan razonable para quien publica con regularidad.
 fuentes: https://runway.com/pricing
 
 Runway es una de las plataformas de referencia para **crear y editar vídeo con inteligencia artificial**. Permite generar clips a partir de texto o de una imagen, transformar vídeos existentes, crear imágenes, voces y música, y todo ello desde el navegador. La utilizan desde creadores de contenido hasta productoras y agencias. En esta ficha explicamos cómo funciona su sistema de créditos, cuánto cuestan sus planes y para quién compensa.

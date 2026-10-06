@@ -1,0 +1,152 @@
+{
+ "chatgpt": {
+  "name": "ChatGPT",
+  "color": "#10a37f",
+  "icon": null,
+  "monograma": "C"
+ },
+ "claude": {
+  "name": "Claude",
+  "color": "#d97757",
+  "icon": "claude",
+  "monograma": "C"
+ },
+ "gemini": {
+  "name": "Gemini",
+  "color": "#8e75b2",
+  "icon": "googlegemini",
+  "monograma": "G"
+ },
+ "copilot": {
+  "name": "Microsoft Copilot",
+  "color": "#0078d4",
+  "icon": null,
+  "monograma": "C"
+ },
+ "perplexity": {
+  "name": "Perplexity",
+  "color": "#1fb8cd",
+  "icon": "perplexity",
+  "monograma": "P"
+ },
+ "midjourney": {
+  "name": "Midjourney",
+  "color": "#151515",
+  "icon": null,
+  "monograma": "M"
+ },
+ "runway": {
+  "name": "Runway",
+  "color": "#151515",
+  "icon": null,
+  "monograma": "R"
+ },
+ "suno": {
+  "name": "Suno",
+  "color": "#151515",
+  "icon": "suno",
+  "monograma": "S"
+ },
+ "elevenlabs": {
+  "name": "ElevenLabs",
+  "color": "#151515",
+  "icon": "elevenlabs",
+  "monograma": "E"
+ },
+ "github-copilot": {
+  "name": "GitHub Copilot",
+  "color": "#151515",
+  "icon": "githubcopilot",
+  "monograma": "G"
+ },
+ "cursor": {
+  "name": "Cursor",
+  "color": "#151515",
+  "icon": "cursor",
+  "monograma": "C"
+ },
+ "canva-ai": {
+  "name": "Canva IA",
+  "color": "#00c4cc",
+  "icon": null,
+  "monograma": "C"
+ },
+ "deepl-write": {
+  "name": "DeepL",
+  "color": "#0f2b46",
+  "icon": "deepl",
+  "monograma": "D"
+ },
+ "notion-ai": {
+  "name": "Notion AI",
+  "color": "#151515",
+  "icon": "notion",
+  "monograma": "N"
+ },
+ "notebooklm": {
+  "name": "Gemini Notebook",
+  "color": "#151515",
+  "icon": "notebooklm",
+  "monograma": "N"
+ },
+ "openai": {
+  "name": "OpenAI",
+  "color": "#10a37f",
+  "icon": null,
+  "monograma": "O"
+ },
+ "anthropic": {
+  "name": "Anthropic",
+  "color": "#151515",
+  "icon": "anthropic",
+  "monograma": "A"
+ },
+ "google": {
+  "name": "Google",
+  "color": "#4285f4",
+  "icon": "google",
+  "monograma": "G"
+ },
+ "microsoft": {
+  "name": "Microsoft",
+  "color": "#0078d4",
+  "icon": null,
+  "monograma": "M"
+ },
+ "meta": {
+  "name": "Meta",
+  "color": "#0467df",
+  "icon": "meta",
+  "monograma": "M"
+ },
+ "mistral": {
+  "name": "Mistral AI",
+  "color": "#fa520f",
+  "icon": "mistralai",
+  "monograma": "M"
+ },
+ "nvidia": {
+  "name": "NVIDIA",
+  "color": "#76b900",
+  "icon": "nvidia",
+  "monograma": "N"
+ },
+ "apple": {
+  "name": "Apple",
+  "color": "#151515",
+  "icon": "apple",
+  "monograma": "A"
+ },
+ "adobe": {
+  "name": "Adobe",
+  "color": "#fa0f00",
+  "icon": null,
+  "monograma": "A"
+ },
+ "huggingface": {
+  "name": "Hugging Face",
+  "color": "#ffd21e",
+  "icon": "huggingface",
+  "monograma": "H"
+ }
+}

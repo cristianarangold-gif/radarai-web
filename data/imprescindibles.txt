@@ -1,0 +1,6 @@
+# Imprescindibles de la portada: una URL por línea (máximo 4), en el orden en que aparecen.
+# Se eligen a mano. El build falla si una URL no existe o no es indexable.
+/herramientas/chatgpt/
+/mejor-ia-gratis/
+/guias/mejores-prompts/
+/guias/privacidad-en-ia/

@@ -1,4 +1,5 @@
 import json
+import re
 import shutil
 from pathlib import Path
 
@@ -38,6 +39,10 @@ def make_root(tmp_path):
                        lang='en', tags=[], url='https://runwayml.com/'),
     }
     (root / 'data' / 'tools.json').write_text(json.dumps(tools), encoding='utf-8')
+    (root / 'data' / 'brands.json').write_text(json.dumps({
+        'openai': dict(name='OpenAI', color='#10a37f', icon=None, monograma='O'),
+        'claude': dict(name='Claude', color='#d97757', icon='claude', monograma='C'),
+    }), encoding='utf-8')
     (root / 'data' / 'redirects.yml').write_text('/rankings/: /noticias/\n', encoding='utf-8')
     (root / 'ads.txt').write_text('google.com, pub-1, DIRECT, f08c47fec0942fa0\n')
     (root / 'CNAME').write_text('radarai.es')
@@ -68,7 +73,7 @@ def test_old_tool_url_redirects(tmp_path):
     root, out = make_root(tmp_path), tmp_path / '_site'
     build(root, out)
     html = (out / 'herramientas' / 'runway' / 'index.html').read_text()
-    assert 'url=/#cat-video' in html
+    assert 'url=/herramientas/#cat-video' in html
 
 
 def test_duplicate_output_path_raises(tmp_path):
@@ -115,3 +120,116 @@ def test_home_shows_featured_sections(tmp_path):
     home = (out / 'index.html').read_text()
     assert 'href="/mejor-ia-para-x/"' in home
     assert 'href="/guias/guia-y/"' in home
+
+
+def test_news_with_unknown_tool_fails_build(tmp_path):
+    root, out = make_root(tmp_path), tmp_path / '_site'
+    (root / 'content' / 'noticias' / 'buena.md').write_text(
+        'titulo: Buena\ndescripcion: d1\nfecha: 2026-10-01\nherramientas: inexistente\n\n' + 'palabra ' * 600,
+        encoding='utf-8')
+    with pytest.raises(ValueError, match='noticias/buena: herramienta desconocida «inexistente»'):
+        build(root, out)
+
+
+def test_draft_news_is_validated_too(tmp_path):
+    root, out = make_root(tmp_path), tmp_path / '_site'
+    (root / 'content' / 'noticias' / 'borrador.md').write_text(
+        'titulo: Borrador\ndescripcion: d2\nfecha: 2026-10-02\nborrador: si\nempresa: openia\n\ncorto',
+        encoding='utf-8')
+    with pytest.raises(ValueError, match='empresa desconocida «openia»'):
+        build(root, out)
+
+
+def test_imprescindibles_with_unknown_url_fails_build(tmp_path):
+    root, out = make_root(tmp_path), tmp_path / '_site'
+    (root / 'data' / 'imprescindibles.txt').write_text('/no-existe/\n', encoding='utf-8')
+    with pytest.raises(ValueError, match='/no-existe/'):
+        build(root, out)
+
+
+def test_og_images_generated_and_declared(tmp_path):
+    root, out = make_root(tmp_path), tmp_path / '_site'
+    build(root, out)
+    assert (out / 'og' / 'inicio.png').exists() and (out / 'og' / 'noticias' / 'buena.png').exists()
+    assert not (out / 'og' / 'noticias' / 'borrador.png').exists()
+    html = (out / 'noticias' / 'buena' / 'index.html').read_text()
+    assert '<meta property="og:image" content="https://radarai.es/og/noticias/buena.png">' in html
+    assert '<meta name="twitter:card" content="summary_large_image">' in html
+    assert '"image": "https://radarai.es/og/noticias/buena.png"' in html
+    assert 'og:image' not in (out / '404.html').read_text()
+
+
+def test_no_google_fonts_anywhere(tmp_path):
+    root, out = make_root(tmp_path), tmp_path / '_site'
+    build(root, out)
+    for f in out.rglob('*.html'):
+        assert 'Google Fonts' not in f.read_text() and 'fonts.googleapis' not in f.read_text(), f
+
+
+def test_real_legal_pages_do_not_mention_google_fonts():
+    for name in ('politica-cookies', 'politica-privacidad'):
+        assert 'Google Fonts' not in (ROOT / 'content' / 'paginas' / 'legal' / f'{name}.md').read_text()
+
+
+def test_css_defines_editorial_tokens():
+    css = (ROOT / 'static' / 'css' / 'radar.css').read_text()
+    for token in ('--paper: #fbf8f3', '--paper-2: #f3ece0', '--ink: #151515', '--ink-2: #444',
+                  '--rule: #e0d9cc', '--accent: #e4572e', '--amber: #f3a712'):
+        assert token in css, token
+    assert css.count('@font-face') == 7 and 'font-display: swap' in css
+
+
+def test_home_radar_and_catalog_in_tools_page(tmp_path):
+    root, out = make_root(tmp_path), tmp_path / '_site'
+    (root / 'content' / 'herramientas').mkdir()
+    (root / 'content' / 'herramientas' / 'claude.md').write_text(
+        'titulo: Claude\ndescripcion: dc\nfecha: 2026-10-01\nideal_para: Escribir\nprecio_desde: 0 $\n\n'
+        + 'palabra ' * 1100, encoding='utf-8')
+    (root / 'data' / 'imprescindibles.txt').write_text('/herramientas/claude/\n', encoding='utf-8')
+    build(root, out)
+    home = (out / 'index.html').read_text()
+    assert 'class="radar"' in home and 'En el radar esta semana' in home
+    blips = re.findall(r'<a class="blip" href="([^"]+)"', home)
+    assert blips == ['/herramientas/claude/']  # solo herramientas con ficha
+    assert 'Imprescindibles' in home and 'id="cat-' not in home
+    assert 'href="/herramientas/"' in home and '0 $' in home
+    tools_page = (out / 'herramientas' / 'index.html').read_text()
+    assert 'id="cat-ia-general"' in tools_page and '/static/js/catalog.js' in tools_page
+
+
+def test_404_is_radar_page_without_canonical(tmp_path):
+    root, out = make_root(tmp_path), tmp_path / '_site'
+    build(root, out)
+    html = (out / '404.html').read_text()
+    assert 'Esta página ha desaparecido del radar' in html and 'class="radar' in html
+    assert 'rel="canonical"' not in html and 'href="/noticias/"' in html
+
+
+def test_news_listing_has_covers(tmp_path):
+    root, out = make_root(tmp_path), tmp_path / '_site'
+    build(root, out)
+    html = (out / 'noticias' / 'index.html').read_text()
+    assert html.count('<svg class="cover"') == 1 and 'href="/noticias/buena/"' in html
+
+
+def test_radar_labels_keep_readable_opacity():
+    css = (ROOT / 'static' / 'css' / 'radar.css').read_text()
+    block = css[css.index('@keyframes radar-ping'):]
+    block = block[:block.index('}\n') + 2]
+    rule = css[css.index('.blip-in {'):]
+    rule = rule[:rule.index('}')]
+    import re as _re
+    values = [float(v) for v in _re.findall(r'opacity:\s*([\d.]+)', block + rule)]
+    assert values and min(values) >= .75, values
+
+
+def test_real_fichas_price_pill_reads_well():
+    from radar.content import load_pages
+    for p in load_pages(ROOT / 'content'):
+        if p.kind == 'ficha':
+            assert not p.extra.get('plan_pago', '').lower().startswith('desde'), p.slug
+
+
+def test_catalog_js_does_not_yank_reader_after_load():
+    js = (ROOT / 'static' / 'js' / 'catalog.js').read_text()
+    assert 'scrollY' in js

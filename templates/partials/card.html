@@ -1,0 +1,9 @@
+{% from 'partials/macros.html' import kicker, card_meta with context %}
+<article class="card2">
+  <a class="card2-link" href="{{ item.url }}">
+    {{ item | cover }}
+    <span class="kicker">{{ kicker(item) }}</span>
+    <h3>{{ item.title }}</h3>
+    <p class="card-meta">{{ card_meta(item) }}</p>
+  </a>
+</article>

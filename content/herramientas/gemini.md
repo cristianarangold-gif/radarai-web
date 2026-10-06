@@ -3,6 +3,10 @@ descripcion: Análisis de Gemini, la IA de Google: plan gratuito, Google AI Plus
 fecha: 2026-10-06
 web: https://gemini.google.com/
 plataforma: Web, Android, iOS e integrado en Google Workspace
+precio_desde: 0 €
+plan_pago: Plus 4,99 €/mes
+ideal_para: Usuarios de Google
+veredicto: La opción más lógica para quien ya vive en Google; Google AI Plus es de las suscripciones con mejor relación calidad-precio.
 fuentes: https://gemini.google/subscriptions/
     https://support.google.com/gemini/answer/13594961?hl=es
 

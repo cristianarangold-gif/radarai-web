@@ -1,6 +1,6 @@
 # URL antigua: URL nueva
 # Las fichas de herramientas sin análisis completo se redirigen automáticamente
-# a su categoría en la portada (lo hace scripts/build.py a partir de data/tools.json).
+# a su categoría del catálogo en /herramientas/ (lo hace scripts/build.py a partir de data/tools.json).
 
 # Secciones vacías retiradas (fase 1)
 /rankings/: /mejor-ia/
@@ -20,15 +20,15 @@
 /legal/contacto.html: /contacto/
 
 # Duplicados eliminados del catálogo (fase 2)
-/herramientas/copyspace/: /#cat-marketing
-/herramientas/copylancer/: /#cat-marketing
-/herramientas/descript-audio/: /#cat-video
-/herramientas/gamma-ai/: /#cat-productividad
-/herramientas/gamma-docs/: /#cat-productividad
-/herramientas/gamma-presentations/: /#cat-productividad
-/herramientas/jasper-chat/: /#cat-marketing
-/herramientas/otter-transcribe/: /#cat-productividad
-/herramientas/writesonic-seo/: /#cat-marketing
+/herramientas/copyspace/: /herramientas/#cat-marketing
+/herramientas/copylancer/: /herramientas/#cat-marketing
+/herramientas/descript-audio/: /herramientas/#cat-video
+/herramientas/gamma-ai/: /herramientas/#cat-productividad
+/herramientas/gamma-docs/: /herramientas/#cat-productividad
+/herramientas/gamma-presentations/: /herramientas/#cat-productividad
+/herramientas/jasper-chat/: /herramientas/#cat-marketing
+/herramientas/otter-transcribe/: /herramientas/#cat-productividad
+/herramientas/writesonic-seo/: /herramientas/#cat-marketing
 
 # Guías retiradas (fase 2)
 /guias/como-elegir-una-ia/: /mejor-ia/

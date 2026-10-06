@@ -50,3 +50,12 @@ class Tool:
 class Redirect:
     source: str
     target: str
+
+
+@dataclass
+class Brand:
+    id: str
+    name: str
+    color: str
+    icon: Optional[str]
+    monograma: str

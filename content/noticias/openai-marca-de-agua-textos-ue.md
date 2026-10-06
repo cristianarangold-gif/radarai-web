@@ -1,6 +1,8 @@
 titulo: ChatGPT añadirá una marca de agua invisible a sus textos en la Unión Europea
 descripcion: OpenAI marcará los textos de ChatGPT y Codex en la UE para cumplir la Ley de IA. Te explicamos cómo funciona, sus límites y qué cambia para estudiantes, empresas y creadores.
 fecha: 2026-10-06
+empresa: openai
+herramientas: chatgpt
 fuentes: https://openai.com/index/eu-text-provenance
 
 OpenAI ha anunciado que, **en las próximas semanas, añadirá una marca de agua invisible a los textos que generan ChatGPT y Codex en la Unión Europea**. La medida responde a la Ley de Inteligencia Artificial de la UE, que exige a los proveedores de IA generativa que el texto que producen sea identificable de forma legible por máquinas. La compañía lo comunicó el 5 de octubre de 2026 en un artículo en el que, además, reconoce abiertamente las limitaciones de esta tecnología.

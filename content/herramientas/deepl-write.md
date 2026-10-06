@@ -3,6 +3,10 @@ descripcion: Análisis de DeepL Translator y DeepL Write en 2026: plan gratuito,
 fecha: 2026-10-06
 web: https://www.deepl.com/write
 plataforma: Web, Windows, macOS, iOS, Android y extensiones de navegador
+precio_desde: 0 €
+plan_pago: Individual 7,49 €/mes
+ideal_para: Traducir y corregir
+veredicto: La opción más recomendable para traducciones naturales y confidenciales; Pro Individual es lo lógico si traduces documentos a menudo.
 fuentes: https://www.deepl.com/es/pro
 
 DeepL es una empresa alemana conocida por su **traductor automático**, considerado por muchos usuarios uno de los más naturales del mercado, y por **DeepL Write**, un asistente de escritura que corrige y mejora textos. A diferencia de los chatbots generalistas, DeepL se centra en dos tareas muy concretas, y esa especialización es su principal ventaja. En esta ficha analizamos ambos productos, sus planes y cómo trata tus textos, uno de sus puntos más fuertes.
@@ -86,7 +90,7 @@ Este es uno de los grandes puntos fuertes de DeepL Pro. Según su página oficia
 ## Alternativas a DeepL
 
 - **[ChatGPT](/herramientas/chatgpt/)**, **[Claude](/herramientas/claude/)** y **[Gemini](/herramientas/gemini/)**: traducen y reescriben textos, y además permiten dar instrucciones detalladas sobre el estilo.
-- Grammarly, QuillBot o Wordtune, presentes en la sección de [escritura](/#cat-escritura) de la portada, como alternativas para corregir y reformular.
+- Grammarly, QuillBot o Wordtune, presentes en la sección de [escritura](/herramientas/#cat-escritura) del catálogo, como alternativas para corregir y reformular.
 
 Las comparamos en [la mejor IA para escribir](/mejor-ia-para-escribir/).
 

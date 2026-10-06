@@ -3,6 +3,10 @@ descripcion: Análisis de Claude, el asistente de Anthropic: planes Free, Pro, M
 fecha: 2026-10-06
 web: https://claude.ai/
 plataforma: Web, iOS, Android, Windows y macOS
+precio_desde: 0 $
+plan_pago: Pro 20 $/mes
+ideal_para: Escribir y documentos
+veredicto: Una de las mejores opciones para escribir y trabajar con documentos; Pro es la elección lógica si lo usas a diario o quieres Claude Code.
 fuentes: https://claude.com/pricing
     https://privacy.claude.com/en/articles/10023580-is-my-data-used-for-model-training
 

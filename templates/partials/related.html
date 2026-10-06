@@ -1,0 +1,8 @@
+{% if related %}
+<section class="related" aria-labelledby="mas-noticias">
+  <h2 id="mas-noticias">Más noticias</h2>
+  <div class="grid3">
+    {% for item in related %}{% include 'partials/card.html' %}{% endfor %}
+  </div>
+</section>
+{% endif %}

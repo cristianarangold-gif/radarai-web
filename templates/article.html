@@ -1,16 +1,32 @@
 {% extends 'base.html' %}
+{% from 'partials/macros.html' import kicker with context %}
 {% block main %}
+{% set section = {'noticia': ('Noticias', '/noticias/'), 'guia': ('Guías', '/guias/'), 'comparativa': ('Comparativas', '/mejor-ia/')}[page.kind] %}
 <article class="wrap article">
+  <nav class="crumbs" aria-label="Migas de pan"><a href="/">Inicio</a> › <a href="{{ section[1] }}">{{ section[0] }}</a></nav>
   <header class="article-head">
-    <p class="eyebrow">{{ {'noticia': 'Noticia', 'guia': 'Guía', 'comparativa': 'Comparativa'}[page.kind] }}</p>
+    <p class="kicker">{{ kicker(page) }}</p>
     <h1>{{ page.title }}</h1>
     <p class="lede">{{ page.description }}</p>
     {% include 'partials/byline.html' %}
   </header>
-  <div class="prose">
-    {{ page.body_html | safe }}
+  <div class="article-grid">
+    <div class="article-main">
+      <div class="article-cover">{{ page | cover }}</div>
+      <div class="prose">
+        {{ page.body_html | safe }}
+      </div>
+      {% include 'partials/ad_slot.html' %}
+      {% include 'partials/sources.html' %}
+      {% include 'partials/related.html' %}
+    </div>
+    <aside class="article-side">
+      <div class="side-sticky">
+        {% include 'partials/toc.html' %}
+        {% include 'partials/ad_slot.html' %}
+      </div>
+    </aside>
   </div>
-  {% include 'partials/ad_slot.html' %}
-  {% include 'partials/sources.html' %}
 </article>
 {% endblock %}
+{% block scripts %}<script src="/static/js/toc.js" defer></script>{% endblock %}
