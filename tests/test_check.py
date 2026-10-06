@@ -1,0 +1,105 @@
+from radar.check import check_site
+
+GOOD = ('<!doctype html><html lang="es"><head><title>{title}</title>'
+        '<meta name="description" content="{desc}"><link rel="canonical" href="https://radarai.es{url}">'
+        '{robots}<meta name="radar:kind" content="{kind}"><meta name="radar:words" content="{words}">'
+        '</head><body>{body}</body></html>')
+
+
+def page(site, rel, url, title='T', desc=None, kind='pagina', words=10, body='', robots=''):
+    desc = desc or f'Descripción {title}'
+    p = site / rel
+    p.parent.mkdir(parents=True, exist_ok=True)
+    p.write_text(GOOD.format(title=title, desc=desc, url=url, kind=kind, words=words,
+                             body=body, robots=robots), encoding='utf-8')
+
+
+def sitemap(site, *urls):
+    locs = ''.join(f'<url><loc>https://radarai.es{u}</loc></url>' for u in urls)
+    (site / 'sitemap.xml').write_text(f'<urlset>{locs}</urlset>', encoding='utf-8')
+
+
+def test_clean_site_has_no_errors(tmp_path):
+    page(tmp_path, 'index.html', '/', body='<a href="/a/">a</a> <a href="/#cat-x">c</a>')
+    page(tmp_path, 'a/index.html', '/a/', title='A')
+    sitemap(tmp_path, '/', '/a/')
+    assert check_site(tmp_path) == []
+
+
+def test_uppercase_or_lowercase_doctype_ok(tmp_path):
+    page(tmp_path, 'index.html', '/')
+    s = (tmp_path / 'index.html').read_text().replace('<!doctype html>', '<!DOCTYPE html>')
+    (tmp_path / 'index.html').write_text(s)
+    sitemap(tmp_path, '/')
+    assert check_site(tmp_path) == []
+
+
+def test_missing_doctype_reported(tmp_path):
+    page(tmp_path, 'index.html', '/')
+    s = (tmp_path / 'index.html').read_text().replace('<!doctype html>', '')
+    (tmp_path / 'index.html').write_text(s)
+    sitemap(tmp_path, '/')
+    assert any('DOCTYPE' in e for e in check_site(tmp_path))
+
+
+def test_broken_internal_link_reported(tmp_path):
+    page(tmp_path, 'index.html', '/', body='<a href="/no-existe/">x</a>')
+    sitemap(tmp_path, '/')
+    errors = check_site(tmp_path)
+    assert any('/no-existe/' in e for e in errors)
+
+
+def test_static_file_link_ok(tmp_path):
+    page(tmp_path, 'index.html', '/', body='<a href="/rss.xml">rss</a>')
+    (tmp_path / 'rss.xml').write_text('<rss/>')
+    sitemap(tmp_path, '/')
+    assert check_site(tmp_path) == []
+
+
+def test_literal_escape_reported(tmp_path):
+    page(tmp_path, 'index.html', '/', body='<p>v\\u00eddeo</p>')
+    sitemap(tmp_path, '/')
+    assert any('\\u' in e for e in check_site(tmp_path))
+
+
+def test_short_indexable_page_reported(tmp_path):
+    page(tmp_path, 'index.html', '/', kind='guia', words=40)
+    sitemap(tmp_path, '/')
+    assert any('palabras' in e for e in check_site(tmp_path))
+
+
+def test_noindex_page_skips_word_minimum(tmp_path):
+    page(tmp_path, 'index.html', '/')
+    page(tmp_path, 'g/index.html', '/g/', title='G', kind='guia', words=40,
+         robots='<meta name="robots" content="noindex,follow">')
+    sitemap(tmp_path, '/')
+    assert check_site(tmp_path) == []
+
+
+def test_duplicate_title_reported(tmp_path):
+    page(tmp_path, 'index.html', '/', title='Igual')
+    page(tmp_path, 'a/index.html', '/a/', title='Igual')
+    sitemap(tmp_path, '/', '/a/')
+    assert any('duplicado' in e for e in check_site(tmp_path))
+
+
+def test_sitemap_url_missing_reported(tmp_path):
+    page(tmp_path, 'index.html', '/')
+    sitemap(tmp_path, '/', '/fantasma/')
+    assert any('/fantasma/' in e for e in check_site(tmp_path))
+
+
+def test_sitemap_url_noindex_reported(tmp_path):
+    page(tmp_path, 'index.html', '/')
+    page(tmp_path, 'g/index.html', '/g/', title='G', robots='<meta name="robots" content="noindex,follow">')
+    sitemap(tmp_path, '/', '/g/')
+    assert any('/g/' in e for e in check_site(tmp_path))
+
+
+def test_redirect_pages_skipped(tmp_path):
+    page(tmp_path, 'index.html', '/')
+    (tmp_path / 'old').mkdir()
+    (tmp_path / 'old' / 'index.html').write_text(
+        '<html><head><meta http-equiv="refresh" content="0; url=/"></head></html>')
+    sitemap(tmp_path, '/')
+    assert check_site(tmp_path) == []
