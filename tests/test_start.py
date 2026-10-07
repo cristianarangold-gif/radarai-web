@@ -73,3 +73,30 @@ def test_built_start_page():
         assert (out / href.strip('/') / 'index.html').exists(), href
     data = load_start(ROOT / 'data' / 'empieza.json')
     assert main.count('class="start-extra"') == sum(1 for s in data['pasos'] if s['extra'])
+
+
+def _nav(html):
+    return re.search(r'<nav id="menu-principal".*?</nav>', html, re.S).group(0)
+
+
+def test_menu_and_home_link_to_start_in_real_build():
+    out = Path(tempfile.mkdtemp()) / 'site'
+    subprocess.run([sys.executable, str(ROOT / 'scripts' / 'build.py'), '--out', str(out)], check=True,
+                   capture_output=True)
+    for page in ('index.html', 'noticias/index.html', 'empieza-aqui/index.html'):
+        hrefs = re.findall(r'href="([^"]+)"', _nav((out / page).read_text()))
+        assert hrefs[0] == '/empieza-aqui/' and len(hrefs) == 6, page
+    start_nav = _nav((out / 'empieza-aqui' / 'index.html').read_text())
+    assert 'class="nav-start" href="/empieza-aqui/" aria-current="page"' in start_nav
+    assert 'aria-current' not in _nav((out / 'index.html').read_text())
+    home = (out / 'index.html').read_text()
+    assert '<p class="hero-start">¿Nuevo en la IA? <a href="/empieza-aqui/">Empieza aquí&nbsp;→</a></p>' in home
+
+
+def test_fixture_build_without_start_page_has_no_links(tmp_path):
+    from scripts.build import build
+    from tests.test_build import make_root
+    root, out = make_root(tmp_path), tmp_path / '_site'
+    build(root, out)
+    for page in ('index.html', 'noticias/index.html'):
+        assert '/empieza-aqui/' not in (out / page).read_text(), page
