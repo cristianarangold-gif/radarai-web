@@ -7,6 +7,16 @@ La inteligencia artificial llega con su propio vocabulario: modelos, tokens, pro
 
 Cada término incluye una definición breve, un ejemplo cuando ayuda a entenderlo y enlaces a otros términos relacionados o a las guías y comparativas de Radar IA donde se usa en la práctica.
 
+## Por dónde empezar
+
+Si es tu primera vez, lee estos seis términos en este orden: te darán una idea clara de cómo funcionan las herramientas que usas.
+
+1. [Inteligencia artificial](#inteligencia-artificial) y [IA generativa](#ia-generativa): qué es y qué tipo de IA usas cuando hablas con un asistente.
+2. [Modelo de lenguaje](#modelo-de-lenguaje): el «motor» que hay dentro de ChatGPT, Gemini o Claude.
+3. [Prompt](#prompt): cómo pedirle las cosas para obtener buenas respuestas.
+4. [Alucinación](#alucinacion): por qué a veces se inventa datos y cómo protegerte.
+5. [Privacidad de datos](#privacidad-de-datos): qué conviene no contarle.
+
 ## Cómo usarlo
 
 - **Filtra** escribiendo una palabra: el glosario encuentra el término aunque no pongas tildes, y también por sus siglas (por ejemplo, «LLM»).

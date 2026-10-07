@@ -110,3 +110,16 @@ def test_glossary_page_requires_data(tmp_path):
     (root / 'content' / 'paginas' / 'glosario.md').write_text('titulo: G\ndescripcion: d\n\nTexto', encoding='utf-8')
     with pytest.raises(ValueError, match='glosario.md'):
         build(root, tmp_path / '_site')
+
+
+def test_real_glossary_is_valid_and_complete():
+    from radar.content import load_pages
+    from scripts.build import LISTINGS
+    pages = load_pages(ROOT / 'content')
+    urls = {p.url for p in pages if p.indexable} | {u for u, *_ in LISTINGS}
+    terms = parse_glossary((ROOT / 'data' / 'glosario.md').read_text(encoding='utf-8'))
+    validate_glossary(terms, urls)
+    assert len(terms) >= 45
+    assert {t.tema for t in terms} == {'basicos', 'modelos', 'uso', 'precios', 'etica'}
+    page = [p for p in pages if p.url == '/glosario/'][0]
+    assert page.indexable and page.word_count >= 300
