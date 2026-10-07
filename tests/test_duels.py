@@ -120,3 +120,39 @@ def test_built_duel_page(site):
     assert '"@type": "Article"' in html or '"@type":"Article"' in html
     assert re.search(r'href="/mejor-ia/">Comparativas</a>', html)
     assert (site / 'og' / 'chatgpt-vs-claude.png').exists()
+
+
+def test_duel_links_and_pairs():
+    from radar.duels import duel_links
+    draft = duel('alfa-vs-gamma', herramientas='alfa, gamma')
+    draft.draft = True
+    payload = {t['id']: t for t in compare_payload(FICHAS, TOOLS, BRANDS, CATEGORIES)}
+    by_tool, pairs = duel_links([duel(), draft], payload)
+    assert by_tool['alfa'] == [{'u': '/alfa-vs-beta/', 'label': 'Alfa vs Beta', 'a': 'alfa', 'b': 'beta'}]
+    assert 'gamma' not in by_tool
+    assert pairs == {'alfa,beta': {'u': '/alfa-vs-beta/', 'label': 'Alfa vs Beta'}}
+
+
+def test_entry_points_in_built_site(site):
+    listing = (site / 'mejor-ia' / 'index.html').read_text()
+    assert 'Cara a cara' in listing and listing.count('class="duel-card"') == 6
+    assert listing.index('class="duel-card"') < listing.index('listing-grid')
+    ficha = (site / 'herramientas' / 'chatgpt' / 'index.html').read_text()
+    side = ficha[ficha.index('class="tool-duels"'):]
+    assert side.count('<li>') == 5 and 'href="/chatgpt-vs-claude/">ChatGPT vs Claude' in side
+    assert 'class="tool-duels"' not in (site / 'herramientas' / 'midjourney' / 'index.html').read_text()
+    comp = (site / 'comparador' / 'index.html').read_text()
+    raw = re.search(r'id="comparador-duelos">(.*?)</script>', comp, re.S).group(1)
+    import json
+    pairs = json.loads(raw)
+    assert pairs['chatgpt,claude']['u'] == '/chatgpt-vs-claude/' and len(pairs) == 6
+    idx = json.loads((site / 'search-index.json').read_text())
+    assert any(e['u'] == '/chatgpt-vs-claude/' and e['k'] == 'Cara a cara' for e in idx)
+
+
+def test_compare_js_links_duel():
+    import gzip
+    js = (ROOT / 'static' / 'js' / 'compare.js').read_bytes()
+    assert b'comparador-duelos' in js and b'.sort()' in js and b'innerHTML' not in js
+    assert len(gzip.compress(js)) <= 5 * 1024
+    assert b"'Cara a cara'" in (ROOT / 'static' / 'js' / 'search.js').read_bytes()

@@ -39,6 +39,13 @@
         {% if compare_payload %}
         <a class="btn btn-ghost compare-link" href="/comparador/?h={{ page.slug }}">Comparar {{ name }} con… →</a>
         {% endif %}
+        {% set mis_duelos = duels_by_tool.get(page.slug, []) %}
+        {% if mis_duelos %}
+        <nav class="tool-duels" aria-labelledby="cara-a-cara-{{ page.slug }}">
+          <h2 id="cara-a-cara-{{ page.slug }}">Cara a cara</h2>
+          <ul>{% for d in mis_duelos %}<li><a href="{{ d.u }}">{{ d.label }}</a></li>{% endfor %}</ul>
+        </nav>
+        {% endif %}
         {% include 'partials/ad_slot.html' %}
       </div>
     </aside>

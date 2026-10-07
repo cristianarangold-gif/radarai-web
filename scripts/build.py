@@ -19,7 +19,7 @@ from radar.brands import load_brands  # noqa: E402
 from radar.compare import compare_payload  # noqa: E402
 from radar.content import load_pages  # noqa: E402
 from radar.covers import cover_for, og_rel, write_cover_png  # noqa: E402
-from radar.duels import validate_duels  # noqa: E402
+from radar.duels import duel_links, validate_duels  # noqa: E402
 from radar.editorial import load_imprescindibles, radar_tools, validate_fichas, validate_news_meta  # noqa: E402
 from radar.models import Page, Redirect  # noqa: E402
 from radar.redirects import load_redirects, output_paths, render_redirect  # noqa: E402
@@ -108,6 +108,7 @@ def build(root: Path, out: Path) -> None:
         validate_duels(duels, fichas_ok)
         base_ctx['duels'] = sorted((p for p in duels if p.indexable), key=lambda p: p.title)
         base_ctx['compare_by_id'] = {t['id']: t for t in compare_payload(fichas_ok, tools, brands, CATEGORIES)}
+        base_ctx['duels_by_tool'], base_ctx['duel_pairs'] = duel_links(duels, base_ctx['compare_by_id'])
     if '/comparador/' in by_url:
         base_ctx['compare_payload'] = compare_payload(
             {p.slug: p for p in pages if p.kind == 'ficha' and p.indexable}, tools, brands, CATEGORIES)

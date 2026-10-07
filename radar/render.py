@@ -163,6 +163,9 @@ def render_page(env: jinja2.Environment, page: Page, ctx: dict) -> str:
         compare_payload=ctx.get('compare_payload', []),
         start_payload=ctx.get('start_payload', {}),
         glossary=ctx.get('glossary', {}),
+        duels=ctx.get('duels', []),
+        duels_by_tool=ctx.get('duels_by_tool', {}),
+        duel_pairs=ctx.get('duel_pairs', {}),
         duel=duel_context(page, ctx['compare_by_id'], ctx['fichas'], ctx.get('duels', []))
         if page.kind == 'duelo' else None,
     )

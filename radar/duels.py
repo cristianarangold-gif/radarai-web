@@ -1,7 +1,7 @@
 """Páginas «Cara a cara» (X vs Y): validación y contexto. Los datos de la tabla salen siempre de las fichas."""
 from __future__ import annotations
 
-from typing import Dict, List
+from typing import Dict, List, Tuple
 
 from .content import count_words, text_of
 from .models import Page
@@ -76,3 +76,16 @@ def duel_context(page: Page, compare_by_id: Dict[str, dict], fichas: Dict[str, P
         'elige': [(a, _phrases(page.extra.get('elige_1', ''))), (b, _phrases(page.extra.get('elige_2', '')))],
         'rows': rows, 'related': related,
     }
+
+
+def duel_links(duels: List[Page], compare_by_id: Dict[str, dict]) -> Tuple[Dict[str, List[dict]], Dict[str, dict]]:
+    """Enlaces a los duelos publicados: por herramienta (fichas) y por par ordenado «a,b» (comparador)."""
+    by_tool: Dict[str, List[dict]] = {}
+    pairs: Dict[str, dict] = {}
+    for d in sorted((d for d in duels if d.indexable), key=lambda d: d.title):
+        a, b = duel_tools(d)
+        label = f'{compare_by_id[a]["n"]} vs {compare_by_id[b]["n"]}'
+        for t in (a, b):
+            by_tool.setdefault(t, []).append({'u': d.url, 'label': label, 'a': a, 'b': b})
+        pairs[','.join(sorted((a, b)))] = {'u': d.url, 'label': label}
+    return by_tool, pairs
