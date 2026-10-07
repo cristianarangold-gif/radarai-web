@@ -49,6 +49,9 @@ def cover_for(page: Page, brands: Dict[str, Brand], tools: Dict[str, Tool]) -> C
         ids = [t.strip() for t in page.extra.get('herramientas', '').split(',') if t.strip()][:2]
         a, b = (_brand_or_monogram(t, brands, tools) for t in ids)
         return CoverSpec('Cara a cara', a, None, brand2=b)
+    if page.kind == 'profesion':
+        name = page.extra.get('profesion', '').strip()
+        return CoverSpec(f'IA para {name}' if name else 'IA por profesión', None, None)
     if page.kind == 'guia':
         return CoverSpec('Guía', None, 'book')
     return CoverSpec('Radar IA', None, None)

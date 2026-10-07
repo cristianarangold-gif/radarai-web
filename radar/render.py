@@ -13,6 +13,7 @@ from markupsafe import Markup, escape
 from .brands import logo_html
 from .covers import cover_for, cover_svg, og_rel
 from .duels import duel_context, duel_tools
+from .professions import parse_kit, profession_context
 from .editorial import reading_minutes, related_news, toc
 from .models import Brand, Page
 from .seo import SITE, canonical, jsonld
@@ -32,7 +33,8 @@ NAV = [
 ]
 
 KIND_LABEL = {'noticia': 'Noticia', 'guia': 'Guía', 'comparativa': 'Comparativa', 'ficha': 'Ficha',
-              'utilidad': 'Utilidad', 'pagina': 'Página', 'duelo': 'Cara a cara'}
+              'utilidad': 'Utilidad', 'pagina': 'Página', 'duelo': 'Cara a cara',
+              'profesion': 'Profesión'}
 
 
 def _radar_slots():
@@ -53,6 +55,7 @@ TEMPLATE_BY_KIND = {
     'guia': 'article.html',
     'comparativa': 'article.html',
     'duelo': 'duel.html',
+    'profesion': 'profession.html',
     'pagina': 'page.html',
     'utilidad': 'utility.html',
 }
@@ -106,6 +109,7 @@ def make_env(templates_dir: Path) -> jinja2.Environment:
     env.globals['asset'] = lambda rel: asset_url(static_dir, rel)
     env.filters['em_phrase'] = em_phrase
     env.filters['duel_tools'] = duel_tools
+    env.filters['kit_ids'] = lambda page: [tid for tid, _ in parse_kit(page)]
     env.filters['cover'] = cover_filter
     env.filters['logo'] = logo_filter
     env.globals.update(SITE=SITE, NAV=NAV, ADSENSE_CLIENT=ADSENSE_CLIENT, ads_enabled=False,
@@ -165,6 +169,10 @@ def render_page(env: jinja2.Environment, page: Page, ctx: dict) -> str:
         start_payload=ctx.get('start_payload', {}),
         glossary=ctx.get('glossary', {}),
         duels=ctx.get('duels', []),
+        professions=ctx.get('professions', []),
+        recommended_for=ctx.get('recommended_for', {}),
+        profession=profession_context(page, ctx['compare_by_id'], ctx.get('professions', []))
+        if page.kind == 'profesion' else None,
         duels_by_tool=ctx.get('duels_by_tool', {}),
         duel_pairs=ctx.get('duel_pairs', {}),
         duel=duel_context(page, ctx['compare_by_id'], ctx['fichas'], ctx.get('duels', []))

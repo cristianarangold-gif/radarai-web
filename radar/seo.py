@@ -17,6 +17,7 @@ SECTION_BY_KIND = {
     'guia': ('Guías', '/guias/'),
     'comparativa': ('Comparativas', '/mejor-ia/'),
     'duelo': ('Comparativas', '/mejor-ia/'),
+    'profesion': ('IA por profesión', '/ia-por-profesion/'),
     'ficha': ('Herramientas', '/herramientas/'),
     'utilidad': ('Utilidades', '/herramientas-radar/'),
 }
@@ -53,7 +54,7 @@ def jsonld(page: Page, image: Optional[str] = None) -> List[dict]:
             'description': page.description,
         }]
     data = []
-    article_type = {'noticia': 'NewsArticle', 'guia': 'Article', 'comparativa': 'Article', 'duelo': 'Article'}.get(page.kind)
+    article_type = {'noticia': 'NewsArticle', 'guia': 'Article', 'comparativa': 'Article', 'duelo': 'Article', 'profesion': 'Article'}.get(page.kind)
     if article_type or page.kind == 'ficha':
         article = {
             '@context': 'https://schema.org', '@type': article_type or 'Article',
