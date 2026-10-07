@@ -1,9 +1,9 @@
 titulo: IA para abogados: herramientas, prompts y deontología
-descripcion: Cómo usar la IA en un despacho de abogados: analizar documentación, preparar borradores y traducir, con lo que exige el Código Deontológico y el secreto profesional.
+descripcion: Cómo usar la IA en un despacho: analizar documentación, preparar borradores y traducir, con lo que exige el Código Deontológico y el secreto profesional.
 fecha: 2026-10-07
 profesion: abogados y despachos
 emoji: ⚖️
-kit: claude = Analizar y resumir documentación extensa | notebooklm = Trabajar solo con tus expedientes y normativa | deepl-write = Traducir documentos sin que se usen para entrenar (planes Pro)
+kit: claude = Analizar y resumir documentación extensa | notebooklm = Trabajar solo con tus expedientes y normativa | deepl-write = Traducir documentos sin que se usen para entrenar = Individual 7,49 €/mes
 fuentes: https://abogaciavasca.net/cgae-circular-interpretativa-3-2026_deontologia/
     https://www.aepd.es/guias/recomendaciones-ia-aepd.pdf
 
@@ -15,7 +15,7 @@ En un despacho, buena parte del tiempo se va en leer, resumir, ordenar y redacta
 
 Contratos, actas, informes periciales o expedientes largos son el terreno de [Claude](/herramientas/claude/), que permite subir varios archivos y pedir resúmenes, comparaciones o extracción de datos concretos. Trabaja siempre con **documentos anonimizados** (más abajo explicamos por qué) y comprueba cada referencia en el original.
 
-> Resume este contrato en una tabla con tres columnas: obligaciones de cada parte, plazos y penalizaciones. Indica el número de cláusula en cada fila y señala cualquier cláusula que te parezca poco habitual, explicando por qué.
+> Prepara una tabla con las obligaciones de cada parte, los plazos y las penalizaciones de este contrato, con el número de cláusula en cada fila. Añade una segunda tabla con las cláusulas que se aparten de lo que suele pactarse en este tipo de contrato y el motivo, para que yo las revise.
 
 ### Preparar un primer borrador
 
@@ -53,6 +53,8 @@ Explicar a un cliente, en lenguaje claro, en qué punto está su asunto o qué i
 
 **Cuidado con lo que introduces.** La misma circular pide **«extremar el cuidado al decidir qué datos se le introducen»** y anuncia otra circular específica sobre confidencialidad y secreto profesional. Mientras tanto, la recomendación general de la Agencia Española de Protección de Datos es clara: su [decálogo sobre el uso de la IA](https://www.aepd.es/guias/recomendaciones-ia-aepd.pdf) aconseja no compartir datos personales ni información confidencial de la entidad, de su personal o de sus clientes, y describir un caso ficticio cuando sea posible. Anonimiza los documentos antes de subirlos.
 
+**Las buenas prácticas de la Circular.** Además, recomienda cinco buenas prácticas que, aunque no son obligaciones deontológicas en sí, pueden ser relevantes para apreciar tu diligencia: conocer cabalmente las herramientas que usas; no utilizar nunca resultados de IA sin una lectura crítica completa; contrastar siempre con fuentes jurídicas externas fiables; usar la IA solo en materias que domines; y conservar una trazabilidad interna de cuándo y para qué la has usado.
+
 **Elige bien el plan y la herramienta.** Las condiciones de privacidad cambian mucho entre planes. Por ejemplo, en los planes de consumo de Claude el uso de las conversaciones para entrenar depende de un ajuste que eliges tú, y en los planes de pago de DeepL los textos no se usan para entrenar. Para el despacho, valora los planes para equipos o empresas, que añaden controles de administración. Lo resumimos en la guía de [privacidad al usar IA](/guias/privacidad-en-ia/).
 
 ## Qué no conviene delegar en la IA
@@ -68,7 +70,7 @@ Nada de lo anterior es asesoramiento jurídico: resume lo que dicen las fuentes 
 
 ### ¿Puedo usar ChatGPT o Claude en mi despacho?
 
-Sí. El Consejo General de la Abogacía Española considera lícito y admisible usar la IA generativa para elaborar borradores o textos jurídicos, siempre que verifiques el resultado y no delegues de forma acrítica las funciones esenciales de la profesión.
+El Consejo General de la Abogacía Española considera «lícita y admisible» la IA generativa para elaborar borradores o textos jurídicos, siempre que se verifique el resultado y no se delegue de forma acrítica. La Circular 3/2026 no aborda la confidencialidad ni el secreto profesional, que deja para otra circular; mientras tanto, extrema la prudencia con los datos de clientes y consulta a tu colegio ante cualquier duda.
 
 ### ¿Puedo subir documentos de un cliente?
 
@@ -78,6 +80,6 @@ Con mucha prudencia. La AEPD aconseja no compartir con la IA información confid
 
 Según la Circular 3/2026, la falta de verificación de un escrito elaborado con IA puede constituir una infracción del deber de diligencia del Código Deontológico. Comprueba siempre cada referencia en la fuente oficial.
 
-### ¿Qué herramienta es mejor para analizar expedientes?
+### ¿Qué herramienta usar para analizar expedientes?
 
 Para documentos extensos, Claude permite subir varios archivos y compararlos; para trabajar solo con un conjunto cerrado de fuentes y con citas al fragmento exacto, Gemini Notebook. Puedes compararlas en el [comparador](/comparador/?h=claude,notebooklm).

@@ -7,29 +7,36 @@
   live.setAttribute('aria-live', 'polite');
   document.body.appendChild(live);
 
-  function select(el) {
-    var range = document.createRange(), sel = window.getSelection();
-    range.selectNodeContents(el);
-    sel.removeAllRanges();
-    sel.addRange(range);
+  function say(msg) {
+    live.textContent = '';
+    setTimeout(function () { live.textContent = msg; }, 50);
   }
-  Array.prototype.forEach.call(quotes, function (q) {
-    var text = q.textContent.trim(), b = document.createElement('button');
+  Array.prototype.forEach.call(quotes, function (q, i) {
+    var text = q.textContent.trim(), b = document.createElement('button'), timer = null;
     b.type = 'button';
     b.className = 'copy-prompt';
     b.textContent = 'Copiar';
+    b.setAttribute('aria-label', 'Copiar prompt ' + (i + 1));
+    function done(msg, spoken) {
+      b.textContent = msg;
+      say(spoken);
+      clearTimeout(timer);
+      timer = setTimeout(function () { b.textContent = 'Copiar'; }, 2000);
+    }
+    function select() {
+      var range = document.createRange(), sel = window.getSelection();
+      range.setStart(q, 0);
+      range.setEndBefore(b);
+      sel.removeAllRanges();
+      sel.addRange(range);
+      done('Seleccionado', 'Prompt seleccionado: cópialo con Ctrl+C o Cmd+C');
+    }
     b.addEventListener('click', function () {
-      function done(msg) {
-        b.textContent = msg;
-        live.textContent = msg === 'Copiado' ? 'Prompt copiado' : 'Prompt seleccionado: cópialo con Ctrl+C o Cmd+C';
-        setTimeout(function () { b.textContent = 'Copiar'; }, 2000);
-      }
       if (navigator.clipboard && window.isSecureContext) {
-        navigator.clipboard.writeText(text).then(function () { done('Copiado'); },
-          function () { select(q.firstElementChild || q); done('Seleccionado'); });
+        navigator.clipboard.writeText(text).then(function () { done('Copiado', 'Prompt ' + (i + 1) + ' copiado'); },
+          select);
       } else {
-        select(q.firstElementChild || q);
-        done('Seleccionado');
+        select();
       }
     });
     q.classList.add('has-copy');

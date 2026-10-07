@@ -5,6 +5,7 @@ profesion: docentes
 emoji: 🍎
 kit: notebooklm = Preparar clases y repasos con tus propias fuentes | chatgpt = Ejercicios, rúbricas y adaptaciones de nivel | canva-ai = Presentaciones y materiales visuales
 fuentes: https://www.aepd.es/guias/guia-centros-educativos.pdf
+    https://www.aepd.es/guias/recomendaciones-ia-aepd.pdf
     https://www.aepd.es/prensa-y-comunicacion/blog/docentes-y-su-importancia-para-la-proteccion-de-datos-y-la-privacidad
 
 Preparar clases, inventar ejercicios distintos para cada grupo, corregir y mantener informadas a las familias ocupa muchas horas fuera del aula. La inteligencia artificial puede quitarte parte de ese trabajo mecánico si la usas como **ayudante de preparación**, no como sustituta de tu criterio. En esta página reunimos las tareas en las que más ayuda, con qué herramienta hacerlas según nuestras fichas y un prompt para empezar, además de lo que hay que cuidar cuando se trabaja con datos del alumnado.
@@ -13,13 +14,13 @@ Preparar clases, inventar ejercicios distintos para cada grupo, corregir y mante
 
 ### Preparar una unidad a partir de tus materiales
 
-Si ya tienes el temario, tus apuntes o artículos de referencia, [Gemini Notebook (antes NotebookLM)](/herramientas/notebooklm/) es la opción más ajustada: responde **solo con las fuentes que subes** y cita el fragmento exacto de donde sale cada respuesta, lo que reduce las invenciones. En su plan gratuito admite hasta 50 fuentes por cuaderno, suficiente para un tema completo.
+Si ya tienes el temario, tus apuntes o artículos de referencia, [Gemini Notebook (antes NotebookLM)](/herramientas/notebooklm/) encaja especialmente con esta tarea porque responde **solo con las fuentes que subes** y cita el fragmento exacto de donde sale cada respuesta, lo que reduce las invenciones. En su plan gratuito admite hasta 50 fuentes por cuaderno, suficiente para un tema completo.
 
 > Con las fuentes de este cuaderno, propón una secuencia de 6 sesiones de 50 minutos para 2.º de ESO. Para cada sesión indica el objetivo, una actividad de inicio, la actividad principal y cómo comprobar qué han aprendido. Cita la fuente de cada contenido.
 
 ### Crear ejercicios por niveles
 
-Atender a la diversidad del aula exige versiones del mismo ejercicio con distinta dificultad. Un asistente generalista como [ChatGPT](/herramientas/chatgpt/) resuelve bien este tipo de encargo en su plan gratuito, que ofrece chats de texto ilimitados. Pide siempre las soluciones para revisarlas tú antes de usarlas.
+Atender a la diversidad del aula exige versiones del mismo ejercicio con distinta dificultad. Un asistente generalista como [ChatGPT](/herramientas/chatgpt/) puede ayudarte con este tipo de encargo en su plan gratuito, que ofrece chats de texto ilimitados. Pide siempre las soluciones para revisarlas tú antes de usarlas.
 
 > Crea 9 ejercicios sobre fracciones equivalentes para 5.º de Primaria en tres niveles (básico, medio y avanzado), tres por nivel. Incluye las soluciones al final y una frase que explique el error más común en cada nivel.
 
@@ -33,7 +34,7 @@ Una rúbrica clara ahorra discusiones y hace la evaluación más transparente. L
 
 Para diapositivas, fichas o carteles, [Canva IA](/herramientas/canva-ai/) genera presentaciones a partir de una idea, crea imágenes dentro del propio diseño y adapta un mismo material a distintos formatos. Según nuestra ficha, **los centros educativos tienen acceso gratuito a la mayoría de funciones premium** de Canva, así que merece la pena preguntar en tu centro.
 
-> Crea una presentación de 8 diapositivas para 3.º de Primaria sobre el ciclo del agua: una idea por diapositiva, frases cortas, una imagen ilustrativa en cada una y una última diapositiva con tres preguntas para comprobar lo aprendido.
+> Crea una presentación de 8 diapositivas para 3.º de Primaria sobre los planetas del sistema solar: un planeta por diapositiva con su tamaño comparado con la Tierra, una curiosidad y una ilustración, y una diapositiva final con un juego de adivinanzas.
 
 ### Crear material de repaso
 
@@ -59,6 +60,8 @@ Circulares, avisos de salidas o recordatorios de plazos son textos repetitivos q
 
 **Las herramientas en la nube también cuentan.** La AEPD pide [especial cuidado con las aplicaciones de terceros y los servicios en la nube](https://www.aepd.es/prensa-y-comunicacion/blog/docentes-y-su-importancia-para-la-proteccion-de-datos-y-la-privacidad) que se usan en el aula, y con la publicación de fotografías, vídeos o audios del alumnado. Ante cualquier duda, recomienda consultar a la **persona delegada de protección de datos** de tu centro o, en los públicos, a la designada por tu comunidad autónoma. Antes de usar una herramienta con tu grupo, comprueba si tu centro o administración la tiene autorizada.
 
+**Lo que recomienda la AEPD sobre la IA en general.** Su [decálogo de enero de 2026](https://www.aepd.es/guias/recomendaciones-ia-aepd.pdf) aconseja no compartir datos personales, describir un caso ficticio cuando sea posible y no utilizar imágenes en las que aparezcan otras personas para generar nuevo contenido a partir de ellas: una regla especialmente importante con fotos del alumnado.
+
 **Revisa cómo usa tus datos cada herramienta.** Por ejemplo, en los planes individuales de ChatGPT el contenido se usa para entrenar los modelos salvo que lo desactives en la configuración. Te lo explicamos en la guía de [privacidad al usar IA](/guias/privacidad-en-ia/).
 
 **Comprueba siempre lo que genera.** Los asistentes pueden inventar datos, fechas o citas con total seguridad (lo que se conoce como [alucinación](/glosario/#alucinacion)). Ningún ejercicio, solución o dato debería llegar al aula sin tu revisión.
@@ -78,7 +81,7 @@ Si te preocupa cómo usa tu alumnado estas herramientas, nuestra guía sobre [c�
 
 No es recomendable. Los datos del alumnado son datos personales, a menudo de menores, y su tratamiento corresponde al centro o a la administración educativa. Usa la IA con contenidos genéricos y, si tienes dudas, consulta a la persona delegada de protección de datos de tu centro.
 
-### ¿Qué herramienta es mejor para preparar clases con mis propios apuntes?
+### ¿Qué herramienta usar para preparar clases con mis propios apuntes?
 
 Gemini Notebook, porque responde solo con las fuentes que subes y cita el fragmento exacto. Para crear ejercicios o adaptar textos, un asistente generalista como ChatGPT o [Claude](/herramientas/claude/) es más flexible.
 

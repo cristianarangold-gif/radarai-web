@@ -1,9 +1,9 @@
 titulo: IA para creadores y community managers: guía práctica
-descripcion: Cómo usar la IA para redes sociales: calendario de contenidos, guiones, diseños, locuciones y vídeo, con lo que exige la ley sobre contenido artificial, voces y personas reales.
+descripcion: IA para redes sociales: calendario, guiones, diseños, locuciones y vídeo, con lo que exige la ley sobre contenido artificial, voces y personas reales.
 fecha: 2026-10-07
 profesion: creadores y community managers
 emoji: 📱
-kit: chatgpt = Ideas, guiones y calendarios | canva-ai = Diseños y adaptaciones para cada red | elevenlabs = Locuciones y doblaje | runway = Clips y recursos de vídeo
+kit: chatgpt = Ideas, guiones y calendarios | canva-ai = Diseños y adaptaciones para cada red | elevenlabs = Locuciones y doblaje = Starter 6 $/mes (con licencia comercial) | runway = Clips y recursos de vídeo = Standard 15 $/mes
 fuentes: https://eur-lex.europa.eu/eli/reg/2024/1689/oj?locale=es
     https://www.aepd.es/guias/recomendaciones-ia-aepd.pdf
 
@@ -51,7 +51,7 @@ Preparar respuestas tipo para las preguntas que más se repiten ahorra tiempo y 
 
 **Contenido realista generado con IA: hay que decirlo.** El [Reglamento europeo de IA](https://eur-lex.europa.eu/eli/reg/2024/1689/oj?locale=es) obliga, en su artículo 50, a quien publique una **ultrasuplantación** (*deepfake*: imagen, audio o vídeo generado o manipulado que parece real) a indicar que es artificial. Para obras claramente artísticas, satíricas o de ficción, el aviso puede hacerse de forma que no estropee la obra. Si un vídeo o una voz generados pueden pasar por reales, etiquétalos.
 
-**Voces y personas reales.** Clona solo tu propia voz o la de personas que te hayan dado su consentimiento expreso, como recuerda nuestra ficha de ElevenLabs. Y no uses fotos de otras personas para generar contenido nuevo: el [decálogo de la AEPD](https://www.aepd.es/guias/recomendaciones-ia-aepd.pdf) insiste en que **nunca deben utilizarse imágenes en las que aparezcan otras personas**, especialmente menores.
+**Voces y personas reales.** Clona solo tu propia voz o la de personas que te hayan dado su consentimiento expreso, como recuerda nuestra ficha de ElevenLabs. Y no uses fotos de otras personas como base para crear contenido: el [decálogo de la AEPD](https://www.aepd.es/guias/recomendaciones-ia-aepd.pdf) recomienda no utilizar nunca imágenes en las que aparezcan otras personas **para generar nuevo contenido a partir de ellas**.
 
 **Licencias y planes.** Revisa qué permite cada plan antes de publicar: la licencia comercial, la marca de agua o la propiedad del resultado cambian entre el plan gratuito y los de pago. Por ejemplo, en Runway el plan Standard elimina la marca de agua.
 
@@ -80,7 +80,7 @@ Depende de lo que hagas: para ideas y guiones, un asistente como ChatGPT; para d
 
 ### ¿Puedo clonar la voz de un famoso para un vídeo de humor?
 
-No sin su consentimiento expreso. Usar la voz de alguien sin permiso puede vulnerar sus derechos, y si el resultado parece real, además hay que indicar que es artificial.
+Es arriesgado. Usar la voz de alguien sin su permiso puede vulnerar sus derechos, como recuerda nuestra ficha de ElevenLabs, y si el resultado parece real, además hay que indicar que es artificial. Ante la duda, consulta a un especialista.
 
 ### ¿Puedo probar Runway gratis?
 

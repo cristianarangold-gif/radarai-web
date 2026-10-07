@@ -1,9 +1,9 @@
 titulo: IA para administrativos y oficina: herramientas y prompts
-descripcion: Cómo usar la IA en la oficina: correo, actas de reuniones, hojas de cálculo y documentos, con lo que recomienda la AEPD sobre datos personales y confidenciales.
+descripcion: Cómo usar la IA en la oficina: correo, actas, hojas de cálculo y documentos, con lo que recomienda la AEPD sobre datos personales y confidenciales.
 fecha: 2026-10-07
 profesion: administrativos y oficina
 emoji: 🗂️
-kit: copilot = IA dentro de Word, Excel y Outlook | gemini = IA en Gmail, Documentos y Drive | notion-ai = Notas de reuniones y documentación del equipo
+kit: copilot = IA dentro de Word, Excel y Outlook = Microsoft 365 desde 10 €/mes | gemini = IA en Gmail, Documentos y Drive = Plus 4,99 €/mes | notion-ai = Notas de reuniones y documentación del equipo = Business 19,50 €/usuario/mes
 fuentes: https://www.aepd.es/guias/recomendaciones-ia-aepd.pdf
     https://www.aepd.es/prensa-y-comunicacion/notas-de-prensa/aepd-publica-decalogo-recomendaciones-proteger-privacidad-al-usar-ia
 
@@ -13,7 +13,7 @@ Correos, actas, hojas de cálculo, informes y documentos que hay que resumir o r
 
 ### Resumir y responder correos
 
-Si tu empresa usa Microsoft 365, [Copilot en Outlook](/herramientas/copilot/) resume hilos de correo y propone respuestas; si usa Google, [Gemini](/herramientas/gemini/) lo hace dentro de Gmail en sus planes de pago. Revisa siempre la respuesta antes de enviarla.
+Si tu empresa usa Microsoft 365, [Copilot en Outlook](/herramientas/copilot/) resume hilos de correo y propone respuestas; si usa Google, [Gemini](/herramientas/gemini/) lo hace dentro de Gmail en sus planes de pago. Revisa siempre la respuesta antes de enviarla. Un matiz: nuestra ficha de Copilot analiza los planes para particulares (desde Microsoft 365 Personal); en una empresa, lo habitual es el producto para organizaciones, Microsoft 365 Copilot, que se contrata por usuario con sus propios requisitos y precios.
 
 > Resume este hilo de correos en 5 puntos: qué se ha decidido, qué está pendiente, quién es responsable de cada tarea y qué fechas se han comprometido. Después, propón una respuesta breve y cordial confirmando los próximos pasos.
 

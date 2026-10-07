@@ -13,11 +13,11 @@
       <section class="kit" aria-labelledby="kit">
         <h2 id="kit">Tu kit en 30 segundos</h2>
         <div class="kit-cards">
-          {% for t, para in profession.kit %}
+          {% for t, para, price in profession.kit %}
           <a class="kit-card" href="{{ t.u }}">
             <span class="kit-name">{{ t.id | logo(28, t.n) }}{{ t.n }}</span>
             <span class="kit-para">{{ para }}</span>
-            <span class="kit-price">Desde {{ t.desde }}</span>
+            <span class="kit-price">{{ price }}</span>
           </a>
           {% endfor %}
         </div>

@@ -20,7 +20,7 @@ from radar.compare import compare_payload  # noqa: E402
 from radar.content import load_pages  # noqa: E402
 from radar.covers import cover_for, og_rel, write_cover_png  # noqa: E402
 from radar.duels import duel_links, validate_duels  # noqa: E402
-from radar.professions import recommended_for, validate_professions  # noqa: E402
+from radar.professions import published, recommended_for, validate_professions  # noqa: E402
 from radar.editorial import load_imprescindibles, radar_tools, validate_fichas, validate_news_meta  # noqa: E402
 from radar.models import Page, Redirect  # noqa: E402
 from radar.redirects import load_redirects, output_paths, render_redirect  # noqa: E402
@@ -111,7 +111,7 @@ def build(root: Path, out: Path) -> None:
     professions = [p for p in pages if p.kind == 'profesion']
     if professions:
         validate_professions(professions, fichas_ok)
-        base_ctx['professions'] = sorted((p for p in professions if p.indexable), key=lambda p: p.title)
+        base_ctx['professions'] = sorted(published(professions), key=lambda p: p.title)
         base_ctx['recommended_for'] = recommended_for(professions)
     duels = [p for p in pages if p.kind == 'duelo']
     if duels:
@@ -122,7 +122,7 @@ def build(root: Path, out: Path) -> None:
         base_ctx['compare_payload'] = compare_payload(
             {p.slug: p for p in pages if p.kind == 'ficha' and p.indexable}, tools, brands, CATEGORIES)
     site_urls = {p.url for p in pages if p.indexable} | {url for url, kind, *_ in LISTINGS
-                                                         if kind != 'profesion' or professions}
+                                                         if kind != 'profesion' or published(professions)}
     glossary_file = root / 'data' / 'glosario.md'
     if '/glosario/' in by_url:
         if not glossary_file.exists():
@@ -155,7 +155,7 @@ def build(root: Path, out: Path) -> None:
     for url, kind, title, desc in LISTINGS:
         if kind == 'utilidad' and not (root / 'content' / 'utilidades').is_dir():
             continue
-        if kind == 'profesion' and not professions:
+        if kind == 'profesion' and not published(professions):
             continue
         items = sorted((p for p in pages if p.kind == kind and p.indexable),
                        key=lambda p: (p.date is None, p.date), reverse=(kind == 'noticia'))

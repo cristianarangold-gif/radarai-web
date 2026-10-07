@@ -53,7 +53,10 @@ def prof(slug='docentes', html=None, **extra):
 
 def test_valid_profession_and_kit():
     validate_professions([prof()], FICHAS)
-    assert parse_kit(prof()) == [('alfa', 'Preparar clases'), ('beta', 'Ejercicios')]
+    assert parse_kit(prof()) == [('alfa', 'Preparar clases', ''), ('beta', 'Ejercicios', '')]
+    kit = parse_kit(prof(kit='alfa = Preparar clases = Pro 10 €/mes | beta = Ejercicios'))
+    assert kit[0] == ('alfa', 'Preparar clases', 'Pro 10 €/mes')
+    validate_professions([prof(kit='alfa = Preparar clases = Pro 10 €/mes | beta = Ejercicios')], FICHAS)
 
 
 @pytest.mark.parametrize('kw, needle', [
@@ -67,9 +70,12 @@ def test_valid_profession_and_kit():
     (dict(html=body(precautions=False)), 'Precauciones en tu profesión'),
     (dict(html=body(tasks=4, quotes=5)), 'tareas'),
     (dict(html=body(tasks=8, quotes=8)), 'tareas'),
-    (dict(html=body(tasks=5, quotes=4)), 'prompts'),
+    (dict(html=body(tasks=5, quotes=4)), 'Tarea 4'),
     (dict(html=body(extra='<p>Lo hemos probado en clase.</p>')), 'hemos probado'),
     (dict(html=body(extra='<p>Cuesta 99 €/mes.</p>')), '99 €'),
+    (dict(kit='alfa = Uno = Pro 77 €/mes | beta = Dos'), '77 €'),
+    (dict(html=body(extra='<p>Tras probarlo, funciona.</p>')), 'tras probarlo'),
+    (dict(html=body(tasks=5, quotes=4, extra='<blockquote><p>Otra</p></blockquote>')), 'Tarea 4'),
 ])
 def test_invalid_professions(kw, needle):
     html = kw.pop('html', None)
@@ -78,14 +84,20 @@ def test_invalid_professions(kw, needle):
     assert needle in str(e.value) and 'profesiones/docentes' in str(e.value)
 
 
+def test_prices_inside_prompts_are_ignored():
+    html = body().replace('«Prompt»', '«Presupuesto de 500 € para la campaña»', 1)
+    validate_professions([prof(html=html)], FICHAS)
+
+
 def test_context_and_recommended_for():
     payload = {t['id']: t for t in compare_payload(FICHAS, TOOLS, BRANDS, CATEGORIES)}
     other = prof('disenadores', profesion='diseñadores', kit='gamma = Ideas | alfa = Imágenes')
     draft = prof('periodistas', profesion='periodistas', kit='beta = Fuentes | gamma = Transcribir')
     draft.draft = True
     ctx = profession_context(prof(), payload, [prof(), other, draft])
-    assert [(t['n'], para) for t, para in ctx['kit']] == [('Alfa', 'Preparar clases'), ('Beta', 'Ejercicios')]
-    assert ctx['kit'][1][0]['desde'] == '5 $' and [p.slug for p in ctx['others']] == ['disenadores']
+    assert [(t['n'], para, price) for t, para, price in ctx['kit']] == [('Alfa', 'Preparar clases', 'Plan gratuito'),
+                                                                         ('Beta', 'Ejercicios', 'Desde 5 $')]
+    assert [p.slug for p in ctx['others']] == ['disenadores']
     rec = recommended_for([prof(), other, draft])
     assert rec['alfa'] == [('Diseñadores', '/ia-para-disenadores/'), ('Docentes', '/ia-para-docentes/')]
     assert rec['gamma'] == [('Diseñadores', '/ia-para-disenadores/')]
@@ -121,7 +133,9 @@ def site():
 def test_built_profession_and_hub(site):
     html = (site / 'ia-para-docentes' / 'index.html').read_text()
     assert 'IA por profesión' in html and 'Tu kit en 30 segundos' in html
-    assert html.count('class="kit-card"') == 3 and 'Desde 0 €' in html
+    assert html.count('class="kit-card"') == 3 and 'Plan gratuito' in html
+    admin = (site / 'ia-para-administrativos' / 'index.html').read_text()
+    assert 'Microsoft 365 desde 10 €/mes' in admin and 'Business 19,50 €/usuario/mes' in admin
     assert 'class="prose prompt-page"' in html or 'prompt-page' in html
     assert re.search(r'<script src="/static/js/prompts\.js\?v=[0-9a-f]{10}" defer>', html)
     assert re.search(r'href="/ia-por-profesion/">IA por profesión</a>', html)
@@ -150,3 +164,10 @@ def test_entry_points_in_built_site(site):
     idx = json.loads((site / 'search-index.json').read_text())
     assert any(e['u'] == '/ia-para-docentes/' and e['k'] == 'Profesión' for e in idx)
     assert "'Profesión'" in (ROOT / 'static' / 'js' / 'search.js').read_text()
+
+
+def test_published_excludes_drafts():
+    from radar.professions import published
+    draft = prof('periodistas')
+    draft.draft = True
+    assert [p.slug for p in published([prof(), draft])] == ['docentes']

@@ -1,5 +1,5 @@
 titulo: IA para diseñadores: herramientas, prompts y derechos
-descripcion: Cómo usar la IA en diseño: explorar conceptos y moodboards, adaptar piezas a formatos, preparar briefings, y qué cuidar con la autoría, los derechos y la privacidad.
+descripcion: IA para diseñadores: explorar conceptos y moodboards, adaptar piezas a formatos, preparar briefings, y qué cuidar con la autoría, los derechos y la
 fecha: 2026-10-07
 profesion: diseñadores
 emoji: 🎨
@@ -16,7 +16,7 @@ La IA generativa ha llegado al diseño con fuerza, pero rinde más como **herram
 
 [Midjourney](/herramientas/midjourney/) es una referencia por la calidad estética de sus imágenes y permite **referencias de estilo y de personaje** para mantener una estética coherente en varias imágenes. Es útil para *moodboards* y conceptos de campaña antes de una sesión de fotos o de una ilustración final. No tiene plan gratuito: el plan Basic cuesta 10 $/mes.
 
-> Moodboard para la identidad visual de una cafetería de especialidad en un barrio histórico: fotografía editorial, luz natural de mañana, tonos tierra y verde oliva, texturas de cerámica y madera, composición minimalista, sin texto.
+> Moodboard para la identidad visual de una librería independiente con zona de lectura: fotografía de interiores, luz cálida de tarde, azul profundo y ocre, papel, lomos de libros y textiles, encuadres cercanos, sin texto.
 
 ### Generar variaciones de un concepto
 
@@ -50,7 +50,7 @@ Para maquetas y prototipos, la IA genera textos realistas en lugar de relleno, y
 
 **Confidencialidad de los proyectos.** En los planes Basic y Standard de Midjourney, lo que generas aparece en su **galería pública**; para mantenerlo privado hace falta el modo Stealth de Pro o Mega. Si trabajas con campañas que aún no se han lanzado, tenlo en cuenta.
 
-**Personas reales y contenido realista.** No uses fotografías de personas sin su consentimiento: el [decálogo de la AEPD](https://www.aepd.es/guias/recomendaciones-ia-aepd.pdf) advierte de que no deben usarse imágenes en las que aparezcan otras personas, especialmente menores. Además, el [Reglamento europeo de IA](https://eur-lex.europa.eu/eli/reg/2024/1689/oj?locale=es) obliga, en su artículo 50, a indicar que un contenido es artificial cuando se trata de una ultrasuplantación (*deepfake*) que parece real.
+**Personas reales y contenido realista.** El [decálogo de la AEPD](https://www.aepd.es/guias/recomendaciones-ia-aepd.pdf) recomienda no utilizar nunca imágenes en las que aparezcan otras personas **para generar nuevo contenido a partir de ellas**. Además, el [Reglamento europeo de IA](https://eur-lex.europa.eu/eli/reg/2024/1689/oj?locale=es) obliga, en su artículo 50, a indicar que un contenido es artificial cuando se trata de una ultrasuplantación (*deepfake*) que parece real.
 
 ## Qué no conviene delegar en la IA
 

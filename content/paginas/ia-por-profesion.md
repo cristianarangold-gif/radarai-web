@@ -5,8 +5,8 @@ Las comparativas te dicen qué herramienta es mejor para una tarea; estas págin
 
 ## Qué encontrarás en cada página
 
-- **Tu kit en 30 segundos.** Dos a cuatro herramientas que cubren lo esencial de esa profesión, con su precio de partida tomado de nuestras fichas y comprobado en las webs oficiales.
-- **Tareas en las que te ayuda.** Entre cinco y siete tareas reales, cada una con la herramienta que mejor encaja según nuestras fichas y un **prompt listo para copiar** con un solo clic. Úsalo como punto de partida y adáptalo a tu caso.
+- **Tu kit en 30 segundos.** Dos a cuatro herramientas que cubren lo esencial de esa profesión, con su precio de partida o, si la tarea lo exige, el plan de pago que necesitas, tomados de nuestras fichas y comprobados en las webs oficiales.
+- **Tareas en las que te ayuda.** Entre cinco y siete tareas reales, cada una con una herramienta adecuada según nuestras fichas y un **prompt listo para copiar** con un solo clic. Úsalo como punto de partida y adáptalo a tu caso.
 - **Precauciones en tu profesión.** Lo que hay que cuidar en cada sector: datos personales, secreto profesional, derechos de autor o verificación de la información, con enlaces a las fuentes oficiales.
 - **Qué no conviene delegar.** Las decisiones y tareas en las que la IA puede ayudar a preparar, pero no debería sustituir tu criterio.
 

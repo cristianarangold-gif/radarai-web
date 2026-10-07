@@ -8,7 +8,7 @@ import re
 from .content import count_words, text_of
 from .models import Page
 
-FORBIDDEN = ('hemos probado', 'en nuestras pruebas')
+FORBIDDEN = ('hemos probado', 'en nuestras pruebas', 'en nuestra prueba', 'tras probarlo', 'tras probarla')
 MAX_RESPUESTA = 60
 MONTHS = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre',
           'noviembre', 'diciembre']

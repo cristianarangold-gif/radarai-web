@@ -109,7 +109,7 @@ def make_env(templates_dir: Path) -> jinja2.Environment:
     env.globals['asset'] = lambda rel: asset_url(static_dir, rel)
     env.filters['em_phrase'] = em_phrase
     env.filters['duel_tools'] = duel_tools
-    env.filters['kit_ids'] = lambda page: [tid for tid, _ in parse_kit(page)]
+    env.filters['kit_ids'] = lambda page: [tid for tid, _, _ in parse_kit(page)]
     env.filters['cover'] = cover_filter
     env.filters['logo'] = logo_filter
     env.globals.update(SITE=SITE, NAV=NAV, ADSENSE_CLIENT=ADSENSE_CLIENT, ads_enabled=False,

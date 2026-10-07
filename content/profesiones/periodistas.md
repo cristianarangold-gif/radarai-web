@@ -1,5 +1,5 @@
 titulo: IA para periodistas: herramientas, prompts y deontología
-descripcion: Cómo usar la IA en el periodismo: documentarse con fuentes, analizar documentos, editar textos y verificar, con lo que exige el código deontológico de la FAPE.
+descripcion: IA para periodistas: documentarse con fuentes, analizar documentos, editar textos y verificar, con lo que exige el código deontológico de la FAPE.
 fecha: 2026-10-07
 profesion: periodistas y redactores
 emoji: 📰
@@ -8,7 +8,7 @@ fuentes: https://fape.es/home/codigo-deontologico-1/
     https://eur-lex.europa.eu/eli/reg/2024/1689/oj?locale=es
     https://www.aepd.es/guias/recomendaciones-ia-aepd.pdf
 
-Documentarse rápido, analizar un informe de cien páginas antes del cierre, transcribir y ordenar declaraciones o ajustar un texto a un espacio: el trabajo periodístico tiene muchas tareas que la inteligencia artificial puede acelerar. Pero también es la profesión en la que un error de la IA hace más daño, porque se publica. El principio que guía esta página es el del propio código deontológico: **difundir solo información contrastada**. En ella reunimos las tareas en las que más ayuda, con qué herramienta hacerlas según nuestras fichas y lo que hay que vigilar.
+Documentarse rápido, analizar un informe de cien páginas antes del cierre, transcribir y ordenar declaraciones o ajustar un texto a un espacio: el trabajo periodístico tiene muchas tareas que la inteligencia artificial puede acelerar. Pero en periodismo un error de la IA no se queda en un borrador: se publica. El principio que guía esta página es el del propio código deontológico: **difundir solo información contrastada**. En ella reunimos las tareas en las que más ayuda, con qué herramienta hacerlas según nuestras fichas y lo que hay que vigilar.
 
 ## Tareas en las que te ayuda
 
@@ -44,7 +44,7 @@ Antes de entrevistar a alguien, la IA puede proponer preguntas a partir de tu do
 
 ### Adaptar una pieza a otros formatos
 
-Convertir un reportaje en un hilo, un guion de vídeo corto o un boletín es una tarea mecánica que la IA resuelve bien, siempre que conserve los datos y las atribuciones.
+Convertir un reportaje en un hilo, un guion de vídeo corto o un boletín es una tarea mecánica en la que la IA puede ayudar, siempre que conserve los datos y las atribuciones.
 
 > Convierte este artículo en un hilo de 8 mensajes para redes sociales: el primero con el dato principal, uno por idea clave y el último con el enlace al artículo. Mantén todas las cifras con su fuente y no añadas información que no esté en el texto.
 
@@ -77,6 +77,6 @@ Según el artículo 50 del Reglamento europeo de IA, la obligación de indicarlo
 
 No es recomendable si pueden identificar a una fuente o contienen datos personales. El código deontológico obliga a proteger las fuentes y la AEPD aconseja no compartir información confidencial con la IA.
 
-### ¿Qué herramienta es mejor para documentarse?
+### ¿Qué herramienta usar para documentarse?
 
 Para buscar información actual con fuentes, Perplexity; para analizar documentos que ya tienes, Gemini Notebook. Lo comparamos en el cara a cara [Perplexity vs ChatGPT](/perplexity-vs-chatgpt/).
