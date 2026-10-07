@@ -1,0 +1,13 @@
+<div class="search-dialog" id="search-dialog" role="dialog" aria-modal="true" aria-label="Buscar en Radar IA" hidden>
+  <div class="search-panel">
+    <div class="search-field">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="m15.5 15.5 5 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+      <input id="search-input" type="search" role="combobox" aria-expanded="false" aria-controls="search-results" aria-autocomplete="list" autocomplete="off" placeholder="Busca herramientas, comparativas, guías…" aria-label="Buscar">
+      <button class="search-close" type="button" aria-label="Cerrar el buscador">Esc</button>
+    </div>
+    <div class="search-msg"></div>
+    <div id="search-results" class="search-list" role="listbox" aria-label="Resultados"></div>
+    <p class="search-status" aria-live="polite"></p>
+    <a class="search-all" href="/buscar/" hidden>Ver todos</a>
+  </div>
+</div>

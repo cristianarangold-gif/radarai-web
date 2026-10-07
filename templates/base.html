@@ -48,6 +48,8 @@
 {% block main %}{% endblock %}
 </main>
 {% include 'partials/footer.html' %}
+{% include 'partials/search_dialog.html' %}
+<script src="{{ asset('js/search.js') }}" defer></script>
 <script src="{{ asset('js/site.js') }}" defer></script>
 {% block scripts %}{% endblock %}
 </body>
