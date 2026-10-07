@@ -12,8 +12,13 @@
   <div class="hero-bottom">
     <p class="lede">{{ page.description }}</p>
     <p class="hero-actions">
+      {% if assistant_payload %}
+      <a class="btn" href="/que-ia-necesito/">¿Qué IA necesito? →</a>
+      <a class="btn btn-ghost" href="/mejor-ia/">Ver comparativas</a>
+      {% else %}
       <a class="btn" href="/mejor-ia/">Ver comparativas</a>
       <a class="btn btn-ghost" href="/herramientas/">Explorar herramientas</a>
+      {% endif %}
     </p>
   </div>
 </section>

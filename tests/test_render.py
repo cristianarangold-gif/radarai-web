@@ -221,3 +221,49 @@ def test_search_js_review_fixes():
     assert "filters.querySelector('[aria-pressed=\"true\"]')" in js
     # Palabras vacías fuera de la búsqueda cuando hay otras.
     assert "'para'" in js and 'STOP' in js
+
+
+def test_assistant_json_escapes_script_close(env):
+    page = make_page(url='/que-ia-necesito/', slug='que-ia-necesito', title='¿Qué IA necesito?')
+    payload = {'tareas': {}, 'reglas': {}, 'auto': {}, 'tools': {'x': {'n': 'a</script><b>'}}}
+    html = render_page(env, page, ctx(assistant_payload=payload))
+    block = html[html.index('id="asistente-datos">'):]
+    assert '</script><b>' not in block.split('</script>')[0] and '<\\/script>' in html
+
+
+def test_real_assistant_page_has_enough_words():
+    from radar.content import load_pages
+    page = [p for p in load_pages(ROOT / 'content') if p.url == '/que-ia-necesito/'][0]
+    assert page.word_count >= 400 and page.indexable
+
+
+def test_assistant_js_is_dom_safe_and_small():
+    import gzip
+    js = (ROOT / 'static' / 'js' / 'assistant.js').read_text()
+    assert js.strip(), 'assistant.js vacío'
+    assert 'innerHTML' not in js
+    for needle in ('textContent', 'replaceState', 'si_equipo', 'si_avanzado', 'Por qué encaja contigo',
+                   'También encajan', 'Otras opciones del catálogo', 'noopener nofollow'):
+        assert needle in js, needle
+    assert len(gzip.compress(js.encode('utf-8'))) <= 6000
+
+
+def test_home_primary_button_is_assistant(env):
+    html = render_page(env, make_page(url='/'), ctx(assistant_payload={'tareas': {}}))
+    assert '<a class="btn" href="/que-ia-necesito/">¿Qué IA necesito? →</a>' in html
+    assert 'href="/mejor-ia/">Ver comparativas' in html
+
+
+def test_assistant_cta_only_in_comparativas_and_guides(env):
+    cta = 'Hacer el test →'
+    for kind, url in (('comparativa', '/mejor-ia-x/'), ('guia', '/guias/g/')):
+        html = render_page(env, make_page(kind=kind, url=url), ctx(assistant_payload={'tareas': {}}))
+        assert cta in html and 'href="/que-ia-necesito/"' in html, kind
+    assert cta not in render_page(env, news('n', 1), ctx())
+    ficha = make_page(kind='ficha', slug='bar', url='/herramientas/bar/', date=date(2026, 10, 1))
+    assert cta not in render_page(env, ficha, ctx(tools={'bar': tool('bar', True)}))
+
+
+def test_no_assistant_links_without_assistant(env):
+    assert '/que-ia-necesito/' not in render_page(env, make_page(url='/'), ctx())
+    assert '/que-ia-necesito/' not in render_page(env, make_page(kind='guia', url='/guias/g/'), ctx())

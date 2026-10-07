@@ -16,6 +16,12 @@
       <div class="prose">
         {{ page.body_html | safe }}
       </div>
+      {% if assistant_payload and page.kind in ('comparativa', 'guia') %}
+      <aside class="assistant-cta-box" aria-label="Asistente">
+        <p><strong>¿No lo tienes claro?</strong> Responde 4 preguntas y te decimos cuál encaja contigo.</p>
+        <a class="btn" href="/que-ia-necesito/">Hacer el test →</a>
+      </aside>
+      {% endif %}
       {% include 'partials/ad_slot.html' %}
       {% include 'partials/sources.html' %}
       {% include 'partials/related.html' %}

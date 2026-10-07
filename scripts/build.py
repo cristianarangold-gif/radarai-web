@@ -14,6 +14,7 @@ from typing import Dict, List
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
 
+from radar.assistant import load_assistant, resolve_payload, validate_assistant  # noqa: E402
 from radar.brands import load_brands  # noqa: E402
 from radar.content import load_pages  # noqa: E402
 from radar.covers import cover_for, og_rel, write_cover_png  # noqa: E402
@@ -91,6 +92,12 @@ def build(root: Path, out: Path) -> None:
                     utilidades=featured('utilidad'), brands=brands, radar=radar_tools(news, tools),
                     imprescindibles=[], logos_dir=root / 'static' / 'logos',
                     fichas={p.slug: p for p in pages if p.kind == 'ficha' and p.indexable})
+    assistant_file = root / 'data' / 'asistente.json'
+    if assistant_file.exists():
+        assistant = load_assistant(assistant_file)
+        fichas = {p.slug: p for p in pages if p.kind == 'ficha' and p.indexable}
+        validate_assistant(assistant, tools, fichas, {p.url for p in pages if p.indexable})
+        base_ctx['assistant_payload'] = resolve_payload(assistant, tools, brands, fichas)
     imprescindibles = root / 'data' / 'imprescindibles.txt'
     if imprescindibles.exists():
         base_ctx['imprescindibles'] = load_imprescindibles(imprescindibles, by_url)

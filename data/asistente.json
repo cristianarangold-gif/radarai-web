@@ -1,0 +1,614 @@
+{
+ "tareas": {
+  "escribir": {
+   "etiqueta": "Escribir",
+   "emoji": "✍️",
+   "comparativa": "/mejor-ia-para-escribir/",
+   "guia": "/guias/mejores-prompts/",
+   "categorias": [
+    "escritura",
+    "ia-general"
+   ]
+  },
+  "estudiar": {
+   "etiqueta": "Estudiar",
+   "emoji": "📚",
+   "comparativa": "/mejor-ia-para-estudiar/",
+   "guia": "/guias/ia-para-estudiar/",
+   "categorias": [
+    "educacion",
+    "ia-general"
+   ]
+  },
+  "imagenes": {
+   "etiqueta": "Imágenes",
+   "emoji": "🎨",
+   "comparativa": "/mejor-ia-para-imagenes/",
+   "guia": "/guias/mejores-prompts/",
+   "categorias": [
+    "imagenes"
+   ]
+  },
+  "video": {
+   "etiqueta": "Vídeo",
+   "emoji": "🎬",
+   "comparativa": "/mejor-ia-para-video/",
+   "guia": "/guias/mejores-prompts/",
+   "categorias": [
+    "video"
+   ]
+  },
+  "musica": {
+   "etiqueta": "Música y voz",
+   "emoji": "🎵",
+   "comparativa": "/mejor-ia-para-crear-musica/",
+   "guia": "/guias/mejores-prompts/",
+   "categorias": [
+    "audio"
+   ]
+  },
+  "programar": {
+   "etiqueta": "Programar",
+   "emoji": "💻",
+   "comparativa": "/mejor-ia-para-programar/",
+   "guia": "/guias/automatizar-tareas/",
+   "categorias": [
+    "programacion"
+   ]
+  },
+  "marketing": {
+   "etiqueta": "Marketing",
+   "emoji": "📣",
+   "comparativa": "/mejor-ia-para-marketing/",
+   "guia": "/guias/ia-para-pequenas-empresas/",
+   "categorias": [
+    "marketing"
+   ]
+  },
+  "productividad": {
+   "etiqueta": "Productividad",
+   "emoji": "⚡",
+   "comparativa": "/mejor-ia-para-productividad/",
+   "guia": "/guias/automatizar-tareas/",
+   "categorias": [
+    "productividad",
+    "ia-general"
+   ]
+  },
+  "general": {
+   "etiqueta": "Un poco de todo",
+   "emoji": "🧭",
+   "comparativa": "/mejor-ia-gratis/",
+   "guia": "/guias/mejores-prompts/",
+   "categorias": [
+    "ia-general"
+   ]
+  }
+ },
+ "reglas": {
+  "escribir/gratis": {
+   "principal": "chatgpt",
+   "porque": [
+    "Escribe, resume y traduce, con un plan gratuito muy completo.",
+    "Es la opción más versátil para el día a día."
+   ],
+   "alternativas": [
+    {
+     "id": "claude",
+     "motivo": "Para textos largos y cuidados: respeta muy bien el tono"
+    },
+    {
+     "id": "deepl-write",
+     "motivo": "Para corregir y traducir gratis (hasta 50.000 caracteres al mes); la garantía de privacidad es de DeepL Pro"
+    }
+   ]
+  },
+  "escribir/poco": {
+   "principal": "chatgpt",
+   "porque": [
+    "El plan Go (8 €/mes) tiene sentido si chocas con los límites del gratuito pero no necesitas funciones avanzadas.",
+    "Escribe, resume, traduce y además genera imágenes."
+   ],
+   "alternativas": [
+    {
+     "id": "deepl-write",
+     "motivo": "DeepL Pro Individual (7,49 €/mes) para traducir documentos con garantías de privacidad"
+    },
+    {
+     "id": "claude",
+     "motivo": "Para textos largos y cuidados, con plan gratuito"
+    }
+   ]
+  },
+  "escribir/sin-limite": {
+   "principal": "claude",
+   "porque": [
+    "Respeta muy bien el tono y las instrucciones detalladas: ideal para textos largos y cuidados.",
+    "Pro (20 $/mes) es la elección lógica si escribes a diario."
+   ],
+   "alternativas": [
+    {
+     "id": "chatgpt",
+     "motivo": "ChatGPT Plus si además necesitas imágenes y búsqueda"
+    },
+    {
+     "id": "deepl-write",
+     "motivo": "DeepL Write para corregir y DeepL Pro para traducir con privacidad"
+    }
+   ],
+   "si_equipo": {
+    "principal": "claude",
+    "porque": [
+     "Para empresas conviene un asistente con plan de empresa (Claude Team, ChatGPT Business o Gemini en Google Workspace) con controles de administración.",
+     "Combínalo con DeepL Pro para traducciones confidenciales: no usa tus datos para entrenar."
+    ],
+    "alternativas": [
+     {
+      "id": "chatgpt",
+      "motivo": "ChatGPT Business, con controles de administración"
+     },
+     {
+      "id": "deepl-write",
+      "motivo": "DeepL Pro para traducciones confidenciales"
+     }
+    ]
+   }
+  },
+  "estudiar/gratis": {
+   "principal": "notebooklm",
+   "porque": [
+    "Responde solo con tus apuntes, cita de dónde sale cada dato y genera resúmenes en audio.",
+    "El plan gratuito cubre las necesidades de la mayoría de estudiantes."
+   ],
+   "alternativas": [
+    {
+     "id": "chatgpt",
+     "motivo": "Para que te expliquen y te examinen paso a paso"
+    },
+    {
+     "id": "perplexity",
+     "motivo": "Para buscar información con fuentes"
+    }
+   ]
+  },
+  "estudiar/poco": {
+   "principal": "notebooklm",
+   "porque": [
+    "Si el temario es muy extenso, Google AI Plus (4,99 €/mes) amplía las fuentes por cuaderno.",
+    "Sigue respondiendo solo con tus apuntes y citando de dónde sale cada dato."
+   ],
+   "alternativas": [
+    {
+     "id": "chatgpt",
+     "motivo": "Para que te expliquen y te examinen paso a paso"
+    },
+    {
+     "id": "perplexity",
+     "motivo": "Para buscar información con fuentes"
+    }
+   ]
+  },
+  "estudiar/sin-limite": {
+   "principal": "notebooklm",
+   "porque": [
+    "Al basarse solo en tus fuentes y citarlas, inventa mucho menos que un chatbot general.",
+    "En la universidad, combínalo con Perplexity para la bibliografía y Claude para las lecturas largas."
+   ],
+   "alternativas": [
+    {
+     "id": "perplexity",
+     "motivo": "Para localizar bibliografía"
+    },
+    {
+     "id": "claude",
+     "motivo": "Para analizar lecturas largas"
+    }
+   ]
+  },
+  "imagenes/gratis": {
+   "principal": "chatgpt",
+   "porque": [
+    "La más fácil de usar: generas y corriges imágenes conversando.",
+    "Tiene plan gratuito."
+   ],
+   "alternativas": [
+    {
+     "id": "gemini",
+     "motivo": "Igual de fácil, también con plan gratuito"
+    },
+    {
+     "id": "adobe-firefly",
+     "motivo": "Para uso comercial: Adobe afirma que entrena sus modelos con contenido con licencia y de dominio público"
+    }
+   ]
+  },
+  "imagenes/poco": {
+   "principal": "midjourney",
+   "porque": [
+    "La mejor calidad artística: imágenes con un acabado estético de nivel profesional.",
+    "Basic (10 $/mes) permite probarlo, aunque sus 3,3 horas de GPU se quedan cortas enseguida."
+   ],
+   "alternativas": [
+    {
+     "id": "chatgpt",
+     "motivo": "Generas y corriges imágenes conversando, con plan gratuito"
+    },
+    {
+     "id": "ideogram",
+     "motivo": "Para carteles y textos legibles dentro de la imagen"
+    }
+   ]
+  },
+  "imagenes/sin-limite": {
+   "principal": "midjourney",
+   "porque": [
+    "Standard (30 $/mes) es el plan equilibrado por sus imágenes ilimitadas en modo Relax.",
+    "Es una referencia en calidad estética para creadores y diseñadores."
+   ],
+   "alternativas": [
+    {
+     "id": "adobe-firefly",
+     "motivo": "Para uso comercial: Adobe afirma que entrena sus modelos con contenido con licencia y de dominio público"
+    },
+    {
+     "id": "ideogram",
+     "motivo": "Para carteles y textos legibles dentro de la imagen"
+    }
+   ],
+   "si_equipo": {
+    "principal": "midjourney",
+    "porque": [
+     "Para trabajos de clientes, Midjourney Pro (60 $/mes) incluye el Stealth Mode, que mantiene privadas tus imágenes.",
+     "Si te preocupa el uso comercial, valora Adobe Firefly: Adobe afirma que sus modelos se entrenan con contenido con licencia y de dominio público."
+    ],
+    "alternativas": [
+     {
+      "id": "adobe-firefly",
+      "motivo": "Para uso comercial: Adobe afirma que entrena sus modelos con contenido con licencia y de dominio público"
+     }
+    ]
+   }
+  },
+  "video/gratis": {
+   "principal": "runway",
+   "porque": [
+    "Modelos de vídeo avanzados y edición desde el navegador.",
+    "Aprovecha sus 125 créditos gratuitos para comprobar si te encaja antes de pagar."
+   ],
+   "alternativas": [
+    {
+     "id": "elevenlabs",
+     "motivo": "Para poner voz a tus vídeos, con plan gratuito"
+    },
+    {
+     "id": "heygen",
+     "motivo": "Vídeos con presentador virtual; tiene plan gratuito"
+    }
+   ]
+  },
+  "video/poco": {
+   "principal": "gemini",
+   "porque": [
+    "Para experimentar con poco presupuesto, Google AI Plus (4,99 €/mes) incluye vídeo generativo.",
+    "Además duplica los límites y añade la IA en Gmail."
+   ],
+   "alternativas": [
+    {
+     "id": "runway",
+     "motivo": "Standard (15 $/mes) elimina la marca de agua, aunque sus créditos dan para poco"
+    },
+    {
+     "id": "elevenlabs",
+     "motivo": "Starter (6 $/mes) para locuciones con derechos comerciales"
+    }
+   ]
+  },
+  "video/sin-limite": {
+   "principal": "runway",
+   "porque": [
+    "Modelos de vídeo avanzados y edición desde el navegador.",
+    "Pro (35 $/mes) es el plan razonable para un creador que publica con regularidad."
+   ],
+   "alternativas": [
+    {
+     "id": "elevenlabs",
+     "motivo": "Para poner voz a tus vídeos con locuciones muy naturales"
+    },
+    {
+     "id": "heygen",
+     "motivo": "Vídeos de producto con avatar"
+    }
+   ]
+  },
+  "musica/gratis": {
+   "principal": "suno",
+   "porque": [
+    "Convierte una idea en una canción completa, con letra y música.",
+    "El plan gratuito sirve para experimentar, aunque no permite descargar ni usar las canciones."
+   ],
+   "alternativas": [
+    {
+     "id": "elevenlabs",
+     "motivo": "Para voces y locuciones; el plan gratuito no incluye licencia comercial"
+    }
+   ]
+  },
+  "musica/poco": {
+   "principal": "suno",
+   "porque": [
+    "Pro (8 $/mes) incluye derechos comerciales y 20 descargas al mes.",
+    "Es la forma más sencilla de convertir una idea en una canción completa."
+   ],
+   "alternativas": [
+    {
+     "id": "elevenlabs",
+     "motivo": "Starter (6 $/mes) para locuciones con derechos comerciales"
+    },
+    {
+     "id": "soundraw",
+     "motivo": "Música de fondo con licencia comercial desde 5,83 €/mes"
+    }
+   ]
+  },
+  "musica/sin-limite": {
+   "principal": "suno",
+   "porque": [
+    "Premier compensa si produces música a diario.",
+    "Pro y Premier incluyen derechos comerciales."
+   ],
+   "alternativas": [
+    {
+     "id": "aiva",
+     "motivo": "Para bandas sonoras instrumentales: con el plan Pro el copyright es tuyo"
+    },
+    {
+     "id": "elevenlabs",
+     "motivo": "Creator (22 $/mes) para clonar tu voz con calidad profesional"
+    }
+   ]
+  },
+  "programar/gratis": {
+   "principal": "github-copilot",
+   "porque": [
+    "Plan gratuito para programar en tu editor de siempre.",
+    "Si eres estudiante o docente, solicita el acceso gratuito antes de pagar."
+   ],
+   "alternativas": [
+    {
+     "id": "chatgpt",
+     "motivo": "Para que te expliquen el código"
+    },
+    {
+     "id": "cursor",
+     "motivo": "Su plan Hobby es gratis y sin tarjeta"
+    }
+   ],
+   "si_avanzado": {
+    "principal": "cursor",
+    "porque": [
+     "Su plan Hobby es gratis y sin tarjeta: sirve para comprobar si te encaja.",
+     "Es una de las mejores opciones para programar con agentes de IA de forma intensiva."
+    ],
+    "alternativas": [
+     {
+      "id": "github-copilot",
+      "motivo": "Plan gratuito si prefieres seguir en tu editor"
+     }
+    ]
+   }
+  },
+  "programar/poco": {
+   "principal": "github-copilot",
+   "porque": [
+    "Pro (10 $/mes) es una de las suscripciones de IA para programar con mejor relación calidad-precio.",
+    "Incluye autocompletado ilimitado y revisión de código."
+   ],
+   "alternativas": [
+    {
+     "id": "cursor",
+     "motivo": "Si vas a trabajar con agentes a diario, desde 20 $/mes"
+    }
+   ]
+  },
+  "programar/sin-limite": {
+   "principal": "cursor",
+   "porque": [
+    "Editor basado en VS Code con agentes muy integrados, para trabajar con agentes de forma intensiva.",
+    "El plan Individual desde 20 $/mes es el punto de partida profesional."
+   ],
+   "alternativas": [
+    {
+     "id": "github-copilot",
+     "motivo": "GitHub Copilot Pro si prefieres seguir en tu editor"
+    },
+    {
+     "id": "claude",
+     "motivo": "Claude Code si prefieres el terminal"
+    }
+   ],
+   "si_equipo": {
+    "principal": "github-copilot",
+    "porque": [
+     "Para empresas, los planes Business o Enterprise ofrecen controles de privacidad y administración.",
+     "El código de tu empresa puede ser confidencial: usa planes de empresa con garantías contractuales."
+    ],
+    "alternativas": [
+     {
+      "id": "cursor",
+      "motivo": "Cursor Teams (40 $/usuario/mes) si trabajáis con agentes"
+     },
+     {
+      "id": "claude",
+      "motivo": "Claude Team, otra opción con plan de empresa"
+     }
+    ]
+   }
+  },
+  "marketing/gratis": {
+   "principal": "canva-ai",
+   "porque": [
+    "Genera imágenes y textos con IA dentro de plantillas para redes y anuncios.",
+    "El plan gratuito sirve para empezar."
+   ],
+   "alternativas": [
+    {
+     "id": "chatgpt",
+     "motivo": "Ideas, textos y estrategia con su plan gratuito"
+    },
+    {
+     "id": "claude",
+     "motivo": "Otra buena opción gratuita para redactar"
+    }
+   ]
+  },
+  "marketing/poco": {
+   "principal": "canva-ai",
+   "porque": [
+    "Por unos 110 € al año, Canva Pro y el plan gratuito de ChatGPT o Claude cubren diseño y textos.",
+    "Incluye kit de marca para que todas tus piezas mantengan tu estilo."
+   ],
+   "alternativas": [
+    {
+     "id": "chatgpt",
+     "motivo": "Ideas, textos y estrategia con su plan gratuito"
+    },
+    {
+     "id": "claude",
+     "motivo": "Otra buena opción gratuita para redactar"
+    }
+   ]
+  },
+  "marketing/sin-limite": {
+   "principal": "canva-ai",
+   "porque": [
+    "Business (170 €/año por persona) compensa si gestionas una marca, anuncios o un equipo pequeño.",
+    "Combínalo con un asistente de pago (ChatGPT Plus o Claude Pro) para los textos."
+   ],
+   "alternativas": [
+    {
+     "id": "chatgpt",
+     "motivo": "ChatGPT Plus para textos y estrategia"
+    },
+    {
+     "id": "jasper",
+     "motivo": "Para equipos con mucho volumen de contenido, desde 59 $/mes por puesto"
+    }
+   ]
+  },
+  "productividad/gratis": {
+   "principal": "chatgpt",
+   "porque": [
+    "El asistente más completo, con una versión gratuita que basta para conversar y redactar a diario.",
+    "Úsalo como asistente principal y añade otros según tus herramientas de trabajo."
+   ],
+   "alternativas": [
+    {
+     "id": "gemini",
+     "motivo": "Si trabajas con Google"
+    },
+    {
+     "id": "copilot",
+     "motivo": "Si trabajas con Office: tiene versión gratuita limitada"
+    }
+   ]
+  },
+  "productividad/poco": {
+   "principal": "gemini",
+   "porque": [
+    "Si trabajas con Google, Google AI Plus por 4,99 €/mes es difícil de superar en precio.",
+    "Añade la IA en Gmail y más almacenamiento."
+   ],
+   "alternativas": [
+    {
+     "id": "chatgpt",
+     "motivo": "Go (8 €/mes) si chocas con los límites del plan gratuito"
+    },
+    {
+     "id": "copilot",
+     "motivo": "Incluido en Microsoft 365 Personal (99 €/año) si usas Office"
+    }
+   ]
+  },
+  "productividad/sin-limite": {
+   "principal": "chatgpt",
+   "porque": [
+    "El asistente más completo: Plus cuesta 23 €/mes en España.",
+    "Plus añade investigación avanzada, proyectos y tareas programadas."
+   ],
+   "alternativas": [
+    {
+     "id": "claude",
+     "motivo": "Claude Pro como asistente principal"
+    },
+    {
+     "id": "gemini",
+     "motivo": "Google AI Pro si vives en Google"
+    }
+   ],
+   "si_equipo": {
+    "principal": "notion-ai",
+    "porque": [
+     "Si tu equipo ya trabaja en Notion, la IA responde con el contexto de vuestros proyectos y toma notas de reuniones.",
+     "La IA completa requiere el plan Business (19,50 €/usuario/mes)."
+    ],
+    "alternativas": [
+     {
+      "id": "chatgpt",
+      "motivo": "Si no usáis Notion, un plan de empresa de ChatGPT, Claude o Gemini"
+     },
+     {
+      "id": "gemini",
+      "motivo": "La opción lógica si trabajáis con Google"
+     }
+    ]
+   }
+  },
+  "general/gratis": {
+   "principal": "chatgpt",
+   "porque": [
+    "Permite chatear a diario sin pagar, con funciones avanzadas limitadas.",
+    "Es la opción más completa para quien quiere una sola herramienta para casi todo."
+   ],
+   "alternativas": [
+    {
+     "id": "gemini",
+     "motivo": "Igual de completo en gratis y la opción lógica si vives en Google"
+    },
+    {
+     "id": "deepl-write",
+     "motivo": "El mejor traductor gratis: hasta 50.000 caracteres al mes"
+    }
+   ]
+  },
+  "general/poco": {
+   "principal": "gemini",
+   "porque": [
+    "Google AI Plus (4,99 €/mes) es probablemente la suscripción de IA con mejor relación calidad-precio para uso doméstico.",
+    "Añade almacenamiento y la IA en Gmail."
+   ],
+   "alternativas": [
+    {
+     "id": "chatgpt",
+     "motivo": "Go (8 €/mes) amplía mensajes, imágenes, voz y memoria"
+    }
+   ]
+  },
+  "general/sin-limite": {
+   "principal": "chatgpt",
+   "porque": [
+    "Plus (23 €/mes) es el plan razonable para un uso profesional.",
+    "Sobre todo por la investigación avanzada y los proyectos."
+   ],
+   "alternativas": [
+    {
+     "id": "claude",
+     "motivo": "Claude Pro si escribes o trabajas con documentos largos"
+    },
+    {
+     "id": "gemini",
+     "motivo": "Google AI Pro (21,99 €/mes) si aprovechas los 5 TB"
+    }
+   ]
+  }
+ }
+}

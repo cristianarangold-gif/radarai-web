@@ -259,3 +259,40 @@ def test_header_has_search_link(tmp_path):
     root, out = make_root(tmp_path), tmp_path / '_site'
     build(root, out)
     assert 'class="search-open" href="/buscar/"' in (out / 'index.html').read_text()
+
+
+def test_invalid_assistant_data_fails_build(tmp_path):
+    root, out = make_root(tmp_path), tmp_path / '_site'
+    (root / 'data' / 'asistente.json').write_text('{"tareas": {}, "reglas": {}}', encoding='utf-8')
+    with pytest.raises(ValueError, match='asistente.json: falta la tarea escribir'):
+        build(root, out)
+
+
+def test_assistant_page(tmp_path):
+    root, out = make_root(tmp_path), tmp_path / '_site'
+    for d in ('mejor-ia', 'guias', 'herramientas'):
+        (root / 'content' / d).mkdir(exist_ok=True)
+    shutil.copy(ROOT / 'data' / 'asistente.json', root / 'data' / 'asistente.json')
+    shutil.copy(ROOT / 'data' / 'tools.json', root / 'data' / 'tools.json')
+    shutil.copy(ROOT / 'data' / 'brands.json', root / 'data' / 'brands.json')
+    import json as _json
+    data = _json.loads((ROOT / 'data' / 'asistente.json').read_text())
+    for info in data['tareas'].values():
+        for url in (info['comparativa'], info['guia']):
+            slug = url.strip('/').split('/')[-1]
+            folder = 'guias' if url.startswith('/guias/') else 'mejor-ia'
+            (root / 'content' / folder / f'{slug}.md').write_text(
+                f'titulo: {slug}\ndescripcion: d {slug}\n\n' + 'palabra ' * 1300, encoding='utf-8')
+    for f in (ROOT / 'content' / 'herramientas').glob('*.md'):
+        shutil.copy(f, root / 'content' / 'herramientas' / f.name)
+    shutil.copy(ROOT / 'content' / 'paginas' / 'que-ia-necesito.md', root / 'content' / 'paginas' / 'que-ia-necesito.md')
+    build(root, out)
+    html = (out / 'que-ia-necesito' / 'index.html').read_text()
+    assert html.count('<fieldset') == 4 and 'name="tarea"' in html and 'name="para"' in html
+    assert 'aria-live="polite"' in html and 'Asistente gratuito' in html
+    raw = re.search(r'<script type="application/json" id="asistente-datos">(.*?)</script>', html, re.S).group(1)
+    payload = _json.loads(raw)
+    assert len(payload['reglas']) == 27 and 'chatgpt' in payload['tools']
+    noscript = re.search(r'<noscript>(.*?)</noscript>', html, re.S).group(1)
+    assert noscript.count('href="/mejor-ia') == 9
+    assert 'noindex' not in html and '/que-ia-necesito/' in (out / 'sitemap.xml').read_text()
