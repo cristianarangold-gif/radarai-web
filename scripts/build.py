@@ -5,6 +5,7 @@ Uso: python scripts/build.py [--out _site]
 from __future__ import annotations
 
 import argparse
+import hashlib
 import shutil
 import sys
 from pathlib import Path
@@ -20,6 +21,7 @@ from radar.editorial import load_imprescindibles, radar_tools, validate_fichas, 
 from radar.models import Page, Redirect  # noqa: E402
 from radar.redirects import load_redirects, output_paths, render_redirect  # noqa: E402
 from radar.render import make_env, render_page  # noqa: E402
+from radar.search import build_index, index_json  # noqa: E402
 from radar.seo import SITE, rss_xml, sitemap_xml  # noqa: E402
 from radar.tools import CATEGORIES, load_tools  # noqa: E402
 
@@ -93,6 +95,9 @@ def build(root: Path, out: Path) -> None:
     if imprescindibles.exists():
         base_ctx['imprescindibles'] = load_imprescindibles(imprescindibles, by_url)
     w = Writer(out)
+    search_json = index_json(build_index(pages, tools, brands))
+    base_ctx['search_index_url'] = '/search-index.json?v=' + hashlib.sha256(search_json.encode('utf-8')).hexdigest()[:10]
+    w.write('search-index.json', search_json, 'índice de búsqueda')
 
     all_pages: List[Page] = list(pages)
     for p in pages:

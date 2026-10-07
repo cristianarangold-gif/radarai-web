@@ -145,4 +145,5 @@ def render_page(env: jinja2.Environment, page: Page, ctx: dict) -> str:
         toc=toc(page.body_html),
         related=related_news(page, ctx.get('news', [])) if page.kind == 'noticia' else [],
         logos_dir=logos_dir,
+        search_index_url=ctx.get('search_index_url', ''),
     )

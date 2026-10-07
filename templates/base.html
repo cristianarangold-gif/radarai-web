@@ -41,7 +41,7 @@
 <script type="application/ld+json">{{ block | to_json }}</script>
 {% endfor %}
 </head>
-<body>
+<body{% if search_index_url %} data-search-index="{{ search_index_url }}"{% endif %}>
 <a class="skip" href="#contenido">Saltar al contenido</a>
 {% include 'partials/header.html' %}
 <main id="contenido">

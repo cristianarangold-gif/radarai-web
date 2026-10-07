@@ -169,3 +169,15 @@ def test_content_link_to_old_home_anchor(tmp_path):
     page(tmp_path, 'a/index.html', '/a/', title='A', body='<a href="/#cat-video">vídeo</a>')
     sitemap(tmp_path, '/', '/a/')
     assert any('ancla inexistente /#cat-video' in e for e in check_site(tmp_path))
+
+
+def test_search_index_url_must_exist(tmp_path):
+    page(tmp_path, 'index.html', '/')
+    page(tmp_path, 'herramientas/index.html', '/herramientas/', title='H', body='<details id="cat-video"></details>')
+    sitemap(tmp_path, '/', '/herramientas/')
+    (tmp_path / 'search-index.json').write_text(
+        '[{"u":"/no-existe/"},{"u":"/herramientas/#cat-nada"},{"u":"/herramientas/#cat-video"}]', encoding='utf-8')
+    errors = check_site(tmp_path)
+    assert 'search-index.json: URL inexistente /no-existe/' in errors
+    assert 'search-index.json: ancla inexistente /herramientas/#cat-nada' in errors
+    assert not any('cat-video' in e for e in errors)

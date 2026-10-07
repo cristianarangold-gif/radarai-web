@@ -233,3 +233,13 @@ def test_real_fichas_price_pill_reads_well():
 def test_catalog_js_does_not_yank_reader_after_load():
     js = (ROOT / 'static' / 'js' / 'catalog.js').read_text()
     assert 'scrollY' in js
+
+
+def test_search_index_written_and_linked(tmp_path):
+    root, out = make_root(tmp_path), tmp_path / '_site'
+    build(root, out)
+    idx = json.loads((out / 'search-index.json').read_text())
+    urls = {e['u'] for e in idx}
+    assert '/noticias/buena/' in urls and '/' not in urls and '/noticias/' not in urls
+    assert '/noticias/borrador/' not in urls and '/herramientas/#cat-video' in urls
+    assert 'search-index.json?v=' in (out / 'noticias' / 'buena' / 'index.html').read_text()
