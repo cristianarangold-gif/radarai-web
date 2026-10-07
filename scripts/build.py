@@ -20,6 +20,7 @@ from radar.compare import compare_payload  # noqa: E402
 from radar.content import load_pages  # noqa: E402
 from radar.covers import cover_for, og_rel, write_cover_png  # noqa: E402
 from radar.duels import duel_links, validate_duels  # noqa: E402
+from radar.prompt_library import library_context, parse_prompts, validate_prompts  # noqa: E402
 from radar.professions import published, recommended_for, validate_professions  # noqa: E402
 from radar.editorial import load_imprescindibles, radar_tools, validate_fichas, validate_news_meta  # noqa: E402
 from radar.models import Page, Redirect  # noqa: E402
@@ -106,7 +107,7 @@ def build(root: Path, out: Path) -> None:
         validate_assistant(assistant, tools, fichas, {p.url for p in pages if p.indexable})
         base_ctx['assistant_payload'] = resolve_payload(assistant, tools, brands, fichas)
     fichas_ok = {p.slug: p for p in pages if p.kind == 'ficha' and p.indexable}
-    if any(p.kind in ('duelo', 'profesion') for p in pages):
+    if any(p.kind in ('duelo', 'profesion') for p in pages) or '/prompts/' in by_url:
         base_ctx['compare_by_id'] = {t['id']: t for t in compare_payload(fichas_ok, tools, brands, CATEGORIES)}
     professions = [p for p in pages if p.kind == 'profesion']
     if professions:
@@ -123,6 +124,13 @@ def build(root: Path, out: Path) -> None:
             {p.slug: p for p in pages if p.kind == 'ficha' and p.indexable}, tools, brands, CATEGORIES)
     site_urls = {p.url for p in pages if p.indexable} | {url for url, kind, *_ in LISTINGS
                                                          if kind != 'profesion' or published(professions)}
+    prompts_file = root / 'data' / 'prompts.md'
+    if '/prompts/' in by_url:
+        if not prompts_file.exists():
+            raise ValueError('content/paginas/prompts.md necesita data/prompts.md')
+        prompts = parse_prompts(prompts_file.read_text(encoding='utf-8'))
+        validate_prompts(prompts, fichas_ok)
+        base_ctx['library'] = library_context(prompts, base_ctx['compare_by_id'])
     glossary_file = root / 'data' / 'glosario.md'
     if '/glosario/' in by_url:
         if not glossary_file.exists():

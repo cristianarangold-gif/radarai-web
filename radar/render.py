@@ -128,6 +128,8 @@ def template_for(page: Page, ctx: dict) -> str:
         return 'assistant.html'
     if page.url == '/comparador/':
         return 'compare.html'
+    if page.url == '/prompts/' and ctx.get('library'):
+        return 'prompts.html'
     if page.url == '/glosario/' and ctx.get('glossary'):
         return 'glossary.html'
     if page.url == '/empieza-aqui/' and ctx.get('start_payload'):
@@ -168,6 +170,7 @@ def render_page(env: jinja2.Environment, page: Page, ctx: dict) -> str:
         compare_payload=ctx.get('compare_payload', []),
         start_payload=ctx.get('start_payload', {}),
         glossary=ctx.get('glossary', {}),
+        library=ctx.get('library', {}),
         duels=ctx.get('duels', []),
         professions=ctx.get('professions', []),
         recommended_for=ctx.get('recommended_for', {}),

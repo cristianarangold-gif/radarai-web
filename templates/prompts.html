@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block main %}
+<article class="wrap article library">
+  <header class="article-head">
+    <p class="eyebrow">Biblioteca de prompts</p>
+    <h1>Prompts para copiar y <em>usar ya</em></h1>
+    <p class="lede">{{ page.description }}</p>
+  </header>
+
+  <div class="library-controls" hidden>
+    <label class="sr-only" for="prompts-filtro">Buscar prompts</label>
+    <input class="library-filter" id="prompts-filtro" type="search" placeholder="Busca: «correo», «resumen», «examen»…" autocomplete="off">
+    <div class="glossary-temas library-cats" role="group" aria-label="Categorías">
+      <button type="button" class="glossary-tema" data-cat="" aria-pressed="true">Todos</button>
+      {% for id, label, emoji in library.categories %}<button type="button" class="glossary-tema" data-cat="{{ id }}" aria-pressed="false"><span aria-hidden="true">{{ emoji }}</span> {{ label }}</button>{% endfor %}
+    </div>
+    <p class="glossary-status library-status" aria-live="polite">{{ library.count }} prompts</p>
+  </div>
+
+  {% for g in library.groups %}
+  <section class="library-group" aria-labelledby="cat-{{ g.id }}">
+    <h2 id="cat-{{ g.id }}"><span aria-hidden="true">{{ g.emoji }}</span> {{ g.label }}</h2>
+    <div class="library-grid">
+      {% for p in g.prompts %}
+      <article class="prompt-card" id="{{ p.slug }}" data-cat="{{ g.id }}">
+        <p class="prompt-cat"><span aria-hidden="true">{{ g.emoji }}</span> {{ g.label }}</p>
+        <h3>{{ p.title }}</h3>
+        <p class="prompt-para">{{ p.para }}</p>
+        <p class="prompt-text">{% for kind, value in p.segments %}{% if kind == 'slot' %}<mark class="slot" data-slot="{{ value }}">[{{ value }}]</mark>{% else %}{{ value }}{% endif %}{% endfor %}</p>
+        {% if p.slots %}
+        <div class="prompt-fill" hidden>
+          {% for s in p.slots %}<label>{{ s }}<input type="text" data-slot="{{ s }}" autocomplete="off"></label>{% endfor %}
+        </div>
+        {% endif %}
+        {% if p.consejo %}<p class="prompt-tip"><strong>Consejo:</strong> {{ p.consejo }}</p>{% endif %}
+        <div class="prompt-foot">
+          <p class="prompt-tools">Sugerido: {% for id, name, url in p.tool_links %}<a href="{{ url }}">{{ id | logo(20, name) }}{{ name }}</a>{% if not loop.last %} · {% endif %}{% endfor %}</p>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+  {% endfor %}
+  <p class="glossary-empty library-empty" hidden>Ningún prompt coincide. Prueba con otra palabra o <a href="/contacto/">sugiérenos uno</a>.</p>
+
+  <div class="prose">{{ page.body_html | safe }}</div>
+</article>
+{% endblock %}
+{% block scripts %}<script src="{{ asset('js/library.js') }}" defer></script>{% endblock %}
