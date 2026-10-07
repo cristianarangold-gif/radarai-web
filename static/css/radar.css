@@ -353,6 +353,28 @@ svg.cover { display: block; width: 100%; height: auto; border-radius: 4px; backg
 .assistant-option input:checked + span { background: var(--ink); color: var(--white); }
 .assistant-option input:focus-visible + span { outline: 3px solid var(--accent); outline-offset: 2px; }
 .assistant-noscript { margin: 10px 0 24px; }
+.assistant-result { max-width: 820px; margin: 8px 0 36px; scroll-margin-top: 90px; }
+.assistant-hint { color: var(--ink-3); }
+.assistant-card { background: var(--white); border: 2px solid var(--ink); border-radius: 8px; box-shadow: 5px 5px 0 var(--ink); overflow: hidden; }
+.assistant-head { display: flex; gap: 14px; align-items: center; padding: 16px 18px; border-bottom: 1px solid var(--rule); }
+.assistant-head h2 { margin: 2px 0 0; font-size: clamp(1.4rem, 3vw, 1.8rem); }
+.assistant-logo, .assistant-logo-sm { display: grid; place-items: center; flex: none; color: var(--white); font: 800 1.3rem var(--sans); }
+.assistant-logo { width: 56px; height: 56px; border-radius: 14px; }
+.assistant-logo-sm { width: 36px; height: 36px; border-radius: 50%; font-size: .9rem; }
+.assistant-why { padding: 12px 18px 4px; }
+.assistant-why h3 { margin: 0 0 6px; font: 700 .95rem var(--sans); }
+.assistant-why ul { margin: 0 0 8px; padding-left: 1.2em; color: var(--ink-2); }
+.assistant-card .summary { margin: 0; border: 0; border-top: 1px solid var(--rule); border-radius: 0; }
+.assistant-cta { display: flex; flex-wrap: wrap; gap: 10px; padding: 14px 18px; border-top: 1px solid var(--rule); }
+.assistant-try { background: var(--accent); border-color: var(--accent); }
+.assistant-try:hover { background: var(--ink); border-color: var(--ink); }
+.assistant-group { margin-top: 20px; }
+.assistant-group h3 { margin: 0 0 8px; font: 700 .75rem var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+.assistant-alt { display: flex; gap: 12px; align-items: center; padding: 10px 12px; margin-bottom: 8px; background: var(--white); border: 1px solid var(--rule); border-radius: var(--radius); color: var(--ink); text-decoration: none; }
+.assistant-alt:hover { border-color: var(--ink); }
+.assistant-alt strong { display: block; }
+.assistant-alt small { color: var(--ink-3); font-size: .85rem; }
+.assistant-more { margin-top: 16px; font-weight: 600; }
 
 /* Movimiento reducido */
 @media (prefers-reduced-motion: reduce) {

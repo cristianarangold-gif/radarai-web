@@ -235,3 +235,14 @@ def test_real_assistant_page_has_enough_words():
     from radar.content import load_pages
     page = [p for p in load_pages(ROOT / 'content') if p.url == '/que-ia-necesito/'][0]
     assert page.word_count >= 400 and page.indexable
+
+
+def test_assistant_js_is_dom_safe_and_small():
+    import gzip
+    js = (ROOT / 'static' / 'js' / 'assistant.js').read_text()
+    assert js.strip(), 'assistant.js vacío'
+    assert 'innerHTML' not in js
+    for needle in ('textContent', 'replaceState', 'si_equipo', 'si_avanzado', 'Por qué encaja contigo',
+                   'También encajan', 'Otras opciones del catálogo', 'noopener nofollow'):
+        assert needle in js, needle
+    assert len(gzip.compress(js.encode('utf-8'))) <= 6000

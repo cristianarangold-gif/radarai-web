@@ -83,7 +83,7 @@ def _tool_info(t: Tool, brands: Dict[str, Brand], fichas: Dict[str, Page]) -> di
     ficha = fichas.get(t.id)
     brand = brands.get(t.id)
     return {
-        'n': t.name,
+        'n': brand.name if brand else t.name,
         'u': ficha.url if ficha else f'/herramientas/#cat-{t.cat}',
         'c': brand.color if brand else '#151515',
         'm': brand.monograma if brand else t.name[:1].upper(),

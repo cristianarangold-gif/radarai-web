@@ -101,3 +101,10 @@ def test_real_assistant_file_is_valid():
     data = load_assistant(ROOT / 'data' / 'asistente.json')
     validate_assistant(data, tools, fichas, {p.url for p in pages})
     assert len(data['reglas']) == 27
+
+
+def test_payload_uses_brand_name_when_available():
+    data = base_data()
+    brands = {'chatgpt': Brand('chatgpt', 'ChatGPT Plus', '#10a37f', None, 'C')}
+    assert resolve_payload(data, TOOLS, brands, FICHAS)['tools']['chatgpt']['n'] == 'ChatGPT Plus'
+    assert resolve_payload(data, TOOLS, brands, FICHAS)['tools']['claude']['n'] == 'Claude'
