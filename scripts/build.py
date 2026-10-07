@@ -16,6 +16,7 @@ sys.path.insert(0, str(ROOT))
 
 from radar.assistant import load_assistant, resolve_payload, validate_assistant  # noqa: E402
 from radar.brands import load_brands  # noqa: E402
+from radar.compare import compare_payload  # noqa: E402
 from radar.content import load_pages  # noqa: E402
 from radar.covers import cover_for, og_rel, write_cover_png  # noqa: E402
 from radar.editorial import load_imprescindibles, radar_tools, validate_fichas, validate_news_meta  # noqa: E402
@@ -98,6 +99,8 @@ def build(root: Path, out: Path) -> None:
         fichas = {p.slug: p for p in pages if p.kind == 'ficha' and p.indexable}
         validate_assistant(assistant, tools, fichas, {p.url for p in pages if p.indexable})
         base_ctx['assistant_payload'] = resolve_payload(assistant, tools, brands, fichas)
+    base_ctx['compare_payload'] = compare_payload(
+        {p.slug: p for p in pages if p.kind == 'ficha' and p.indexable}, tools, brands, CATEGORIES)
     imprescindibles = root / 'data' / 'imprescindibles.txt'
     if imprescindibles.exists():
         base_ctx['imprescindibles'] = load_imprescindibles(imprescindibles, by_url)
