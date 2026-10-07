@@ -121,6 +121,8 @@ def template_for(page: Page, ctx: dict) -> str:
         return 'assistant.html'
     if page.url == '/comparador/':
         return 'compare.html'
+    if page.url == '/empieza-aqui/' and ctx.get('start_payload'):
+        return 'start.html'
     if ctx.get('listing') is not None:
         return 'listing.html'
     return TEMPLATE_BY_KIND[page.kind]
@@ -154,4 +156,5 @@ def render_page(env: jinja2.Environment, page: Page, ctx: dict) -> str:
         search_index_url=ctx.get('search_index_url', ''),
         assistant_payload=ctx.get('assistant_payload', {}),
         compare_payload=ctx.get('compare_payload', []),
+        start_payload=ctx.get('start_payload', {}),
     )

@@ -24,6 +24,7 @@ from radar.models import Page, Redirect  # noqa: E402
 from radar.redirects import load_redirects, output_paths, render_redirect  # noqa: E402
 from radar.render import make_env, render_page  # noqa: E402
 from radar.search import build_index, index_json  # noqa: E402
+from radar.start import load_start, validate_start  # noqa: E402
 from radar.seo import SITE, rss_xml, sitemap_xml  # noqa: E402
 from radar.tools import CATEGORIES, load_tools  # noqa: E402
 
@@ -102,6 +103,13 @@ def build(root: Path, out: Path) -> None:
     if '/comparador/' in by_url:
         base_ctx['compare_payload'] = compare_payload(
             {p.slug: p for p in pages if p.kind == 'ficha' and p.indexable}, tools, brands, CATEGORIES)
+    start_file = root / 'data' / 'empieza.json'
+    if '/empieza-aqui/' in by_url and not start_file.exists():
+        raise ValueError('content/paginas/empieza-aqui.md necesita data/empieza.json')
+    if start_file.exists() and '/empieza-aqui/' in by_url:
+        start = load_start(start_file)
+        validate_start(start, {p.url for p in pages if p.indexable} | {url for url, *_ in LISTINGS})
+        base_ctx['start_payload'] = start
     imprescindibles = root / 'data' / 'imprescindibles.txt'
     if imprescindibles.exists():
         base_ctx['imprescindibles'] = load_imprescindibles(imprescindibles, by_url)

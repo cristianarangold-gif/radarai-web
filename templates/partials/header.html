@@ -4,6 +4,7 @@
     <a class="search-open" href="/buscar/" aria-haspopup="dialog"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="m15.5 15.5 5 5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>Buscar</a>
     <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu-principal">Menú</button>
     <nav id="menu-principal" class="site-nav" aria-label="Principal">
+      {% if start_payload %}<a class="nav-start" href="/empieza-aqui/"{% if page.url == '/empieza-aqui/' %} aria-current="page"{% endif %}>Empieza aquí</a>{% endif %}
       {% for label, href in NAV %}
       <a href="{{ href }}"{% if href == page.url %} aria-current="page"{% endif %}>{{ label }}</a>
       {% endfor %}
