@@ -3,6 +3,8 @@ from __future__ import annotations
 
 from typing import Dict, List, Tuple
 
+import re
+
 from .content import count_words, text_of
 from .models import Page
 
@@ -12,6 +14,16 @@ MONTHS = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agost
           'noviembre', 'diciembre']
 ROWS = (('Precio desde', 'desde'), ('Plan de pago', 'pago'), ('Ideal para', 'ideal'), ('Plataformas', 'plataformas'))
 MAX_RELATED = 3
+# Precios citados («23 €», «17 $», «0,01 $», «17 US$»): cada uno debe figurar en una de las dos fichas.
+PRICE = re.compile(r'(\d+(?:[.,]\d+)?)\s?(€|US\$|\$)')
+
+
+def _prices(text: str) -> set:
+    return {f'{n} {"$" if c != "€" else "€"}' for n, c in PRICE.findall(text)}
+
+
+def _ficha_text(page: Page) -> str:
+    return ' '.join([text_of(page.body_html)] + [str(v) for v in page.extra.values()])
 
 
 def duel_tools(page: Page) -> List[str]:
@@ -37,6 +49,8 @@ def validate_duels(duels: List[Page], fichas: Dict[str, Page]) -> None:
         for t in ids:
             if t not in fichas:
                 _fail(p, f'«{t}» no tiene ficha indexable')
+        if p.slug != f'{ids[0]}-vs-{ids[1]}':
+            _fail(p, f'el archivo debe llamarse {ids[0]}-vs-{ids[1]}.md (mismo orden que «herramientas»)')
         respuesta = p.extra.get('respuesta', '').strip()
         if not respuesta:
             _fail(p, 'falta «respuesta»')
@@ -52,6 +66,12 @@ def validate_duels(duels: List[Page], fichas: Dict[str, Page]) -> None:
         for phrase in FORBIDDEN:
             if phrase in text:
                 _fail(p, f'no se afirma «{phrase}» (no hacemos pruebas propias salvo indicación)')
+        known = _prices(_ficha_text(fichas[ids[0]]) + ' ' + _ficha_text(fichas[ids[1]]))
+        for price in sorted(_prices(text_of(p.body_html) + ' ' + respuesta + ' ' + p.extra.get('elige_1', '')
+                                    + ' ' + p.extra.get('elige_2', ''))):
+            if price not in known:
+                _fail(p, f'el precio «{price}» no aparece en las fichas de {ids[0]} ni {ids[1]}: '
+                         'actualiza el duelo o la ficha')
         pair = frozenset(ids)
         if pair in pairs:
             _fail(p, f'par repetido: ya existe cara-a-cara/{pairs[pair]}')

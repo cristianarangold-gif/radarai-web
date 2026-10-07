@@ -161,7 +161,7 @@ def cover_svg(spec: CoverSpec, logos_dir: Path, decorative: bool = False) -> Mar
         parts += _svg_disc(spec.brand, None, CX - DUEL_DX, logos_dir)
         parts += _svg_disc(spec.brand2, None, CX + DUEL_DX, logos_dir)
         parts.append(f'<text x="{CX}" y="{CY}" dy=".35em" text-anchor="middle" fill="#fff" '
-                     f'font-family="Fraunces,Georgia,serif" font-style="italic" font-weight="800" '
+                     f'font-family="Fraunces,Georgia,serif" font-style="italic" font-weight="600" '
                      f'font-size="56">VS</text>')
     else:
         parts += _svg_disc(spec.brand, spec.symbol, CX, logos_dir)

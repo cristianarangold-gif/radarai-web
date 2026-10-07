@@ -12,7 +12,7 @@ from markupsafe import Markup, escape
 
 from .brands import logo_html
 from .covers import cover_for, cover_svg, og_rel
-from .duels import duel_context
+from .duels import duel_context, duel_tools
 from .editorial import reading_minutes, related_news, toc
 from .models import Brand, Page
 from .seo import SITE, canonical, jsonld
@@ -105,6 +105,7 @@ def make_env(templates_dir: Path) -> jinja2.Environment:
     static_dir = Path(templates_dir).resolve().parent / 'static'
     env.globals['asset'] = lambda rel: asset_url(static_dir, rel)
     env.filters['em_phrase'] = em_phrase
+    env.filters['duel_tools'] = duel_tools
     env.filters['cover'] = cover_filter
     env.filters['logo'] = logo_filter
     env.globals.update(SITE=SITE, NAV=NAV, ADSENSE_CLIENT=ADSENSE_CLIENT, ads_enabled=False,

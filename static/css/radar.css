@@ -508,7 +508,7 @@ span.glossary-letter { border-color: var(--rule); color: #b5ada0; background: tr
 .duel-card-logos .logo { border-radius: 50%; }
 .duel-card .duel-vs { font-size: 1rem; }
 .duel-card-title { font: 700 1rem/1.25 var(--serif); }
-.duel-index-next { margin-top: 8px; }
+.duel-index-next { font-size: 1.5rem; margin: 8px 0 14px; }
 .duel-links { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 12px 0 26px; font-weight: 700; font-size: .95rem; }
 
 /* Movimiento reducido */

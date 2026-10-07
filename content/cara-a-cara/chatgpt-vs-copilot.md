@@ -9,7 +9,7 @@ fuentes: https://chatgpt.com/es-ES/pricing/
     https://www.microsoft.com/es-es/microsoft-365-copilot/pricing/individuals
     https://www.microsoft.com/en-us/microsoft-copilot/blog/2024/08/16/transparency-and-control-in-consumer-data-use/
 
-La duda entre ChatGPT y Microsoft Copilot suele plantearse de una forma muy concreta: **¿pago ChatGPT o aprovecho la IA que viene con Microsoft 365?** Los dos tienen versión gratuita y los dos conversan, buscan en la web, redactan y generan imágenes. Pero se pagan de forma muy distinta: ChatGPT es una suscripción solo de IA, mientras que **Copilot se activa con las suscripciones de Microsoft 365**, que incluyen también Word, Excel, PowerPoint, Outlook y almacenamiento en OneDrive. Comparamos ambos con la información oficial recogida en nuestras fichas de [ChatGPT](/herramientas/chatgpt/) y [Microsoft Copilot](/herramientas/copilot/).
+La duda entre ChatGPT y Microsoft Copilot suele plantearse de una forma muy concreta: **¿pago ChatGPT o aprovecho la IA que viene con Microsoft 365?** Los dos tienen versión gratuita y los dos conversan, redactan y generan imágenes. Pero se pagan de forma muy distinta: ChatGPT es una suscripción solo de IA, mientras que **Copilot se activa con las suscripciones de Microsoft 365**, que incluyen también Word, Excel, PowerPoint, Outlook y almacenamiento en OneDrive. Comparamos ambos con la información oficial recogida en nuestras fichas de [ChatGPT](/herramientas/chatgpt/) y [Microsoft Copilot](/herramientas/copilot/).
 
 ## Precios y planes
 
@@ -65,15 +65,15 @@ En los planes para empresas, Microsoft aplica las garantías de protección de d
 
 Elige **Copilot** si ya pagas Microsoft 365 o lo vas a contratar igualmente: con Personal (99 €/año) tienes Office, OneDrive y la IA dentro de Word, Excel y Outlook. Premium (219 €/año) solo compensa si vas a usar Copilot de forma intensiva dentro de Office.
 
-Elige **ChatGPT** si no usas Office, si quieres un asistente independiente con el abanico de funciones más amplio o si buscas una suscripción barata solo de IA: Go cuesta 8 €/mes y Plus es el plan razonable para un uso profesional.
+Elige **ChatGPT** si no usas Office, si quieres un asistente independiente con investigación avanzada, proyectos y GPT personalizados, o si buscas una suscripción barata solo de IA: Go cuesta 8 €/mes y Plus es el plan razonable para un uso profesional.
 
-También hay una tercera vía habitual: mantener Microsoft 365 por Office y usar el plan gratuito de ChatGPT para lo demás. Puedes verlos lado a lado en el [comparador](/comparador/?h=chatgpt,copilot) o en la comparativa de [la mejor IA para productividad](/mejor-ia-para-productividad/).
+Hay también una tercera opción: mantener Microsoft 365 por Office y usar el plan gratuito de ChatGPT para lo demás. Puedes verlos lado a lado en el [comparador](/comparador/?h=chatgpt,copilot) o en la comparativa de [la mejor IA para productividad](/mejor-ia-para-productividad/).
 
 ## Preguntas frecuentes
 
 ### ¿Copilot es lo mismo que ChatGPT?
 
-No. Son asistentes de empresas distintas (Microsoft y OpenAI), con planes, funciones y políticas de privacidad diferentes. Copilot destaca por su integración con Office y ChatGPT por su abanico de funciones como asistente independiente.
+No. Son asistentes de empresas distintas (Microsoft y OpenAI), con planes, funciones y políticas de privacidad diferentes. Copilot destaca por su integración con Office y ChatGPT por sus funciones como asistente independiente.
 
 ### ¿Qué sale más barato?
 

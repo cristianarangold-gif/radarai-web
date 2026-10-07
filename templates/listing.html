@@ -21,12 +21,12 @@
     <h2 id="cara-a-cara">Cara a cara</h2>
     <p class="muted">Dos herramientas frente a frente, con datos de nuestras fichas y un veredicto claro.</p>
     <div class="duel-cards">
-      {% for d in duels %}{% set a, b = d.extra.herramientas.split(',') | map('trim') | list %}
+      {% for d in duels %}{% set a, b = d | duel_tools %}
       <a class="duel-card" href="{{ d.url }}"><span class="duel-card-logos" aria-hidden="true">{{ a | logo(32) }}<span class="duel-vs">vs</span>{{ b | logo(32) }}</span><span class="duel-card-title">{{ d.title }}</span></a>
       {% endfor %}
     </div>
-    <h2 class="duel-index-next">Comparativas por tarea</h2>
   </section>
+  <h2 class="duel-index-next">Comparativas por tarea</h2>
   {% endif %}
   <div class="grid3 listing-grid">
     {% for item in listing %}{% include 'partials/card.html' %}{% endfor %}

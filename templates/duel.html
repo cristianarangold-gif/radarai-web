@@ -35,7 +35,7 @@
         </table>
       </div>
       <p class="duel-links">
-        <a href="/comparador/?h={{ a.id }},{{ b.id }}">Ver en el comparador&nbsp;<span aria-hidden="true">→</span></a>
+        {% if compare_payload %}<a href="/comparador/?h={{ a.id }},{{ b.id }}">Ver en el comparador&nbsp;<span aria-hidden="true">→</span></a>{% endif %}
         <a href="{{ a.u }}">Ficha de {{ a.n }}&nbsp;<span aria-hidden="true">→</span></a>
         <a href="{{ b.u }}">Ficha de {{ b.n }}&nbsp;<span aria-hidden="true">→</span></a>
       </p>

@@ -1,4 +1,4 @@
-titulo: Perplexity vs ChatGPT: cuál elegir para buscar información en 2026
+titulo: Perplexity vs ChatGPT: cuál elegir para buscar en 2026
 descripcion: Perplexity o ChatGPT para buscar e informarte: respuestas con fuentes, investigación, planes y precios, límites y privacidad, cara a cara.
 fecha: 2026-10-07
 herramientas: perplexity, chatgpt
@@ -9,7 +9,7 @@ fuentes: https://www.perplexity.ai/pro
     https://intercom.help/perplexity-ai/en/articles/11564572-data-collection-at-perplexity
     https://chatgpt.com/es-ES/pricing/
 
-Perplexity y ChatGPT se cruzan cada vez más: los dos responden preguntas buscando en la web y los dos pueden preparar informes de investigación con fuentes. Pero nacen de ideas distintas. **Perplexity es un buscador con inteligencia artificial**: responde con un texto redactado y una nota numerada que enlaza a cada fuente. **ChatGPT es un asistente de uso general** que, además de buscar, escribe, crea imágenes, analiza archivos y programa. En este cara a cara los comparamos para la tarea en la que compiten de verdad, buscar e informarse, a partir de nuestras fichas de [Perplexity](/herramientas/perplexity/) y [ChatGPT](/herramientas/chatgpt/).
+Perplexity y ChatGPT se cruzan cada vez más: los dos pueden investigar en la web y preparar informes con fuentes. Pero nacen de ideas distintas. **Perplexity es un buscador con inteligencia artificial**: responde con un texto redactado y una nota numerada que enlaza a cada fuente. **ChatGPT es un asistente de uso general** que, además de buscar, escribe, crea imágenes, analiza archivos y programa. En este cara a cara los comparamos para la tarea en la que compiten de verdad, buscar e informarse, a partir de nuestras fichas de [Perplexity](/herramientas/perplexity/) y [ChatGPT](/herramientas/chatgpt/).
 
 ## Precios y planes
 
@@ -58,7 +58,7 @@ Si lo que haces es sobre todo buscar, el gratuito de Perplexity cubre bien esa t
 
 ## Límites que conviene conocer
 
-Que una respuesta cite fuentes **no garantiza que sea correcta**: Perplexity depende de la calidad de las páginas que encuentra, y si son poco fiables, la respuesta también lo será. ChatGPT, por su parte, puede inventar datos con seguridad cuando responde sin buscar. En los dos casos, abre las fuentes cuando el dato importa. Lo explicamos en el glosario: [alucinación](/glosario/#alucinacion) y [búsqueda con IA](/glosario/#busqueda-con-ia).
+Que una respuesta cite fuentes **no garantiza que sea correcta**: Perplexity depende de la calidad de las páginas que encuentra, y si son poco fiables, la respuesta también lo será. ChatGPT, por su parte, puede inventar datos con seguridad cuando responde de memoria, sin investigar en la web. En los dos casos, abre las fuentes cuando el dato importa. Lo explicamos en el glosario: [alucinación](/glosario/#alucinacion) y [búsqueda con IA](/glosario/#busqueda-con-ia).
 
 En Perplexity, además, las funciones de agente funcionan con un **sistema de créditos** que hace menos predecible el uso real. En ChatGPT, el plan Go puede incluir anuncios.
 
@@ -78,7 +78,7 @@ Elige **Perplexity** si tu prioridad es encontrar información actual y comproba
 
 Elige **ChatGPT** si quieres un asistente para casi todo que, además, busque e investigue: redactar, crear imágenes, analizar archivos o programar. Go y Plus, en euros, son sus planes de pago para particulares.
 
-Mucha gente combina los dos: Perplexity para buscar y contrastar, y un asistente generalista para escribir a partir de lo encontrado. Puedes verlos lado a lado en el [comparador](/comparador/?h=perplexity,chatgpt) o leer [la mejor IA para estudiar](/mejor-ia-para-estudiar/).
+También puedes combinarlos: Perplexity para buscar y contrastar, y un asistente generalista para escribir a partir de lo encontrado. Puedes verlos lado a lado en el [comparador](/comparador/?h=perplexity,chatgpt) o leer [la mejor IA para estudiar](/mejor-ia-para-estudiar/).
 
 ## Preguntas frecuentes
 

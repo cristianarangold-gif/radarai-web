@@ -77,7 +77,10 @@
     // Si las dos elegidas tienen un «Cara a cara», se sugiere (en cualquier orden).
     var duel = chosen.length === 2 && duels[chosen.slice().sort().join(',')];
     if (duel) {
-      var p = make('p', 'compare-duel'), a = make('a', null, 'Lee nuestro análisis ' + duel.label + ' →');
+      var p = make('p', 'compare-duel'), a = make('a', null, 'Lee nuestro análisis ' + duel.label + '\u00a0'),
+        arrow = make('span', null, '→');
+      arrow.setAttribute('aria-hidden', 'true');
+      a.appendChild(arrow);
       a.href = duel.u;
       p.appendChild(a);
       out.appendChild(p);

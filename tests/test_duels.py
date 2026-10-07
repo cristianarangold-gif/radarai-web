@@ -61,6 +61,24 @@ def test_invalid_duels(kw, needle):
     assert needle in str(e.value) and 'cara-a-cara/alfa-vs-beta' in str(e.value)
 
 
+def test_slug_must_match_tool_order_and_trailing_comma_is_ok():
+    with pytest.raises(ValueError, match='alfa-vs-beta'):
+        validate_duels([duel('beta-vs-alfa')], FICHAS)
+    validate_duels([duel(herramientas='alfa, beta,')], FICHAS)
+
+
+def test_prices_must_come_from_fichas():
+    ok = duel()
+    ok.body_html = '<p>Alfa cuesta 0 € y Beta, 5 $; Alfa Pro, 10 €/mes.</p>'
+    validate_duels([ok], FICHAS)
+    bad = duel()
+    bad.body_html = '<p>Alfa cuesta 12 €/mes.</p>'
+    with pytest.raises(ValueError, match='12 €'):
+        validate_duels([bad], FICHAS)
+    with pytest.raises(ValueError, match='99 \\$'):
+        validate_duels([duel(respuesta='Beta cuesta 99 US$ al mes.')], FICHAS)
+
+
 def test_forbidden_claims_and_reversed_pair():
     bad = duel()
     bad.body_html = '<p>En nuestras pruebas fue más rápido.</p>'
@@ -68,6 +86,14 @@ def test_forbidden_claims_and_reversed_pair():
         validate_duels([bad], FICHAS)
     with pytest.raises(ValueError, match='repetido'):
         validate_duels([duel(), duel('beta-vs-alfa', herramientas='beta, alfa')], FICHAS)
+
+
+def test_built_templates_accessibility(site):
+    listing = (site / 'mejor-ia' / 'index.html').read_text()
+    section = listing[listing.index('class="duel-index"'):listing.index('</section>', listing.index('class="duel-index"'))]
+    assert 'Comparativas por tarea' not in section and 'Comparativas por tarea' in listing
+    js = (ROOT / 'static' / 'js' / 'compare.js').read_text()
+    assert "' →'" not in js and 'aria-hidden' in js
 
 
 def test_context_takes_table_from_fichas():
