@@ -375,6 +375,9 @@ svg.cover { display: block; width: 100%; height: auto; border-radius: 4px; backg
 .assistant-alt strong { display: block; }
 .assistant-alt small { color: var(--ink-3); font-size: .85rem; }
 .assistant-more { margin-top: 16px; font-weight: 600; }
+.assistant-cta-box { display: flex; flex-wrap: wrap; gap: 12px 18px; align-items: center; justify-content: space-between; max-width: 72ch; margin: 36px 0 8px; padding: 16px 18px; background: var(--paper-2); border: 1.5px solid var(--ink); border-radius: var(--radius); }
+.assistant-cta-box p { margin: 0; }
+.assistant-cta-box strong { font-family: var(--serif); }
 
 /* Movimiento reducido */
 @media (prefers-reduced-motion: reduce) {

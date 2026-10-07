@@ -246,3 +246,24 @@ def test_assistant_js_is_dom_safe_and_small():
                    'También encajan', 'Otras opciones del catálogo', 'noopener nofollow'):
         assert needle in js, needle
     assert len(gzip.compress(js.encode('utf-8'))) <= 6000
+
+
+def test_home_primary_button_is_assistant(env):
+    html = render_page(env, make_page(url='/'), ctx(assistant_payload={'tareas': {}}))
+    assert '<a class="btn" href="/que-ia-necesito/">¿Qué IA necesito? →</a>' in html
+    assert 'href="/mejor-ia/">Ver comparativas' in html
+
+
+def test_assistant_cta_only_in_comparativas_and_guides(env):
+    cta = 'Hacer el test →'
+    for kind, url in (('comparativa', '/mejor-ia-x/'), ('guia', '/guias/g/')):
+        html = render_page(env, make_page(kind=kind, url=url), ctx(assistant_payload={'tareas': {}}))
+        assert cta in html and 'href="/que-ia-necesito/"' in html, kind
+    assert cta not in render_page(env, news('n', 1), ctx())
+    ficha = make_page(kind='ficha', slug='bar', url='/herramientas/bar/', date=date(2026, 10, 1))
+    assert cta not in render_page(env, ficha, ctx(tools={'bar': tool('bar', True)}))
+
+
+def test_no_assistant_links_without_assistant(env):
+    assert '/que-ia-necesito/' not in render_page(env, make_page(url='/'), ctx())
+    assert '/que-ia-necesito/' not in render_page(env, make_page(kind='guia', url='/guias/g/'), ctx())
