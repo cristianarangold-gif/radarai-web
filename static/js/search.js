@@ -5,6 +5,7 @@
   if (!indexUrl || !window.fetch) return;
   var SUGGEST = ['ChatGPT', 'imágenes', 'gratis', 'estudiar', 'programar'];
   var MAX_DIALOG = 8, cache = null;
+  var STOP = ['a', 'al', 'con', 'de', 'del', 'el', 'en', 'la', 'las', 'lo', 'los', 'para', 'por', 'que', 'un', 'una', 'y'];
 
   function norm(s) {
     return (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
@@ -40,7 +41,7 @@
   // Devuelve las entradas que contienen todas las palabras; si no hay ninguna, las que contienen
   // alguna (ordenadas por cuántas coinciden) y marca la lista con .partial = true.
   function search(list, query) {
-    var q = norm(query), terms = q ? q.split(' ') : [], out = [], full = 0;
+    var q = norm(query), terms = significant(q), out = [], full = 0;
     if (!terms.length) return out;
     list.forEach(function (e) {
       var score = 0, n = 0;
@@ -102,7 +103,12 @@
     a.appendChild(text);
     return a;
   }
-  function terms(query) { var q = norm(query); return q ? q.split(' ') : []; }
+  // Quita palabras vacías («la», «para»…) salvo que la consulta solo tenga esas.
+  function significant(q) {
+    var all = q ? q.split(' ') : [], rest = all.filter(function (w) { return STOP.indexOf(w) < 0; });
+    return rest.length ? rest : all;
+  }
+  function terms(query) { return significant(norm(query)); }
 
   // Mensajes: sugerencias, sin resultados o error de carga.
   function message(box, input, kind, query) {
@@ -203,7 +209,7 @@
         ev.preventDefault();
         var opts = list.querySelectorAll('[role=option]');
         if (active >= 0 && opts[active]) opts[active].click();
-        else if (terms(input.value).length) location.href = all.href;
+        else if (terms(input.value).length) location.href = '/buscar/?q=' + encodeURIComponent(input.value);
       }
     });
     dlg.querySelector('.search-close').addEventListener('click', closeDialog);
@@ -218,7 +224,8 @@
           var f = Array.prototype.filter.call(dlg.querySelectorAll('input, button, a[href]'),
             function (n) { return !n.hidden && n.offsetParent !== null; });
           var first = f[0], last = f[f.length - 1];
-          if (ev.shiftKey && document.activeElement === first) { ev.preventDefault(); last.focus(); }
+          if (!dlg.contains(document.activeElement)) { ev.preventDefault(); first.focus(); }
+          else if (ev.shiftKey && document.activeElement === first) { ev.preventDefault(); last.focus(); }
           else if (!ev.shiftKey && document.activeElement === last) { ev.preventDefault(); first.focus(); }
         }
         return;
@@ -233,7 +240,7 @@
   if (!pageInput || !body.hasAttribute('data-search-page')) return;
   var results = document.getElementById('search-page-results'), filters = document.querySelector('.search-filters'),
     pageStatus = document.querySelector('.search-page-wrap .search-status'), pageMsg = make('div', 'search-msg'),
-    kind = 'Todo';
+    kind = 'Todo', refocus = false;
   filters.parentNode.insertBefore(pageMsg, filters);
 
   var renderPage = function () {
@@ -254,7 +261,7 @@
           var b = make('button', 'search-chip', k + ' (' + counts[k] + ')');
           b.type = 'button';
           b.setAttribute('aria-pressed', String(k === kind));
-          b.addEventListener('click', function () { kind = k; renderPage(); });
+          b.addEventListener('click', function () { kind = k; refocus = true; renderPage(); });
           filters.appendChild(b);
         });
       }
@@ -264,7 +271,12 @@
         results.appendChild(li);
       });
       pageStatus.textContent = t.length ? (found.partial ? PARTIAL + ' ' : '') + count(found.length) : '';
-    }).catch(function () { clear(results); message(pageMsg, pageInput, 'error'); });
+      if (refocus) {
+        refocus = false;
+        var pressed = filters.querySelector('[aria-pressed="true"]');
+        if (pressed) pressed.focus();
+      }
+    }).catch(function () { clear(results); pageStatus.textContent = ''; message(pageMsg, pageInput, 'error'); });
   };
   pageInput.value = new URLSearchParams(location.search).get('q') || '';
   pageInput.addEventListener('input', renderPage);

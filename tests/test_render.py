@@ -209,3 +209,15 @@ def test_search_js_is_dom_safe_and_small():
 def test_search_js_falls_back_to_partial_matches():
     js = (ROOT / 'static' / 'js' / 'search.js').read_text()
     assert 'Sin coincidencias con todas las palabras' in js
+
+
+def test_search_js_review_fixes():
+    js = (ROOT / 'static' / 'js' / 'search.js').read_text()
+    # Enter construye la URL en el momento, no con el href de la última carga.
+    assert "location.href = '/buscar/?q=' + encodeURIComponent(input.value)" in js
+    # El foco que se escapa del panel vuelve dentro.
+    assert '!dlg.contains(document.activeElement)' in js
+    # Al pulsar un filtro, el foco vuelve al filtro activo.
+    assert "filters.querySelector('[aria-pressed=\"true\"]')" in js
+    # Palabras vacías fuera de la búsqueda cuando hay otras.
+    assert "'para'" in js and 'STOP' in js
