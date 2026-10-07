@@ -1,0 +1,83 @@
+{
+  "situaciones": [
+    {
+      "emoji": "🌱",
+      "titulo": "Nunca he usado la IA",
+      "texto": "Lo básico para empezar con buen pie, sin pagar y sin miedo.",
+      "enlaces": [
+        {"texto": "Qué puedes hacer gratis con la IA", "url": "/mejor-ia-gratis/"},
+        {"texto": "Qué no deberías contarle a una IA", "url": "/guias/privacidad-en-ia/"},
+        {"texto": "Cómo pedirle las cosas (prompts)", "url": "/guias/mejores-prompts/"}
+      ]
+    },
+    {
+      "emoji": "🧭",
+      "titulo": "No sé qué herramienta elegir",
+      "texto": "Hay decenas y todas prometen lo mismo. Te ayudamos a quedarte con una.",
+      "enlaces": [
+        {"texto": "¿Qué IA necesito? Haz el test", "url": "/que-ia-necesito/"},
+        {"texto": "Compara herramientas lado a lado", "url": "/comparador/"},
+        {"texto": "La mejor IA para cada tarea", "url": "/mejor-ia/"}
+      ]
+    },
+    {
+      "emoji": "🚀",
+      "titulo": "Ya la uso, quiero sacarle más",
+      "texto": "Mejores resultados con menos intentos y menos tareas repetidas.",
+      "enlaces": [
+        {"texto": "Mejora tus prompts al momento", "url": "/herramientas-radar/mejorador-de-prompts/"},
+        {"texto": "Automatiza tareas con IA", "url": "/guias/automatizar-tareas/"},
+        {"texto": "Utilidades gratuitas de Radar IA", "url": "/herramientas-radar/"}
+      ]
+    },
+    {
+      "emoji": "💼",
+      "titulo": "La quiero para estudiar o trabajar",
+      "texto": "Qué usar en clase, en tu negocio o en tu equipo, y cómo hacerlo bien.",
+      "enlaces": [
+        {"texto": "IA para pequeñas empresas", "url": "/guias/ia-para-pequenas-empresas/"},
+        {"texto": "Usar la IA para estudiar sin plagiar", "url": "/guias/ia-para-estudiar/"},
+        {"texto": "Crear presentaciones con IA", "url": "/guias/crear-presentaciones-con-ia/"}
+      ]
+    }
+  ],
+  "pasos": [
+    {
+      "titulo": "Pruébala gratis y con cabeza",
+      "texto": "Casi todas las herramientas tienen un plan gratuito suficiente para empezar. Antes de escribir nada, repasa qué datos no conviene compartir.",
+      "cta": {"texto": "Ver qué es gratis", "url": "/mejor-ia-gratis/"},
+      "extra": [{"texto": "Guía de privacidad", "url": "/guias/privacidad-en-ia/"}]
+    },
+    {
+      "titulo": "Elige tu primera herramienta",
+      "texto": "Responde 4 preguntas (tarea, presupuesto, experiencia y para quién) y te decimos cuál encaja contigo y por qué.",
+      "cta": {"texto": "Hacer el test", "url": "/que-ia-necesito/"},
+      "extra": [{"texto": "Fichas de herramientas", "url": "/herramientas/"}]
+    },
+    {
+      "titulo": "Aprende a pedírselo bien",
+      "texto": "La diferencia entre una respuesta mediocre y una útil suele estar en cómo la pides. Con cuatro ideas y unos ejemplos mejoras mucho.",
+      "cta": {"texto": "Leer la guía de prompts", "url": "/guias/mejores-prompts/"},
+      "extra": [
+        {"texto": "Generador de prompts", "url": "/herramientas-radar/generador-de-prompts/"},
+        {"texto": "Mejorador de prompts", "url": "/herramientas-radar/mejorador-de-prompts/"}
+      ]
+    },
+    {
+      "titulo": "Úsala en lo tuyo",
+      "texto": "Estudiar, trabajar, preparar presentaciones o quitarte tareas repetitivas: elige la guía que se parece a tu día.",
+      "cta": {"texto": "Ver todas las guías", "url": "/guias/"},
+      "extra": [
+        {"texto": "Estudiar", "url": "/guias/ia-para-estudiar/"},
+        {"texto": "Pequeñas empresas", "url": "/guias/ia-para-pequenas-empresas/"},
+        {"texto": "Automatizar tareas", "url": "/guias/automatizar-tareas/"}
+      ]
+    },
+    {
+      "titulo": "Compara antes de pagar y mantente al día",
+      "texto": "Si un plan gratuito se te queda corto, compara precios y planes antes de suscribirte. Y sigue solo las novedades que cambian algo para ti.",
+      "cta": {"texto": "Abrir el comparador", "url": "/comparador/"},
+      "extra": [{"texto": "Noticias de IA", "url": "/noticias/"}]
+    }
+  ]
+}
