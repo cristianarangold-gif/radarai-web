@@ -34,5 +34,6 @@
   <div class="prose">{{ page.body_html | safe }}</div>
 </section>
 <script type="application/json" id="comparador-datos">{{ compare_payload | to_json }}</script>
+{% if duel_pairs %}<script type="application/json" id="comparador-duelos">{{ duel_pairs | to_json }}</script>{% endif %}
 {% endblock %}
 {% block scripts %}<script src="{{ asset('js/compare.js') }}" defer></script>{% endblock %}

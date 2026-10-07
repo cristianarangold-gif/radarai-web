@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% block main %}
+{% set a, b = duel.a, duel.b %}
+<article class="wrap article duel">
+  <nav class="crumbs" aria-label="Migas de pan"><a href="/">Inicio</a> › <a href="/mejor-ia/">Comparativas</a></nav>
+  <header class="article-head">
+    <p class="eyebrow">Cara a cara</p>
+    <p class="duel-logos" aria-hidden="true">{{ a.id | logo(56, a.n) }}<span class="duel-vs">vs</span>{{ b.id | logo(56, b.n) }}</p>
+    <h1>{{ page.title }}</h1>
+    <p class="lede">{{ page.description }}</p>
+    {% include 'partials/byline.html' %}
+  </header>
+  <div class="article-grid">
+    <div class="article-main">
+      <p class="duel-answer"><strong>Respuesta rápida:</strong> {{ duel.respuesta }}</p>
+
+      <div class="duel-picks">
+        {% for t, frases in duel.elige %}
+        <section class="duel-pick" aria-labelledby="elige-{{ t.id }}">
+          <h2 id="elige-{{ t.id }}">{{ t.id | logo(28, t.n) }}Elige {{ t.n }} si…</h2>
+          <ul>{% for f in frases %}<li>{{ f }}</li>{% endfor %}</ul>
+        </section>
+        {% endfor %}
+      </div>
+
+      <div class="table-scroll duel-table">
+        <table>
+          <caption>Datos de {{ a.n }} y {{ b.n }} según nuestras fichas</caption>
+          <thead><tr><td></td><th scope="col">{{ a.n }}</th><th scope="col">{{ b.n }}</th></tr></thead>
+          <tbody>
+            {% for label, va, vb in duel.rows %}
+            <tr><th scope="row">{{ label }}</th><td>{{ va }}</td><td>{{ vb }}</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <p class="duel-links">
+        {% if compare_payload %}<a href="/comparador/?h={{ a.id }},{{ b.id }}">Ver en el comparador&nbsp;<span aria-hidden="true">→</span></a>{% endif %}
+        <a href="{{ a.u }}">Ficha de {{ a.n }}&nbsp;<span aria-hidden="true">→</span></a>
+        <a href="{{ b.u }}">Ficha de {{ b.n }}&nbsp;<span aria-hidden="true">→</span></a>
+      </p>
+
+      <div class="prose">
+        {{ page.body_html | safe }}
+      </div>
+      {% if assistant_payload %}
+      <aside class="assistant-cta-box" aria-label="Asistente">
+        <p><strong>¿No lo tienes claro?</strong> Responde 4 preguntas y te decimos cuál encaja contigo.</p>
+        <a class="btn" href="/que-ia-necesito/">Hacer el test →</a>
+      </aside>
+      {% endif %}
+      {% include 'partials/ad_slot.html' %}
+      {% include 'partials/sources.html' %}
+      {% if duel.related %}
+      <section class="related" aria-labelledby="otros-duelos">
+        <h2 id="otros-duelos">Otros cara a cara</h2>
+        <div class="grid3">
+          {% for item in duel.related %}{% include 'partials/card.html' %}{% endfor %}
+        </div>
+      </section>
+      {% endif %}
+    </div>
+    <aside class="article-side">
+      <div class="side-sticky">
+        {% include 'partials/toc.html' %}
+        {% include 'partials/ad_slot.html' %}
+      </div>
+    </aside>
+  </div>
+</article>
+{% endblock %}
+{% block scripts %}<script src="{{ asset('js/toc.js') }}" defer></script>{% endblock %}

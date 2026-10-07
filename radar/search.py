@@ -9,11 +9,11 @@ from .editorial import split_ids, toc
 from .models import Brand, Page, Tool
 from .tools import CATEGORIES
 
-INDEX_KINDS = ('ficha', 'comparativa', 'guia', 'noticia', 'utilidad', 'pagina')
+INDEX_KINDS = ('ficha', 'comparativa', 'duelo', 'guia', 'noticia', 'utilidad', 'pagina')
 EXCLUDED_URLS = ('/', '/404/', '/buscar/')
 KIND_LABEL = {'ficha': 'Ficha', 'comparativa': 'Comparativa', 'guia': 'Guía', 'noticia': 'Noticia',
-              'utilidad': 'Utilidad', 'pagina': 'Página'}
-SYMBOL = {'comparativa': ('#e4572e', '★'), 'guia': ('#f3a712', 'G'), 'utilidad': ('#151515', 'U'),
+              'utilidad': 'Utilidad', 'pagina': 'Página', 'duelo': 'Cara a cara'}
+SYMBOL = {'comparativa': ('#e4572e', '★'), 'duelo': ('#e4572e', 'vs'), 'guia': ('#f3a712', 'G'), 'utilidad': ('#151515', 'U'),
           'pagina': ('#151515', 'P'), 'noticia': ('#151515', 'N'), 'ficha': ('#151515', '')}
 MONTHS = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic']
 MAX_DESC = 160

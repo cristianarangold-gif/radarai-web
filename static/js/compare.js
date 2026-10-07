@@ -3,7 +3,9 @@
   var form = document.getElementById('comparador'), out = document.getElementById('comparador-resultado'),
     src = document.getElementById('comparador-datos');
   if (!form || !out || !src) return;
-  var MAX = 3, byId = {}, chosen = [], status = form.querySelector('.compare-status');
+  var MAX = 3, byId = {}, chosen = [], status = form.querySelector('.compare-status'),
+    duels = document.getElementById('comparador-duelos');
+  duels = duels ? JSON.parse(duels.textContent) : {};
   JSON.parse(src.textContent).forEach(function (t) { byId[t.id] = t; });
   var boxes = Array.prototype.slice.call(form.querySelectorAll('input[name="h"]'));
   var ROWS = [['Precio desde', 'desde'], ['Plan de pago', 'pago'], ['Ideal para', 'ideal'],
@@ -72,6 +74,17 @@
     table.appendChild(body);
     wrap.appendChild(table);
     out.appendChild(wrap);
+    // Si las dos elegidas tienen un «Cara a cara», se sugiere (en cualquier orden).
+    var duel = chosen.length === 2 && duels[chosen.slice().sort().join(',')];
+    if (duel) {
+      var p = make('p', 'compare-duel'), a = make('a', null, 'Lee nuestro análisis ' + duel.label + '\u00a0'),
+        arrow = make('span', null, '→');
+      arrow.setAttribute('aria-hidden', 'true');
+      a.appendChild(arrow);
+      a.href = duel.u;
+      p.appendChild(a);
+      out.appendChild(p);
+    }
   }
 
   function sync() {

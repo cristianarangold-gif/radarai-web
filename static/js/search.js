@@ -53,7 +53,7 @@
         if (s) { score += s; n++; }
       }
       if (!n) return;
-      if (e.k === 'Ficha' || e.k === 'Comparativa') score += 3;
+      if (e.k === 'Ficha' || e.k === 'Comparativa' || e.k === 'Cara a cara') score += 3;
       if (e.nt.indexOf(q) >= 0) score += 2;
       if (n === terms.length) full++;
       out.push({ e: e, s: score, n: n });
@@ -256,7 +256,7 @@
       else if (!found.length) message(pageMsg, pageInput, 'empty', query);
       else clear(pageMsg);
       if (found.length) {
-        ['Todo', 'Ficha', 'Comparativa', 'Guía', 'Noticia', 'Utilidad', 'Página', 'Glosario', 'Catálogo'].forEach(function (k) {
+        ['Todo', 'Ficha', 'Comparativa', 'Cara a cara', 'Guía', 'Noticia', 'Utilidad', 'Página', 'Glosario', 'Catálogo'].forEach(function (k) {
           if (!counts[k]) return;
           var b = make('button', 'search-chip', k + ' (' + counts[k] + ')');
           b.type = 'button';

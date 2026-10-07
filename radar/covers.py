@@ -17,6 +17,7 @@ CENTER, EDGE = (0x2a, 0x25, 0x60), (0x0d, 0x11, 0x24)
 LINE = (130, 200, 210)
 ACCENT, AMBER = '#e4572e', '#f3a712'
 DISC = 72          # radio del círculo del logotipo
+DUEL_DX = 150      # separación horizontal de cada logotipo en los «Cara a cara»
 GRADIENT_STEPS = 24
 RINGS = (90, 180, 270, 360, 450, 540)
 # Barrido: capas superpuestas que se desvanecen desde el borde (inicio, fin en grados desde arriba, opacidad)
@@ -30,6 +31,7 @@ class CoverSpec:
     label: str
     brand: Optional[Brand]
     symbol: Optional[str]  # 'star' (comparativa), 'book' (guía) o None
+    brand2: Optional[Brand] = None  # segunda marca en los «Cara a cara»
 
 
 def cover_for(page: Page, brands: Dict[str, Brand], tools: Dict[str, Tool]) -> CoverSpec:
@@ -43,9 +45,20 @@ def cover_for(page: Page, brands: Dict[str, Brand], tools: Dict[str, Tool]) -> C
         return CoverSpec(brand.name, brand, None) if brand else CoverSpec('Noticia', None, None)
     if page.kind == 'comparativa':
         return CoverSpec('Comparativa', None, 'star')
+    if page.kind == 'duelo':
+        ids = [t.strip() for t in page.extra.get('herramientas', '').split(',') if t.strip()][:2]
+        a, b = (_brand_or_monogram(t, brands, tools) for t in ids)
+        return CoverSpec('Cara a cara', a, None, brand2=b)
     if page.kind == 'guia':
         return CoverSpec('Guía', None, 'book')
     return CoverSpec('Radar IA', None, None)
+
+
+def _brand_or_monogram(tid: str, brands: Dict[str, Brand], tools: Dict[str, Tool]) -> Brand:
+    if tid in brands:
+        return brands[tid]
+    name = tools[tid].name if tid in tools else tid
+    return Brand(tid, name, '#151515', None, name[:1].upper())
 
 
 def og_rel(url: str) -> str:
@@ -111,8 +124,28 @@ def _f(x: float) -> str:
     return f'{x:.1f}'.rstrip('0').rstrip('.')
 
 
+def _svg_disc(brand: Optional[Brand], symbol: Optional[str], cx: float, logos_dir: Path) -> List[str]:
+    bg, fg = _disc(CoverSpec('', brand, symbol))
+    parts = [f'<circle cx="{_f(cx)}" cy="{CY}" r="{DISC + 12}" fill="rgba(255,255,255,.08)"/>',
+             f'<circle cx="{_f(cx)}" cy="{CY}" r="{DISC}" fill="{bg}"/>']
+    d = icon_path(brand, logos_dir) if brand else None
+    if d:
+        size = DISC * 2 * .58
+        parts.append(f'<g transform="translate({_f(cx - size / 2)} {_f(CY - size / 2)}) scale({_f(size / 24)})">'
+                     f'<path fill="{fg}" d="{escape(d)}"/></g>')
+    elif symbol:
+        for poly in _symbol_polys(symbol, DISC * 2 * .6):
+            pts = ' '.join(f'{_f(x - CX + cx)},{_f(y)}' for x, y in poly)
+            parts.append(f'<polygon points="{pts}" fill="{fg}"/>')
+    else:
+        letter = brand.monograma if brand else 'R'
+        parts.append(f'<text x="{_f(cx)}" y="{CY}" dy=".35em" text-anchor="middle" fill="{fg}" '
+                     f'font-family="Inter,system-ui,sans-serif" font-weight="700" font-size="64">'
+                     f'{escape(letter)}</text>')
+    return parts
+
+
 def cover_svg(spec: CoverSpec, logos_dir: Path, decorative: bool = False) -> Markup:
-    bg, fg = _disc(spec)
     a11y = 'aria-hidden="true" focusable="false"' if decorative else f'role="img" aria-label="{escape(spec.label)}"'
     parts = [f'<svg class="cover" viewBox="0 0 {W} {H}" xmlns="http://www.w3.org/2000/svg" {a11y}>',
              f'<rect width="{W}" height="{H}" fill="{_css(EDGE)}"/>',
@@ -124,22 +157,14 @@ def cover_svg(spec: CoverSpec, logos_dir: Path, decorative: bool = False) -> Mar
         (x1, y1), (x2, y2) = _polar(start, 700), _polar(end, 700)
         parts.append(f'<path d="M{CX} {CY}L{_f(x1)} {_f(y1)}A700 700 0 0 1 {_f(x2)} {_f(y2)}Z" '
                      f'fill="#82c8d2" fill-opacity="{alpha}"/>')
-    parts.append(f'<circle cx="{CX}" cy="{CY}" r="{DISC + 12}" fill="rgba(255,255,255,.08)"/>')
-    parts.append(f'<circle cx="{CX}" cy="{CY}" r="{DISC}" fill="{bg}"/>')
-    d = icon_path(spec.brand, logos_dir) if spec.brand else None
-    if d:
-        size = DISC * 2 * .58
-        parts.append(f'<g transform="translate({_f(CX - size / 2)} {_f(CY - size / 2)}) scale({_f(size / 24)})">'
-                     f'<path fill="{fg}" d="{escape(d)}"/></g>')
-    elif spec.symbol:
-        for poly in _symbol_polys(spec.symbol, DISC * 2 * .6):
-            pts = ' '.join(f'{_f(x)},{_f(y)}' for x, y in poly)
-            parts.append(f'<polygon points="{pts}" fill="{fg}"/>')
+    if spec.brand2:
+        parts += _svg_disc(spec.brand, None, CX - DUEL_DX, logos_dir)
+        parts += _svg_disc(spec.brand2, None, CX + DUEL_DX, logos_dir)
+        parts.append(f'<text x="{CX}" y="{CY}" dy=".35em" text-anchor="middle" fill="#fff" '
+                     f'font-family="Fraunces,Georgia,serif" font-style="italic" font-weight="600" '
+                     f'font-size="56">VS</text>')
     else:
-        letter = spec.brand.monograma if spec.brand else 'R'
-        parts.append(f'<text x="{CX}" y="{CY}" dy=".35em" text-anchor="middle" fill="{fg}" '
-                     f'font-family="Inter,system-ui,sans-serif" font-weight="700" font-size="64">'
-                     f'{escape(letter)}</text>')
+        parts += _svg_disc(spec.brand, spec.symbol, CX, logos_dir)
     parts.append(f'<text x="48" y="582" fill="#cfd6f5" font-family="Inter,system-ui,sans-serif" '
                  f'font-weight="700" font-size="26" letter-spacing="3">{escape(spec.label.upper())}</text>')
     parts.append(f'<text x="1152" y="584" text-anchor="end" fill="#fff" font-family="Fraunces,Georgia,serif" '
@@ -166,19 +191,26 @@ def write_cover_png(spec: CoverSpec, dest: Path, fonts_dir: Path) -> None:
     for start, end, alpha in SWEEP:
         od.pieslice((CX - 700, CY - 700, CX + 700, CY + 700), start - 90, end - 90, fill=LINE + (round(alpha * 255),))
     glow = DISC + 12
-    od.ellipse((CX - glow, CY - glow, CX + glow, CY + glow), fill=(255, 255, 255, 20))
+    centers = (CX - DUEL_DX, CX + DUEL_DX) if spec.brand2 else (CX,)
+    for cx in centers:
+        od.ellipse((cx - glow, CY - glow, cx + glow, CY + glow), fill=(255, 255, 255, 20))
     img = Image.alpha_composite(img.convert('RGBA'), overlay).convert('RGB')
     draw = ImageDraw.Draw(img)
 
-    bg, fg = _disc(spec)
-    draw.ellipse((CX - DISC, CY - DISC, CX + DISC, CY + DISC), fill=bg)
-    if spec.symbol and not spec.brand:
-        for poly in _symbol_polys(spec.symbol, DISC * 2 * .6):
-            draw.polygon(poly, fill=fg)
-    else:
-        letter = spec.brand.monograma if spec.brand else 'R'
-        font = ImageFont.truetype(str(fonts_dir / 'inter-latin-700-normal.woff2'), 72)
-        draw.text((CX, CY), letter, fill=fg, font=font, anchor='mm')
+    letter_font = ImageFont.truetype(str(fonts_dir / 'inter-latin-700-normal.woff2'), 72)
+    discs = [(spec.brand, None, CX - DUEL_DX), (spec.brand2, None, CX + DUEL_DX)] if spec.brand2 \
+        else [(spec.brand, spec.symbol, CX)]
+    for brand, symbol, cx in discs:
+        bg, fg = _disc(CoverSpec('', brand, symbol))
+        draw.ellipse((cx - DISC, CY - DISC, cx + DISC, CY + DISC), fill=bg)
+        if symbol and not brand:
+            for poly in _symbol_polys(symbol, DISC * 2 * .6):
+                draw.polygon([(x - CX + cx, y) for x, y in poly], fill=fg)
+        else:
+            draw.text((cx, CY), brand.monograma if brand else 'R', fill=fg, font=letter_font, anchor='mm')
+    if spec.brand2:
+        vs_font = ImageFont.truetype(str(fonts_dir / 'fraunces-latin-600-italic.woff2'), 60)
+        draw.text((CX, CY), 'VS', fill='#fff', font=vs_font, anchor='mm')
 
     label_font = ImageFont.truetype(str(fonts_dir / 'inter-latin-700-normal.woff2'), 26)
     x = 48
