@@ -54,3 +54,13 @@ def test_built_compare_page():
     for f in fichas:
         assert f'href="/herramientas/{f}/"' in table
     assert 'noindex' not in html
+
+
+def test_compare_js_is_dom_safe_and_small():
+    import gzip
+    js = (ROOT / 'static' / 'js' / 'compare.js').read_text()
+    assert js.strip()
+    assert 'innerHTML' not in js
+    for needle in ('textContent', 'replaceState', "'scope'", 'noopener nofollow', 'Elige al menos 2', 'disabled'):
+        assert needle in js, needle
+    assert len(gzip.compress(js.encode('utf-8'))) <= 5000
