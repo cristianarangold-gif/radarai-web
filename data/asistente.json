@@ -99,7 +99,7 @@
     },
     {
      "id": "deepl-write",
-     "motivo": "Para corregir y traducir con privacidad (gratis hasta 50.000 caracteres al mes)"
+     "motivo": "Para corregir y traducir gratis (hasta 50.000 caracteres al mes); la garantía de privacidad es de DeepL Pro"
     }
    ]
   },
@@ -118,24 +118,7 @@
      "id": "claude",
      "motivo": "Para textos largos y cuidados, con plan gratuito"
     }
-   ],
-   "si_equipo": {
-    "principal": "claude",
-    "porque": [
-     "Para empresas conviene un asistente con plan de empresa (Claude Team, ChatGPT Business o Gemini en Google Workspace) con controles de administración.",
-     "Combínalo con DeepL Pro para traducciones confidenciales: no usa tus datos para entrenar."
-    ],
-    "alternativas": [
-     {
-      "id": "chatgpt",
-      "motivo": "ChatGPT Business, con controles de administración"
-     },
-     {
-      "id": "deepl-write",
-      "motivo": "DeepL Pro para traducciones confidenciales"
-     }
-    ]
-   }
+   ]
   },
   "escribir/sin-limite": {
    "principal": "claude",
@@ -235,7 +218,7 @@
     },
     {
      "id": "adobe-firefly",
-     "motivo": "La más segura para uso comercial, según Adobe"
+     "motivo": "Para uso comercial: Adobe afirma que entrena sus modelos con contenido con licencia y de dominio público"
     }
    ]
   },
@@ -254,20 +237,7 @@
      "id": "ideogram",
      "motivo": "Para carteles y textos legibles dentro de la imagen"
     }
-   ],
-   "si_equipo": {
-    "principal": "midjourney",
-    "porque": [
-     "Para trabajos de clientes, Midjourney Pro (60 $/mes) incluye el Stealth Mode, que mantiene privadas tus imágenes.",
-     "Si te preocupa el uso comercial, valora Adobe Firefly: Adobe afirma que sus modelos se entrenan con contenido con licencia y de dominio público."
-    ],
-    "alternativas": [
-     {
-      "id": "adobe-firefly",
-      "motivo": "La más segura para uso comercial, según Adobe"
-     }
-    ]
-   }
+   ]
   },
   "imagenes/sin-limite": {
    "principal": "midjourney",
@@ -278,7 +248,7 @@
    "alternativas": [
     {
      "id": "adobe-firefly",
-     "motivo": "La más segura para uso comercial, según Adobe"
+     "motivo": "Para uso comercial: Adobe afirma que entrena sus modelos con contenido con licencia y de dominio público"
     },
     {
      "id": "ideogram",
@@ -294,7 +264,7 @@
     "alternativas": [
      {
       "id": "adobe-firefly",
-      "motivo": "La más segura para uso comercial, según Adobe"
+      "motivo": "Para uso comercial: Adobe afirma que entrena sus modelos con contenido con licencia y de dominio público"
      }
     ]
    }
@@ -438,24 +408,7 @@
      "id": "cursor",
      "motivo": "Si vas a trabajar con agentes a diario, desde 20 $/mes"
     }
-   ],
-   "si_equipo": {
-    "principal": "github-copilot",
-    "porque": [
-     "Para empresas, los planes Business o Enterprise ofrecen controles de privacidad y administración.",
-     "El código de tu empresa puede ser confidencial: usa planes de empresa con garantías contractuales."
-    ],
-    "alternativas": [
-     {
-      "id": "cursor",
-      "motivo": "Cursor Teams (40 $/usuario/mes) si trabajáis con agentes"
-     },
-     {
-      "id": "claude",
-      "motivo": "Claude Team, otra opción con plan de empresa"
-     }
-    ]
-   }
+   ]
   },
   "programar/sin-limite": {
    "principal": "cursor",
@@ -574,24 +527,7 @@
      "id": "copilot",
      "motivo": "Incluido en Microsoft 365 Personal (99 €/año) si usas Office"
     }
-   ],
-   "si_equipo": {
-    "principal": "notion-ai",
-    "porque": [
-     "Si tu equipo ya trabaja en Notion, la IA responde con el contexto de vuestros proyectos y toma notas de reuniones.",
-     "La IA completa requiere el plan Business (19,50 €/usuario/mes)."
-    ],
-    "alternativas": [
-     {
-      "id": "chatgpt",
-      "motivo": "Si no usáis Notion, un plan de empresa de ChatGPT, Claude o Gemini"
-     },
-     {
-      "id": "gemini",
-      "motivo": "La opción lógica si trabajáis con Google"
-     }
-    ]
-   }
+   ]
   },
   "productividad/sin-limite": {
    "principal": "chatgpt",

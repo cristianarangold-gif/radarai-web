@@ -54,8 +54,10 @@ def validate_assistant(data: dict, tools: Dict[str, Tool], fichas: Dict[str, Pag
             if rule is None:
                 raise ValueError(f'asistente.json: falta la regla {key}')
             _check_rule(key, rule, tools, fichas, budget)
+            if budget == 'poco' and rule.get('si_equipo'):
+                raise ValueError(f'asistente.json: {key}: los planes de equipo superan ~10 €/mes; no uses si_equipo aquí')
             for name in OVERRIDES:
-                if name in rule:
+                if rule.get(name):
                     _check_rule(f'{key} ({name})', rule[name], tools, fichas, budget)
 
 
@@ -74,6 +76,7 @@ def auto_alternatives(data: dict, tools: Dict[str, Tool], tarea: str, presupuest
     found = [t for t in tools.values()
              if t.cat in cats and t.id not in exclude
              and (presupuesto != 'gratis' or t.price in FREE_PRICES)
+             and (presupuesto != 'poco' or t.has_page or t.price != 'pago')
              and (nivel != 'empiezo' or t.level != 'avanzado')]
     found.sort(key=lambda t: (not t.has_page, t.name.lower()))
     return [t.id for t in found[:n]]

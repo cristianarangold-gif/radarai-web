@@ -18,7 +18,7 @@ Las recomendaciones no las decide un algoritmo opaco. Cada combinación de tarea
 
 Además, el asistente completa la respuesta con **otras opciones de nuestro catálogo** que encajan con tu tarea, tu presupuesto y tu nivel. Esas opciones se eligen de forma automática a partir de los datos del catálogo (categoría, tipo de precio y nivel de dificultad), por lo que conviene revisarlas con más calma antes de decidir.
 
-Radar IA no cobra a las herramientas por aparecer en el asistente ni en ninguna otra página. Puedes leer cómo trabajamos en nuestra [metodología](/metodologia/) y en la [política editorial](/politica-editorial/).
+Las recomendaciones se basan en esa documentación, no en pruebas propias de cada herramienta. Radar IA no cobra a las herramientas por aparecer en el asistente ni en ninguna otra página. Puedes leer cómo trabajamos en nuestra [metodología](/metodologia/) y en la [política editorial](/politica-editorial/).
 
 ## Lo que conviene tener en cuenta
 

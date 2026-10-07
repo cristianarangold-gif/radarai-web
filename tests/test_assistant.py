@@ -108,3 +108,27 @@ def test_payload_uses_brand_name_when_available():
     brands = {'chatgpt': Brand('chatgpt', 'ChatGPT Plus', '#10a37f', None, 'C')}
     assert resolve_payload(data, TOOLS, brands, FICHAS)['tools']['chatgpt']['n'] == 'ChatGPT Plus'
     assert resolve_payload(data, TOOLS, brands, FICHAS)['tools']['claude']['n'] == 'Claude'
+
+
+def test_team_override_not_allowed_on_small_budget():
+    data = base_data()
+    data['reglas']['video/poco']['si_equipo'] = {'principal': 'claude', 'porque': ['a', 'b']}
+    with pytest.raises(ValueError, match='video/poco: los planes de equipo superan'):
+        validate_assistant(data, TOOLS, FICHAS, URLS)
+
+
+def test_small_budget_skips_paid_catalog_tools_without_page():
+    data = base_data()
+    ids = auto_alternatives(data, TOOLS, 'escribir', 'poco', 'avanzado', {'chatgpt', 'claude'}, n=5)
+    assert 'alfa' not in ids  # «alfa» es de pago y no tiene ficha
+
+
+def test_real_rules_texts_are_accurate():
+    text = (ROOT / 'data' / 'asistente.json').read_text()
+    assert 'Para corregir y traducir con privacidad (gratis' not in text
+    assert 'segura para uso comercial, según Adobe' not in text
+
+
+def test_assistant_page_says_no_own_tests():
+    text = (ROOT / 'content' / 'paginas' / 'que-ia-necesito.md').read_text()
+    assert 'pruebas propias' in text
