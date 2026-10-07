@@ -37,6 +37,10 @@ def test_sample_is_valid():
     (lambda d: d['situaciones'][1]['enlaces'].append(link('/a/')), 'repetida'),
     (lambda d: d['situaciones'][2].update(enlaces=[link('/a/')]), '2–3 enlaces'),
     (lambda d: d['pasos'][0].update(extra=[link('/a/'), link('/b/'), link('/c/'), link('/d/')]), '0–3'),
+    (lambda d: d['pasos'][0].pop('cta'), 'cta'),
+    (lambda d: d['pasos'][0].update(cta='/c/'), 'cta'),
+    (lambda d: d['situaciones'][0].update(enlaces=['/a/', '/b/']), 'enlace'),
+    (lambda d: d.update(pasos='x'), '5 pasos'),
 ])
 def test_invalid_data_fails(mutate, needle):
     data = sample()
@@ -44,6 +48,11 @@ def test_invalid_data_fails(mutate, needle):
     with pytest.raises(ValueError) as e:
         validate_start(data, URLS)
     assert needle in str(e.value) and 'empieza.json' in str(e.value)
+
+
+def test_root_must_be_object():
+    with pytest.raises(ValueError, match='empieza.json'):
+        validate_start([], URLS)
 
 
 def test_real_file_is_valid_against_real_site():
@@ -60,10 +69,16 @@ def test_real_page_words():
     assert page.word_count >= 300 and page.indexable
 
 
-def test_built_start_page():
+@pytest.fixture(scope='module')
+def site():
     out = Path(tempfile.mkdtemp()) / 'site'
     subprocess.run([sys.executable, str(ROOT / 'scripts' / 'build.py'), '--out', str(out)], check=True,
                    capture_output=True)
+    return out
+
+
+def test_built_start_page(site):
+    out = site
     html = (out / 'empieza-aqui' / 'index.html').read_text()
     assert html.count('class="start-card"') == 4 and html.count('class="start-step"') == 5
     assert '¿Cuál es tu situación?' in html and 'Tu primera semana con la IA' in html
@@ -73,16 +88,16 @@ def test_built_start_page():
         assert (out / href.strip('/') / 'index.html').exists(), href
     data = load_start(ROOT / 'data' / 'empieza.json')
     assert main.count('class="start-extra"') == sum(1 for s in data['pasos'] if s['extra'])
+    assert '<ol class="start-steps" role="list">' in main and '<ul role="list">' in main
+    assert '&nbsp;<span aria-hidden="true">→</span></a>' in main and ' →</a>' not in main
 
 
 def _nav(html):
     return re.search(r'<nav id="menu-principal".*?</nav>', html, re.S).group(0)
 
 
-def test_menu_and_home_link_to_start_in_real_build():
-    out = Path(tempfile.mkdtemp()) / 'site'
-    subprocess.run([sys.executable, str(ROOT / 'scripts' / 'build.py'), '--out', str(out)], check=True,
-                   capture_output=True)
+def test_menu_and_home_link_to_start_in_real_build(site):
+    out = site
     for page in ('index.html', 'noticias/index.html', 'empieza-aqui/index.html'):
         hrefs = re.findall(r'href="([^"]+)"', _nav((out / page).read_text()))
         assert hrefs[0] == '/empieza-aqui/' and len(hrefs) == 6, page
@@ -90,7 +105,7 @@ def test_menu_and_home_link_to_start_in_real_build():
     assert 'class="nav-start" href="/empieza-aqui/" aria-current="page"' in start_nav
     assert 'aria-current' not in _nav((out / 'index.html').read_text())
     home = (out / 'index.html').read_text()
-    assert '<p class="hero-start">¿Nuevo en la IA? <a href="/empieza-aqui/">Empieza aquí&nbsp;→</a></p>' in home
+    assert '<p class="hero-start">¿Nuevo en la IA? <a href="/empieza-aqui/">Empieza aquí&nbsp;<span aria-hidden="true">→</span></a></p>' in home
 
 
 def test_fixture_build_without_start_page_has_no_links(tmp_path):
@@ -100,3 +115,18 @@ def test_fixture_build_without_start_page_has_no_links(tmp_path):
     build(root, out)
     for page in ('index.html', 'noticias/index.html'):
         assert '/empieza-aqui/' not in (out / page).read_text(), page
+
+
+def test_start_page_without_data_fails_build(tmp_path):
+    from scripts.build import build
+    from tests.test_build import make_root
+    root = make_root(tmp_path)
+    (root / 'content' / 'paginas' / 'empieza-aqui.md').write_text('titulo: E\ndescripcion: d\n\nTexto', encoding='utf-8')
+    with pytest.raises(ValueError, match='empieza.json'):
+        build(root, tmp_path / '_site')
+
+
+def test_nav_pill_uses_accessible_accent():
+    css = (ROOT / 'static' / 'css' / 'radar.css').read_text()
+    rule = re.search(r'\.site-nav \.nav-start \{([^}]*)\}', css).group(1)
+    assert 'var(--accent-ink)' in rule

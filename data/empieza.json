@@ -43,8 +43,8 @@
   ],
   "pasos": [
     {
-      "titulo": "Pruébala gratis y con cabeza",
-      "texto": "Casi todas las herramientas tienen un plan gratuito suficiente para empezar. Antes de escribir nada, repasa qué datos no conviene compartir.",
+      "titulo": "Entiende lo básico y pruébala gratis",
+      "texto": "Más abajo te explicamos tres conceptos básicos. Muchas herramientas tienen un plan gratuito, con límites, que basta para probarlas; antes de escribir nada, repasa qué datos no conviene compartir.",
       "cta": {"texto": "Ver qué es gratis", "url": "/mejor-ia-gratis/"},
       "extra": [{"texto": "Guía de privacidad", "url": "/guias/privacidad-en-ia/"}]
     },

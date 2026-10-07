@@ -104,6 +104,8 @@ def build(root: Path, out: Path) -> None:
         base_ctx['compare_payload'] = compare_payload(
             {p.slug: p for p in pages if p.kind == 'ficha' and p.indexable}, tools, brands, CATEGORIES)
     start_file = root / 'data' / 'empieza.json'
+    if '/empieza-aqui/' in by_url and not start_file.exists():
+        raise ValueError('content/paginas/empieza-aqui.md necesita data/empieza.json')
     if start_file.exists() and '/empieza-aqui/' in by_url:
         start = load_start(start_file)
         validate_start(start, {p.url for p in pages if p.indexable} | {url for url, *_ in LISTINGS})

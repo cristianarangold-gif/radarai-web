@@ -15,8 +15,8 @@
         <span class="start-emoji" aria-hidden="true">{{ s.emoji }}</span>
         <h3>{{ s.titulo }}</h3>
         <p>{{ s.texto }}</p>
-        <ul>
-          {% for l in s.enlaces %}<li><a href="{{ l.url }}">{{ l.texto }}&nbsp;→</a></li>{% endfor %}
+        <ul role="list">
+          {% for l in s.enlaces %}<li><a href="{{ l.url }}">{{ l.texto }}&nbsp;<span aria-hidden="true">→</span></a></li>{% endfor %}
         </ul>
       </div>
       {% endfor %}
@@ -25,7 +25,7 @@
 
   <section class="start-route" aria-labelledby="ruta">
     <h2 id="ruta">Tu primera semana con la IA</h2>
-    <ol class="start-steps">
+    <ol class="start-steps" role="list">
       {% for p in start_payload.pasos %}
       <li class="start-step">
         <span class="start-n" aria-hidden="true">{{ loop.index }}</span>
@@ -34,7 +34,7 @@
           <p>{{ p.texto }}</p>
           {% if p.extra %}<p class="start-extra">{% for l in p.extra %}<a href="{{ l.url }}">{{ l.texto }}</a>{% if not loop.last %} · {% endif %}{% endfor %}</p>{% endif %}
         </div>
-        <a class="btn start-cta" href="{{ p.cta.url }}">{{ p.cta.texto }}&nbsp;→</a>
+        <a class="btn start-cta" href="{{ p.cta.url }}">{{ p.cta.texto }}&nbsp;<span aria-hidden="true">→</span></a>
       </li>
       {% endfor %}
     </ol>

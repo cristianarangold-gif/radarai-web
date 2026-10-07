@@ -7,23 +7,19 @@ Radar IA está pensado para personas que quieren **usar la inteligencia artifici
 
 No hace falta seguir la ruta entera ni en orden. Si te reconoces en una de las cuatro situaciones de arriba, empieza por sus enlaces y vuelve aquí cuando quieras dar el siguiente paso.
 
-## Cómo está organizado Radar IA
+## Tres conceptos para empezar
 
-- **Comparativas.** Responden a la pregunta «¿cuál es la mejor IA para…?» en cada tarea: escribir, estudiar, imágenes, vídeo, música, programar, marketing y productividad.
-- **Fichas de herramientas.** Explican qué hace cada herramienta, sus planes y precios con fecha de comprobación, sus límites y cómo trata tus datos.
-- **Guías prácticas.** Te enseñan a hacer algo concreto paso a paso, como estudiar sin plagiar o automatizar tareas.
-- **Utilidades gratuitas.** Funcionan en tu navegador para preparar prompts, títulos o hashtags sin registrarte.
-- **Noticias.** Cuentan las novedades de IA que importan y qué cambian para ti.
+- **Asistente o chatbot.** Es la herramienta con la que conversas escribiendo (o hablando), como ChatGPT, Gemini o Claude. Le pides algo en lenguaje normal y te responde con texto, y algunos también con imágenes o archivos. Por dentro funciona con un **modelo de lenguaje**, un programa entrenado con enormes cantidades de texto para predecir qué respuesta encaja con lo que le pides. Por eso escribe con soltura, pero no «sabe» las cosas como una enciclopedia.
+- **Prompt.** Es la instrucción que le das. Cuanto más contexto le des (para quién es, qué tono quieres, qué formato, con qué datos debe trabajar), mejor será el resultado. Si la primera respuesta no te sirve, no empieces de cero: dile qué cambiar.
+- **Plan gratuito o freemium.** La mayoría de herramientas se pueden usar gratis con límites (de mensajes, de funciones o de calidad) y ofrecen un plan de pago que los amplía. Los precios cambian a menudo, por eso en nuestras fichas indicamos la fecha en que los comprobamos.
 
-## Cómo trabajamos
-
-Los datos de precios y planes salen de las **páginas oficiales** de cada herramienta, y siempre indicamos cuándo los comprobamos, porque cambian a menudo. No decimos que hemos probado algo si no lo hemos hecho: cuando hay pruebas propias, lo señalamos de forma expresa. Ninguna empresa paga por aparecer ni por salir mejor parada. Lo explicamos con detalle en nuestra [metodología](/metodologia/).
+Si quieres saber cómo elegimos y analizamos las herramientas, lo contamos en [Sobre Radar IA](/sobre/) y en nuestra [metodología](/metodologia/).
 
 ## Preguntas frecuentes
 
 ### ¿Necesito pagar para usar la inteligencia artificial?
 
-No para empezar. La mayoría de los asistentes conocidos tienen un plan gratuito con límites de uso o de funciones, suficiente para aprender y para muchas tareas diarias. Te lo contamos en [la mejor IA gratis](/mejor-ia-gratis/). Paga solo cuando el plan gratuito se te quede corto de verdad, y compara antes los planes.
+No para empezar. La mayoría de los asistentes conocidos tienen un plan gratuito con límites de uso o de funciones, con el que puedes aprender y probar si te resulta útil. Te lo contamos en [la mejor IA gratis](/mejor-ia-gratis/). Paga solo cuando el plan gratuito se te quede corto de verdad, y compara antes los planes.
 
 ### ¿Es seguro usar la IA?
 
@@ -31,7 +27,7 @@ Es seguro si tomas unas precauciones básicas: no compartas contraseñas, datos 
 
 ### ¿Cuál es la mejor IA para empezar?
 
-Depende de para qué la quieras. Un asistente generalista sirve para casi todo al principio, pero si tu objetivo es concreto (crear imágenes, estudiar, programar) hay opciones mejores. El test [¿Qué IA necesito?](/que-ia-necesito/) te da una recomendación con sus razones en menos de un minuto.
+Depende de para qué la quieras. Un asistente generalista sirve para casi todo al principio, pero si tu objetivo es concreto (crear imágenes, estudiar, programar) hay opciones mejores. El test [¿Qué IA necesito?](/que-ia-necesito/) te da una recomendación con sus razones a partir de cuatro respuestas.
 
 ### ¿La IA se equivoca?
 
