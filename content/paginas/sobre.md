@@ -9,6 +9,7 @@ Radar IA es un medio independiente en español sobre **herramientas y noticias d
 - **Análisis de herramientas** con planes, precios con fecha de comprobación, funciones, limitaciones y privacidad. Están en la sección de [herramientas](/herramientas/).
 - **Guías prácticas** para usar la IA en el estudio, el trabajo y la pequeña empresa. Las tienes en [guías](/guias/).
 - **Noticias** de inteligencia artificial explicadas con lo que cambian en la práctica, en la sección de [noticias](/noticias/).
+- **Glosario de IA** con los términos que vas a encontrar al usar estas herramientas, explicados en español claro. Está en el [glosario](/glosario/).
 - **Utilidades gratuitas** que funcionan en tu navegador, como el [generador de prompts](/herramientas-radar/generador-de-prompts/).
 
 ## Quién hay detrás

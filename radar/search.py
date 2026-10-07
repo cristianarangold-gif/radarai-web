@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 import json
-from typing import Dict, List
+from typing import Dict, List, Optional
 
 from .content import text_of
 from .editorial import split_ids, toc
@@ -58,7 +58,8 @@ def _page_entry(p: Page, tools: Dict[str, Tool], brands: Dict[str, Brand], cats:
     return entry
 
 
-def build_index(pages: List[Page], tools: Dict[str, Tool], brands: Dict[str, Brand]) -> List[dict]:
+def build_index(pages: List[Page], tools: Dict[str, Tool], brands: Dict[str, Brand],
+                glossary: Optional[list] = None) -> List[dict]:
     cats = dict(CATEGORIES)
     entries = [_page_entry(p, tools, brands, cats) for p in pages
                if p.kind in INDEX_KINDS and p.indexable and p.url not in EXCLUDED_URLS]
@@ -68,6 +69,9 @@ def build_index(pages: List[Page], tools: Dict[str, Tool], brands: Dict[str, Bra
         entries.append({'t': t.name, 'u': f'/herramientas/#cat-{t.cat}', 'k': 'Catálogo', 'd': _short(t.desc),
                         'x': _keywords([cats.get(t.cat, '')] + list(t.tags)), 'c': '#151515',
                         'm': t.name[:1].upper()})
+    for term in glossary or []:
+        entries.append({'t': term.term, 'u': f'/glosario/#{term.slug}', 'k': 'Glosario', 'd': _short(term.text),
+                        'x': _keywords(list(term.alias) + [term.tema_label]), 'c': '#151515', 'm': 'G'})
     return entries
 
 

@@ -126,7 +126,7 @@ def build(root: Path, out: Path) -> None:
     if imprescindibles.exists():
         base_ctx['imprescindibles'] = load_imprescindibles(imprescindibles, by_url)
     w = Writer(out)
-    search_json = index_json(build_index(pages, tools, brands))
+    search_json = index_json(build_index(pages, tools, brands, base_ctx.get('glossary', {}).get('terms')))
     base_ctx['search_index_url'] = '/search-index.json?v=' + hashlib.sha256(search_json.encode('utf-8')).hexdigest()[:10]
     w.write('search-index.json', search_json, 'índice de búsqueda')
 

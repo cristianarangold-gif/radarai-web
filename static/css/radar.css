@@ -472,6 +472,8 @@ span.glossary-letter { border-color: var(--rule); color: #b5ada0; background: tr
   .term dd { margin: 0; }
 }
 .glossary .prose { margin-top: 44px; }
+.term[hidden], .glossary-group[hidden] { display: none; }
+.glossary-empty { margin: 24px 0; color: var(--ink-2); }
 
 /* Movimiento reducido */
 @media (prefers-reduced-motion: reduce) {

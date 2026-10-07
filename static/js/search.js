@@ -256,7 +256,7 @@
       else if (!found.length) message(pageMsg, pageInput, 'empty', query);
       else clear(pageMsg);
       if (found.length) {
-        ['Todo', 'Ficha', 'Comparativa', 'Guía', 'Noticia', 'Utilidad', 'Página', 'Catálogo'].forEach(function (k) {
+        ['Todo', 'Ficha', 'Comparativa', 'Guía', 'Noticia', 'Utilidad', 'Página', 'Glosario', 'Catálogo'].forEach(function (k) {
           if (!counts[k]) return;
           var b = make('button', 'search-chip', k + ' (' + counts[k] + ')');
           b.type = 'button';

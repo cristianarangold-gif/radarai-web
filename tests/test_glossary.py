@@ -123,3 +123,28 @@ def test_real_glossary_is_valid_and_complete():
     assert {t.tema for t in terms} == {'basicos', 'modelos', 'uso', 'precios', 'etica'}
     page = [p for p in pages if p.url == '/glosario/'][0]
     assert page.indexable and page.word_count >= 300
+
+
+def test_glossary_js_is_dom_safe_and_small():
+    import gzip
+    js = (ROOT / 'static' / 'js' / 'glossary.js').read_bytes()
+    assert b'innerHTML' not in js and len(gzip.compress(js)) <= 2048
+
+
+def test_built_glossary_links_and_search(site):
+    html = (site / 'glosario' / 'index.html').read_text()
+    assert re.search(r'<script src="/static/js/glossary\.js\?v=[0-9a-f]{10}" defer>', html)
+    idx = json.loads((site / 'search-index.json').read_text())
+    assert any(e['u'] == '/glosario/#token' and e['k'] == 'Glosario' for e in idx)
+    start = (site / 'empieza-aqui' / 'index.html').read_text()
+    assert start.count('href="/glosario/"') >= 2
+    footer = (site / 'index.html').read_text().split('<footer')[1]
+    assert '<a href="/glosario/">Glosario de IA</a>' in footer
+    assert 'href="/glosario/"' in (site / 'sobre' / 'index.html').read_text()
+
+
+def test_fixture_build_has_no_glossary_footer_link(tmp_path):
+    from scripts.build import build
+    from tests.test_build import make_root
+    build(make_root(tmp_path), tmp_path / '_site')
+    assert '/glosario/' not in (tmp_path / '_site' / 'index.html').read_text()

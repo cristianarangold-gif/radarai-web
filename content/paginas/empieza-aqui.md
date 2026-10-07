@@ -13,6 +13,8 @@ No hace falta seguir la ruta entera ni en orden. Si te reconoces en una de las c
 - **Prompt.** Es la instrucción que le das. Cuanto más contexto le des (para quién es, qué tono quieres, qué formato, con qué datos debe trabajar), mejor será el resultado. Si la primera respuesta no te sirve, no empieces de cero: dile qué cambiar.
 - **Plan gratuito o freemium.** La mayoría de herramientas se pueden usar gratis con límites (de mensajes, de funciones o de calidad) y ofrecen un plan de pago que los amplía. Los precios cambian a menudo, por eso en nuestras fichas indicamos la fecha en que los comprobamos.
 
+¿Te cruzas con otras palabras que no conoces? Tienes más de cincuenta explicadas en nuestro [glosario de IA](/glosario/).
+
 Si quieres saber cómo elegimos y analizamos las herramientas, lo contamos en [Sobre Radar IA](/sobre/) y en nuestra [metodología](/metodologia/).
 
 ## Preguntas frecuentes

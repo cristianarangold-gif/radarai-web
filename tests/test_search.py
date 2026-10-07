@@ -83,3 +83,13 @@ def test_index_json_is_compact_and_unicode():
     idx, _ = index()
     s = index_json(idx)
     assert '": ' not in s and 'Página' in s and json.loads(s) == idx
+
+
+def test_glossary_terms_in_index():
+    from radar.glossary import parse_glossary
+    terms = parse_glossary('## Modelo de lenguaje\ntema: modelos\nalias: LLM\n\n' + 'Programa que predice. ' * 10)
+    idx = build_index(pages(), TOOLS, BRANDS, terms)
+    e = [x for x in idx if x['k'] == 'Glosario'][0]
+    assert e['t'] == 'Modelo de lenguaje' and e['u'] == '/glosario/#modelo-de-lenguaje'
+    assert 'LLM' in e['x'] and 'Modelos y tecnología' in e['x'] and e['d'].startswith('Programa que predice.')
+    assert e['m'] == 'G' and len(e['d']) <= 160
