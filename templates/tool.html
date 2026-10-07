@@ -36,6 +36,9 @@
         {% if page.extra.get('web') %}
         <a class="cta" href="{{ page.extra['web'] }}" rel="noopener nofollow" target="_blank">Visitar {{ name }} →</a>
         {% endif %}
+        {% if compare_payload %}
+        <a class="btn btn-ghost compare-link" href="/comparador/?h={{ page.slug }}">Comparar {{ name }} con… →</a>
+        {% endif %}
         {% include 'partials/ad_slot.html' %}
       </div>
     </aside>

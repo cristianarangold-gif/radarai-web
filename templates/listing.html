@@ -8,6 +8,7 @@
   </header>
   {% if page.body_html %}<div class="prose">{{ page.body_html | safe }}</div>{% endif %}
   {% if page.url == '/herramientas/' %}
+  {% if compare_payload %}<p class="compare-entry"><a class="btn" href="/comparador/">⇄ Comparar herramientas</a></p>{% endif %}
   {% if listing %}
   <div class="grid3 tools-grid">
     {% for item in listing %}{% set t = tools.get(item.slug) %}{% if t %}{% include 'partials/tool_card.html' %}{% endif %}{% endfor %}

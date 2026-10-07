@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block main %}
+<section class="wrap article compare">
+  <header class="article-head">
+    <p class="eyebrow">Comparador</p>
+    <h1>Compara herramientas de IA</h1>
+    <p class="lede">Elige 2 o 3 herramientas y compara sus precios, planes y para quién son, con los datos de nuestras fichas.</p>
+  </header>
+  <form class="compare-form" id="comparador" action="/comparador/" method="get">
+    <fieldset>
+      <legend>Elige hasta 3 herramientas</legend>
+      <div class="compare-options">
+        {% for t in compare_payload %}
+        <label class="compare-option"><input type="checkbox" name="h" value="{{ t.id }}"><span>{{ t.id | logo(24, t.n) }}{{ t.n }}</span></label>
+        {% endfor %}
+      </div>
+    </fieldset>
+    <p class="compare-status" aria-live="polite">Elige al menos 2 herramientas.</p>
+  </form>
+  <div class="compare-result" id="comparador-resultado"></div>
+  <section class="compare-summary" aria-labelledby="resumen-todas">
+    <h2 id="resumen-todas">Resumen de todas las herramientas</h2>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th scope="col">Herramienta</th><th scope="col">Precio desde</th><th scope="col">Plan de pago</th><th scope="col">Ideal para</th></tr></thead>
+        <tbody>
+          {% for t in compare_payload %}
+          <tr><th scope="row"><a href="{{ t.u }}">{{ t.n }}</a></th><td>{{ t.desde }}</td><td>{{ t.pago }}</td><td>{{ t.ideal }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+  <div class="prose">{{ page.body_html | safe }}</div>
+</section>
+<script type="application/json" id="comparador-datos">{{ compare_payload | to_json }}</script>
+{% endblock %}
+{% block scripts %}<script src="{{ asset('js/compare.js') }}" defer></script>{% endblock %}
