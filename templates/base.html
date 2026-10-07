@@ -41,13 +41,15 @@
 <script type="application/ld+json">{{ block | to_json }}</script>
 {% endfor %}
 </head>
-<body>
+<body{% if search_index_url %} data-search-index="{{ search_index_url }}"{% endif %}{% if page.url == '/buscar/' %} data-search-page{% endif %}>
 <a class="skip" href="#contenido">Saltar al contenido</a>
 {% include 'partials/header.html' %}
 <main id="contenido">
 {% block main %}{% endblock %}
 </main>
 {% include 'partials/footer.html' %}
+{% include 'partials/search_dialog.html' %}
+<script src="{{ asset('js/search.js') }}" defer></script>
 <script src="{{ asset('js/site.js') }}" defer></script>
 {% block scripts %}{% endblock %}
 </body>

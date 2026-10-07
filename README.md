@@ -22,6 +22,7 @@ Código y contenido de [radarai.es](https://radarai.es). Un generador estático 
   - noticias: `empresa` (id de `brands.json`) y `herramientas` (ids de `tools.json`, separados por comas);
   - fichas: `precio_desde`, `plan_pago`, `ideal_para` y `veredicto` (una frase), siempre tomados del propio texto de la ficha.
 - **Imágenes de portada:** se generan solas en cada build (SVG en la página y PNG 1200×630 en `_site/og/` para compartir en redes). No se guardan en git.
+- **Buscador:** el build genera `search-index.json` (artículos indexables y herramientas del catálogo sin ficha) y lo enlaza versionado en `<body data-search-index>`. `static/js/search.js` abre la ventana desde «Buscar» o la tecla «/» y da servicio a la página `/buscar/` (noindex). Si ningún resultado contiene todas las palabras, muestra los que contienen alguna, con un aviso.
 - **Validaciones:** el build falla si una noticia cita una herramienta o empresa inexistente, si `imprescindibles.txt` apunta a una página que no existe o si una ficha no tiene ningún dato de resumen. `check.py` falla si una página indexable no tiene imagen para compartir o si un enlace apunta a una categoría del catálogo (`#cat-…`) que no existe.
 
 ## Uso local

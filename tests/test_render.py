@@ -187,3 +187,37 @@ def test_assets_are_versioned_by_content(env):
     assert f'href="/static/css/radar.css?v={v}"' in html
     assert re.search(r'src="/static/js/site\.js\?v=[0-9a-f]{10}"', html)
     assert re.search(r'src="/static/js/toc\.js\?v=[0-9a-f]{10}"', html)
+
+
+def test_search_dialog_in_every_page(env):
+    html = render_page(env, news('n', 1), ctx(search_index_url='/search-index.json?v=abc'))
+    assert 'id="search-dialog"' in html and 'role="dialog"' in html and 'aria-modal="true"' in html
+    assert 'data-search-index="/search-index.json?v=abc"' in html
+    assert re.search(r'src="/static/js/search\.js\?v=[0-9a-f]{10}"', html)
+
+
+def test_search_js_is_dom_safe_and_small():
+    js = (ROOT / 'static' / 'js' / 'search.js').read_text()
+    assert 'innerHTML' not in js
+    for needle in ('textContent', 'aria-activedescendant', 'No se ha podido cargar el buscador',
+                   'ChatGPT', 'imágenes', 'Ver todos'):
+        assert needle in js, needle
+    import gzip
+    assert len(gzip.compress(js.encode('utf-8'))) <= 8000  # tamaño de descarga, como el índice
+
+
+def test_search_js_falls_back_to_partial_matches():
+    js = (ROOT / 'static' / 'js' / 'search.js').read_text()
+    assert 'Sin coincidencias con todas las palabras' in js
+
+
+def test_search_js_review_fixes():
+    js = (ROOT / 'static' / 'js' / 'search.js').read_text()
+    # Enter construye la URL en el momento, no con el href de la última carga.
+    assert "location.href = '/buscar/?q=' + encodeURIComponent(input.value)" in js
+    # El foco que se escapa del panel vuelve dentro.
+    assert '!dlg.contains(document.activeElement)' in js
+    # Al pulsar un filtro, el foco vuelve al filtro activo.
+    assert "filters.querySelector('[aria-pressed=\"true\"]')" in js
+    # Palabras vacías fuera de la búsqueda cuando hay otras.
+    assert "'para'" in js and 'STOP' in js

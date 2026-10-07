@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block main %}
+<section class="wrap article search-page-wrap">
+  <header class="article-head">
+    <p class="eyebrow">Buscar en Radar IA</p>
+    <h1>¿Qué estás buscando?</h1>
+  </header>
+  <form class="search-page" role="search" action="/buscar/" method="get">
+    <label class="sr-only" for="search-page-input">Buscar</label>
+    <input id="search-page-input" name="q" type="search" autocomplete="off" placeholder="Busca herramientas, comparativas, guías…">
+    <button class="btn" type="submit">Buscar</button>
+  </form>
+  <div class="search-filters" role="group" aria-label="Filtrar por tipo"></div>
+  <p class="search-status" aria-live="polite"></p>
+  <ol class="search-results" id="search-page-results"></ol>
+  <noscript>
+    <p>El buscador necesita JavaScript. Puedes explorar las secciones directamente:</p>
+    <ul class="chip-list">
+      <li><a href="/mejor-ia/">Comparativas</a></li>
+      <li><a href="/herramientas/">Herramientas</a></li>
+      <li><a href="/guias/">Guías</a></li>
+      <li><a href="/noticias/">Noticias</a></li>
+    </ul>
+  </noscript>
+</section>
+{% endblock %}

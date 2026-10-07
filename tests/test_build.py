@@ -233,3 +233,29 @@ def test_real_fichas_price_pill_reads_well():
 def test_catalog_js_does_not_yank_reader_after_load():
     js = (ROOT / 'static' / 'js' / 'catalog.js').read_text()
     assert 'scrollY' in js
+
+
+def test_search_index_written_and_linked(tmp_path):
+    root, out = make_root(tmp_path), tmp_path / '_site'
+    build(root, out)
+    idx = json.loads((out / 'search-index.json').read_text())
+    urls = {e['u'] for e in idx}
+    assert '/noticias/buena/' in urls and '/' not in urls and '/noticias/' not in urls
+    assert '/noticias/borrador/' not in urls and '/herramientas/#cat-video' in urls
+    assert 'search-index.json?v=' in (out / 'noticias' / 'buena' / 'index.html').read_text()
+
+
+def test_search_page_noindex_not_in_sitemap(tmp_path):
+    root, out = make_root(tmp_path), tmp_path / '_site'
+    build(root, out)
+    html = (out / 'buscar' / 'index.html').read_text()
+    assert 'name="robots" content="noindex' in html and '¿Qué estás buscando?' in html
+    assert 'id="search-page-input"' in html and 'data-search-page' in html
+    assert 'El buscador necesita JavaScript' in html and 'og:image' not in html
+    assert '/buscar/' not in (out / 'sitemap.xml').read_text()
+
+
+def test_header_has_search_link(tmp_path):
+    root, out = make_root(tmp_path), tmp_path / '_site'
+    build(root, out)
+    assert 'class="search-open" href="/buscar/"' in (out / 'index.html').read_text()

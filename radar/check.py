@@ -1,6 +1,7 @@
 """Validación del sitio generado antes de publicar."""
 from __future__ import annotations
 
+import json
 import re
 from collections import defaultdict
 from pathlib import Path
@@ -121,6 +122,15 @@ def check_site(site_dir: Path) -> List[str]:
         for value, rels in seen.items():
             if len(rels) > 1:
                 errors.append(f'{label} duplicado «{value}» en {", ".join(rels)}')
+
+    index = site / 'search-index.json'
+    if index.exists():
+        for entry in json.loads(index.read_text(encoding='utf-8')):
+            u = entry.get('u', '')
+            if not _target_exists(site, u):
+                errors.append(f'search-index.json: URL inexistente {u}')
+            elif _anchor_missing(site, u):
+                errors.append(f'search-index.json: ancla inexistente {u}')
 
     sitemap = site / 'sitemap.xml'
     if not sitemap.exists():
