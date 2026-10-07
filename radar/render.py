@@ -12,6 +12,7 @@ from markupsafe import Markup, escape
 
 from .brands import logo_html
 from .covers import cover_for, cover_svg, og_rel
+from .duels import duel_context
 from .editorial import reading_minutes, related_news, toc
 from .models import Brand, Page
 from .seo import SITE, canonical, jsonld
@@ -31,7 +32,7 @@ NAV = [
 ]
 
 KIND_LABEL = {'noticia': 'Noticia', 'guia': 'Guía', 'comparativa': 'Comparativa', 'ficha': 'Ficha',
-              'utilidad': 'Utilidad', 'pagina': 'Página'}
+              'utilidad': 'Utilidad', 'pagina': 'Página', 'duelo': 'Cara a cara'}
 
 
 def _radar_slots():
@@ -51,6 +52,7 @@ TEMPLATE_BY_KIND = {
     'noticia': 'article.html',
     'guia': 'article.html',
     'comparativa': 'article.html',
+    'duelo': 'duel.html',
     'pagina': 'page.html',
     'utilidad': 'utility.html',
 }
@@ -161,4 +163,6 @@ def render_page(env: jinja2.Environment, page: Page, ctx: dict) -> str:
         compare_payload=ctx.get('compare_payload', []),
         start_payload=ctx.get('start_payload', {}),
         glossary=ctx.get('glossary', {}),
+        duel=duel_context(page, ctx['compare_by_id'], ctx['fichas'], ctx.get('duels', []))
+        if page.kind == 'duelo' else None,
     )
