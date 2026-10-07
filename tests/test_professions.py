@@ -135,3 +135,18 @@ def test_fixture_build_has_no_profession_hub(tmp_path):
     from tests.test_build import make_root
     build(make_root(tmp_path), tmp_path / '_site')
     assert not (tmp_path / '_site' / 'ia-por-profesion').exists()
+
+
+def test_entry_points_in_built_site(site):
+    import json
+    ficha = (site / 'herramientas' / 'chatgpt' / 'index.html').read_text()
+    side = ficha[ficha.index('tool-professions'):]
+    assert 'Recomendada para' in side and 'href="/ia-para-docentes/">Docentes</a>' in side
+    assert 'tool-professions' not in (site / 'herramientas' / 'suno' / 'index.html').read_text()
+    start = (site / 'empieza-aqui' / 'index.html').read_text()
+    assert 'href="/ia-por-profesion/"' in start
+    guide = (site / 'guias' / 'ia-para-pequenas-empresas' / 'index.html').read_text()
+    assert 'href="/ia-por-profesion/"' in guide
+    idx = json.loads((site / 'search-index.json').read_text())
+    assert any(e['u'] == '/ia-para-docentes/' and e['k'] == 'Profesión' for e in idx)
+    assert "'Profesión'" in (ROOT / 'static' / 'js' / 'search.js').read_text()
