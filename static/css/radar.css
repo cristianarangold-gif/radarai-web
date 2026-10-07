@@ -290,6 +290,19 @@ svg.cover { display: block; width: 100%; height: auto; border-radius: 4px; backg
 .not-found h1 { max-width: 18ch; }
 .not-found .prose { max-width: 52ch; }
 
+/* 13. Buscador */
+.search-open { order: 3; display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border: 1.5px solid var(--ink); border-radius: 999px; background: var(--white); color: var(--ink); font: 700 .88rem var(--sans); text-decoration: none; }
+.search-open:hover { background: var(--ink); color: var(--white); }
+.site-nav { order: 2; }
+.menu-toggle { order: 4; }
+.header-in .brand { order: 1; margin-right: auto; }
+.search-page { display: flex; max-width: 680px; border: 2px solid var(--ink); border-radius: var(--radius); background: var(--white); overflow: hidden; }
+.search-page input { flex: 1; min-width: 0; border: 0; padding: 14px 16px; font: 1.1rem var(--sans); background: transparent; color: var(--ink); }
+.search-page input:focus { outline: none; }
+.search-page:focus-within { box-shadow: 0 0 0 3px var(--accent); }
+.search-page .btn { border-radius: 0; border: 0; }
+@media (max-width: 820px) { .site-nav { order: 5; } }
+
 /* Movimiento reducido */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

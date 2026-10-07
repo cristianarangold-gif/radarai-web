@@ -124,6 +124,11 @@ def build(root: Path, out: Path) -> None:
         for rel in output_paths(r):
             w.write(rel, render_redirect(env, r), f'redirección {r.source}')
 
+    search_page = _synthetic('/buscar/', 'Buscar en Radar IA',
+                             'Busca fichas, comparativas, guías, noticias y herramientas de IA.', noindex=True)
+    all_pages.append(search_page)
+    w.write(_out_path('/buscar/'), render_page(env, search_page, base_ctx), 'buscador')
+
     not_found = _synthetic('/404/', 'Página no encontrada',
                            'La página que buscas no existe o se ha movido.', noindex=True)
     not_found.body_html = ('<p>Puede que la dirección haya cambiado. Prueba desde la '
