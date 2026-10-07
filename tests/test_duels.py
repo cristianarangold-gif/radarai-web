@@ -98,6 +98,8 @@ def test_real_duels(tmp_path):
     fichas = {p.slug: p for p in pages if p.kind == 'ficha' and p.indexable}
     validate_duels(duels, fichas)
     assert duels and all(p.url == f'/{p.slug}/' and p.word_count >= 1000 and p.indexable for p in duels)
+    assert {p.slug for p in duels} == {'chatgpt-vs-claude', 'chatgpt-vs-gemini', 'chatgpt-vs-copilot',
+                                       'perplexity-vs-chatgpt', 'cursor-vs-github-copilot', 'notebooklm-vs-chatgpt'}
 
 
 @pytest.fixture(scope='module')
