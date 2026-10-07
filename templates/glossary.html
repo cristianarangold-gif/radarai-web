@@ -27,7 +27,7 @@
       <h2 class="glossary-head" id="{{ l.id }}">{{ l.letter }}</h2>
       <dl>
         {% for t in l.terms %}
-        <div class="term" id="{{ t.slug }}" data-tema="{{ t.tema }}"{% if t.alias %} data-alias="{{ t.alias | join(', ') }}"{% endif %}>
+        <div class="term" id="{{ t.slug }}" data-name="{{ t.term }}" data-tema="{{ t.tema }}"{% if t.alias %} data-alias="{{ t.alias | join(', ') }}"{% endif %}>
           <dt>{{ t.term }}{% if t.alias %} <span class="term-alias">({{ t.alias | join(', ') }})</span>{% endif %}<small>{{ t.tema_label }}</small></dt>
           <dd>
             {{ t.html | safe }}

@@ -53,11 +53,35 @@ def test_slug_and_spanish_order():
     (block('A') + block('A'), 'duplicado'),
     (block('A', 'tema: basicos\ncolor: rojo'), 'color'),
     (block('A', 'relacionados: b'), 'tema'),
+    (block('3D', 'tema: basicos'), 'letra'),
+    (block('¿Qué?', 'tema: basicos'), 'letra'),
+    (block('A', 'tema: basicos\nalias: x, x'), 'alias'),
+    (block('A', 'tema: basicos\nalias: B') + block('B'), 'alias'),
+    (block('A', 'tema: basicos\ntema: uso'), 'repetida'),
+    (block('A', 'tema: basicos\nver: /guias/x/, /guias/x/'), 'ver'),
 ])
 def test_validation_errors(text, needle):
     with pytest.raises(ValueError) as e:
         validate_glossary(parse_glossary(text), URLS)
     assert needle in str(e.value) and 'glosario.md' in str(e.value)
+
+
+def test_empty_glossary_fails():
+    with pytest.raises(ValueError, match='glosario.md'):
+        validate_glossary(parse_glossary('Solo un comentario'), URLS)
+
+
+def test_anchor_offset_clears_sticky_header():
+    css = (ROOT / 'static' / 'css' / 'radar.css').read_text()
+    for sel in (r'\.glossary-head \{', r'\.term \{'):
+        rule = re.search(sel + r'([^}]*)\}', css).group(1)
+        assert 'scroll-margin-top: 90px' in rule, sel
+
+
+def test_glossary_js_syncs_letters_and_hash():
+    js = (ROOT / 'static' / 'js' / 'glossary.js').read_text()
+    assert '.glossary-letters' in js and 'hashchange' in js and 'data-name' in js
+    assert '\\u0300-\\u036f' in js
 
 
 def test_context_letters_and_related():
@@ -93,7 +117,7 @@ def test_built_glossary_page(site):
     html = (site / 'glosario' / 'index.html').read_text()
     terms = parse_glossary((ROOT / 'data' / 'glosario.md').read_text(encoding='utf-8'))
     for t in terms:
-        assert f'id="{t.slug}"' in html
+        assert f'id="{t.slug}"' in html and f'data-name="{t.term}"' in html
     assert html.count('<div class="term"') == len(terms)
     assert 'class="glossary-controls" hidden' in html
     assert re.search(r'<span class="glossary-letter"[^>]*>Ñ</span>|<a class="glossary-letter" href="#letra-ñ">', html)

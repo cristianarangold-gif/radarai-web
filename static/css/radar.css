@@ -455,9 +455,9 @@ svg.cover { display: block; width: 100%; height: auto; border-radius: 4px; backg
 .glossary-letter { display: inline-grid; place-items: center; width: 32px; height: 32px; border: 1.5px solid var(--ink); border-radius: 4px; background: var(--white); color: var(--ink); font: 700 .85rem var(--sans); text-decoration: none; }
 a.glossary-letter:hover { background: var(--ink); color: var(--white); }
 span.glossary-letter { border-color: var(--rule); color: #b5ada0; background: transparent; }
-.glossary-head { font-size: 2.4rem; color: var(--accent); border-bottom: 1px solid var(--rule); margin: 28px 0 0; padding-bottom: 4px; scroll-margin-top: 16px; }
+.glossary-head { font-size: 2.4rem; color: var(--accent); border-bottom: 1px solid var(--rule); margin: 28px 0 0; padding-bottom: 4px; scroll-margin-top: 90px; }
 .glossary dl { margin: 0; }
-.term { padding: 16px 0; border-bottom: 1px solid var(--rule-2); scroll-margin-top: 16px; }
+.term { padding: 16px 0; border-bottom: 1px solid var(--rule-2); scroll-margin-top: 90px; }
 .term:target { background: var(--paper-2); box-shadow: -12px 0 0 var(--paper-2), 12px 0 0 var(--paper-2); }
 .term dt { font: 800 1.25rem/1.25 var(--serif); }
 .term-alias { font: 600 .9rem var(--sans); color: var(--ink-3); }
@@ -472,7 +472,7 @@ span.glossary-letter { border-color: var(--rule); color: #b5ada0; background: tr
   .term dd { margin: 0; }
 }
 .glossary .prose { margin-top: 44px; }
-.term[hidden], .glossary-group[hidden] { display: none; }
+.term[hidden], .glossary-group[hidden], .glossary-letter[hidden] { display: none; }
 .glossary-empty { margin: 24px 0; color: var(--ink-2); }
 
 /* Movimiento reducido */

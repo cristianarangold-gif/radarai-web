@@ -16,7 +16,7 @@ relacionados: modelo-de-lenguaje, rag
 ver: /guias/mejores-prompts/
 ejemplo: Le pides la biografía de un autor poco conocido y te atribuye un libro que no existe, con título y año incluidos.
 
-Cuando un asistente de IA **se inventa un dato, una cita o una fuente** y lo presenta con total seguridad. Ocurre porque el modelo genera el texto que le parece más probable, no comprueba si es verdad. Es más frecuente con temas poco conocidos, cifras exactas y referencias bibliográficas. Por eso conviene verificar siempre lo importante en una fuente fiable.
+Cuando un asistente de IA **se inventa un dato, una cita o una fuente** y lo presenta con total seguridad. Ocurre porque el modelo genera el texto que le parece más probable y no comprueba si es verdad. Es más frecuente con temas poco conocidos, cifras exactas y referencias bibliográficas. Por eso conviene verificar siempre lo importante en una fuente fiable.
 
 ## API
 tema: precios
@@ -38,7 +38,7 @@ tema: uso
 relacionados: agente-de-ia, api
 ver: /guias/automatizar-tareas/
 
-Hacer que una tarea repetitiva se haga **sola o casi sola**, sin que tengas que repetir los mismos pasos cada vez. Con IA se puede, por ejemplo, clasificar correos, resumir reuniones o preparar borradores a partir de un formulario. Se monta con herramientas que conectan aplicaciones entre sí o con agentes de IA, y siempre conviene revisar los primeros resultados antes de confiar en ella.
+Conseguir que una tarea repetitiva se haga **sola o casi sola**, sin que tengas que repetir los mismos pasos cada vez. Con IA se puede, por ejemplo, clasificar correos, resumir reuniones o preparar borradores a partir de un formulario. Se monta con herramientas que conectan aplicaciones entre sí o con agentes de IA, y siempre conviene revisar los primeros resultados antes de confiar en ella.
 
 ## IA generativa
 tema: basicos
@@ -89,7 +89,7 @@ Pago periódico, normalmente mensual o anual, que da acceso a un plan de pago de
 ## Token
 tema: modelos
 relacionados: modelo-de-lenguaje, ventana-de-contexto, api
-ejemplo: Una palabra larga como «inteligencia» puede dividirse en dos o tres tokens.
+ejemplo: Una palabra larga como «inteligencia» puede dividirse en varios tokens.
 
 El **trozo de texto** con el que trabaja un modelo de lenguaje: puede ser una palabra corta, una parte de una palabra o un signo de puntuación. Los modelos leen y escriben token a token. Los límites de longitud de una conversación y los precios de las API se miden en tokens, no en palabras.
 
@@ -97,7 +97,7 @@ El **trozo de texto** con el que trabaja un modelo de lenguaje: puede ser una pa
 tema: modelos
 relacionados: token, modelo-de-lenguaje, prompt
 
-La **cantidad máxima de texto que un modelo puede tener en cuenta a la vez**: lo que le has escrito, los documentos que le has dado y sus propias respuestas. Se mide en tokens. Cuando una conversación la supera, el modelo deja de «ver» la parte más antigua, y por eso a veces parece olvidar lo que dijiste al principio.
+La **cantidad máxima de texto que un modelo puede tener en cuenta a la vez**: lo que le has escrito, los documentos que le has dado y sus propias respuestas. Se mide en tokens. Cuando una conversación la supera, según la herramienta se recorta o se resume la parte más antigua, o te pide empezar una conversación nueva; por eso a veces parece olvidar lo que dijiste al principio.
 
 ## Inteligencia artificial
 tema: basicos
@@ -189,7 +189,7 @@ Modelo de lenguaje preparado para **«pensar» paso a paso antes de responder**:
 
 ## Modelo abierto
 tema: modelos
-alias: open source, pesos abiertos, open weights
+alias: pesos abiertos, open weights
 relacionados: ia-local, parametros, modelo-fundacional
 
 Modelo cuyos **parámetros se publican para que cualquiera pueda descargarlo**, usarlo en su propio equipo o adaptarlo, según las condiciones de su licencia. Se habla de código abierto en sentido estricto cuando también se publican el código y los detalles del entrenamiento; muchos modelos solo publican los pesos. Frente a ellos están los modelos cerrados, a los que solo se accede a través de la web o la API de la empresa.
@@ -199,7 +199,7 @@ tema: modelos
 relacionados: texto-a-imagen, ia-generativa
 ver: /mejor-ia-para-imagenes/
 
-Técnica con la que funcionan muchos generadores de imágenes y vídeo. El modelo aprende a **partir de una imagen llena de ruido aleatorio y a ir limpiándola paso a paso** hasta obtener una imagen que encaje con la descripción que le has dado. Por eso, con el mismo prompt, cada generación da un resultado distinto.
+Técnica con la que funcionan muchos generadores de imágenes y vídeo. El modelo aprende a **partir de una imagen llena de ruido aleatorio y a ir limpiándola paso a paso** hasta obtener una imagen que encaje con la descripción que le has dado. Por eso, con el mismo prompt, cada generación suele dar un resultado distinto.
 
 ## Embedding
 tema: modelos
@@ -213,7 +213,7 @@ Forma de **convertir un texto, una imagen o un audio en una lista de números** 
 tema: modelos
 relacionados: modelo-de-lenguaje, aprendizaje-profundo, token
 
-Arquitectura de red neuronal presentada por investigadores de Google en 2017 que está en la base de casi todos los modelos de lenguaje actuales (la «T» de GPT viene de *transformer*). Su idea clave es la **atención**: al procesar cada token, el modelo tiene en cuenta todos los demás del texto y decide cuáles son más importantes para entenderlo.
+Arquitectura de red neuronal presentada por investigadores de Google en 2017 que está en la base de casi todos los modelos de lenguaje actuales (la «T» de GPT viene de *transformer*). Su idea clave es la **atención**: al procesar cada token, el modelo tiene en cuenta los demás tokens del texto (en los modelos que generan texto, los anteriores) y decide cuáles son más importantes para entenderlo.
 
 ## Fecha de corte
 tema: modelos
@@ -226,7 +226,7 @@ Fecha hasta la que llegan los datos con los que se entrenó un modelo. Lo que pa
 tema: modelos
 relacionados: modelo-de-lenguaje, inferencia, api
 
-Ajuste que controla **cuánto se arriesga un modelo al elegir las palabras**. Con temperatura baja, las respuestas son más previsibles y repetibles; con temperatura alta, más variadas y creativas, pero también con más riesgo de errores. En las aplicaciones de chat no suele poder cambiarse directamente; sí en las API y en algunas herramientas para desarrolladores.
+Ajuste que controla **cuánto se arriesga un modelo al elegir las palabras**. Con temperatura baja, las respuestas son más previsibles y repetibles; con temperatura alta, más variadas y creativas, pero también con más riesgo de errores. En las aplicaciones de chat no suele poder cambiarse directamente; sí en muchas API y en algunas herramientas para desarrolladores.
 
 ## IA local
 tema: modelos
@@ -237,7 +237,7 @@ Modelo de IA que **funciona en tu propio ordenador o móvil**, sin enviar tus da
 
 ## Instrucciones personalizadas
 tema: uso
-alias: prompt de sistema, instrucciones del sistema
+alias: custom instructions
 relacionados: prompt, memoria, asistente-personalizado
 
 Indicaciones que le das a un asistente **una sola vez para que las tenga en cuenta en todas las conversaciones**: quién eres, a qué te dedicas, qué tono prefieres o qué formato quieres en las respuestas. Ahorran repetir el mismo contexto en cada prompt. Internamente, las aplicaciones también usan un «prompt de sistema» que el usuario no ve.
@@ -254,7 +254,7 @@ Conjunto de técnicas para **escribir instrucciones que den mejores resultados**
 tema: uso
 alias: few-shot
 relacionados: prompt, ingenieria-de-prompts
-ejemplo: «Convierte estas frases en titulares. Ejemplo: "Ha llovido mucho en Madrid" → "Madrid, bajo el agua". Ahora: …».
+ejemplo: «Convierte estas frases en titulares. Ejemplo: “Ha llovido mucho en Madrid” → “Madrid, bajo el agua”. Ahora: …».
 
 Técnica que consiste en **incluir en el prompt uno o varios ejemplos** del resultado que esperas antes de pedir la tarea. El modelo imita el formato, el tono y la longitud de los ejemplos, y suele acertar mucho más que si solo describes lo que quieres. Es especialmente útil para clasificar, resumir con un formato fijo o mantener un estilo.
 
@@ -297,7 +297,7 @@ Función de algunos asistentes que **guarda datos de tus conversaciones para usa
 
 ## Asistente personalizado
 tema: uso
-alias: GPT personalizado, Gem, proyecto
+alias: GPT personalizado, Gem
 relacionados: instrucciones-personalizadas, asistente-de-ia
 
 Versión de un asistente que **configuras para una tarea concreta** con instrucciones, documentos de referencia y, a veces, conexiones con otras herramientas. Por ejemplo, un asistente que corrige textos con el libro de estilo de tu empresa. Cada plataforma les da un nombre distinto y no todas las funciones están disponibles en los planes gratuitos.
@@ -388,7 +388,7 @@ Cuestiones legales sobre la IA y la propiedad intelectual: si las empresas puede
 tema: etica
 relacionados: entrenamiento, sesgo, derechos-de-autor, privacidad-de-datos
 
-Conjunto de textos, imágenes, audios u otros datos con los que **se entrena un modelo**. De ellos depende lo que el modelo sabe, cómo se expresa y también sus errores y sesgos. Las empresas no suelen detallar qué datos han usado, y eso alimenta los debates sobre privacidad y derechos de autor.
+Conjunto de textos, imágenes, audios u otros datos con los que **se entrena un modelo**. De ellos depende lo que el modelo sabe, cómo se expresa y también sus errores y sesgos. Las empresas no suelen detallar qué datos han usado, y eso alimenta los debates sobre privacidad y derechos de autor. En la UE, desde agosto de 2025 la Ley de IA obliga a los proveedores de modelos de uso general a publicar un resumen del contenido con el que los entrenan.
 
 ## Sesgo
 tema: etica

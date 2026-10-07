@@ -37,6 +37,7 @@ class Term:
     ejemplo: str = ''
     related: List[Tuple[str, str]] = field(default_factory=list)  # (slug, término), lo rellena glossary_context
     see: List[Tuple[str, str]] = field(default_factory=list)  # (url, título)
+    dup_keys: List[str] = field(default_factory=list)
 
     @property
     def text(self) -> str:
@@ -78,13 +79,17 @@ def parse_glossary(text: str) -> List[Term]:
         lines = chunk.split('\n')
         name, rest = lines[0].strip(), lines[1:]
         meta: Dict[str, str] = {}
+        dups = []
         while rest and rest[0].strip():
             key, _, value = rest.pop(0).partition(':')
-            meta[key.strip().lower()] = value.strip()
+            key = key.strip().lower()
+            if key in meta:
+                dups.append(key)
+            meta[key] = value.strip()
         html = markdown.markdown('\n'.join(rest).strip())
         terms.append(Term(term=name, slug=slugify(name), meta=meta, html=html, tema=meta.get('tema', ''),
                           relacionados=_split(meta.get('relacionados', '')), ver=_split(meta.get('ver', '')),
-                          alias=_split(meta.get('alias', '')), ejemplo=meta.get('ejemplo', '')))
+                          alias=_split(meta.get('alias', '')), ejemplo=meta.get('ejemplo', ''), dup_keys=dups))
     return sorted(terms, key=lambda t: sort_key(t.term))
 
 
@@ -93,19 +98,35 @@ def _fail(t: Term, msg: str) -> None:
 
 
 def validate_glossary(terms: List[Term], urls: Set[str]) -> None:
+    if not terms:
+        raise ValueError('glosario.md: no hay ningún término (cada uno empieza con «## Término»)')
     slugs: Dict[str, Term] = {}
     for t in terms:
         if not t.term or not t.slug:
             _fail(t, 'término vacío')
+        if letter_of(t.term) not in LETTERS:
+            _fail(t, 'debe empezar por una letra (A–Z o Ñ)')
         if t.slug in slugs:
             _fail(t, f'término duplicado (mismo slug que «{slugs[t.slug].term}»)')
         slugs[t.slug] = t
+    names = {sort_key(t.term): t for t in terms}
     for t in terms:
+        if t.dup_keys:
+            _fail(t, f'clave repetida «{t.dup_keys[0]}»')
         unknown = sorted(set(t.meta) - set(KEYS))
         if unknown:
-            _fail(t, f'clave desconocida «{unknown[0]}» (válidas: {", ".join(KEYS)})')
+            _fail(t, f'clave desconocida «{unknown[0]}» (válidas: {", ".join(KEYS)}); '
+                     '¿falta la línea en blanco entre los metadatos y la definición?')
+        for label, values in (('alias', t.alias), ('relacionados', t.relacionados), ('ver', t.ver)):
+            if len(set(values)) != len(values):
+                _fail(t, f'valor repetido en «{label}»')
+        for a in t.alias:
+            other = names.get(sort_key(a))
+            if other is not None and other is not t:
+                _fail(t, f'el alias «{a}» coincide con el término «{other.term}»')
         if t.tema not in TEMAS:
-            _fail(t, f'tema «{t.tema}» no válido (válidos: {", ".join(TEMAS)})')
+            _fail(t, f'tema «{t.tema}» no válido (válidos: {", ".join(TEMAS)}); '
+                     'si es un trozo de otra definición, no empieces líneas con «## »')
         for r in t.relacionados:
             if r == t.slug:
                 _fail(t, 'se cita a sí mismo en «relacionados»')
