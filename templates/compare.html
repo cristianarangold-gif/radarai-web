@@ -11,7 +11,7 @@
       <legend>Elige hasta 3 herramientas</legend>
       <div class="compare-options">
         {% for t in compare_payload %}
-        <label class="compare-option"><input type="checkbox" name="h" value="{{ t.id }}"><span><span class="logo" style="--brand:{{ t.c }};width:24px;height:24px" aria-hidden="true">{{ t.m }}</span>{{ t.n }}</span></label>
+        <label class="compare-option"><input type="checkbox" name="h" value="{{ t.id }}"><span>{{ t.id | logo(24, t.n) }}{{ t.n }}</span></label>
         {% endfor %}
       </div>
     </fieldset>
