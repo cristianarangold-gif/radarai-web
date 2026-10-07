@@ -99,8 +99,9 @@ def build(root: Path, out: Path) -> None:
         fichas = {p.slug: p for p in pages if p.kind == 'ficha' and p.indexable}
         validate_assistant(assistant, tools, fichas, {p.url for p in pages if p.indexable})
         base_ctx['assistant_payload'] = resolve_payload(assistant, tools, brands, fichas)
-    base_ctx['compare_payload'] = compare_payload(
-        {p.slug: p for p in pages if p.kind == 'ficha' and p.indexable}, tools, brands, CATEGORIES)
+    if '/comparador/' in by_url:
+        base_ctx['compare_payload'] = compare_payload(
+            {p.slug: p for p in pages if p.kind == 'ficha' and p.indexable}, tools, brands, CATEGORIES)
     imprescindibles = root / 'data' / 'imprescindibles.txt'
     if imprescindibles.exists():
         base_ctx['imprescindibles'] = load_imprescindibles(imprescindibles, by_url)

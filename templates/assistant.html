@@ -28,7 +28,7 @@
     </fieldset>
     {% endfor %}
   </form>
-  <div class="assistant-result" id="asistente-resultado" aria-live="polite"></div>
+  <div class="assistant-result" id="asistente-resultado" aria-live="polite"{% if compare_payload %} data-comparador{% endif %}></div>
   <noscript>
     <div class="assistant-noscript">
       <h2>Elige por tarea</h2>

@@ -64,3 +64,36 @@ def test_compare_js_is_dom_safe_and_small():
     for needle in ('textContent', 'replaceState', "'scope'", 'noopener nofollow', 'Elige al menos 2', 'disabled'):
         assert needle in js, needle
     assert len(gzip.compress(js.encode('utf-8'))) <= 5000
+
+
+def _env_page(**kw):
+    from radar.render import make_env, render_page
+    from tests.test_render import ctx, tool
+    from datetime import date
+    env = make_env(ROOT / 'templates')
+    return env, render_page, ctx, tool, date
+
+
+def test_entry_points_with_comparator():
+    env, render_page, ctx, tool, date = _env_page()
+    payload = [{'id': 'bar'}]
+    f = make_page(kind='ficha', slug='bar', url='/herramientas/bar/', title='Bar', date=date(2026, 10, 1),
+                  extra={'web': 'https://bar.example/'})
+    html = render_page(env, f, ctx(tools={'bar': tool('bar', True)}, compare_payload=payload))
+    assert 'href="/comparador/?h=bar">Comparar Bar con… →</a>' in html
+    listing = render_page(env, make_page(url='/herramientas/', title='H'), ctx(listing=[], compare_payload=payload))
+    assert 'href="/comparador/">⇄ Comparar herramientas</a>' in listing
+    page = make_page(url='/que-ia-necesito/', slug='que-ia-necesito', title='Q')
+    assert 'data-comparador' in render_page(env, page, ctx(assistant_payload={'tareas': {}}, compare_payload=payload))
+
+
+def test_no_entry_points_without_comparator():
+    env, render_page, ctx, tool, date = _env_page()
+    f = make_page(kind='ficha', slug='bar', url='/herramientas/bar/', title='Bar', date=date(2026, 10, 1))
+    assert '/comparador/' not in render_page(env, f, ctx(tools={'bar': tool('bar', True)}))
+    assert '/comparador/' not in render_page(env, make_page(url='/herramientas/', title='H'), ctx(listing=[]))
+
+
+def test_assistant_js_links_to_comparator_with_two_fichas():
+    js = (ROOT / 'static' / 'js' / 'assistant.js').read_text()
+    assert 'Comparar con las alternativas →' in js and 'data-comparador' in js

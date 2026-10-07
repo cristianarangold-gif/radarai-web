@@ -406,6 +406,8 @@ svg.cover { display: block; width: 100%; height: auto; border-radius: 4px; backg
 .compare-table td { font-weight: 600; }
 .compare-table .compare-verdict { font: 600 .9rem/1.45 var(--serif); }
 .compare-links a { display: block; margin-bottom: 4px; font-weight: 700; }
+.compare-link { display: block; text-align: center; margin: -8px 0 18px; padding: 10px; }
+.compare-entry { margin: 0 0 18px; }
 .compare-scroll tbody th, .compare-scroll thead td { position: sticky; left: 0; z-index: 1; }
 .compare-scroll tbody th { background: var(--white); box-shadow: 1px 0 0 var(--rule); }
 
