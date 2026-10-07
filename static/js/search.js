@@ -8,7 +8,7 @@
   var STOP = ['a', 'al', 'con', 'de', 'del', 'el', 'en', 'la', 'las', 'lo', 'los', 'para', 'por', 'que', 'un', 'una', 'y'];
 
   function norm(s) {
-    return (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '')
+    return (s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
       .replace(/[^a-z0-9]+/g, ' ').trim();
   }
   function make(tag, cls, text) {
@@ -256,7 +256,7 @@
       else if (!found.length) message(pageMsg, pageInput, 'empty', query);
       else clear(pageMsg);
       if (found.length) {
-        ['Todo', 'Ficha', 'Comparativa', 'Guía', 'Noticia', 'Utilidad', 'Página', 'Catálogo'].forEach(function (k) {
+        ['Todo', 'Ficha', 'Comparativa', 'Guía', 'Noticia', 'Utilidad', 'Página', 'Glosario', 'Catálogo'].forEach(function (k) {
           if (!counts[k]) return;
           var b = make('button', 'search-chip', k + ' (' + counts[k] + ')');
           b.type = 'button';

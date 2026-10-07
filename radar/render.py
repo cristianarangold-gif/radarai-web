@@ -121,6 +121,8 @@ def template_for(page: Page, ctx: dict) -> str:
         return 'assistant.html'
     if page.url == '/comparador/':
         return 'compare.html'
+    if page.url == '/glosario/' and ctx.get('glossary'):
+        return 'glossary.html'
     if page.url == '/empieza-aqui/' and ctx.get('start_payload'):
         return 'start.html'
     if ctx.get('listing') is not None:
@@ -135,7 +137,8 @@ def render_page(env: jinja2.Environment, page: Page, ctx: dict) -> str:
     return env.get_template(template_for(page, ctx)).render(
         page=page,
         canonical_url=canonical(page.url),
-        jsonld=jsonld(page, og_image),
+        jsonld=jsonld(page, og_image) + ([ctx['glossary_jsonld']]
+                                         if page.url == '/glosario/' and ctx.get('glossary_jsonld') else []),
         og_image=og_image,
         cover=cover_svg(cover_for(page, ctx.get('brands', {}), ctx.get('tools', {})), logos_dir),
         show_adsense=show_ads,
@@ -157,4 +160,5 @@ def render_page(env: jinja2.Environment, page: Page, ctx: dict) -> str:
         assistant_payload=ctx.get('assistant_payload', {}),
         compare_payload=ctx.get('compare_payload', []),
         start_payload=ctx.get('start_payload', {}),
+        glossary=ctx.get('glossary', {}),
     )

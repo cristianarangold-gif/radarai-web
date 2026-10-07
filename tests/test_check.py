@@ -181,3 +181,11 @@ def test_search_index_url_must_exist(tmp_path):
     assert 'search-index.json: URL inexistente /no-existe/' in errors
     assert 'search-index.json: ancla inexistente /herramientas/#cat-nada' in errors
     assert not any('cat-video' in e for e in errors)
+
+
+def test_link_to_missing_glossary_term(tmp_path):
+    page(tmp_path, 'index.html', '/', body='<a href="/glosario/#token">t</a> <a href="/glosario/#nada">n</a>')
+    page(tmp_path, 'glosario/index.html', '/glosario/', title='G', body='<div class="term" id="token"></div>')
+    sitemap(tmp_path, '/', '/glosario/')
+    errors = check_site(tmp_path)
+    assert any('/glosario/#nada' in e for e in errors) and not any('#token' in e for e in errors)

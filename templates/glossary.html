@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block main %}
+<article class="wrap article glossary">
+  <header class="article-head">
+    <p class="eyebrow">Glosario</p>
+    <h1>{{ 'Glosario de inteligencia artificial' | em_phrase }}</h1>
+    <p class="lede">{{ page.description }}</p>
+  </header>
+
+  <div class="glossary-controls" hidden>
+    <label class="sr-only" for="glosario-filtro">Filtrar términos</label>
+    <input class="glossary-filter" id="glosario-filtro" type="search" placeholder="Filtra: «token», «alucinación», «LLM»…" autocomplete="off">
+    <div class="glossary-temas" role="group" aria-label="Temas">
+      <button type="button" class="glossary-tema" data-tema="" aria-pressed="true">Todos</button>
+      {% for id, label in glossary.temas.items() %}<button type="button" class="glossary-tema" data-tema="{{ id }}" aria-pressed="false">{{ label }}</button>{% endfor %}
+    </div>
+    <p class="glossary-status" aria-live="polite">{{ glossary.terms | length }} términos</p>
+  </div>
+
+  <nav class="glossary-letters" aria-label="Saltar a la letra">
+    {% for l in glossary.letters %}{% if l.terms %}<a class="glossary-letter" href="#{{ l.id }}">{{ l.letter }}</a>{% else %}<span class="glossary-letter" aria-hidden="true">{{ l.letter }}</span>{% endif %}{% endfor %}
+  </nav>
+
+  <div class="glossary-list">
+    {% for l in glossary.letters if l.terms %}
+    <section class="glossary-group" aria-labelledby="{{ l.id }}">
+      <h2 class="glossary-head" id="{{ l.id }}">{{ l.letter }}</h2>
+      <dl>
+        {% for t in l.terms %}
+        <div class="term" id="{{ t.slug }}" data-name="{{ t.term }}" data-tema="{{ t.tema }}"{% if t.alias %} data-alias="{{ t.alias | join(', ') }}"{% endif %}>
+          <dt>{{ t.term }}{% if t.alias %} <span class="term-alias">({{ t.alias | join(', ') }})</span>{% endif %}<small>{{ t.tema_label }}</small></dt>
+          <dd>
+            {{ t.html | safe }}
+            {% if t.ejemplo %}<p class="term-example"><strong>Ejemplo:</strong> {{ t.ejemplo }}</p>{% endif %}
+            {% if t.related or t.see %}<p class="term-related">Relacionado: {% for slug, name in t.related %}<a href="#{{ slug }}">{{ name }}</a>{% if not loop.last or t.see %} · {% endif %}{% endfor %}{% for url, title in t.see %}<a href="{{ url }}">{{ title }}</a>{% if not loop.last %} · {% endif %}{% endfor %}</p>{% endif %}
+          </dd>
+        </div>
+        {% endfor %}
+      </dl>
+    </section>
+    {% endfor %}
+    <p class="glossary-empty" hidden>Ningún término coincide. Prueba con otra palabra o <a href="/contacto/">sugiérenos uno</a>.</p>
+  </div>
+
+  <div class="prose">{{ page.body_html | safe }}</div>
+</article>
+{% endblock %}
+{% block scripts %}<script src="{{ asset('js/glossary.js') }}" defer></script>{% endblock %}

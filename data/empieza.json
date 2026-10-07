@@ -46,7 +46,10 @@
       "titulo": "Entiende lo básico y pruébala gratis",
       "texto": "Más abajo te explicamos tres conceptos básicos. Muchas herramientas tienen un plan gratuito, con límites, que basta para probarlas; antes de escribir nada, repasa qué datos no conviene compartir.",
       "cta": {"texto": "Ver qué es gratis", "url": "/mejor-ia-gratis/"},
-      "extra": [{"texto": "Guía de privacidad", "url": "/guias/privacidad-en-ia/"}]
+      "extra": [
+        {"texto": "Glosario de IA", "url": "/glosario/"},
+        {"texto": "Guía de privacidad", "url": "/guias/privacidad-en-ia/"}
+      ]
     },
     {
       "titulo": "Elige tu primera herramienta",

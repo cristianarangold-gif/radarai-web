@@ -18,7 +18,7 @@
 
   var input = document.getElementById('catalog-search');
   if (!input) return;
-  var norm = function (s) { return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); };
+  var norm = function (s) { return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); };
   var cards = Array.prototype.slice.call(document.querySelectorAll('.tool-card'));
   cards.forEach(function (c) { c.dataset.norm = norm(c.dataset.search || ''); });
   input.addEventListener('input', function () {
