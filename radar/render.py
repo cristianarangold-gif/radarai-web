@@ -117,6 +117,8 @@ def template_for(page: Page, ctx: dict) -> str:
         return '404.html'
     if page.url == '/buscar/':
         return 'search.html'
+    if page.url == '/que-ia-necesito/':
+        return 'assistant.html'
     if ctx.get('listing') is not None:
         return 'listing.html'
     return TEMPLATE_BY_KIND[page.kind]
@@ -148,4 +150,5 @@ def render_page(env: jinja2.Environment, page: Page, ctx: dict) -> str:
         related=related_news(page, ctx.get('news', [])) if page.kind == 'noticia' else [],
         logos_dir=logos_dir,
         search_index_url=ctx.get('search_index_url', ''),
+        assistant_payload=ctx.get('assistant_payload', {}),
     )

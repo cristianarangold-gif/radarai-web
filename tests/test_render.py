@@ -221,3 +221,17 @@ def test_search_js_review_fixes():
     assert "filters.querySelector('[aria-pressed=\"true\"]')" in js
     # Palabras vacías fuera de la búsqueda cuando hay otras.
     assert "'para'" in js and 'STOP' in js
+
+
+def test_assistant_json_escapes_script_close(env):
+    page = make_page(url='/que-ia-necesito/', slug='que-ia-necesito', title='¿Qué IA necesito?')
+    payload = {'tareas': {}, 'reglas': {}, 'auto': {}, 'tools': {'x': {'n': 'a</script><b>'}}}
+    html = render_page(env, page, ctx(assistant_payload=payload))
+    block = html[html.index('id="asistente-datos">'):]
+    assert '</script><b>' not in block.split('</script>')[0] and '<\\/script>' in html
+
+
+def test_real_assistant_page_has_enough_words():
+    from radar.content import load_pages
+    page = [p for p in load_pages(ROOT / 'content') if p.url == '/que-ia-necesito/'][0]
+    assert page.word_count >= 400 and page.indexable

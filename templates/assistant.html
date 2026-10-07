@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block main %}
+{% set tareas = assistant_payload.get('tareas', {}) %}
+{% set preguntas = [
+  ('tarea', '1. ¿Para qué la quieres?', tareas.items() | list | map('first') | list),
+  ('presupuesto', '2. ¿Cuánto quieres gastar?', ['gratis', 'poco', 'sin-limite']),
+  ('nivel', '3. ¿Qué experiencia tienes?', ['empiezo', 'me-manejo', 'avanzado']),
+  ('para', '4. ¿Para quién es?', ['mi', 'equipo']),
+] %}
+{% set etiquetas = {'gratis': 'Gratis', 'poco': 'Hasta ~10 €/mes', 'sin-limite': 'Lo que haga falta',
+                    'empiezo': 'Empiezo', 'me-manejo': 'Me manejo', 'avanzado': 'Avanzado',
+                    'mi': 'Para mí', 'equipo': 'Para un equipo o empresa'} %}
+<section class="wrap article assistant">
+  <header class="article-head">
+    <p class="eyebrow">Asistente gratuito</p>
+    <h1>¿Qué <em>IA</em> necesito?</h1>
+    <p class="lede">Responde 4 preguntas y te decimos qué herramienta encaja contigo, con el porqué.</p>
+  </header>
+  <form class="assistant-form" id="asistente" action="/que-ia-necesito/" method="get">
+    {% for name, legend, values in preguntas %}
+    <fieldset>
+      <legend>{{ legend }}</legend>
+      <div class="assistant-options">
+        {% for v in values %}
+        <label class="assistant-option"><input type="radio" name="{{ name }}" value="{{ v }}"><span>{% if name == 'tarea' %}{{ tareas[v].emoji }} {{ tareas[v].etiqueta }}{% else %}{{ etiquetas[v] }}{% endif %}</span></label>
+        {% endfor %}
+      </div>
+    </fieldset>
+    {% endfor %}
+  </form>
+  <div class="assistant-result" id="asistente-resultado" aria-live="polite"></div>
+  <noscript>
+    <div class="assistant-noscript">
+      <h2>Elige por tarea</h2>
+      <ul class="chip-list">
+        {% for id, t in tareas.items() %}<li><a href="{{ t.comparativa }}">{{ t.emoji }} {{ t.etiqueta }}</a></li>{% endfor %}
+      </ul>
+    </div>
+  </noscript>
+  <div class="prose">{{ page.body_html | safe }}</div>
+</section>
+<script type="application/json" id="asistente-datos">{{ assistant_payload | to_json }}</script>
+{% endblock %}
+{% block scripts %}<script src="{{ asset('js/assistant.js') }}" defer></script>{% endblock %}
