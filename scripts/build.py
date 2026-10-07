@@ -20,6 +20,7 @@ from radar.compare import compare_payload  # noqa: E402
 from radar.content import load_pages  # noqa: E402
 from radar.covers import cover_for, og_rel, write_cover_png  # noqa: E402
 from radar.duels import duel_links, validate_duels  # noqa: E402
+from radar.professions import published, recommended_for, validate_professions  # noqa: E402
 from radar.editorial import load_imprescindibles, radar_tools, validate_fichas, validate_news_meta  # noqa: E402
 from radar.models import Page, Redirect  # noqa: E402
 from radar.redirects import load_redirects, output_paths, render_redirect  # noqa: E402
@@ -40,6 +41,8 @@ LISTINGS = [
      'Comparativas actualizadas para elegir la herramienta de IA adecuada según lo que necesitas hacer.'),
     ('/herramientas/', 'ficha', 'Análisis de herramientas de IA',
      'Fichas completas de las herramientas de IA más usadas: qué hacen, cuánto cuestan y para quién son.'),
+    ('/ia-por-profesion/', 'profesion', 'IA por profesión: herramientas y prompts para tu trabajo',
+     'Qué herramientas de IA usar en tu profesión, con tareas concretas, prompts listos para copiar y precauciones.'),
     ('/herramientas-radar/', 'utilidad', 'Utilidades gratuitas de Radar IA',
      'Pequeñas herramientas gratuitas que funcionan en tu navegador para preparar prompts, títulos, hashtags y textos.'),
 ]
@@ -102,17 +105,24 @@ def build(root: Path, out: Path) -> None:
         fichas = {p.slug: p for p in pages if p.kind == 'ficha' and p.indexable}
         validate_assistant(assistant, tools, fichas, {p.url for p in pages if p.indexable})
         base_ctx['assistant_payload'] = resolve_payload(assistant, tools, brands, fichas)
+    fichas_ok = {p.slug: p for p in pages if p.kind == 'ficha' and p.indexable}
+    if any(p.kind in ('duelo', 'profesion') for p in pages):
+        base_ctx['compare_by_id'] = {t['id']: t for t in compare_payload(fichas_ok, tools, brands, CATEGORIES)}
+    professions = [p for p in pages if p.kind == 'profesion']
+    if professions:
+        validate_professions(professions, fichas_ok)
+        base_ctx['professions'] = sorted(published(professions), key=lambda p: p.title)
+        base_ctx['recommended_for'] = recommended_for(professions)
     duels = [p for p in pages if p.kind == 'duelo']
     if duels:
-        fichas_ok = {p.slug: p for p in pages if p.kind == 'ficha' and p.indexable}
         validate_duels(duels, fichas_ok)
         base_ctx['duels'] = sorted((p for p in duels if p.indexable), key=lambda p: p.title)
-        base_ctx['compare_by_id'] = {t['id']: t for t in compare_payload(fichas_ok, tools, brands, CATEGORIES)}
         base_ctx['duels_by_tool'], base_ctx['duel_pairs'] = duel_links(duels, base_ctx['compare_by_id'])
     if '/comparador/' in by_url:
         base_ctx['compare_payload'] = compare_payload(
             {p.slug: p for p in pages if p.kind == 'ficha' and p.indexable}, tools, brands, CATEGORIES)
-    site_urls = {p.url for p in pages if p.indexable} | {url for url, *_ in LISTINGS}
+    site_urls = {p.url for p in pages if p.indexable} | {url for url, kind, *_ in LISTINGS
+                                                         if kind != 'profesion' or published(professions)}
     glossary_file = root / 'data' / 'glosario.md'
     if '/glosario/' in by_url:
         if not glossary_file.exists():
@@ -144,6 +154,8 @@ def build(root: Path, out: Path) -> None:
 
     for url, kind, title, desc in LISTINGS:
         if kind == 'utilidad' and not (root / 'content' / 'utilidades').is_dir():
+            continue
+        if kind == 'profesion' and not published(professions):
             continue
         items = sorted((p for p in pages if p.kind == kind and p.indexable),
                        key=lambda p: (p.date is None, p.date), reverse=(kind == 'noticia'))

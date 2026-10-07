@@ -2,11 +2,11 @@
 {% block main %}
 <section class="wrap article">
   <header class="article-head">
-    <p class="eyebrow">{{ {'/noticias/': 'Noticias', '/guias/': 'Guías', '/mejor-ia/': 'Comparativas', '/herramientas/': 'Herramientas', '/herramientas-radar/': 'Utilidades'}.get(page.url, 'Radar IA') }}</p>
+    <p class="eyebrow">{{ {'/noticias/': 'Noticias', '/guias/': 'Guías', '/mejor-ia/': 'Comparativas', '/herramientas/': 'Herramientas', '/herramientas-radar/': 'Utilidades', '/ia-por-profesion/': 'IA por profesión'}.get(page.url, 'Radar IA') }}</p>
     <h1>{{ page.title }}</h1>
     <p class="lede">{{ page.description }}</p>
   </header>
-  {% if page.body_html %}<div class="prose">{{ page.body_html | safe }}</div>{% endif %}
+  {% if page.body_html and not (page.url == '/ia-por-profesion/' and listing) %}<div class="prose">{{ page.body_html | safe }}</div>{% endif %}
   {% if page.url == '/herramientas/' %}
   {% if compare_payload %}<p class="compare-entry"><a class="btn" href="/comparador/">⇄ Comparar herramientas</a></p>{% endif %}
   {% if listing %}
@@ -15,6 +15,18 @@
   </div>
   {% endif %}
   {% include 'partials/catalog.html' %}
+  {% elif page.url == '/ia-por-profesion/' and listing %}
+  <div class="prof-cards">
+    {% for item in listing %}
+    <a class="prof-card" href="{{ item.url }}">
+      <span class="prof-emoji" aria-hidden="true">{{ item.extra.emoji }}</span>
+      <span class="prof-title">IA para {{ item.extra.profesion }}</span>
+      <span class="prof-desc">{{ item.description }}</span>
+      <span class="prof-kit" aria-hidden="true">{% for tid in item | kit_ids %}{{ tid | logo(24) }}{% endfor %}</span>
+    </a>
+    {% endfor %}
+  </div>
+  {% if page.body_html %}<div class="prose">{{ page.body_html | safe }}</div>{% endif %}
   {% elif listing %}
   {% if page.url == '/mejor-ia/' and duels %}
   <section class="duel-index" aria-labelledby="cara-a-cara">

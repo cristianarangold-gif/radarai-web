@@ -68,6 +68,8 @@ Con un presupuesto de **unos 30–50 € al mes** se puede cubrir asistente, dis
 
 En todos los casos, la regla es la misma: la IA prepara y una persona revisa antes de que algo llegue al cliente.
 
+Si buscas tareas, prompts y precauciones para un puesto concreto (administración, atención al público en redes, diseño, despachos o formación), consulta nuestras guías de [IA por profesión](/ia-por-profesion/).
+
 ## Plan de implantación en cuatro semanas
 
 ### Semana 1: detectar oportunidades

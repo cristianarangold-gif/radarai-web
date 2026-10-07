@@ -8,7 +8,7 @@ import re
 from .content import count_words, text_of
 from .models import Page
 
-FORBIDDEN = ('hemos probado', 'en nuestras pruebas')
+FORBIDDEN = ('hemos probado', 'en nuestras pruebas', 'en nuestra prueba', 'tras probarlo', 'tras probarla')
 MAX_RESPUESTA = 60
 MONTHS = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre',
           'noviembre', 'diciembre']
@@ -18,11 +18,11 @@ MAX_RELATED = 3
 PRICE = re.compile(r'(\d+(?:[.,]\d+)?)\s?(€|US\$|\$)')
 
 
-def _prices(text: str) -> set:
+def prices_in(text: str) -> set:
     return {f'{n} {"$" if c != "€" else "€"}' for n, c in PRICE.findall(text)}
 
 
-def _ficha_text(page: Page) -> str:
+def ficha_text(page: Page) -> str:
     return ' '.join([text_of(page.body_html)] + [str(v) for v in page.extra.values()])
 
 
@@ -66,8 +66,8 @@ def validate_duels(duels: List[Page], fichas: Dict[str, Page]) -> None:
         for phrase in FORBIDDEN:
             if phrase in text:
                 _fail(p, f'no se afirma «{phrase}» (no hacemos pruebas propias salvo indicación)')
-        known = _prices(_ficha_text(fichas[ids[0]]) + ' ' + _ficha_text(fichas[ids[1]]))
-        for price in sorted(_prices(text_of(p.body_html) + ' ' + respuesta + ' ' + p.extra.get('elige_1', '')
+        known = prices_in(ficha_text(fichas[ids[0]]) + ' ' + ficha_text(fichas[ids[1]]))
+        for price in sorted(prices_in(text_of(p.body_html) + ' ' + respuesta + ' ' + p.extra.get('elige_1', '')
                                     + ' ' + p.extra.get('elige_2', ''))):
             if price not in known:
                 _fail(p, f'el precio «{price}» no aparece en las fichas de {ids[0]} ni {ids[1]}: '

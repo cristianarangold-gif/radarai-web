@@ -19,6 +19,7 @@ KIND_BY_DIR = {
     'paginas': 'pagina',
     'utilidades': 'utilidad',
     'cara-a-cara': 'duelo',
+    'profesiones': 'profesion',
 }
 
 MIN_WORDS = {
@@ -28,6 +29,7 @@ MIN_WORDS = {
     'noticia': 500,
     'utilidad': 300,
     'duelo': 1000,
+    'profesion': 1000,
     'pagina': 0,
 }
 
@@ -51,6 +53,8 @@ def _url_for(kind_dir: str, rel: Path) -> str:
         return '/' if stem == 'inicio' else f'/{stem}/'
     if kind_dir in ('mejor-ia', 'cara-a-cara'):
         return f'/{stem}/'
+    if kind_dir == 'profesiones':
+        return f'/ia-para-{stem}/'
     if kind_dir == 'utilidades':
         return f'/herramientas-radar/{stem}/'
     return f'/{kind_dir}/{stem}/'

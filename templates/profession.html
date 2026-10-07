@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block main %}
+<article class="wrap article profession">
+  <nav class="crumbs" aria-label="Migas de pan"><a href="/">Inicio</a> › <a href="/ia-por-profesion/">IA por profesión</a></nav>
+  <header class="article-head">
+    <p class="eyebrow">IA por profesión · <span aria-hidden="true">{{ page.extra.emoji }}</span> {{ profession.label }}</p>
+    <h1>{{ page.title }}</h1>
+    <p class="lede">{{ page.description }}</p>
+    {% include 'partials/byline.html' %}
+  </header>
+  <div class="article-grid">
+    <div class="article-main">
+      <section class="kit" aria-labelledby="kit">
+        <h2 id="kit">Tu kit en 30 segundos</h2>
+        <div class="kit-cards">
+          {% for t, para, price in profession.kit %}
+          <a class="kit-card" href="{{ t.u }}">
+            <span class="kit-name">{{ t.id | logo(28, t.n) }}{{ t.n }}</span>
+            <span class="kit-para">{{ para }}</span>
+            <span class="kit-price">{{ price }}</span>
+          </a>
+          {% endfor %}
+        </div>
+      </section>
+
+      <div class="prose prompt-page">
+        {{ page.body_html | safe }}
+      </div>
+      {% if assistant_payload %}
+      <aside class="assistant-cta-box" aria-label="Asistente">
+        <p><strong>¿No lo tienes claro?</strong> Responde 4 preguntas y te decimos qué herramienta encaja contigo.</p>
+        <a class="btn" href="/que-ia-necesito/">Hacer el test →</a>
+      </aside>
+      {% endif %}
+      {% include 'partials/ad_slot.html' %}
+      {% include 'partials/sources.html' %}
+      {% if profession.others %}
+      <nav class="related prof-others" aria-labelledby="otras-profesiones">
+        <h2 id="otras-profesiones">Otras profesiones</h2>
+        <ul>
+          {% for p in profession.others %}<li><a href="{{ p.url }}"><span aria-hidden="true">{{ p.extra.emoji }}</span> IA para {{ p.extra.profesion }}</a></li>{% endfor %}
+        </ul>
+      </nav>
+      {% endif %}
+    </div>
+    <aside class="article-side">
+      <div class="side-sticky">
+        {% include 'partials/toc.html' %}
+        {% include 'partials/ad_slot.html' %}
+      </div>
+    </aside>
+  </div>
+</article>
+{% endblock %}
+{% block scripts %}<script src="{{ asset('js/toc.js') }}" defer></script><script src="{{ asset('js/prompts.js') }}" defer></script>{% endblock %}

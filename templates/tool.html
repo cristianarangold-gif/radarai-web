@@ -39,6 +39,13 @@
         {% if compare_payload %}
         <a class="btn btn-ghost compare-link" href="/comparador/?h={{ page.slug }}">Comparar {{ name }} con… →</a>
         {% endif %}
+        {% set mis_profesiones = recommended_for.get(page.slug, []) %}
+        {% if mis_profesiones %}
+        <nav class="tool-duels tool-professions" aria-labelledby="profesiones-{{ page.slug }}">
+          <h2 id="profesiones-{{ page.slug }}">Recomendada para</h2>
+          <ul>{% for label, url in mis_profesiones %}<li><a href="{{ url }}">{{ label }}</a></li>{% endfor %}</ul>
+        </nav>
+        {% endif %}
         {% set mis_duelos = duels_by_tool.get(page.slug, []) %}
         {% if mis_duelos %}
         <nav class="tool-duels" aria-labelledby="cara-a-cara-{{ page.slug }}">
