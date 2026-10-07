@@ -1,4 +1,4 @@
-titulo: IA para docentes: herramientas y prompts para preparar clases
+titulo: IA para docentes: herramientas y prompts para clases
 descripcion: Cómo usar la IA como docente: preparar clases con tus fuentes, crear ejercicios y rúbricas, materiales visuales, y qué cuidar con los datos del alumnado.
 fecha: 2026-10-07
 profesion: docentes

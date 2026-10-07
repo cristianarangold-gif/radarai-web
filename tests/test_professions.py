@@ -104,6 +104,8 @@ def test_real_professions():
     profs = [p for p in pages if p.kind == 'profesion']
     validate_professions(profs, {p.slug: p for p in pages if p.kind == 'ficha' and p.indexable})
     assert profs and all(p.url == f'/ia-para-{p.slug}/' and p.word_count >= 1000 and p.indexable for p in profs)
+    assert {p.slug for p in profs} == {'docentes', 'abogados', 'disenadores', 'creadores', 'administrativos',
+                                       'periodistas'}
     hub = [p for p in pages if p.url == '/ia-por-profesion/'][0]
     assert hub.word_count >= 250
 
