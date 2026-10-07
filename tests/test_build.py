@@ -259,3 +259,10 @@ def test_header_has_search_link(tmp_path):
     root, out = make_root(tmp_path), tmp_path / '_site'
     build(root, out)
     assert 'class="search-open" href="/buscar/"' in (out / 'index.html').read_text()
+
+
+def test_invalid_assistant_data_fails_build(tmp_path):
+    root, out = make_root(tmp_path), tmp_path / '_site'
+    (root / 'data' / 'asistente.json').write_text('{"tareas": {}, "reglas": {}}', encoding='utf-8')
+    with pytest.raises(ValueError, match='asistente.json: falta la tarea escribir'):
+        build(root, out)
