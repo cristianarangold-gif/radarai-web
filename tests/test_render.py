@@ -204,3 +204,8 @@ def test_search_js_is_dom_safe_and_small():
         assert needle in js, needle
     import gzip
     assert len(gzip.compress(js.encode('utf-8'))) <= 8000  # tamaño de descarga, como el índice
+
+
+def test_search_js_falls_back_to_partial_matches():
+    js = (ROOT / 'static' / 'js' / 'search.js').read_text()
+    assert 'Sin coincidencias con todas las palabras' in js

@@ -37,26 +37,33 @@
     if ((' ' + text).indexOf(' ' + w) >= 0) return 2;
     return w.length >= 3 && text.indexOf(w) >= 0 ? 1 : 0;
   }
+  // Devuelve las entradas que contienen todas las palabras; si no hay ninguna, las que contienen
+  // alguna (ordenadas por cuántas coinciden) y marca la lista con .partial = true.
   function search(list, query) {
-    var q = norm(query), terms = q ? q.split(' ') : [], out = [];
+    var q = norm(query), terms = q ? q.split(' ') : [], out = [], full = 0;
     if (!terms.length) return out;
     list.forEach(function (e) {
-      var score = 0;
+      var score = 0, n = 0;
       for (var i = 0; i < terms.length; i++) {
         var w = terms[i], t = hit(e.nt, w), s = t === 2 ? (e.nt.indexOf(w) === 0 ? 12 : 8) : t ? 5 : 0;
         if (hit(e.nx, w)) s += 4;
         if (hit(e.nd, w)) s += 2;
         if (hit(e.nk, w)) s += 1;
-        if (!s) return;
-        score += s;
+        if (s) { score += s; n++; }
       }
+      if (!n) return;
       if (e.k === 'Ficha' || e.k === 'Comparativa') score += 3;
       if (e.nt.indexOf(q) >= 0) score += 2;
-      out.push({ e: e, s: score });
+      if (n === terms.length) full++;
+      out.push({ e: e, s: score, n: n });
     });
-    return out.sort(function (a, b) { return b.s - a.s || a.e.t.localeCompare(b.e.t, 'es'); })
+    if (full) out = out.filter(function (r) { return r.n === terms.length; });
+    var res = out.sort(function (a, b) { return b.n - a.n || b.s - a.s || a.e.t.localeCompare(b.e.t, 'es'); })
       .map(function (r) { return r.e; });
+    res.partial = !full && res.length > 0;
+    return res;
   }
+  var PARTIAL = 'Sin coincidencias con todas las palabras; se muestran resultados con alguna de ellas.';
 
   // Resalta los términos en el título sin usar HTML: se cortan trozos de texto y se envuelven en <mark>.
   function highlight(node, text, terms) {
@@ -160,7 +167,7 @@
           group.forEach(function (e) { list.appendChild(item(e, t, 'sr-' + n++)); });
         });
         input.setAttribute('aria-expanded', String(shown.length > 0));
-        status.textContent = t.length ? count(found.length) : '';
+        status.textContent = t.length ? (found.partial ? PARTIAL + ' ' : '') + count(found.length) : '';
         all.hidden = !found.length;
         all.href = '/buscar/?q=' + encodeURIComponent(query);
         all.textContent = 'Ver todos (' + found.length + ')';
@@ -256,7 +263,7 @@
         li.appendChild(item(e, t));
         results.appendChild(li);
       });
-      pageStatus.textContent = t.length ? count(found.length) : '';
+      pageStatus.textContent = t.length ? (found.partial ? PARTIAL + ' ' : '') + count(found.length) : '';
     }).catch(function () { clear(results); message(pageMsg, pageInput, 'error'); });
   };
   pageInput.value = new URLSearchParams(location.search).get('q') || '';
