@@ -97,3 +97,13 @@ def test_no_entry_points_without_comparator():
 def test_assistant_js_links_to_comparator_with_two_fichas():
     js = (ROOT / 'static' / 'js' / 'assistant.js').read_text()
     assert 'Comparar con las alternativas →' in js and 'data-comparador' in js
+
+
+def test_review_fixes_compare():
+    js = (ROOT / 'static' / 'js' / 'compare.js').read_text()
+    assert 'if (chosen.join(\',\') !== raw) sync();' in js  # limpia ?h= al cargar
+    assert "' y '" in js  # «X, Y y Z» en el caption
+    text = (ROOT / 'content' / 'paginas' / 'comparador.md').read_text()
+    assert 'en su apartado de precios' in text
+    assistant = (ROOT / 'static' / 'js' / 'assistant.js').read_text()
+    assert 'withFicha.indexOf(id) === i' in assistant  # sin duplicados

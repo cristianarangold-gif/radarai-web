@@ -102,7 +102,8 @@
     more.appendChild(link(task.guia, 'Leer la guía relacionada →'));
     // Comparador: la principal y las alternativas con ficha (las del catálogo enlazan a una categoría, #cat-…).
     var withFicha = [rule.principal].concat((rule.alternativas || []).map(function (a) { return a.id; }))
-      .filter(function (id) { return data.tools[id] && data.tools[id].u.indexOf('#') < 0; }).slice(0, 3);
+      .filter(function (id, i, withFicha) { return withFicha.indexOf(id) === i && data.tools[id] && data.tools[id].u.indexOf('#') < 0; })
+      .slice(0, 3);
     if (out.hasAttribute('data-comparador') && withFicha.length >= 2) {
       more.appendChild(document.createTextNode(' · '));
       more.appendChild(link('/comparador/?h=' + withFicha.join(','), 'Comparar con las alternativas →'));

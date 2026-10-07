@@ -33,7 +33,8 @@
       (chosen.length >= MAX ? '. Desmarca una para elegir otra.' : '.');
     var tools = chosen.map(function (id) { return byId[id]; }), wrap = make('div', 'table-scroll compare-scroll'),
       table = make('table', 'compare-table'), thead = make('thead'), head = make('tr'), body = make('tbody');
-    table.appendChild(make('caption', 'sr-only', 'Comparación de ' + tools.map(function (t) { return t.n; }).join(', ')));
+    var names = tools.map(function (t) { return t.n; });
+    table.appendChild(make('caption', 'sr-only', 'Comparación de ' + names.slice(0, -1).join(', ') + ' y ' + names[names.length - 1]));
     head.appendChild(make('td'));
     tools.forEach(function (t) {
       var th = make('th');
@@ -90,7 +91,8 @@
   form.addEventListener('submit', function (ev) { ev.preventDefault(); });
 
   // Selección compartida: ids válidos, sin repetir y como máximo 3, en el orden de la URL.
-  (new URLSearchParams(location.search).get('h') || '').split(',').forEach(function (id) {
+  var raw = new URLSearchParams(location.search).get('h') || '';
+  raw.split(',').forEach(function (id) {
     id = id.trim();
     if (byId[id] && box(id) && chosen.indexOf(id) < 0 && chosen.length < MAX) {
       chosen.push(id);
@@ -98,5 +100,6 @@
     }
   });
   boxes.forEach(function (b) { if (b.checked && chosen.indexOf(b.value) < 0) b.checked = false; });
-  render();
+  if (chosen.join(',') !== raw) sync(); // deja en la barra solo los ids válidos
+  else render();
 })();

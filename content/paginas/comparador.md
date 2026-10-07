@@ -29,4 +29,4 @@ No. Muestra los datos de cada ficha tal cual. Si quieres una recomendación seg�
 
 ### ¿Cada cuánto se actualizan los datos?
 
-Cuando revisamos una ficha, el comparador se actualiza automáticamente con los nuevos precios y planes. La fecha de la última comprobación aparece en cada ficha, junto a las fuentes oficiales que hemos consultado.
+Cuando revisamos una ficha, el comparador se actualiza automáticamente con los nuevos precios y planes. Cada ficha indica en su apartado de precios la fecha en que los comprobamos y enlaza al final las fuentes oficiales consultadas.
