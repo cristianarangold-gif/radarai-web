@@ -114,3 +114,14 @@ def test_library_page_requires_data(tmp_path):
     (root / 'content' / 'paginas' / 'prompts.md').write_text('titulo: P\ndescripcion: d\n\nTexto', encoding='utf-8')
     with pytest.raises(ValueError, match='prompts.md'):
         build(root, tmp_path / '_site')
+
+
+def test_real_library_is_valid_and_complete():
+    from collections import Counter
+    from radar.content import load_pages
+    from radar.prompt_library import CATEGORIES
+    pages = load_pages(ROOT / 'content')
+    prompts = parse_prompts((ROOT / 'data' / 'prompts.md').read_text(encoding='utf-8'))
+    validate_prompts(prompts, {p.slug: p for p in pages if p.kind == 'ficha' and p.indexable})
+    counts = Counter(p.cat for p in prompts)
+    assert len(prompts) >= 50 and all(counts[c] >= 5 for c, _, _ in CATEGORIES)
