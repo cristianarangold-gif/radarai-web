@@ -298,7 +298,7 @@ def _sort_key(value: str) -> str:
 
 
 def chart_points(changes: List[Change], snapshots: List[Snapshot], tool: str) -> Optional[dict]:
-    """Puntos (fecha, precio) del plan con más precios distintos; solo la moneda y periodo de su último punto."""
+    """Puntos (fecha, precio) del plan de pago con más precios distintos; solo la moneda y periodo de su último punto."""
     latest_order = list(((snapshots[-1].tools.get(tool) or {}).get('planes') or {}) if snapshots else [])
     series: Dict[str, List[Tuple[str, Price]]] = {}
     for c in changes:
@@ -314,7 +314,7 @@ def chart_points(changes: List[Change], snapshots: List[Snapshot], tool: str) ->
         pts = sorted(pts, key=lambda x: _sort_key(x[0]))
         last = pts[-1][1]
         pts = [(d, p) for d, p in pts if p.same_unit(last)]
-        if len({_sort_key(d) for d, _ in pts}) < 2:
+        if len({_sort_key(d) for d, _ in pts}) < 2 or not any(p.amount for _, p in pts):
             continue
         order = latest_order.index(plan) if plan in latest_order else len(latest_order)
         key = (len({p.amount for _, p in pts}), len(pts), -order)

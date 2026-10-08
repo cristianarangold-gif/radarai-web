@@ -253,3 +253,12 @@ def test_build_rejects_snapshot_out_of_sync(tmp_path):
     (work / 'data' / 'tomas-precios' / '2026-10-06.json').write_text(json.dumps(data), encoding='utf-8')
     with pytest.raises(ValueError, match=r'«chatgpt» Go: el precio «7 €» no aparece en la ficha'):
         build(work, tmp_path / '_site')
+
+
+def test_chart_ignores_free_plans(tmp_path):
+    data = json.loads(json.dumps(SNAP))
+    data['herramientas']['chatgpt']['planes'] = {'Gratis': '0 €', 'Plus': '23 €/mes'}
+    s = snaps(tmp_path, ('2026-10-06.json', data))
+    changes = parse_history('2024-12-18 | chatgpt | nuevo | Gratis | 0 € | Nace. | https://openai.com/x\n'
+                            '2025-04-04 | chatgpt | nuevo | Plus | 23 €/mes | Nace. | https://openai.com/y')
+    assert chart_points(changes, s, 'chatgpt')['plan'] == 'Plus'
