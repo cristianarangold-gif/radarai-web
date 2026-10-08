@@ -74,7 +74,8 @@ def build_index(pages: List[Page], tools: Dict[str, Tool], brands: Dict[str, Bra
     labels = {c: label for c, label, _ in PROMPT_CATEGORIES}
     for p in prompts or []:
         entries.append({'t': p.title, 'u': f'/prompts/#{p.slug}', 'k': 'Prompt', 'd': _short(p.para),
-                        'x': _keywords([labels.get(p.cat, '')] + [name for _, name, _ in p.tool_links]),
+                        'x': _keywords([labels.get(p.cat, '')] + [name for _, name, _ in p.tool_links] + p.slots
+                                       + [' '.join(p.text.split()[:40])]),
                         'c': '#f3a712', 'm': '›'})
     for term in glossary or []:
         entries.append({'t': term.term, 'u': f'/glosario/#{term.slug}', 'k': 'Glosario', 'd': _short(term.text),

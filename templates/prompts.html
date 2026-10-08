@@ -24,12 +24,12 @@
       {% for p in g.prompts %}
       <article class="prompt-card" id="{{ p.slug }}" data-cat="{{ g.id }}">
         <p class="prompt-cat"><span aria-hidden="true">{{ g.emoji }}</span> {{ g.label }}</p>
-        <h3>{{ p.title }}</h3>
+        <h3 id="{{ p.slug }}-t">{{ p.title }}</h3>
         <p class="prompt-para">{{ p.para }}</p>
         <p class="prompt-text">{% for kind, value in p.segments %}{% if kind == 'slot' %}<mark class="slot" data-slot="{{ value }}">[{{ value }}]</mark>{% else %}{{ value }}{% endif %}{% endfor %}</p>
         {% if p.slots %}
         <div class="prompt-fill" hidden>
-          {% for s in p.slots %}<label>{{ s }}<input type="text" data-slot="{{ s }}" autocomplete="off"></label>{% endfor %}
+          {% for s in p.slots %}<label>{{ s }}<input type="text" data-slot="{{ s }}" autocomplete="off" aria-describedby="{{ p.slug }}-t"></label>{% endfor %}
         </div>
         {% endif %}
         {% if p.consejo %}<p class="prompt-tip"><strong>Consejo:</strong> {{ p.consejo }}</p>{% endif %}

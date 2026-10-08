@@ -567,6 +567,7 @@ span.glossary-letter { border-color: var(--rule); color: #b5ada0; background: tr
 .prompt-tools a { display: inline-flex; align-items: center; gap: 4px; font-weight: 600; }
 .prompt-tools .logo { border-radius: 50%; }
 .prompt-foot .copy-prompt { position: static; }
+.prompt-foot .copy-prompt:focus-visible { outline-color: var(--ink); }
 .library .prose { margin-top: 44px; }
 
 /* Movimiento reducido */

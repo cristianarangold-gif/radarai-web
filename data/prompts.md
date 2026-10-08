@@ -2,6 +2,7 @@ Biblioteca de prompts de Radar IA. Cada prompt empieza con «## Título», sigue
 (categoria y para obligatorios; herramientas: 1–2 ids con ficha; consejo opcional) y, tras una línea
 en blanco, el prompt en texto plano (15–150 palabras). Los huecos se escriben [nombre] (máximo 4 distintos).
 Categorías: escribir, estudiar, trabajo, marketing, imagenes, programar, dia-a-dia, pensar.
+El prompt se une en una sola línea (los saltos de línea no se conservan) y todo texto entre corchetes es un hueco.
 Ver docs/superpowers/specs/2026-10-08-biblioteca-prompts-design.md.
 
 ## Responder un correo difícil
@@ -10,11 +11,11 @@ herramientas: chatgpt, claude
 para: Contestar una queja o un retraso sin sonar a la defensiva.
 consejo: Pega el correo original debajo del prompt, sin datos personales.
 
-Redacta una respuesta breve y cordial a un correo de [quién escribe] que se queja de [problema]. Reconoce el problema sin excusas, explica qué ha pasado en una frase y ofrece [solución]. Tono profesional y cercano, máximo 120 palabras, y termina con una frase que invite a seguir en contacto.
+Redacta una respuesta breve y cordial a un correo de [quién escribe] que se queja de [problema]. Reconoce el problema sin excusas, explica en una frase que [qué ha pasado] y ofrece [solución]. Tono profesional y cercano, máximo 120 palabras, y termina con una frase que invite a seguir en contacto.
 
 ## Mejorar un texto sin cambiar su sentido
 categoria: escribir
-herramientas: claude, deepl-write
+herramientas: claude, chatgpt
 para: Pulir un texto propio para que se lea mejor.
 
 Revisa el texto que pego a continuación para que sea más claro y fluido, pensando en [lector]. No cambies las ideas ni añadas información nueva. Corrige errores, acorta las frases largas y elimina repeticiones. Después, enumera los tres cambios más importantes que has hecho y por qué.
@@ -66,6 +67,7 @@ Escribe la descripción de [producto] para una tienda online. Empieza con una fr
 categoria: imagenes
 herramientas: midjourney, canva-ai
 para: Una imagen de cabecera coherente con el tema del artículo.
+consejo: En Midjourney, lo que no quieres se indica mejor con el parámetro --no (por ejemplo, --no text) que escribiendo «sin…».
 
 Ilustración de cabecera para un artículo sobre [tema del artículo]. Estilo [estilo visual], paleta de [colores], composición horizontal con espacio libre a la izquierda para un titular, iluminación suave, sin texto ni logotipos dentro de la imagen.
 
@@ -74,7 +76,7 @@ categoria: programar
 herramientas: cursor, github-copilot
 para: Entender un mensaje de error antes de tocar el código.
 
-Tengo este error en un proyecto de [lenguaje o framework]. Explícame en lenguaje sencillo qué significa, cuáles son las tres causas más probables y cómo comprobar cada una antes de cambiar nada. Después propón la corrección mínima y explica por qué funciona. Error y fragmento de código:
+Tengo este error en un proyecto de [lenguaje]. Explícame en lenguaje sencillo qué significa, cuáles son las tres causas más probables y cómo comprobar cada una antes de cambiar nada. Después propón la corrección mínima y explica por qué funciona. Error y fragmento de código:
 
 ## Planificar el menú de la semana
 categoria: dia-a-dia
@@ -107,22 +109,24 @@ Resume el texto que pego en tres niveles: una frase con la idea principal, un p�
 
 ## Cambiar el tono de un mensaje
 categoria: escribir
-herramientas: chatgpt, deepl-write
+herramientas: chatgpt, claude
 para: Adaptar un mismo mensaje a otra persona o situación.
+consejo: Si solo quieres ajustar el tono sin más explicaciones, DeepL Write lo hace pegando únicamente el texto.
 
-Reescribe este mensaje con un tono [tono deseado] para enviárselo a [destinatario]. Mantén toda la información y la petición principal, ajusta el saludo y la despedida, y dame dos versiones: una breve y otra algo más desarrollada. Mensaje:
+Reescribe este mensaje con un tono [tono] para enviárselo a [destinatario]. Mantén toda la información y la petición principal, ajusta el saludo y la despedida, y dame dos versiones: una breve y otra algo más desarrollada. Mensaje:
 
 ## Escribir un discurso corto
 categoria: escribir
 herramientas: claude, chatgpt
 para: Unas palabras para una celebración o una despedida.
 
-Escribe un discurso de [duración] minutos para [ocasión]. Debe incluir una anécdota que yo te contaré, un agradecimiento sincero y un cierre emotivo pero sin dramatismo. Usa frases cortas, fáciles de decir en voz alta, y marca con una barra las pausas. Antes de escribirlo, pregúntame por la anécdota y por las personas que hay que mencionar.
+Escribe un discurso de [minutos] minutos para [ocasión]. Debe incluir una anécdota que yo te contaré, un agradecimiento sincero y un cierre emotivo pero sin dramatismo. Usa frases cortas, fáciles de decir en voz alta, y marca con una barra las pausas. Antes de escribirlo, pregúntame por la anécdota y por las personas que hay que mencionar.
 
 ## Revisar ortografía y estilo sin reescribir
 categoria: escribir
-herramientas: deepl-write, claude
+herramientas: claude, chatgpt
 para: Corregir errores respetando tu forma de escribir.
+consejo: Para una corrección rápida sin explicaciones, pega solo el texto en DeepL Write.
 
 Revisa la ortografía, la gramática y la puntuación de este texto. No cambies mi estilo ni mis palabras salvo que sean incorrectas. Devuélveme el texto corregido y, debajo, una lista con cada corrección y la regla que se aplica, para que pueda aprender de los errores. Texto:
 
@@ -149,10 +153,10 @@ Tengo el examen de [asignatura] dentro de [días] días y puedo estudiar [horas]
 
 ## Corregir una redacción en otro idioma
 categoria: estudiar
-herramientas: deepl-write, chatgpt
+herramientas: chatgpt, claude
 para: Aprender de los errores al escribir en un idioma que estudias.
 
-Corrige esta redacción en [idioma] escrita por un estudiante de nivel [nivel]. Marca cada error, explica en español por qué es incorrecto y propone la forma correcta. No reescribas el texto entero: quiero aprender de mis fallos. Al final, dame tres consejos para mejorar en mi próxima redacción.
+Corrige esta redacción en [idioma] escrita por un estudiante de nivel [nivel]. Marca cada error, explica en español por qué es incorrecto y propón la forma correcta. No reescribas el texto entero: quiero aprender de mis fallos. Al final, dame tres consejos para mejorar en mi próxima redacción.
 
 ## Comprobar si has entendido un texto
 categoria: estudiar
@@ -163,8 +167,9 @@ Acabo de leer este texto sobre [tema]. Hazme 5 preguntas de comprensión que no 
 
 ## Preparar una exposición oral
 categoria: estudiar
-herramientas: chatgpt, canva-ai
+herramientas: chatgpt, claude
 para: Organizar una presentación de clase y ensayarla.
+consejo: Si después necesitas diapositivas, Canva IA puede crearlas a partir de la estructura.
 
 Tengo que exponer [tema] durante [minutos] minutos ante [público]. Propón una estructura con introducción que enganche, tres ideas principales con un ejemplo cada una y un cierre. Después, hazme las cuatro preguntas difíciles que me podría hacer el público para que practique las respuestas.
 
@@ -233,15 +238,16 @@ Investiga cómo se presentan en internet tres negocios de [sector] en [zona]: su
 
 ## Guion para un vídeo corto de producto
 categoria: marketing
-herramientas: chatgpt, runway
+herramientas: chatgpt, claude
 para: Un vídeo vertical que explique un producto en pocos segundos.
+consejo: Con el guion listo, Runway puede generar algunos planos de recurso a partir de texto o de una imagen.
 
 Escribe un guion de 20 segundos para un vídeo vertical sobre [producto]. Primer plano con un gancho visual, después el problema que resuelve, una demostración en dos planos y un cierre con llamada a la acción. Indica para cada plano qué se ve, el texto en pantalla y la locución, si la hay.
 
 ## Encuesta para conocer a tus clientes
 categoria: marketing
 herramientas: chatgpt, gemini
-para: Preguntar a tus clientes sin cansarles.
+para: Preguntar a tus clientes sin cansarlos.
 
 Diseña una encuesta de máximo 7 preguntas para clientes de [negocio] con el objetivo de [objetivo]. Mezcla preguntas cerradas y una abierta, evita las preguntas que sugieran la respuesta y ordénalas de la más sencilla a la más personal. Añade un texto de introducción de dos frases que explique para qué se usarán las respuestas.
 
@@ -256,6 +262,7 @@ Ilustración para un cuento infantil: [escena]. Estilo acuarela suave con contor
 categoria: imagenes
 herramientas: midjourney, canva-ai
 para: Una imagen limpia para una ficha de producto o un catálogo.
+consejo: Si el producto es real, parte de una foto tuya: una imagen generada puede no parecerse al producto que vendes.
 
 Fotografía de estudio de [producto] sobre fondo [color] liso, iluminación suave lateral, sombra natural bajo el objeto, encuadre centrado con espacio alrededor, enfoque nítido en los detalles de [material], estilo de catálogo profesional y sin elementos decorativos.
 
@@ -263,15 +270,16 @@ Fotografía de estudio de [producto] sobre fondo [color] liso, iluminación suav
 categoria: imagenes
 herramientas: canva-ai, midjourney
 para: Un cartel legible para anunciar un evento.
+consejo: Los generadores de imágenes aún fallan con el texto: crea el fondo con IA y escribe los textos en el editor de Canva.
 
 Diseña un cartel para [evento] que se celebra en [lugar y fecha]. Jerarquía clara: nombre del evento muy grande, fecha y lugar en segundo nivel y una línea con lo que el público encontrará. Estilo [estilo], dos colores principales, mucho contraste para que se lea de lejos y un espacio libre abajo para los logotipos.
 
 ## Icono para una aplicación
 categoria: imagenes
-herramientas: midjourney, chatgpt
+herramientas: midjourney, canva-ai
 para: Explorar ideas de icono para una app o un servicio.
 
-Icono de aplicación para [tipo de app], estilo plano y minimalista, una sola forma reconocible que represente [concepto], esquinas redondeadas, dos colores con buen contraste, fondo liso y legible incluso en tamaño pequeño. Muestra cuatro variaciones distintas de la idea.
+Icono de aplicación para [tipo de app], estilo plano y minimalista, una sola forma reconocible que represente [concepto], esquinas redondeadas, dos colores con buen contraste, fondo liso y legible incluso en tamaño pequeño.
 
 ## Retrato ilustrado para un perfil
 categoria: imagenes
@@ -341,6 +349,7 @@ Organiza un viaje de [días] días a [destino] en [época del año] para [quién
 categoria: dia-a-dia
 herramientas: chatgpt, claude
 para: Reclamar a una empresa de forma clara y documentada.
+consejo: Añade tú después el número de cliente o de pedido; no hace falta dárselo a la IA.
 
 Redacta una reclamación a [empresa] por [problema]. Incluye un resumen de los hechos con fechas, lo que solicito exactamente, el plazo razonable de respuesta y una referencia a los justificantes que adjunto. Tono firme y educado, sin amenazas. No cites leyes concretas a menos que te las indique yo.
 
@@ -348,6 +357,7 @@ Redacta una reclamación a [empresa] por [problema]. Incluye un resumen de los h
 categoria: dia-a-dia
 herramientas: chatgpt, gemini
 para: Ordenar gastos e ingresos y ver dónde ahorrar.
+consejo: Usa cifras redondeadas y no incluyas números de cuenta ni de tarjeta.
 
 Ayúdame a hacer un presupuesto mensual con estos ingresos y gastos aproximados. Agrúpalos en fijos, variables y prescindibles, calcula qué porcentaje supone cada grupo y propón tres ajustes realistas para ahorrar [cantidad o porcentaje] al mes sin eliminar lo que considero imprescindible: [imprescindibles]. Datos:
 
@@ -355,9 +365,9 @@ Ayúdame a hacer un presupuesto mensual con estos ingresos y gastos aproximados.
 categoria: dia-a-dia
 herramientas: claude, notebooklm
 para: Saber qué estás pagando o firmando, en lenguaje claro.
-consejo: Tapa tu nombre, dirección y número de cliente antes de subir el documento.
+consejo: Tapa tu nombre, dirección y número de cliente antes de subirlo. La explicación no sustituye el consejo de un profesional.
 
-Explícame en lenguaje sencillo esta [factura o contrato]. Dime qué conceptos estoy pagando o aceptando, cuáles son los plazos y las condiciones para cancelar, y qué puntos conviene preguntar a la empresa antes de firmar o pagar. Señala cualquier cosa que no se entienda bien en el documento en lugar de suponerla.
+Explícame en lenguaje sencillo este documento: [tipo de documento]. Dime qué conceptos estoy pagando o aceptando, cuáles son los plazos y las condiciones para cancelar, y qué puntos conviene preguntar a la empresa antes de firmar o pagar. Señala cualquier cosa que no se entienda bien en el documento en lugar de suponerla.
 
 ## Ideas para un regalo
 categoria: dia-a-dia
@@ -371,7 +381,7 @@ categoria: dia-a-dia
 herramientas: chatgpt, notion-ai
 para: Un plan de orden y limpieza que se pueda cumplir.
 
-Crea un plan semanal para ordenar y limpiar una casa de [tamaño] en la que viven [personas]. Reparte las tareas por días con un máximo de 30 minutos diarios, asigna tareas sencillas a cada persona y deja una tarea mensual de limpieza a fondo por semana. Preséntalo como una tabla fácil de imprimir.
+Crea un plan semanal para ordenar y limpiar una casa de [tamaño] en la que viven [personas]. Reparte las tareas por días con un máximo de 30 minutos diarios, asigna tareas sencillas a cada persona y reserva cada semana una tarea de limpieza a fondo, de modo que cada zona se limpie a fondo una vez al mes. Preséntalo como una tabla fácil de imprimir.
 
 ## Aprender una habilidad nueva en 30 días
 categoria: dia-a-dia

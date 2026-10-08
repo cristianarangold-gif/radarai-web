@@ -95,5 +95,13 @@
   });
   input.addEventListener('input', update);
   window.addEventListener('hashchange', reveal);
+  // Un enlace al mismo ancla no dispara «hashchange»: también se revisa al pulsarlo.
+  document.addEventListener('click', function (ev) {
+    var a = ev.target.closest && ev.target.closest('a[href*="#"]');
+    if (a && a.pathname === location.pathname) setTimeout(reveal, 0);
+  });
   controls.hidden = false;
+  // Al mostrar los controles y los campos, el contenido baja: se vuelve a situar la tarjeta del enlace.
+  var first = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+  if (first) first.scrollIntoView();
 })();

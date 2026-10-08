@@ -1,4 +1,4 @@
-titulo: Biblioteca de prompts: prompts en español para copiar y usar
+titulo: Biblioteca de prompts en español para copiar y usar
 descripcion: Prompts en español listos para usar con ChatGPT, Claude o Gemini: rellena los huecos en la propia tarjeta, cópialos y adáptalos a tu tarea.
 
 ## Cómo usar esta biblioteca

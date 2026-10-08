@@ -47,6 +47,9 @@ def test_parse_segments_and_slots():
     (block(body=PROMPT + ' [sin cerrar'), 'corchetes'),
     (block(body=PROMPT + ' Lo hemos probado.'), 'hemos probado'),
     (block() + block(), 'duplicado'),
+    (block(body=PROMPT + ' [ ]'), 'vacío'),
+    (block(body=PROMPT + ' [Quién Escribe]'), 'mayúsculas'),
+    (block('Contenido'), 'reservado'),
     (block(meta='categoria: escribir\nherramientas: chatgpt\npara: x\nnivel: alto'), 'nivel'),
 ])
 def test_validation_errors(text, needle):
@@ -76,7 +79,7 @@ def test_library_js_is_dom_safe_and_small():
     import gzip
     js = (ROOT / 'static' / 'js' / 'library.js').read_bytes()
     assert b'innerHTML' not in js and len(gzip.compress(js)) <= 2560
-    assert b'clipboard' in js and b'aria-live' in js and b'hashchange' in js
+    assert b'clipboard' in js and b'aria-live' in js and b'hashchange' in js and b'scrollIntoView' in js
 
 
 @pytest.fixture(scope='module')
@@ -97,6 +100,7 @@ def test_built_library_page(site):
     assert html.count('<mark class="slot"') == slots
     assert html.count('<div class="prompt-fill" hidden>') == sum(1 for p in prompts if p.slots)
     assert 'class="library-controls" hidden' in html and 'Prompts para copiar y' in html
+    assert 'aria-describedby="que-te-examine-paso-a-paso-t"' in html and 'id="que-te-examine-paso-a-paso-t"' in html
     assert re.search(r'<script src="/static/js/library\.js\?v=[0-9a-f]{10}" defer>', html)
     assert 'noindex' not in html
 
@@ -132,6 +136,7 @@ def test_entry_points_and_search(site):
     idx = json.loads((site / 'search-index.json').read_text())
     e = [x for x in idx if x['u'] == '/prompts/#que-te-examine-paso-a-paso'][0]
     assert e['k'] == 'Prompt' and 'Estudiar' in e['x'] and e['d'].startswith('Aprender preguntando')
+    assert 'examen' in e['x'] and 'tema' in e['x']
     assert "'Prompt'" in (ROOT / 'static' / 'js' / 'search.js').read_text()
     start = (site / 'empieza-aqui' / 'index.html').read_text()
     assert 'href="/prompts/"' in start

@@ -24,6 +24,8 @@ MIN_WORDS, MAX_WORDS = 15, 150
 MAX_SLOTS, MAX_TOOLS = 4, 2
 MAX_PARA, MAX_CONSEJO = 25, 40
 SLOT = re.compile(r'\[([^\[\]]+)\]')
+# Ids fijos de la página (enlace de salto, menú, controles…) que un ancla de prompt no puede repetir.
+RESERVED_IDS = {'contenido', 'menu-principal', 'prompts-filtro', 'buscar', 'resultados'}
 
 
 @dataclass
@@ -117,6 +119,12 @@ def validate_prompts(prompts: List[Prompt], fichas: Dict[str, object]) -> None:
         words = count_words(p.text)
         if not MIN_WORDS <= words <= MAX_WORDS:
             _fail(p, f'el prompt tiene {words} palabras (entre {MIN_WORDS} y {MAX_WORDS})')
+        if p.slug in RESERVED_IDS or p.slug.startswith('cat-'):
+            _fail(p, f'el título genera un id reservado de la página («{p.slug}»): cámbialo')
+        if any(not s for s in p.slots):
+            _fail(p, 'hay un hueco vacío «[ ]»')
+        if len({slugify(s) for s in p.slots}) != len(p.slots):
+            _fail(p, 'dos huecos solo se diferencian en mayúsculas o tildes: escríbelos igual')
         if len(p.slots) > MAX_SLOTS:
             _fail(p, f'tiene {len(p.slots)} huecos distintos (máximo {MAX_SLOTS})')
         text = ' '.join([p.text, p.para, p.consejo]).lower()
