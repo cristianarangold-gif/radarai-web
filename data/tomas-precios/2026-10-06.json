@@ -1,5 +1,5 @@
 {
-  "nota": "Toma de precios del 6 de octubre de 2026. Solo planes individuales, tal como los muestra la web oficial. Origen: content/_investigacion/precios-2026-10.md.",
+  "nota": "Toma de precios del 6 de octubre de 2026. Solo planes individuales, tal como los muestra la web oficial. Origen: content/_investigacion/precios-2026-10.md. Suno corregido el 8 de octubre de 2026 (los 8 $ y 24 $ eran el precio con pago anual).",
   "herramientas": {
     "chatgpt": {"fuente": "https://chatgpt.com/es-ES/pricing/",
                 "planes": {"Gratis": "0 €", "Go": "8 €/mes", "Plus": "23 €/mes", "Pro": "desde 103 €/mes"}},
@@ -19,7 +19,7 @@
     "runway": {"fuente": "https://runway.com/pricing",
                "planes": {"Free": "0 $", "Standard": "15 $/mes", "Pro": "35 $/mes", "Max": "95 $/mes"}},
     "suno": {"fuente": "https://suno.com/pricing",
-             "planes": {"Free": "0 $", "Pro": "8 $/mes", "Premier": "24 $/mes"}},
+             "planes": {"Free": "0 $", "Pro": "10 $/mes", "Premier": "30 $/mes"}},
     "elevenlabs": {"fuente": "https://elevenlabs.io/pricing",
                    "planes": {"Free": "0 $", "Starter": "6 $/mes", "Creator": "22 $/mes", "Pro": "99 $/mes"}},
     "github-copilot": {"fuente": "https://github.com/features/copilot/plans",

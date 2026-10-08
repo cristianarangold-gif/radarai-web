@@ -1,6 +1,7 @@
 titulo: La mejor IA para crear música en 2026: comparativa con precios
 descripcion: Comparamos Suno, ElevenLabs Music, AIVA y Soundraw para crear canciones y música con IA: precios, descargas, derechos comerciales y para quién es cada una.
 fecha: 2026-10-06
+actualizado: 2026-10-08
 fuentes: https://suno.com/pricing
     https://elevenlabs.io/music
     https://elevenlabs.io/pricing
@@ -12,7 +13,7 @@ La inteligencia artificial ya es capaz de componer canciones completas con letra
 
 ## Respuesta rápida
 
-- **Para canciones completas con voz: [Suno](/herramientas/suno/).** Escribe la letra y la música a partir de una descripción. Pro, 8 $/mes con uso comercial.
+- **Para canciones completas con voz: [Suno](/herramientas/suno/).** Escribe la letra y la música a partir de una descripción. Pro, 10 $/mes (8 $ con pago anual) con uso comercial.
 - **Para bandas sonoras instrumentales con derechos: AIVA.** Con el plan Pro el copyright de las obras es tuyo.
 - **Para música de fondo sin complicaciones: Soundraw.** Licencia comercial y distribución en todos sus planes de pago, desde 5,83 €/mes.
 
@@ -30,7 +31,7 @@ Hemos revisado las páginas oficiales de precios y licencias (consultadas el 6 d
 
 | Herramienta | Tipo de música | Plan gratuito | Precio desde | Derechos en el plan de pago | Comprobado |
 |---|---|---|---|---|---|
-| Suno | Canciones con voz e instrumentales | 50 créditos/día, sin descargas | 8 $/mes (6,40 $ anual) | Uso comercial | 6 oct. 2026 |
+| Suno | Canciones con voz e instrumentales | 50 créditos/día, sin descargas | 10 $/mes (8 $ anual) | Uso comercial | 8 oct. 2026 |
 | ElevenLabs Music | Canciones y música | 10.000 créditos/mes | 6 $/mes (Starter) | Comercial con matices según plan | 6 oct. 2026 |
 | AIVA | Instrumental, bandas sonoras | 3 descargas/mes, sin monetizar | 11 €/mes (anual, + IVA) | Copyright tuyo en Pro (33 €/mes) | 6 oct. 2026 |
 | Soundraw | Música de fondo | No (se puede probar el generador) | 5,83 €/mes (anual) | Uso comercial y distribución | 6 oct. 2026 |
@@ -40,7 +41,7 @@ Hemos revisado las páginas oficiales de precios y licencias (consultadas el 6 d
 
 ### Suno: canciones completas a partir de una idea
 
-Suno es la herramienta más popular para crear **canciones con letra y voz**: describes el estilo y el tema, o pegas tu propia letra, y genera varias versiones en segundos. El plan gratuito ofrece 50 créditos al día con su modelo gratuito, pero **no permite descargar ni usar comercialmente** las canciones. **Pro cuesta 8 $/mes (6,40 $ anual)** con 2.500 créditos, 20 descargas al mes y derechos comerciales; **Premier (24 $/mes)** sube a 10.000 créditos y 60 descargas. Lee la [ficha de Suno](/herramientas/suno/).
+Suno es la herramienta más popular para crear **canciones con letra y voz**: describes el estilo y el tema, o pegas tu propia letra, y genera varias versiones en segundos. El plan gratuito ofrece 50 créditos al día con su modelo gratuito, pero **no permite descargar ni usar comercialmente** las canciones. **Pro cuesta 10 $/mes (8 $ anual)** con 2.500 créditos, 20 descargas al mes y derechos comerciales; **Premier (30 $/mes, 24 $ anual)** sube a 10.000 créditos y 60 descargas. Lee la [ficha de Suno](/herramientas/suno/).
 
 ### ElevenLabs Music: música dentro de la plataforma de voz
 
