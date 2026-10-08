@@ -321,3 +321,80 @@ def chart_points(changes: List[Change], snapshots: List[Snapshot], tool: str) ->
         if best_key is None or key > best_key:
             best, best_key = {'plan': plan, 'currency': last.currency, 'period': last.period, 'points': pts}, key
     return best
+
+
+# Gráfico: viewBox 0 0 320 100, área de dibujo x 24–304 e y 20–76 (eje en y=80, años en y=94).
+X0, X1, Y_TOP, Y_BOTTOM = 24, 304, 20, 76
+RECENT = 10
+PERIOD_LABEL = {'/mes': 'al mes', '/año': 'al año', '/mes (anual)': 'al mes con pago anual'}
+
+
+def _day(value: str) -> date:
+    y, m, *d = (int(p) for p in value.split('-'))
+    return date(y, m, d[0] if d else 1)
+
+
+def _amount(p: Price) -> str:
+    return f'{format(p.amount.normalize(), "f").replace(".", ",")} {p.currency}'
+
+
+def _month(value: str) -> str:
+    return long_date(value[:7])
+
+
+def _chart(raw: Optional[dict], end: str) -> Optional[dict]:
+    if not raw:
+        return None
+    start, stop = date(*START, 1), _day(end)
+    span = max((stop - start).days, 1)
+    top = max(p.amount for _, p in raw['points']) or 1
+
+    def x(d: str) -> float:
+        return round(X0 + (_day(d) - start).days / span * (X1 - X0), 1)
+
+    def y(p: Price) -> float:
+        return round(Y_BOTTOM - float(p.amount / top) * (Y_BOTTOM - Y_TOP), 1)
+
+    dots = [(x(d), y(p), _amount(p)) for d, p in raw['points']]
+    path = f'M{dots[0][0]} {dots[0][1]}' + ''.join(f' H{dx} V{dy}' for dx, dy, _ in dots[1:]) + f' H{x(end)}'
+    labels = [f'{_amount(p)} en {_month(d)}' for d, p in raw['points']]
+    aria = f'Precio del plan {raw["plan"]} por fecha: ' + (
+        ', '.join(labels[:-1]) + ' y ' + labels[-1] if len(labels) > 1 else labels[0])
+    years = [(x(f'{yr}-01'), str(yr)) for yr in range(START[0], stop.year + 1)]
+    return {'plan': raw['plan'], 'unit': PERIOD_LABEL.get(raw['period'], ''), 'path': path, 'dots': dots, 'aria': aria, 'years': years}
+
+
+def _source_label(url: str) -> str:
+    host = _host(url)
+    if host == ARCHIVE_HOST:
+        m = ARCHIVE_PATH.match(urlparse(url).path)
+        inner = m.group(1) if m else ''
+        return f'copia archivada de {_host(inner if "://" in inner else "https://" + inner)}'
+    return host
+
+
+def _view(c: Change, compare_by_id: Dict[str, dict]) -> dict:
+    tool = compare_by_id.get(c.tool, {})
+    return {'tool': c.tool, 'name': tool.get('n', c.tool), 'url': tool.get('u', ''), 'date': long_date(c.date),
+            'kind': c.kind, 'label': c.label, 'plan': c.plan, 'price': c.raw_price.replace(' → ', f' {ARROW} '),
+            'text': c.text, 'source': c.source, 'source_label': _source_label(c.source), 'auto': c.auto}
+
+
+def history_context(changes: List[Change], snapshots: List[Snapshot], compare_by_id: Dict[str, dict]) -> dict:
+    latest = snapshots[-1]
+    ordered = sorted(changes, key=lambda c: (_sort_key(c.date), c.line), reverse=True)
+    views = [_view(c, compare_by_id) for c in ordered]
+    tools = []
+    for tool_id, tool in compare_by_id.items():
+        data = latest.tools.get(tool_id)
+        if not data:
+            continue
+        tools.append({'id': tool_id, 'name': tool['n'], 'url': tool['u'],
+                      'planes': list((data.get('planes') or {}).items()),
+                      'changes': [v for v in views if v['tool'] == tool_id],
+                      'chart': _chart(chart_points(changes, snapshots, tool_id), latest.date)})
+    by_tool: Dict[str, List[dict]] = {}
+    for v in views:
+        by_tool.setdefault(v['tool'], []).append(v)
+    return {'latest': long_date(latest.date), 'count': len(changes), 'n_tools': len(tools),
+            'recent': views[:RECENT], 'tools': tools, 'by_tool': by_tool}

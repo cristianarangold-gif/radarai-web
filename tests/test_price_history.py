@@ -262,3 +262,70 @@ def test_chart_ignores_free_plans(tmp_path):
     changes = parse_history('2024-12-18 | chatgpt | nuevo | Gratis | 0 € | Nace. | https://openai.com/x\n'
                             '2025-04-04 | chatgpt | nuevo | Plus | 23 €/mes | Nace. | https://openai.com/y')
     assert chart_points(changes, s, 'chatgpt')['plan'] == 'Plus'
+
+
+PAYLOAD = {'chatgpt': {'id': 'chatgpt', 'n': 'ChatGPT', 'u': '/herramientas/chatgpt/'},
+           'claude': {'id': 'claude', 'n': 'Claude', 'u': '/herramientas/claude/'}}
+
+
+def test_history_context(tmp_path):
+    from radar.price_history import history_context
+    s = snaps(tmp_path, ('2026-10-06.json', SNAP))
+    changes = parse_history(LINE + '\n2026-08-26 | chatgpt | baja | Go | 9,99 €/mes → 8 €/mes | Baja. | ' + ARCHIVE)
+    ctx = history_context(changes, s, PAYLOAD)
+    assert ctx['latest'] == '6 de octubre de 2026' and ctx['count'] == 2 and ctx['n_tools'] == 2
+    first = ctx['recent'][0]
+    assert (first['date'], first['label'], first['name'], first['price']) == (
+        '26 de agosto de 2026', '↓ Bajada', 'ChatGPT', '9,99 €/mes → 8 €/mes')
+    assert first['source_label'] == 'copia archivada de chatgpt.com' and ctx['recent'][1]['date'] == 'noviembre de 2025'
+    chatgpt, claude = ctx['tools']
+    assert chatgpt['id'] == 'chatgpt' and chatgpt['planes'][1] == ('Go', '8 €/mes') and len(chatgpt['changes']) == 2
+    assert claude['changes'] == [] and claude['chart'] is None
+    chart = chatgpt['chart']
+    assert chart['plan'] == 'Go' and chart['path'].startswith('M') and len(chart['dots']) == 3
+    assert chart['aria'] == ('Precio del plan Go por fecha: 9,99 € en noviembre de 2025, 8 € en agosto de 2026 '
+                             'y 8 € en octubre de 2026')
+    xs = [x for x, _, _ in chart['dots']]
+    assert xs == sorted(xs) and all(24 <= x <= 304 for x in xs)
+    assert [y for _, y, _ in chart['dots']][0] < [y for _, y, _ in chart['dots']][1]
+    assert [label for _, label in chart['years']] == ['2023', '2024', '2025', '2026']
+    assert ctx['by_tool']['chatgpt'][0]['date'] == '26 de agosto de 2026' and 'claude' not in ctx['by_tool']
+
+
+def test_recent_is_limited_to_ten(tmp_path):
+    from radar.price_history import history_context
+    lines = '\n'.join(f'2025-{m:02d} | chatgpt | condiciones | Plus |  | Cambio {m}. | https://openai.com/{m}'
+                      for m in range(1, 13))
+    ctx = history_context(parse_history(lines), snaps(tmp_path, ('2026-10-06.json', SNAP)), PAYLOAD)
+    assert len(ctx['recent']) == 10 and ctx['recent'][0]['text'] == 'Cambio 12.' and ctx['count'] == 12
+
+
+def test_built_history_page(site):
+    import re
+    html = (site / 'historial-de-precios' / 'index.html').read_text()
+    assert html.count('<section class="price-tool"') == 15
+    for tool in ('chatgpt', 'suno', 'canva-ai'):
+        assert f'id="precios-{tool}"' in html
+    recent = html.split('<ol class="price-feed"')[1].split('</ol>')[0]
+    assert 1 <= recent.count('<li') <= 10
+    assert html.count('<svg class="price-chart"') >= 3 and html.count('role="img"') >= 3
+    assert 'Sin cambios de precio verificables desde enero de 2023' in html
+    assert 'Cómo han cambiado los precios' in html and 'noindex' not in html
+    assert re.search(r'rel="nofollow noopener"', html)
+
+
+def test_real_history_page_words():
+    from radar.content import load_pages
+    page = [p for p in load_pages(ROOT / 'content') if p.url == '/historial-de-precios/'][0]
+    assert page.indexable and page.word_count >= 250
+
+
+@pytest.fixture(scope='module')
+def site():
+    import subprocess
+    import sys
+    import tempfile
+    out = Path(tempfile.mkdtemp()) / 'site'
+    subprocess.run([sys.executable, str(ROOT / 'scripts' / 'build.py'), '--out', str(out)], check=True,
+                   capture_output=True)
+    return out
