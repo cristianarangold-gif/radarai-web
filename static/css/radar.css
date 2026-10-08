@@ -540,6 +540,36 @@ span.glossary-letter { border-color: var(--rule); color: #b5ada0; background: tr
 .prof-kit { display: flex; gap: 6px; margin-top: 4px; }
 .prof-kit .logo { border-radius: 50%; }
 
+/* 20. Biblioteca de prompts */
+.library h1 em { color: var(--accent); font-style: italic; font-weight: 600; }
+.library-controls { margin: 0 0 8px; }
+.library-filter { width: 100%; max-width: 560px; border: 2px solid var(--ink); border-radius: var(--radius); background: var(--white); padding: 12px 14px; font: 1rem var(--sans); color: var(--ink); }
+.library-group h2 { font-size: 1.5rem; margin: 30px 0 12px; scroll-margin-top: 90px; }
+.library-grid { display: grid; gap: 14px; }
+@media (min-width: 760px) { .library-grid { grid-template-columns: repeat(2, 1fr); } }
+.prompt-card { display: flex; flex-direction: column; background: var(--white); border: 1.5px solid var(--ink); border-radius: 10px; padding: 16px 18px; scroll-margin-top: 90px; min-width: 0; }
+.prompt-card:target { box-shadow: 0 0 0 4px var(--amber); }
+.prompt-card[hidden], .library-group[hidden] { display: none; }
+.prompt-cat { margin: 0; font: 700 .68rem var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+.prompt-card h3 { font-size: 1.15rem; margin: 4px 0 4px; }
+.prompt-para { margin: 0 0 10px; font-size: .92rem; color: var(--ink-2); }
+.prompt-text { background: var(--ink); color: #eee; border-radius: var(--radius); padding: 12px 14px; margin: 0; font-size: .92rem; line-height: 1.65; overflow-wrap: anywhere; }
+.slot { background: var(--amber); color: var(--ink); border-radius: 3px; padding: 0 5px; font-weight: 700; }
+.slot.filled { background: #ffe1a3; }
+.prompt-fill { display: grid; gap: 8px; margin: 10px 0 0; }
+@media (min-width: 500px) { .prompt-fill { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.prompt-fill label { display: flex; flex-direction: column; gap: 3px; font: 700 .75rem var(--sans); color: var(--ink-2); }
+.prompt-fill input { width: 100%; min-width: 0; border: 1.5px solid var(--rule); border-radius: 4px; padding: 7px 9px; font: .9rem var(--sans); color: var(--ink); background: var(--paper); }
+.prompt-fill input:focus { border-color: var(--ink); }
+.prompt-tip { margin: 10px 0 0; font-size: .85rem; color: var(--ink-2); }
+.prompt-foot { display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap; margin-top: auto; padding-top: 12px; }
+.prompt-tools { margin: 0; font-size: .82rem; color: var(--ink-3); }
+.prompt-tools a { display: inline-flex; align-items: center; gap: 4px; font-weight: 600; }
+.prompt-tools .logo { border-radius: 50%; }
+.prompt-foot .copy-prompt { position: static; }
+.prompt-foot .copy-prompt:focus-visible { outline-color: var(--ink); }
+.library .prose { margin-top: 44px; }
+
 /* Movimiento reducido */
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

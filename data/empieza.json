@@ -63,7 +63,8 @@
       "cta": {"texto": "Leer la guía de prompts", "url": "/guias/mejores-prompts/"},
       "extra": [
         {"texto": "Generador de prompts", "url": "/herramientas-radar/generador-de-prompts/"},
-        {"texto": "Mejorador de prompts", "url": "/herramientas-radar/mejorador-de-prompts/"}
+        {"texto": "Mejorador de prompts", "url": "/herramientas-radar/mejorador-de-prompts/"},
+        {"texto": "Biblioteca de prompts", "url": "/prompts/"}
       ]
     },
     {

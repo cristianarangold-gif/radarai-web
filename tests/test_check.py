@@ -189,3 +189,11 @@ def test_link_to_missing_glossary_term(tmp_path):
     sitemap(tmp_path, '/', '/glosario/')
     errors = check_site(tmp_path)
     assert any('/glosario/#nada' in e for e in errors) and not any('#token' in e for e in errors)
+
+
+def test_link_to_missing_prompt_anchor(tmp_path):
+    page(tmp_path, 'index.html', '/', body='<a href="/prompts/#uno">u</a> <a href="/prompts/#nada">n</a>')
+    page(tmp_path, 'prompts/index.html', '/prompts/', title='P', body='<article class="prompt-card" id="uno"></article>')
+    sitemap(tmp_path, '/', '/prompts/')
+    errors = check_site(tmp_path)
+    assert any('/prompts/#nada' in e for e in errors) and not any('#uno' in e for e in errors)
