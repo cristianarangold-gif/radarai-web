@@ -241,7 +241,7 @@ def validate_history(changes: List[Change], snapshots: List[Snapshot], fichas: D
     if not snapshots:
         raise ValueError('tomas-precios: no hay ninguna toma de precios (AAAA-MM-DD.json)')
     for i, s in enumerate(snapshots):
-        problem = _snapshot_problem(s, fichas, latest=i == len(snapshots) - 1)
+        problem = _date_problem(s.date, today) or _snapshot_problem(s, fichas, latest=i == len(snapshots) - 1)
         if problem:
             raise ValueError(f'tomas-precios/{s.file}: {problem}')
     seen: Dict[tuple, int] = {}
@@ -268,6 +268,8 @@ def auto_changes(snapshots: List[Snapshot], changes: List[Change]) -> List[Chang
     for old, new in zip(snapshots, snapshots[1:]):
         text = f'Detectado en nuestra revisión del {long_date(new.date)}.'
         for tool, data in new.tools.items():
+            if tool not in old.tools:  # herramienta nueva en el seguimiento: sus planes no son «nuevos»
+                continue
             before_plans = (old.tools.get(tool) or {}).get('planes') or {}
             plans = data.get('planes') or {}
             found = []
@@ -282,8 +284,7 @@ def auto_changes(snapshots: List[Snapshot], changes: List[Change]) -> List[Chang
                     found.append(('sube' if b.amount > a.amount else 'baja', plan, f'{a.text} {ARROW} {b.text}', text))
                 else:
                     found.append(('condiciones', plan, b.text, f'{text[:-1]}: pasa de {a.text} a {b.text}.'))
-            if tool in old.tools:
-                found += [('retirado', plan, value, text) for plan, value in before_plans.items() if plan not in plans]
+            found += [('retirado', plan, value, text) for plan, value in before_plans.items() if plan not in plans]
             for kind, plan, raw, phrase in found:
                 if (tool, plan, kind, new.date[:7]) in known:
                     continue
@@ -355,9 +356,10 @@ def _chart(raw: Optional[dict], end: str) -> Optional[dict]:
     def y(p: Price) -> float:
         return round(Y_BOTTOM - float(p.amount / top) * (Y_BOTTOM - Y_TOP), 1)
 
-    dots = [(x(d), y(p), _amount(p)) for d, p in raw['points']]
+    points = [pt for i, pt in enumerate(raw['points']) if i == 0 or pt[1].amount != raw['points'][i - 1][1].amount]
+    dots = [(x(d), y(p), _amount(p)) for d, p in points]
     path = f'M{dots[0][0]} {dots[0][1]}' + ''.join(f' H{dx} V{dy}' for dx, dy, _ in dots[1:]) + f' H{x(end)}'
-    labels = [f'{_amount(p)} en {_month(d)}' for d, p in raw['points']]
+    labels = [f'{_amount(p)} en {_month(d)}' for d, p in points]
     aria = f'Precio del plan {raw["plan"]} por fecha: ' + (
         ', '.join(labels[:-1]) + ' y ' + labels[-1] if len(labels) > 1 else labels[0])
     years = [(x(f'{yr}-01'), str(yr)) for yr in range(START[0], stop.year + 1)]
@@ -375,7 +377,7 @@ def _source_label(url: str) -> str:
 
 def _view(c: Change, compare_by_id: Dict[str, dict]) -> dict:
     tool = compare_by_id.get(c.tool, {})
-    return {'tool': c.tool, 'name': tool.get('n', c.tool), 'url': tool.get('u', ''), 'date': long_date(c.date),
+    return {'tool': c.tool, 'name': tool.get('n', c.tool), 'url': tool.get('u', ''), 'date': long_date(c.date), 'iso': c.date,
             'kind': c.kind, 'label': c.label, 'plan': c.plan, 'price': c.raw_price.replace(' → ', f' {ARROW} '),
             'text': c.text, 'source': c.source, 'source_label': _source_label(c.source), 'auto': c.auto}
 

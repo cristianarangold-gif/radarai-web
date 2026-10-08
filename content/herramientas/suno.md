@@ -96,7 +96,7 @@ Las comparamos en [la mejor IA para crear música](/mejor-ia-para-crear-musica/)
 
 ## Veredicto
 
-Suno es probablemente la forma más sencilla de **convertir una idea en una canción completa**. El plan gratuito sirve para experimentar, pero no permite descargar ni usar las canciones. **Pro (8 $/mes)** es la opción lógica para creadores de contenido y pequeños negocios, porque incluye derechos comerciales y 20 descargas al mes; **Premier** solo compensa si produces música a diario.
+Suno es probablemente la forma más sencilla de **convertir una idea en una canción completa**. El plan gratuito sirve para experimentar, pero no permite descargar ni usar las canciones. **Pro (10 $/mes, u 8 $ con pago anual)** es la opción lógica para creadores de contenido y pequeños negocios, porque incluye derechos comerciales y 20 descargas al mes; **Premier** solo compensa si produces música a diario.
 
 <!-- NUESTRA PRUEBA: espacio reservado para la prueba personal de Cristian Arango. -->
 

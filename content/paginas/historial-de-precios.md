@@ -17,7 +17,7 @@ Además, cada vez que revisamos los precios de las fichas guardamos una **toma f
 
 ## Euros, dólares e impuestos
 
-Mostramos cada precio en la moneda en que lo publica la empresa. Algunas, como OpenAI, Google o Microsoft, muestran precios en euros para España; otras, como Anthropic, Midjourney o Suno, cobran en dólares estadounidenses. Muchos lanzamientos se anunciaron primero en Estados Unidos, por eso esos cambios aparecen en dólares.
+Mostramos cada precio en la moneda en que lo publica la empresa. Algunas, como OpenAI, Google o Microsoft, muestran precios en euros para España; otras, como Anthropic, Midjourney o Suno, cobran en dólares estadounidenses. Muchos lanzamientos se anunciaron primero en Estados Unidos; por eso esos cambios aparecen en dólares.
 
 El importe final puede variar con los impuestos, el país desde el que pagas o el tipo de facturación (mensual o anual). Antes de contratar, comprueba siempre el precio en la página oficial.
 

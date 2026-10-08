@@ -41,7 +41,7 @@ Hemos revisado las páginas oficiales de precios y licencias (consultadas el 6 d
 
 ### Suno: canciones completas a partir de una idea
 
-Suno es la herramienta más popular para crear **canciones con letra y voz**: describes el estilo y el tema, o pegas tu propia letra, y genera varias versiones en segundos. El plan gratuito ofrece 50 créditos al día con su modelo gratuito, pero **no permite descargar ni usar comercialmente** las canciones. **Pro cuesta 10 $/mes (8 $ anual)** con 2.500 créditos, 20 descargas al mes y derechos comerciales; **Premier (30 $/mes, 24 $ anual)** sube a 10.000 créditos y 60 descargas. Lee la [ficha de Suno](/herramientas/suno/).
+Suno es una de las herramientas más conocidas para crear **canciones con letra y voz**: describes el estilo y el tema, o pegas tu propia letra, y genera varias versiones en segundos. El plan gratuito ofrece 50 créditos al día con su modelo gratuito, pero **no permite descargar ni usar comercialmente** las canciones. **Pro cuesta 10 $/mes (8 $ anual)** con 2.500 créditos, 20 descargas al mes y derechos comerciales; **Premier (30 $/mes, 24 $ anual)** sube a 10.000 créditos y 60 descargas. Lee la [ficha de Suno](/herramientas/suno/).
 
 ### ElevenLabs Music: música dentro de la plataforma de voz
 

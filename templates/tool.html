@@ -51,9 +51,9 @@
         <nav class="tool-duels tool-prices" aria-labelledby="precios-{{ page.slug }}-h">
           <h2 id="precios-{{ page.slug }}-h">Historial de precios</h2>
           {% if mis_precios %}
-          <ul>{% for c in mis_precios[:2] %}<li><span class="tool-prices-date">{{ c.date }}</span> {{ c.label }} · {{ c.plan }}</li>{% endfor %}</ul>
+          <ul>{% for c in mis_precios[:1] %}<li><time class="tool-prices-date" datetime="{{ c.iso }}">{{ c.date }}</time> {{ c.label }} · {{ c.plan }}</li>{% endfor %}</ul>
           {% else %}
-          <p>Sin cambios registrados desde 2023.</p>
+          <p>Sin cambios de precio verificables desde enero de 2023.</p>
           {% endif %}
           <a href="/historial-de-precios/#precios-{{ page.slug }}">Ver todos los cambios →</a>
         </nav>

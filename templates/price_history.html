@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% macro change_item(c, with_tool=true) %}
 <li class="price-change">
-  <p class="price-when"><time>{{ c.date }}</time></p>
+  <p class="price-when"><time datetime="{{ c.iso }}">{{ c.date }}</time></p>
   <p class="price-what"><span class="price-badge price-{{ c.kind }}">{{ c.label }}</span>
     {% if with_tool %}<a class="price-tool-link" href="#precios-{{ c.tool }}">{{ c.tool | logo(20, c.name) }}{{ c.name }}</a> · {% endif %}<strong>{{ c.plan }}</strong>{% if c.price %} · {{ c.price }}{% endif %}</p>
   <p class="price-text">{{ c.text }}</p>

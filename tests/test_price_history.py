@@ -282,9 +282,8 @@ def test_history_context(tmp_path):
     assert chatgpt['id'] == 'chatgpt' and chatgpt['planes'][1] == ('Go', '8 €/mes') and len(chatgpt['changes']) == 2
     assert claude['changes'] == [] and claude['chart'] is None
     chart = chatgpt['chart']
-    assert chart['plan'] == 'Go' and chart['path'].startswith('M') and len(chart['dots']) == 3
-    assert chart['aria'] == ('Precio del plan Go por fecha: 9,99 € en noviembre de 2025, 8 € en agosto de 2026 '
-                             'y 8 € en octubre de 2026')
+    assert chart['plan'] == 'Go' and chart['path'].startswith('M') and len(chart['dots']) == 2
+    assert chart['aria'] == 'Precio del plan Go por fecha: 9,99 € en noviembre de 2025 y 8 € en agosto de 2026'
     xs = [x for x, _, _ in chart['dots']]
     assert xs == sorted(xs) and all(24 <= x <= 304 for x in xs)
     assert [y for _, y, _ in chart['dots']][0] < [y for _, y, _ in chart['dots']][1]
@@ -341,9 +340,9 @@ def test_entry_points_and_search(site):
     ficha = (site / 'herramientas' / 'chatgpt' / 'index.html').read_text()
     box = ficha.split('class="tool-duels tool-prices"')[1].split('</nav>')[0]
     assert 'Historial de precios' in box and 'href="/historial-de-precios/#precios-chatgpt"' in box
-    assert 'Ver todos los cambios →' in box and box.count('<li') == 2 and '26 de agosto de 2026' in box
+    assert 'Ver todos los cambios →' in box and box.count('<li') == 1 and '26 de agosto de 2026' in box
     suno = (site / 'herramientas' / 'suno' / 'index.html').read_text()
-    assert 'Sin cambios registrados desde 2023' in suno.split('class="tool-duels tool-prices"')[1]
+    assert 'Sin cambios de precio verificables desde enero de 2023' in suno.split('class="tool-duels tool-prices"')[1]
     footer = (site / 'index.html').read_text().split('<footer')[1]
     assert '<a href="/historial-de-precios/">Historial de precios</a>' in footer
     assert 'href="/historial-de-precios/"' in (site / 'empieza-aqui' / 'index.html').read_text()
@@ -356,3 +355,30 @@ def test_fixture_build_has_no_price_history_links(tmp_path):
     from tests.test_build import make_root
     build(make_root(tmp_path), tmp_path / '_site')
     assert '/historial-de-precios/' not in (tmp_path / '_site' / 'index.html').read_text()
+
+
+def test_new_tool_is_not_reported_as_new_plans(tmp_path):
+    old = json.loads(json.dumps(SNAP))
+    old['herramientas'].pop('claude')
+    assert auto_changes(snaps(tmp_path, ('2026-01-06.json', old), ('2026-10-06.json', SNAP)), []) == []
+
+
+def test_snapshot_dates_are_validated(tmp_path):
+    with pytest.raises(ValueError, match=r'tomas-precios/2026-13-40\.json: fecha'):
+        check(tmp_path, LINE, ('2026-13-40.json', SNAP))
+    with pytest.raises(ValueError, match=r'tomas-precios/2026-10-09\.json: fecha .*futura'):
+        check(tmp_path, LINE, ('2026-10-09.json', SNAP))
+
+
+def test_chart_merges_repeated_prices(tmp_path):
+    from radar.price_history import history_context
+    s = snaps(tmp_path, ('2026-10-06.json', SNAP))
+    changes = parse_history(LINE + '\n2026-08 | chatgpt | baja | Go | 9,99 €/mes → 8 €/mes | B. | https://chatgpt.com/x')
+    chart = history_context(changes, s, PAYLOAD)['tools'][0]['chart']
+    assert [label for _, _, label in chart['dots']] == ['9,99 €', '8 €']
+    assert chart['aria'].endswith('9,99 € en noviembre de 2025 y 8 € en agosto de 2026')
+
+
+def test_time_elements_have_datetime(site):
+    html = (site / 'historial-de-precios' / 'index.html').read_text()
+    assert '<time datetime="2026-08-26">26 de agosto de 2026</time>' in html and '<time>' not in html
