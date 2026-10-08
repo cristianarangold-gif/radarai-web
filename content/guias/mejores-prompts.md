@@ -101,6 +101,8 @@ Puedes guardar esta plantilla y rellenarla cada vez:
 
 Si usas siempre las mismas instrucciones, guárdalas en las funciones de proyectos o instrucciones personalizadas de tu asistente, o prueba nuestro [generador de prompts](/herramientas-radar/generador-de-prompts/), que funciona en tu navegador.
 
+Si prefieres partir de ejemplos ya escritos, en nuestra [biblioteca de prompts](/prompts/) tienes 60 prompts por categorías, con huecos que se rellenan en la propia tarjeta antes de copiarlos.
+
 ## ¿Funciona igual en todas las herramientas?
 
 La estructura sirve para cualquier asistente de texto. Hay pequeñas diferencias: Claude suele seguir con mucha precisión instrucciones largas y detalladas; ChatGPT y Gemini responden bien a peticiones conversacionales y combinan texto con otras funciones como imágenes o búsqueda; y en los generadores de imágenes conviene usar descripciones visuales en lugar de órdenes. Si dudas qué herramienta usar, consulta [la mejor IA para productividad](/mejor-ia-para-productividad/).

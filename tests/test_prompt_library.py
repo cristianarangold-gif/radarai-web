@@ -125,3 +125,24 @@ def test_real_library_is_valid_and_complete():
     validate_prompts(prompts, {p.slug: p for p in pages if p.kind == 'ficha' and p.indexable})
     counts = Counter(p.cat for p in prompts)
     assert len(prompts) >= 50 and all(counts[c] >= 5 for c, _, _ in CATEGORIES)
+
+
+def test_entry_points_and_search(site):
+    import json
+    idx = json.loads((site / 'search-index.json').read_text())
+    e = [x for x in idx if x['u'] == '/prompts/#que-te-examine-paso-a-paso'][0]
+    assert e['k'] == 'Prompt' and 'Estudiar' in e['x'] and e['d'].startswith('Aprender preguntando')
+    assert "'Prompt'" in (ROOT / 'static' / 'js' / 'search.js').read_text()
+    start = (site / 'empieza-aqui' / 'index.html').read_text()
+    assert 'href="/prompts/"' in start
+    guide = (site / 'guias' / 'mejores-prompts' / 'index.html').read_text()
+    assert 'href="/prompts/"' in guide
+    footer = (site / 'index.html').read_text().split('<footer')[1]
+    assert '<a href="/prompts/">Biblioteca de prompts</a>' in footer
+
+
+def test_fixture_build_has_no_library_footer_link(tmp_path):
+    from scripts.build import build
+    from tests.test_build import make_root
+    build(make_root(tmp_path), tmp_path / '_site')
+    assert '/prompts/' not in (tmp_path / '_site' / 'index.html').read_text()

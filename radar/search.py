@@ -7,6 +7,7 @@ from typing import Dict, List, Optional
 from .content import text_of
 from .editorial import split_ids, toc
 from .models import Brand, Page, Tool
+from .prompt_library import CATEGORIES as PROMPT_CATEGORIES
 from .tools import CATEGORIES
 
 INDEX_KINDS = ('ficha', 'comparativa', 'duelo', 'profesion', 'guia', 'noticia', 'utilidad', 'pagina')
@@ -60,7 +61,7 @@ def _page_entry(p: Page, tools: Dict[str, Tool], brands: Dict[str, Brand], cats:
 
 
 def build_index(pages: List[Page], tools: Dict[str, Tool], brands: Dict[str, Brand],
-                glossary: Optional[list] = None) -> List[dict]:
+                glossary: Optional[list] = None, prompts: Optional[list] = None) -> List[dict]:
     cats = dict(CATEGORIES)
     entries = [_page_entry(p, tools, brands, cats) for p in pages
                if p.kind in INDEX_KINDS and p.indexable and p.url not in EXCLUDED_URLS]
@@ -70,6 +71,11 @@ def build_index(pages: List[Page], tools: Dict[str, Tool], brands: Dict[str, Bra
         entries.append({'t': t.name, 'u': f'/herramientas/#cat-{t.cat}', 'k': 'Catálogo', 'd': _short(t.desc),
                         'x': _keywords([cats.get(t.cat, '')] + list(t.tags)), 'c': '#151515',
                         'm': t.name[:1].upper()})
+    labels = {c: label for c, label, _ in PROMPT_CATEGORIES}
+    for p in prompts or []:
+        entries.append({'t': p.title, 'u': f'/prompts/#{p.slug}', 'k': 'Prompt', 'd': _short(p.para),
+                        'x': _keywords([labels.get(p.cat, '')] + [name for _, name, _ in p.tool_links]),
+                        'c': '#f3a712', 'm': '›'})
     for term in glossary or []:
         entries.append({'t': term.term, 'u': f'/glosario/#{term.slug}', 'k': 'Glosario', 'd': _short(term.text),
                         'x': _keywords(list(term.alias) + [term.tema_label]), 'c': '#151515', 'm': 'G'})
