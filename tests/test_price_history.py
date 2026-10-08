@@ -329,3 +329,30 @@ def site():
     subprocess.run([sys.executable, str(ROOT / 'scripts' / 'build.py'), '--out', str(out)], check=True,
                    capture_output=True)
     return out
+
+
+def test_entry_points_and_search(site):
+    idx = json.loads((site / 'search-index.json').read_text())
+    e = [x for x in idx if x['u'] == '/historial-de-precios/#precios-chatgpt'][0]
+    assert e['k'] == 'Precios' and e['t'] == 'Historial de precios de ChatGPT'
+    assert e['d'].startswith('Hoy: Gratis 0 €') and 'Go' in e['x'] and 'Bajada' in e['x']
+    assert len([x for x in idx if x['k'] == 'Precios']) == 15
+    assert "'Precios'" in (ROOT / 'static' / 'js' / 'search.js').read_text()
+    ficha = (site / 'herramientas' / 'chatgpt' / 'index.html').read_text()
+    box = ficha.split('class="tool-duels tool-prices"')[1].split('</nav>')[0]
+    assert 'Historial de precios' in box and 'href="/historial-de-precios/#precios-chatgpt"' in box
+    assert 'Ver todos los cambios →' in box and box.count('<li') == 2 and '26 de agosto de 2026' in box
+    suno = (site / 'herramientas' / 'suno' / 'index.html').read_text()
+    assert 'Sin cambios registrados desde 2023' in suno.split('class="tool-duels tool-prices"')[1]
+    footer = (site / 'index.html').read_text().split('<footer')[1]
+    assert '<a href="/historial-de-precios/">Historial de precios</a>' in footer
+    assert 'href="/historial-de-precios/"' in (site / 'empieza-aqui' / 'index.html').read_text()
+    assert 'href="/historial-de-precios/"' in (site / 'mejor-ia-gratis' / 'index.html').read_text()
+    assert 'tomas-precios' in (ROOT / 'content' / 'GUIA_EDITORIAL.md').read_text()
+
+
+def test_fixture_build_has_no_price_history_links(tmp_path):
+    from scripts.build import build
+    from tests.test_build import make_root
+    build(make_root(tmp_path), tmp_path / '_site')
+    assert '/historial-de-precios/' not in (tmp_path / '_site' / 'index.html').read_text()

@@ -247,7 +247,7 @@ svg.cover { display: block; width: 100%; height: auto; border-radius: 4px; backg
 .article-main { min-width: 0; }
 .article-main .prose, .article-main .sources { max-width: 72ch; }
 .article-cover { margin-bottom: 26px; }
-.side-sticky { position: sticky; top: 88px; }
+.side-sticky { position: sticky; top: 88px; max-height: calc(100vh - 104px); overflow-y: auto; overscroll-behavior: contain; }
 .toc-box { border-left: 2px solid var(--ink); padding-left: 18px; }
 .toc-box summary { font: 700 .75rem var(--sans); letter-spacing: .12em; text-transform: uppercase; cursor: pointer; list-style: none; }
 .toc-box summary::-webkit-details-marker { display: none; }
@@ -609,6 +609,10 @@ span.glossary-letter { border-color: var(--rule); color: #b5ada0; background: tr
 .price-none { margin: 4px 0 0; padding: 10px 12px; border-radius: var(--radius); background: var(--paper-2); font-size: .88rem; color: var(--ink-2); }
 .price-more { margin: 10px 0 0; font-size: .9rem; font-weight: 700; }
 .price-history .prose { margin-top: 44px; }
+.tool-prices li, .tool-prices p { font-size: .88rem; color: var(--ink-2); margin: 0; }
+.tool-prices ul { margin-bottom: 6px; }
+.tool-prices p { margin-bottom: 6px; }
+.tool-prices-date { display: block; font: 700 .75rem var(--sans); color: var(--ink-3); }
 
 /* Movimiento reducido */
 @media (prefers-reduced-motion: reduce) {

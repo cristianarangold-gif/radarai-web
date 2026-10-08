@@ -105,6 +105,8 @@ Paga solo cuando una herramienta forme parte de tu trabajo diario y sus límites
 - **Suno Pro**: 10 $/mes (8 $ con pago anual), con uso comercial.
 - **ElevenLabs Starter**: 6 $/mes, con licencia comercial.
 
+Los precios cambian a menudo: en nuestro [historial de precios](/historial-de-precios/) puedes ver qué planes han subido, bajado o aparecido desde 2023, con la fuente de cada cambio.
+
 ## Privacidad en los planes gratuitos
 
 En los planes gratuitos de varios asistentes, tus conversaciones pueden usarse para mejorar los modelos si no cambias la configuración. Revisa los ajustes de privacidad de cada servicio y no compartas datos personales ni información confidencial. Te lo explicamos en la guía de [privacidad al usar IA](/guias/privacidad-en-ia/).
