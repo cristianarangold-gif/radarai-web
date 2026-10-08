@@ -61,7 +61,8 @@ def _page_entry(p: Page, tools: Dict[str, Tool], brands: Dict[str, Brand], cats:
 
 
 def build_index(pages: List[Page], tools: Dict[str, Tool], brands: Dict[str, Brand],
-                glossary: Optional[list] = None, prompts: Optional[list] = None) -> List[dict]:
+                glossary: Optional[list] = None, prompts: Optional[list] = None,
+                price_tools: Optional[list] = None) -> List[dict]:
     cats = dict(CATEGORIES)
     entries = [_page_entry(p, tools, brands, cats) for p in pages
                if p.kind in INDEX_KINDS and p.indexable and p.url not in EXCLUDED_URLS]
@@ -77,6 +78,13 @@ def build_index(pages: List[Page], tools: Dict[str, Tool], brands: Dict[str, Bra
                         'x': _keywords([labels.get(p.cat, '')] + [name for _, name, _ in p.tool_links] + p.slots
                                        + [' '.join(p.text.split()[:40])]),
                         'c': '#f3a712', 'm': '›'})
+    for t in price_tools or []:
+        now = ' · '.join(f'{plan} {value}' for plan, value in t['planes'])
+        entries.append({'t': f'Historial de precios de {t["name"]}', 'u': f'/historial-de-precios/#precios-{t["id"]}',
+                        'k': 'Precios', 'd': _short(f'Hoy: {now}'),
+                        'x': _keywords([t['name'], 'precio', 'subida', 'bajada'] + [plan for plan, _ in t['planes']]
+                                       + [f'{c["label"]} {c["plan"]} {c["text"]}' for c in t['changes']]),
+                        'c': '#e4572e', 'm': '€'})
     for term in glossary or []:
         entries.append({'t': term.term, 'u': f'/glosario/#{term.slug}', 'k': 'Glosario', 'd': _short(term.text),
                         'x': _keywords(list(term.alias) + [term.tema_label]), 'c': '#151515', 'm': 'G'})

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% macro change_item(c, with_tool=true) %}
+<li class="price-change">
+  <p class="price-when"><time datetime="{{ c.iso }}">{{ c.date }}</time></p>
+  <p class="price-what"><span class="price-badge price-{{ c.kind }}">{{ c.label }}</span>
+    {% if with_tool %}<a class="price-tool-link" href="#precios-{{ c.tool }}">{{ c.tool | logo(20, c.name) }}{{ c.name }}</a> · {% endif %}<strong>{{ c.plan }}</strong>{% if c.price %} · {{ c.price }}{% endif %}</p>
+  <p class="price-text">{{ c.text }}</p>
+  <p class="price-src">Fuente: <a href="{{ c.source }}" rel="nofollow noopener">{{ c.source_label }}</a></p>
+</li>
+{% endmacro %}
+{% block main %}
+<article class="wrap article price-history">
+  <header class="article-head">
+    <p class="eyebrow">Historial de precios</p>
+    <h1>Cómo han cambiado los precios <em>de la IA</em></h1>
+    <p class="lede">{{ page.description }}</p>
+    <p class="price-stamp">Última revisión de precios: {{ price_history.latest }} · {{ price_history.n_tools }} herramientas · {{ price_history.count }} cambios registrados desde 2023</p>
+  </header>
+
+  <section aria-labelledby="ultimos-cambios">
+    <h2 id="ultimos-cambios">Últimos cambios</h2>
+    <ol class="price-feed">
+      {% for c in price_history.recent %}{{ change_item(c) }}{% endfor %}
+    </ol>
+  </section>
+
+  <h2 id="por-herramienta">Por herramienta</h2>
+  <div class="price-tools">
+    {% for t in price_history.tools %}
+    <section class="price-tool" id="precios-{{ t.id }}" aria-labelledby="precios-{{ t.id }}-t">
+      <h3 id="precios-{{ t.id }}-t">{{ t.id | logo(26, t.name) }}{{ t.name }}</h3>
+      <p class="price-now"><strong>Hoy:</strong> {% for plan, value in t.planes %}{{ plan }} {{ value }}{% if not loop.last %} · {% endif %}{% endfor %}</p>
+      {% if t.chart %}
+      <figure class="price-figure">
+        <svg class="price-chart" viewBox="0 0 320 100" role="img" aria-label="{{ t.chart.aria }}">
+          <line class="price-axis" x1="24" y1="80" x2="304" y2="80"/>
+          {% for x, year in t.chart.years %}<text class="price-year" x="{{ x }}" y="94">{{ year }}</text>{% endfor %}
+          <path class="price-line" d="{{ t.chart.path }}"/>
+          {% for x, y, label in t.chart.dots %}<circle class="price-dot" cx="{{ x }}" cy="{{ y }}" r="3.5"/>{% set edge = 'end' if x > 290 else ('start' if x < 40 else 'middle') %}<text class="price-label" x="{{ x - 6 if edge == 'end' else (x + 6 if edge == 'start' else x) }}" y="{{ y + 14 if (not loop.first and loop.previtem[1] < y and y + 14 < 86) else y - 7 }}" text-anchor="{{ edge }}">{{ label }}</text>{% endfor %}
+        </svg>
+        <figcaption>Plan {{ t.chart.plan }}{% if t.chart.unit %}, precio {{ t.chart.unit }}{% endif %}. Cada punto es un precio con fecha y fuente; si cambia entre dos puntos, el cambio pudo ocurrir en cualquier momento entre ambas fechas.</figcaption>
+      </figure>
+      {% endif %}
+      {% if t.changes %}
+      <ul class="price-list">{% for c in t.changes %}{{ change_item(c, false) }}{% endfor %}</ul>
+      {% else %}
+      <p class="price-none">Sin cambios de precio verificables desde enero de 2023.</p>
+      {% endif %}
+      <p class="price-more"><a href="{{ t.url }}">Ficha de {{ t.name }} →</a></p>
+    </section>
+    {% endfor %}
+  </div>
+
+  <div class="prose">{{ page.body_html | safe }}</div>
+</article>
+{% endblock %}

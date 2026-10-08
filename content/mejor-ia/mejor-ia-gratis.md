@@ -1,6 +1,7 @@
 titulo: La mejor IA gratis en 2026: qué puedes hacer sin pagar
 descripcion: Las mejores herramientas de inteligencia artificial gratuitas en 2026 por tarea (chat, estudio, imágenes, vídeo, voz, programación y traducción), con sus límites reales.
 fecha: 2026-10-06
+actualizado: 2026-10-08
 fuentes: https://chatgpt.com/es-ES/pricing/
     https://claude.com/pricing
     https://gemini.google/subscriptions/
@@ -101,8 +102,10 @@ Paga solo cuando una herramienta forme parte de tu trabajo diario y sus límites
 
 - **Google AI Plus**: 4,99 €/mes.
 - **ChatGPT Go**: 8 €/mes.
-- **Suno Pro**: 8 $/mes, con uso comercial.
+- **Suno Pro**: 10 $/mes (8 $ con pago anual), con uso comercial.
 - **ElevenLabs Starter**: 6 $/mes, con licencia comercial.
+
+Los precios cambian a menudo: en nuestro [historial de precios](/historial-de-precios/) puedes ver qué planes han subido, bajado o aparecido desde 2023, con la fuente de cada cambio.
 
 ## Privacidad en los planes gratuitos
 

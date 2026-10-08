@@ -197,3 +197,13 @@ def test_link_to_missing_prompt_anchor(tmp_path):
     sitemap(tmp_path, '/', '/prompts/')
     errors = check_site(tmp_path)
     assert any('/prompts/#nada' in e for e in errors) and not any('#uno' in e for e in errors)
+
+
+def test_link_to_missing_price_history_anchor(tmp_path):
+    page(tmp_path, 'index.html', '/', body='<a href="/historial-de-precios/#precios-uno">u</a> '
+                                           '<a href="/historial-de-precios/#precios-nada">n</a>')
+    page(tmp_path, 'historial-de-precios/index.html', '/historial-de-precios/', title='H',
+         body='<section class="price-tool" id="precios-uno"></section>')
+    sitemap(tmp_path, '/', '/historial-de-precios/')
+    errors = check_site(tmp_path)
+    assert any('#precios-nada' in e for e in errors) and not any('#precios-uno' in e for e in errors)

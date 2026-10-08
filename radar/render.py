@@ -130,6 +130,8 @@ def template_for(page: Page, ctx: dict) -> str:
         return 'compare.html'
     if page.url == '/prompts/' and ctx.get('library'):
         return 'prompts.html'
+    if page.url == '/historial-de-precios/' and ctx.get('price_history'):
+        return 'price_history.html'
     if page.url == '/glosario/' and ctx.get('glossary'):
         return 'glossary.html'
     if page.url == '/empieza-aqui/' and ctx.get('start_payload'):
@@ -171,6 +173,7 @@ def render_page(env: jinja2.Environment, page: Page, ctx: dict) -> str:
         start_payload=ctx.get('start_payload', {}),
         glossary=ctx.get('glossary', {}),
         library=ctx.get('library', {}),
+        price_history=ctx.get('price_history', {}),
         duels=ctx.get('duels', []),
         professions=ctx.get('professions', []),
         recommended_for=ctx.get('recommended_for', {}),

@@ -8,6 +8,7 @@ import argparse
 import hashlib
 import shutil
 import sys
+from datetime import date
 from pathlib import Path
 from typing import Dict, List
 
@@ -20,6 +21,7 @@ from radar.compare import compare_payload  # noqa: E402
 from radar.content import load_pages  # noqa: E402
 from radar.covers import cover_for, og_rel, write_cover_png  # noqa: E402
 from radar.duels import duel_links, validate_duels  # noqa: E402
+from radar.price_history import auto_changes, history_context, load_snapshots, parse_history, validate_history  # noqa: E402
 from radar.prompt_library import library_context, parse_prompts, validate_prompts  # noqa: E402
 from radar.professions import published, recommended_for, validate_professions  # noqa: E402
 from radar.editorial import load_imprescindibles, radar_tools, validate_fichas, validate_news_meta  # noqa: E402
@@ -107,7 +109,7 @@ def build(root: Path, out: Path) -> None:
         validate_assistant(assistant, tools, fichas, {p.url for p in pages if p.indexable})
         base_ctx['assistant_payload'] = resolve_payload(assistant, tools, brands, fichas)
     fichas_ok = {p.slug: p for p in pages if p.kind == 'ficha' and p.indexable}
-    if any(p.kind in ('duelo', 'profesion') for p in pages) or '/prompts/' in by_url:
+    if any(p.kind in ('duelo', 'profesion') for p in pages) or {'/prompts/', '/historial-de-precios/'} & set(by_url):
         base_ctx['compare_by_id'] = {t['id']: t for t in compare_payload(fichas_ok, tools, brands, CATEGORIES)}
     professions = [p for p in pages if p.kind == 'profesion']
     if professions:
@@ -131,6 +133,17 @@ def build(root: Path, out: Path) -> None:
         prompts = parse_prompts(prompts_file.read_text(encoding='utf-8'))
         validate_prompts(prompts, fichas_ok)
         base_ctx['library'] = library_context(prompts, base_ctx['compare_by_id'])
+    history_file, snapshots_dir = root / 'data' / 'historial-precios.md', root / 'data' / 'tomas-precios'
+    if '/historial-de-precios/' in by_url or history_file.exists() or snapshots_dir.is_dir():
+        if not history_file.exists() or not snapshots_dir.is_dir():
+            raise ValueError('el historial de precios necesita data/historial-precios.md y data/tomas-precios/')
+        changes = parse_history(history_file.read_text(encoding='utf-8'))
+        snapshots = load_snapshots(snapshots_dir)
+        validate_history(changes, snapshots, fichas_ok, date.today())
+        base_ctx['price_changes'] = changes + auto_changes(snapshots, changes)
+        base_ctx['price_snapshots'] = snapshots
+        if '/historial-de-precios/' in by_url:
+            base_ctx['price_history'] = history_context(base_ctx['price_changes'], snapshots, base_ctx['compare_by_id'])
     glossary_file = root / 'data' / 'glosario.md'
     if '/glosario/' in by_url:
         if not glossary_file.exists():
@@ -153,7 +166,8 @@ def build(root: Path, out: Path) -> None:
         base_ctx['imprescindibles'] = load_imprescindibles(imprescindibles, by_url)
     w = Writer(out)
     search_json = index_json(build_index(pages, tools, brands, base_ctx.get('glossary', {}).get('terms'),
-                                          [p for g in base_ctx.get('library', {}).get('groups', []) for p in g['prompts']]))
+                                          [p for g in base_ctx.get('library', {}).get('groups', []) for p in g['prompts']],
+                                          base_ctx.get('price_history', {}).get('tools')))
     base_ctx['search_index_url'] = '/search-index.json?v=' + hashlib.sha256(search_json.encode('utf-8')).hexdigest()[:10]
     w.write('search-index.json', search_json, 'índice de búsqueda')
 

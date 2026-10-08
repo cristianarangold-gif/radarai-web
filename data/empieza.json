@@ -81,7 +81,7 @@
       "titulo": "Compara antes de pagar y mantente al día",
       "texto": "Si un plan gratuito se te queda corto, compara precios y planes antes de suscribirte. Y sigue solo las novedades que cambian algo para ti.",
       "cta": {"texto": "Abrir el comparador", "url": "/comparador/"},
-      "extra": [{"texto": "Noticias de IA", "url": "/noticias/"}]
+      "extra": [{"texto": "Noticias de IA", "url": "/noticias/"}, {"texto": "Historial de precios", "url": "/historial-de-precios/"}]
     }
   ]
 }

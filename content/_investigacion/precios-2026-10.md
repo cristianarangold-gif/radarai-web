@@ -106,8 +106,8 @@ Uso interno: este archivo no se publica, porque el loader ignora los archivos qu
 
 ## Suno — https://suno.com/pricing
 - **Free:** 0 $, 50 créditos/día, sin descargas, sin derechos comerciales, modelo v6-mini.
-- **Pro:** 8 $/mes (6,40 $ anual), 2.500 créditos/mes, 20 descargas/mes, derechos comerciales, modelos v6 y v6-wild.
-- **Premier:** 24 $/mes (19,20 $ anual), 10.000 créditos/mes y 60 descargas/mes.
+- **Pro:** 10 $/mes (8 $/mes con pago anual; corregido el 8 oct. 2026: la página muestra 8 $ y «Saves $24 by billing yearly», y el pago anual tiene un 20 % de descuento), 2.500 créditos/mes, 20 descargas/mes, derechos comerciales, modelos v6 y v6-wild.
+- **Premier:** 30 $/mes (24 $/mes con pago anual; corregido el 8 oct. 2026, «Saves $72 by billing yearly»), 10.000 créditos/mes y 60 descargas/mes.
 
 ## ElevenLabs — https://elevenlabs.io/pricing
 - **Precios:**
