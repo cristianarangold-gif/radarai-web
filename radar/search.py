@@ -15,7 +15,7 @@ EXCLUDED_URLS = ('/', '/404/', '/buscar/')
 KIND_LABEL = {'ficha': 'Ficha', 'comparativa': 'Comparativa', 'guia': 'Guía', 'noticia': 'Noticia',
               'utilidad': 'Utilidad', 'pagina': 'Página', 'duelo': 'Cara a cara',
               'profesion': 'Profesión'}
-SYMBOL = {'comparativa': ('#e4572e', '★'), 'duelo': ('#e4572e', 'vs'), 'profesion': ('#f3a712', 'P'), 'guia': ('#f3a712', 'G'), 'utilidad': ('#151515', 'U'),
+SYMBOL = {'comparativa': ('#b5381a', '★'), 'duelo': ('#b5381a', 'vs'), 'profesion': ('#f3a712', 'P'), 'guia': ('#f3a712', 'G'), 'utilidad': ('#151515', 'U'),
           'pagina': ('#151515', 'P'), 'noticia': ('#151515', 'N'), 'ficha': ('#151515', '')}
 MONTHS = ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic']
 MAX_DESC = 160
@@ -84,7 +84,7 @@ def build_index(pages: List[Page], tools: Dict[str, Tool], brands: Dict[str, Bra
                         'k': 'Precios', 'd': _short(f'Hoy: {now}'),
                         'x': _keywords([t['name'], 'precio', 'subida', 'bajada'] + [plan for plan, _ in t['planes']]
                                        + [f'{c["label"]} {c["plan"]} {c["text"]}' for c in t['changes']]),
-                        'c': '#e4572e', 'm': '€'})
+                        'c': '#b5381a', 'm': '€'})
     for term in glossary or []:
         entries.append({'t': term.term, 'u': f'/glosario/#{term.slug}', 'k': 'Glosario', 'd': _short(term.text),
                         'x': _keywords(list(term.alias) + [term.tema_label]), 'c': '#151515', 'm': 'G'})

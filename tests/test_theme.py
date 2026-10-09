@@ -46,7 +46,7 @@ def test_dark_blocks_are_identical_and_complete():
 @pytest.mark.parametrize('fg, bg, minimum', [
     ('ink', 'paper', 4.5), ('body', 'paper', 4.5), ('body', 'surface', 4.5), ('ink-2', 'paper', 4.5), ('ink-3', 'paper', 4.5), ('ink', 'surface', 4.5),
     ('ink-2', 'surface', 4.5), ('ink-3', 'surface', 4.5), ('accent-ink', 'paper', 4.5), ('accent-ink', 'surface', 4.5),
-    ('on-ink', 'ink', 4.5), ('on-ink', 'accent-ink', 4.5), ('ink', 'paper-2', 4.5), ('code-fg', 'code-bg', 4.5),
+    ('on-ink', 'ink', 4.5), ('on-ink', 'accent-ink', 4.5), ('accent-ink', 'paper-2', 4.5), ('on-accent', 'accent-ink', 4.5), ('ink', 'paper-2', 4.5), ('code-fg', 'code-bg', 4.5),
     ('rule', 'paper', 1.2), ('ink', 'rule', 3),
 ])
 def test_token_contrast(theme, fg, bg, minimum):
@@ -122,3 +122,10 @@ def test_component_contrast(theme, fg, bg):
     tokens = LIGHT if theme == 'light' else {**LIGHT, **DARK_MEDIA}
     ratio = contrast(tokens[fg], tokens[bg])
     assert ratio >= 4.5, f'{theme}: {fg}/{bg} = {ratio:.2f}'
+
+
+def test_small_orange_text_and_buttons_use_accent_ink():
+    assert re.search(r'\.eyebrow, \.kicker \{ color: var\(--accent-ink\)', CSS)
+    for selector, decl in re.findall(r'([^{}]+)\{([^}]*)\}', CSS):
+        if re.search(r'background:\s*var\(--accent\)', decl):
+            assert 'color:' not in decl or 'on-accent' not in decl, ' '.join(selector.split())

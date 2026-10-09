@@ -69,7 +69,7 @@ def test_catalog_tool_without_page_links_to_category_and_no_duplicates():
 
 def test_symbol_icons_by_kind():
     _, by_url = index()
-    assert (by_url['/mejor-ia-x/']['c'], by_url['/mejor-ia-x/']['m']) == ('#e4572e', '★')
+    assert (by_url['/mejor-ia-x/']['c'], by_url['/mejor-ia-x/']['m']) == ('#b5381a', '★')
     assert by_url['/sobre/']['m'] == 'P'
 
 

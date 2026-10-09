@@ -14,7 +14,7 @@
   --paper: #fbf8f3; --paper-2: #f3ece0; --white: #fff; --surface: #ffffff;
   --ink: #151515; --body: #2c2c2c; --ink-2: #444444; --ink-3: #6b6b6b; --on-ink: #ffffff; --on-accent: #ffffff;
   --rule: #e0d9cc; --rule-2: #eee5d6;
-  --accent: #e4572e; --accent-ink: #c2401b; --amber: #f3a712;
+  --accent: #e4572e; --accent-ink: #b5381a; --amber: #f3a712;
   --footer-bg: #151515; --code-bg: #151515; --code-fg: #eeeeee;
   --on-ink-accent: #f3a712; --on-amber: #151515; --slot-filled: #ffe1a3; --mark-bg: #ffe1d4; --ink-faint: #b5ada0;
   --price-sube-bg: #fde2d9; --price-sube-fg: #8f2a0c; --price-baja-bg: #d6f0df; --price-baja-fg: #135c33;
@@ -75,7 +75,7 @@ h1, h2, h3, h4 { font-family: var(--serif); font-weight: 800; line-height: 1.12;
 h1 { font-size: clamp(2rem, 4.6vw, 3.2rem); margin: 8px 0 14px; letter-spacing: -0.025em; }
 h2 { font-size: clamp(1.45rem, 2.6vw, 1.9rem); margin: 2em 0 .55em; }
 h3 { font-size: 1.25rem; margin: 1.6em 0 .5em; }
-.eyebrow, .kicker { color: var(--accent); font: 700 .78rem/1.4 var(--sans); letter-spacing: .14em; text-transform: uppercase; margin: 0; }
+.eyebrow, .kicker { color: var(--accent-ink); font: 700 .78rem/1.4 var(--sans); letter-spacing: .14em; text-transform: uppercase; margin: 0; }
 .lede { font-size: 1.15rem; color: var(--ink-2); }
 
 /* 5. Cabecera, pie y botones */
@@ -86,7 +86,7 @@ h3 { font-size: 1.25rem; margin: 1.6em 0 .5em; }
 .brand:hover { color: var(--ink); }
 .site-nav { display: flex; gap: 22px; flex-wrap: wrap; }
 .site-nav a { color: var(--ink); text-decoration: none; font-weight: 600; font-size: .95rem; padding: 6px 0; border-bottom: 2px solid transparent; }
-.site-nav a:hover, .site-nav a[aria-current="page"] { color: var(--accent); border-bottom-color: var(--accent); }
+.site-nav a:hover, .site-nav a[aria-current="page"] { color: var(--accent-ink); border-bottom-color: var(--accent); }
 .menu-toggle { display: none; background: transparent; color: var(--ink); border: 1.5px solid var(--ink); border-radius: 4px; padding: 7px 12px; font: 600 .9rem var(--sans); cursor: pointer; }
 @media (max-width: 820px) {
   .site-nav { width: 100%; gap: 0; padding-bottom: 12px; }
@@ -97,7 +97,7 @@ h3 { font-size: 1.25rem; margin: 1.6em 0 .5em; }
 }
 
 .btn { display: inline-block; padding: 12px 18px; border-radius: 4px; text-decoration: none; border: 1.5px solid var(--ink); cursor: pointer; font: 700 .95rem/1.2 var(--sans); background: var(--ink); color: var(--on-ink); }
-.btn:hover { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.btn:hover { background: var(--accent-ink); border-color: var(--accent-ink); color: var(--on-accent); }
 .btn-primary { background: var(--ink); color: var(--on-ink); }
 .btn-ghost { background: transparent; color: var(--ink); }
 .btn-ghost:hover { background: var(--ink); border-color: var(--ink); color: var(--on-ink); }
@@ -169,7 +169,7 @@ h3 { font-size: 1.25rem; margin: 1.6em 0 .5em; }
 .utility-app input:focus, .utility-app textarea:focus { border-color: var(--ink); }
 .utility-app textarea { min-height: 110px; resize: vertical; }
 .utility-app .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
-.utility-app .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--on-accent); }
+.utility-app .btn.primary { background: var(--accent-ink); border-color: var(--accent-ink); color: var(--on-accent); }
 .utility-app .btn.primary:hover { background: var(--ink); border-color: var(--ink); }
 .utility-app .btn.secondary { background: transparent; color: var(--ink); }
 .utility-app .btn.secondary:hover { background: var(--ink); color: var(--on-ink); }
@@ -291,8 +291,8 @@ svg.cover { display: block; width: 100%; height: auto; border-radius: 4px; backg
 .progress i { display: block; height: 100%; width: 0; background: var(--accent); }
 .toc a { display: block; padding: 5px 0; color: var(--ink-2); font-size: .9rem; line-height: 1.35; text-decoration: none; }
 .toc a:hover { color: var(--ink); }
-.toc a.on { color: var(--accent); font-weight: 700; }
-.cta { display: block; margin: 20px 0; padding: 12px; border-radius: 4px; background: var(--accent); color: var(--on-accent); text-align: center; font-weight: 700; text-decoration: none; }
+.toc a.on { color: var(--accent-ink); font-weight: 700; }
+.cta { display: block; margin: 20px 0; padding: 12px; border-radius: 4px; background: var(--accent-ink); color: var(--on-accent); text-align: center; font-weight: 700; text-decoration: none; }
 .cta:hover { background: var(--ink); color: var(--on-ink); }
 .summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); margin: 0 0 20px; border: 1.5px solid var(--ink); border-radius: var(--radius); background: var(--surface); overflow: hidden; }
 .summary div { padding: 14px 16px; border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); margin: 0 -1px -1px 0; }
@@ -412,7 +412,7 @@ svg.cover { display: block; width: 100%; height: auto; border-radius: 4px; backg
 .assistant-why ul { margin: 0 0 8px; padding-left: 1.2em; color: var(--ink-2); }
 .assistant-card .summary { margin: 0; border: 0; border-top: 1px solid var(--rule); border-radius: 0; }
 .assistant-cta { display: flex; flex-wrap: wrap; gap: 10px; padding: 14px 18px; border-top: 1px solid var(--rule); }
-.assistant-try { background: var(--accent); border-color: var(--accent); }
+.assistant-try { background: var(--accent-ink); border-color: var(--accent-ink); color: var(--on-accent); }
 .assistant-try:hover { background: var(--ink); border-color: var(--ink); }
 .assistant-group { margin-top: 20px; }
 .assistant-group h3 { margin: 0 0 8px; font: 700 .75rem var(--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
@@ -552,7 +552,7 @@ span.glossary-letter { border-color: var(--rule); color: var(--ink-faint); backg
 .duel-card:hover { background: var(--paper-2); color: var(--ink); }
 .duel-card-logos { display: inline-flex; align-items: center; gap: 6px; flex: none; }
 .duel-card-logos .logo { border-radius: 50%; }
-.duel-card .duel-vs { font-size: 1rem; }
+.duel-card .duel-vs { font-size: 1rem; color: var(--accent-ink); }
 .duel-card-title { font: 700 1rem/1.25 var(--serif); }
 .duel-index-next { font-size: 1.5rem; margin: 8px 0 14px; }
 .duel-links { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 12px 0 26px; font-weight: 700; font-size: .95rem; }
