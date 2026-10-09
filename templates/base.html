@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<script>document.documentElement.classList.add('js');try{var t=localStorage.getItem('radar-tema');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#fbf8f3" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#17150f" media="(prefers-color-scheme: dark)">
+<script>(function(){var d=document.documentElement;d.classList.add('js');try{var t=localStorage.getItem('radar-tema');if(t==='light'||t==='dark'){d.setAttribute('data-theme',t);document.querySelectorAll('meta[name="theme-color"]').forEach(function(m){m.setAttribute('content',t==='dark'?'#17150f':'#fbf8f3')})}}catch(e){}})();</script>
 <title>{% block title %}{{ page.title }} | Radar IA{% endblock %}</title>
 <meta name="description" content="{{ page.description }}">
 {% if page.url != '/404/' %}

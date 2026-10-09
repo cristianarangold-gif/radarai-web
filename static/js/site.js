@@ -28,6 +28,10 @@
   }
   function applyTheme(theme) {
     root.setAttribute('data-theme', theme);
+    // La barra del navegador en móvil sigue la elección, no solo el ajuste del sistema.
+    document.querySelectorAll('meta[name="theme-color"]').forEach(function (m) {
+      m.setAttribute('content', theme === 'dark' ? '#17150f' : '#fbf8f3');
+    });
     try { localStorage.setItem('radar-tema', theme); } catch (e) { /* sin almacenamiento: solo para esta página */ }
     paint();
   }

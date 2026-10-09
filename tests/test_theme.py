@@ -88,7 +88,7 @@ def test_head_script_before_stylesheet(home):
     script = head.index("localStorage.getItem('radar-tema')")
     assert script < head.index('radar.css') and 'try' in head[max(0, script - 200):script]
     assert '<meta name="color-scheme" content="light dark">' in head
-    assert head.count('name="theme-color"') == 2
+    assert head.count('<meta name="theme-color"') == 2
 
 
 def test_theme_button(home):
@@ -126,6 +126,51 @@ def test_component_contrast(theme, fg, bg):
 
 def test_small_orange_text_and_buttons_use_accent_ink():
     assert re.search(r'\.eyebrow, \.kicker \{ color: var\(--accent-ink\)', CSS)
+    assert re.search(r'\.must a:hover strong \{ color: var\(--accent-ink\)', CSS)
     for selector, decl in re.findall(r'([^{}]+)\{([^}]*)\}', CSS):
+        sel = ' '.join(selector.split())
+        # El naranja claro (--accent) solo como fondo decorativo, nunca detrás de texto.
         if re.search(r'background:\s*var\(--accent\)', decl):
-            assert 'color:' not in decl or 'on-accent' not in decl, ' '.join(selector.split())
+            assert 'color:' not in decl, sel
+        # Texto sobre fondo naranja: --on-accent; sobre fondo --ink: --on-ink.
+        if re.search(r'background:\s*var\(--accent-ink\)', decl) and 'color:' in decl:
+            assert 'var(--on-accent)' in decl, sel
+        if re.search(r'background:\s*var\(--ink\)', decl) and 'color:' in decl:
+            assert 'var(--on-ink)' in decl, sel
+
+
+def test_hover_on_ink_sets_on_ink_text():
+    for sel in (r'\.utility-app \.btn\.primary:hover', r'\.assistant-try:hover'):
+        m = re.search(sel + r' \{([^}]*)\}', CSS)
+        assert m and 'color: var(--on-ink)' in m.group(1), sel
+
+
+def test_light_root_declares_color_scheme():
+    root = CSS[CSS.index('/* 2. Tokens */'):].split('}')[0]
+    assert 'color-scheme: light' in root
+
+
+def test_sticky_header_color_mix_has_supports_fallback():
+    main_rule = re.search(r'\n\.site-header \{([^}]*)\}', CSS).group(1)
+    assert 'color-mix' not in main_rule and 'background: var(--paper)' in main_rule
+    assert re.search(r'@supports \(background: color-mix\(in srgb, red 50%, transparent\)\) \{\s*\.site-header', CSS)
+
+
+@pytest.mark.parametrize('theme', ['light', 'dark'])
+@pytest.mark.parametrize('bg', ['paper', 'surface'])
+def test_control_borders_are_visible(theme, bg):
+    tokens = LIGHT if theme == 'light' else {**LIGHT, **DARK_MEDIA}
+    assert contrast(tokens['control-border'], tokens[bg]) >= 3
+
+
+def test_dark_logo_ring_is_visible():
+    tokens = {**LIGHT, **DARK_MEDIA}
+    assert contrast(tokens['logo-ring'], '#151515') >= 3 and 'box-shadow: 0 0 0 1px var(--logo-ring)' in CSS
+
+
+def test_head_script_is_scoped_and_updates_theme_color(home):
+    head = home.split('</head>')[0]
+    script = head[head.index("localStorage.getItem('radar-tema')") - 120:head.index('radar.css')]
+    assert '(function(){' in script and 'theme-color' in script
+    js = (ROOT / 'static' / 'js' / 'site.js').read_text(encoding='utf-8')
+    assert 'theme-color' in js
