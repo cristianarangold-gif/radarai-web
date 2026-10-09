@@ -97,3 +97,28 @@ def test_theme_button(home):
     js = (ROOT / 'static' / 'js' / 'site.js').read_text(encoding='utf-8')
     assert 'radar-tema' in js and 'prefers-color-scheme: dark' in js and 'Activar modo claro' in js
     assert 'innerHTML' not in js
+
+
+# Selectores con colores fijos a propósito: el pie y el radar son oscuros en ambos modos; el velo del buscador también.
+LITERAL_OK = ('.site-footer', '.footer-in', '.footer-base', '.mini-radar', '.radar-', '.blip-in', '@keyframes', '35%',
+              '.search-dialog', '0%', '6%', '100%')
+
+
+def test_no_literal_colors_outside_tokens():
+    body = CSS[CSS.index('/* 3. Base */'):]
+    for selector, decl in re.findall(r'([^{}]+)\{([^}]*)\}', body):
+        sel = ' '.join(selector.split())
+        if re.search(r'#[0-9a-fA-F]{3,8}\b|rgba?\(', decl):
+            assert sel.startswith(LITERAL_OK), sel
+
+
+@pytest.mark.parametrize('theme', ['light', 'dark'])
+@pytest.mark.parametrize('fg, bg', [
+    ('price-sube-fg', 'price-sube-bg'), ('price-baja-fg', 'price-baja-bg'), ('price-nuevo-fg', 'price-nuevo-bg'),
+    ('price-retirado-fg', 'price-retirado-bg'), ('price-condiciones-fg', 'price-condiciones-bg'),
+    ('on-amber', 'amber'), ('on-amber', 'slot-filled'), ('ink', 'mark-bg'), ('on-ink-accent', 'ink'),
+])
+def test_component_contrast(theme, fg, bg):
+    tokens = LIGHT if theme == 'light' else {**LIGHT, **DARK_MEDIA}
+    ratio = contrast(tokens[fg], tokens[bg])
+    assert ratio >= 4.5, f'{theme}: {fg}/{bg} = {ratio:.2f}'
