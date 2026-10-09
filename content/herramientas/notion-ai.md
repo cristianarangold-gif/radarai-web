@@ -89,8 +89,6 @@ Las comparamos en [la mejor IA para productividad](/mejor-ia-para-productividad/
 
 Notion AI es muy recomendable **si tu equipo ya trabaja en Notion**: la ventaja de que la IA conozca tus proyectos y bases de datos es difícil de igualar. Ten en cuenta que la IA completa requiere **Business (19,50 €/usuario/mes)**. Si solo necesitas redactar o resumir de vez en cuando, un asistente generalista te saldrá más a cuenta.
 
-<!-- NUESTRA PRUEBA: espacio reservado para la prueba personal de Cristian Arango. -->
-
 ## Preguntas frecuentes
 
 ### ¿Notion AI es gratis?

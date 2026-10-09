@@ -102,8 +102,6 @@ Las comparamos en [la mejor IA para productividad](/mejor-ia-para-productividad/
 
 Si ya pagas **Microsoft 365 Personal (99 €/año)**, Copilot es prácticamente un extra gratuito y merece la pena aprovecharlo, sobre todo en Word, Excel y Outlook. Si buscas un asistente de IA independiente y no usas Office, ChatGPT o Gemini ofrecen más por su precio. **Premium (219 €/año)** solo compensa a quien quiera usar Copilot de forma intensiva dentro de Office.
 
-<!-- NUESTRA PRUEBA: espacio reservado para la prueba personal de Cristian Arango. -->
-
 ## Preguntas frecuentes
 
 ### ¿Microsoft Copilot es gratis?

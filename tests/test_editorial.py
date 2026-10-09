@@ -116,3 +116,20 @@ def test_real_fichas_have_all_summary_fields():
                 assert p.extra.get(f), f'{p.slug}: falta {f}'
             assert len(p.extra['veredicto'].split()) <= 30, p.slug
             assert 'hemos probado' not in p.extra['veredicto'].lower()
+
+
+def test_no_promise_of_own_test_blocks():
+    from pathlib import Path
+    root = Path(__file__).resolve().parent.parent
+    for path in list((root / 'content').rglob('*.md')) + [root / 'static' / 'css' / 'radar.css']:
+        text = path.read_text(encoding='utf-8')
+        assert 'NUESTRA PRUEBA' not in text and 'nuestra-prueba' not in text, path
+        assert '«Nuestra prueba»' not in text, path
+
+
+def test_author_page_has_photo_and_profile():
+    from pathlib import Path
+    root = Path(__file__).resolve().parent.parent
+    text = (root / 'content' / 'paginas' / 'autor.md').read_text(encoding='utf-8')
+    assert '/static/img/cristian-arango.jpg' in text and 'instagram.com/cristian__fit' in text
+    assert (root / 'static' / 'img' / 'cristian-arango.jpg').stat().st_size < 60_000

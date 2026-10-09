@@ -26,7 +26,8 @@ def test_jsonld_news_has_dates_and_author():
     article = next(d for d in data if d['@type'] == 'NewsArticle')
     assert article['datePublished'] == '2026-10-01'
     assert article['author'] == {'@type': 'Person', 'name': 'Cristian Arango',
-                                 'url': 'https://radarai.es/autor/'}
+                                 'url': 'https://radarai.es/autor/',
+                                 'sameAs': ['https://www.instagram.com/cristian__fit/']}
     assert any(d['@type'] == 'BreadcrumbList' for d in data)
 
 
@@ -45,3 +46,11 @@ def test_rss_orders_by_date_desc_and_skips_drafts():
     assert xml.index('nueva') < xml.index('vieja')
     assert 'borrador' not in xml
     assert '<pubDate>' in xml
+
+
+def test_jsonld_author_page_is_profile_page():
+    data = jsonld(make_page(url='/autor/', title='Cristian Arango', description='Autor'))
+    profile = next(d for d in data if d['@type'] == 'ProfilePage')
+    person = profile['mainEntity']
+    assert person['name'] == 'Cristian Arango' and person['image'] == 'https://radarai.es/static/img/cristian-arango.jpg'
+    assert person['sameAs'] == ['https://www.instagram.com/cristian__fit/']

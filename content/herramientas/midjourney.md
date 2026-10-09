@@ -103,8 +103,6 @@ Encontrarás más opciones en nuestra comparativa de [la mejor IA para crear im�
 
 Midjourney sigue siendo una referencia cuando buscas **imágenes con calidad estética de nivel profesional**. Para empezar, **Basic (10 $/mes)** permite probarlo, pero sus 3,3 horas se quedan cortas enseguida; **Standard (30 $/mes)** es el plan equilibrado por sus imágenes ilimitadas en modo Relax. Si trabajas para clientes y necesitas privacidad, el plan razonable es **Pro (60 $/mes)**, por el Stealth Mode.
 
-<!-- NUESTRA PRUEBA: espacio reservado para la prueba personal de Cristian Arango. -->
-
 ## Preguntas frecuentes
 
 ### ¿Midjourney tiene versión gratuita?

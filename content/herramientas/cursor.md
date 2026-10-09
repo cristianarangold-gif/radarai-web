@@ -93,8 +93,6 @@ Las comparamos en [la mejor IA para programar](/mejor-ia-para-programar/).
 
 Cursor es una de las mejores opciones para **programar con agentes de IA** de forma intensiva. El plan Hobby sirve para comprobar si te encaja; el plan **Individual desde 20 $/mes** es el punto de partida razonable para un uso profesional. Si prefieres no cambiar de editor o buscas algo más económico, GitHub Copilot Pro es una alternativa sólida.
 
-<!-- NUESTRA PRUEBA: espacio reservado para la prueba personal de Cristian Arango. -->
-
 ## Preguntas frecuentes
 
 ### ¿Cursor es gratis?

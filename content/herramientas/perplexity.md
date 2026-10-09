@@ -96,8 +96,6 @@ Las comparamos en [la mejor IA para estudiar](/mejor-ia-para-estudiar/) y [la me
 
 Perplexity es la mejor opción cuando lo importante es **encontrar información actual y saber de dónde sale**. El plan gratuito ya es muy útil para el día a día. **Pro** merece la pena si investigas a menudo o quieres elegir el modelo de IA, mientras que **Max** está pensado para profesionales que usan los agentes de forma intensiva. Para redactar o crear contenido, compleméntalo con un asistente generalista.
 
-<!-- NUESTRA PRUEBA: espacio reservado para la prueba personal de Cristian Arango. -->
-
 ## Preguntas frecuentes
 
 ### ¿Perplexity es gratis?

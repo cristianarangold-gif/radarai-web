@@ -96,8 +96,6 @@ Si dudas entre varias, nuestra comparativa de [la mejor IA para productividad](/
 
 ChatGPT sigue siendo la opción más completa para quien quiere **una sola herramienta para casi todo**. La versión gratuita basta para conversar y redactar a diario; el plan **Go (8 €/mes)** tiene sentido si chocas con los límites pero no necesitas funciones avanzadas; y **Plus (23 €/mes)** es el plan razonable para un uso profesional, sobre todo por la investigación avanzada y los proyectos. Pro solo compensa a quien programa o investiga muchas horas al día.
 
-<!-- NUESTRA PRUEBA: espacio reservado para la prueba personal de Cristian Arango. -->
-
 ## Preguntas frecuentes
 
 ### ¿ChatGPT es gratis?

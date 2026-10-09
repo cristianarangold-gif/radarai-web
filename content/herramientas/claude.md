@@ -97,8 +97,6 @@ Comparamos todas por tareas en [la mejor IA para productividad](/mejor-ia-para-p
 
 Claude es una de las mejores opciones para **escribir y trabajar con documentos**, con un plan gratuito suficiente para empezar. **Pro (20 $/mes, 17 $ con pago anual)** es la elección lógica si lo usas a diario o quieres Claude Code. Max solo tiene sentido si chocas con los límites de Pro de forma habitual. Si necesitas generar imágenes o vives en el ecosistema de Google o Microsoft, quizá te encaje mejor otra herramienta.
 
-<!-- NUESTRA PRUEBA: espacio reservado para la prueba personal de Cristian Arango. -->
-
 ## Preguntas frecuentes
 
 ### ¿Claude es gratis?

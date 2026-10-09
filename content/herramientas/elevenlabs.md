@@ -96,8 +96,6 @@ Las comparamos en [la mejor IA para vídeo](/mejor-ia-para-video/).
 
 ElevenLabs ofrece algunas de las **voces sintéticas más naturales** del mercado. El plan gratuito sirve para probar, pero sin licencia comercial. **Starter (6 $/mes)** es suficiente para locuciones ocasionales con derechos comerciales y clonación instantánea; **Creator (22 $/mes)** es el plan equilibrado para creadores que publican cada semana y quieren clonar su voz con calidad profesional.
 
-<!-- NUESTRA PRUEBA: espacio reservado para la prueba personal de Cristian Arango. -->
-
 ## Preguntas frecuentes
 
 ### ¿ElevenLabs es gratis?
