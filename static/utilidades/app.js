@@ -20,7 +20,8 @@
     'cuales cuando de del desde donde dos el ella ellas ellos en entre era eran es esa esas ese eso esos esta estaba estan estas ' +
     'este esto estos fue fueron ha han hasta hay la las le les lo los mas me mi mis mucho muy nada ni no nos nuestra nuestro o os ' +
     'otra otro para pero poco por porque que quien se sea segun ser si sin sobre son su sus tambien tan tanto te tiene tienen ' +
-    'todo todos tu tus un una unas uno unos y ya yo vez puede pueden hacer hace sido estar').split(' '));
+    'todo todos toda todas tu tus un una unas uno unos y ya yo vez puede pueden hacer hace sido estar otros otras mucha muchos muchas ' +
+    'solo mismo misma mismos mismas aunque ahora siempre').split(' '));
   const ARTICLES = new Set(['el', 'la', 'los', 'las', 'un', 'una', 'unos', 'unas']);
   const words = (s) => s.match(WORD) || [];
   const isStop = (w) => STOP.has(deaccent(w.toLowerCase()));
@@ -53,16 +54,18 @@
   }
 
   // Contador de palabras: cifras, palabras repetidas y frases largas.
-  const countText = (x) => {
+  const countText = (raw) => {
+    const x = raw.normalize('NFC');
     const w = words(x);
-    const sentences = x.split(/(?<=[.!?…])\s+/).filter((s) => words(s).length);
+    // Frases: se corta tras . ! ? … seguidos de espacio y en cada salto de línea (sin lookbehind, que falla en Safari antiguo).
+    const sentences = x.replace(/([.!?…])\s+/g, '$1\u0001').replace(/\n+/g, '\u0001').split('\u0001').filter((s) => words(s).length);
     const f = sentences.length;
     const p = x.split(/\n\s*\n/).filter((s) => s.trim()).length;
     const long = sentences.filter((s) => words(s).length > 30).length;
     const freq = new Map();
     for (const word of w) {
       const k = word.toLowerCase();
-      if (k.length >= 4 && !isStop(k)) freq.set(k, (freq.get(k) || 0) + 1);
+      if (k.length >= 4 && /\p{L}/u.test(k) && !isStop(k)) freq.set(k, (freq.get(k) || 0) + 1);
     }
     const rep = [...freq].filter(([, n]) => n >= 2).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], 'es')).slice(0, 8);
     return block([
@@ -84,9 +87,10 @@
   // Hashtags: frases de tus campos (específicos) y palabras sueltas (amplios), sin etiquetas fijas.
   // Las siglas en mayúsculas (IA, SEO, PYME) se respetan; el resto va con mayúscula inicial.
   const tagWord = (w) => {
-    const plain = deaccent(w).replace(/[^A-Za-z0-9]/g, '');
-    if (plain.length <= 5 && plain === plain.toUpperCase() && /[A-Z]/.test(plain)) return plain;
-    return /[a-z][A-Z]/.test(plain) ? cap(plain) : cap(plain.toLowerCase()); // NotebookLM, ChatGPT
+    // Quita tildes y signos pero conserva la ñ (año ≠ ano).
+    const plain = deaccent(w.replace(/ñ/g, '\u0002').replace(/Ñ/g, '\u0003')).replace(/\u0002/g, 'ñ').replace(/\u0003/g, 'Ñ').replace(/[^A-Za-z0-9ñÑ]/g, '');
+    if (plain.length <= 5 && plain === plain.toUpperCase() && /[A-ZÑ]/.test(plain)) return plain;
+    return /[a-zñ][A-ZÑ]/.test(plain) ? cap(plain) : cap(plain.toLowerCase()); // NotebookLM, ChatGPT
   };
   const toTag = (ws) => '#' + ws.map(tagWord).join('');
   const hashtags = () => {
@@ -114,6 +118,12 @@
       for (const w of meaningful) if (w.length >= 3 || /^\p{Lu}{2}$/u.test(w)) add(broad, toTag([w]));
     }
     return { specific, broad };
+  };
+
+  // Rellena {T} (inicio de frase) y {t} (dentro de la frase) y aplica las contracciones «del» y «al».
+  const fill = (tpl, tema) => {
+    const lower = /^\p{Lu}{2,}/u.test(tema) ? tema : tema.charAt(0).toLowerCase() + tema.slice(1);
+    return cap(tpl.replace('{T}', cap(tema)).replace('{t}', lower).replace(/\bde el\b/g, 'del').replace(/\ba el\b/g, 'al'));
   };
 
   // Títulos: plantillas según el tono, sin afirmar pruebas propias.
@@ -147,11 +157,11 @@
   const PLATFORM_LABEL = { youtube: 'YouTube', corto: 'vídeo corto (TikTok, Reels, Shorts)', linkedin: 'LinkedIn', general: 'general' };
   const videoDescription = (tema) => {
     const kind = platformOf(v('plataforma'));
-    const kws = list(v('keywords'));
-    const tags = kws.slice(0, 5).map((k) => toTag(words(k))).filter((x) => x.length > 2).join(' ');
+    const kws = [...new Set(list(v('keywords')))];
+    const tags = [...new Set(kws.slice(0, 5).map((k) => toTag(words(k))).filter((x) => x.length > 2))].join(' ');
     const audiencia = v('audiencia');
     const cta = v('cta');
-    const intro = `Un vídeo${v('tono') ? ' ' + v('tono').toLowerCase() : ''} sobre ${tema}${audiencia ? ', pensado para ' + audiencia : ''}.`;
+    const intro = fill(`Un vídeo${v('tono') ? ' ' + v('tono').toLowerCase() : ''} sobre {t}${audiencia ? ', pensado para ' + audiencia : ''}.`, tema);
     if (kind === 'youtube') {
       return block([cap(tema), '',
         intro, '',
@@ -212,11 +222,11 @@
     const has = (re) => re.test(p);
     return [
       [n >= 15, `Tiene detalle suficiente (${n} palabras).`, `Es muy corto (${n} palabras): explica qué quieres conseguir y con qué datos.`],
-      [!!v('contexto') || has(/\b(contexto|soy|trabajo en|tengo|mi (empresa|negocio|clase|proyecto|equipo))\b/i), 'Da contexto (quién eres, para qué es, datos de partida).', 'No da contexto: di quién eres, para qué es y de qué datos partes.'],
-      [!!v('audiencia') || has(/\b(p[úu]blico|audiencia|lector(es)?|clientes?|alumn[oa]s|estudiantes|dirigid[oa]s?|destinad[oa]s?)\b/i), 'Dice a quién va dirigido el resultado.', 'No dice a quién va dirigido el resultado.'],
-      [!!v('formato') || has(/\b(tabla|lista|vi[ñn]etas|pasos|p[áa]rrafos?|json|esquema|guion|correo|palabras|caracteres|puntos)\b/i), 'Pide un formato concreto.', 'No pide un formato (tabla, lista, pasos, extensión…).'],
-      [has(/\b(por ejemplo|ejemplo|como este)\b/i), 'Incluye un ejemplo de lo que esperas.', 'No incluye un ejemplo (es opcional, pero ayuda mucho).'],
-      [has(/\b(m[áa]ximo|m[íi]nimo|no inventes|no uses|no incluyas|evita|l[íi]mite|\d+ (palabras|caracteres|l[íi]neas|frases))\b/i), 'Pone límites.', 'No pone límites (extensión, qué evitar, «no inventes»).'],
+      [!!v('contexto') || has(/\b(contexto|soy|trabajo en|tengo|es para|lo necesito para|para (una|un|mi|mis)|mi (empresa|negocio|clase|proyecto|equipo))\b/i), 'Da contexto (quién eres, para qué es, datos de partida).', 'No da contexto: di quién eres, para qué es y de qué datos partes.'],
+      [!!v('audiencia') || has(/\b(p[úu]blicos?|audiencia|lector(es|as)?|clientes?|alumn[oa]s|estudiantes|dirigid[oa]s?|destinad[oa]s?)\b/i), 'Dice a quién va dirigido el resultado.', 'No dice a quién va dirigido el resultado.'],
+      [!!v('formato') || has(/\b(tablas?|listas?|vi[ñn]etas|pasos|p[áa]rrafos?|json|esquemas?|guion|correo|puntos?|\d+ (palabras|caracteres|l[íi]neas|frases))\b/i), 'Pide un formato concreto.', 'No pide un formato (tabla, lista, pasos, extensión…).'],
+      [has(/\b(por ejemplo|ejemplos?|como este)\b/i), 'Incluye un ejemplo de lo que esperas.', 'No incluye un ejemplo (es opcional, pero ayuda mucho).'],
+      [has(/\b(m[áa]xim[oa]s?|m[íi]nim[oa]s?|no inventes|no uses|no incluyas|evit\w*|l[íi]mites?|\d+ (palabras|caracteres|l[íi]neas|frases))\b/i), 'Pone límites.', 'No pone límites (extensión, qué evitar, «no inventes»).'],
     ];
   };
 
@@ -266,7 +276,7 @@
       if (!tema) return set('Escribe un tema.');
       const tone = toneOf(v('tono'));
       const kws = list(v('palabras'));
-      const titles = TITLES[tone].map((x) => cap(x.replace('{T}', cap(tema)).replace('{t}', tema)));
+      const titles = TITLES[tone].map((x) => fill(x, tema));
       t = block([
         'TÍTULOS' + (v('plataforma') ? ' PARA ' + v('plataforma').toUpperCase() : ''),
         !!v('audiencia') && 'Audiencia: ' + v('audiencia'),
@@ -287,10 +297,10 @@
         format !== 'Contenido' && 'Formato: ' + format + ` (para ${v('plataforma')})`,
         !!v('objetivo') && 'Objetivo: ' + v('objetivo'),
         !!v('audiencia') && 'Audiencia: ' + v('audiencia'),
-        'Cierre recomendado: ' + closing.replace(/^Cierra /, '').replace(/^./, (c) => c.toUpperCase()),
+        'Cierre recomendado: ' + closing.replace(/^Cierra /, ''),
         Number.isFinite(asked) && asked !== n && `La cantidad va de 5 a ${IDEAS.length}: usamos ${n}.`,
         '',
-        ...IDEAS.slice(0, n).map((x, i) => `${i + 1}. ${format === 'Contenido' ? '' : `[${format}] `}${cap(x.replace('{T}', cap(tema)).replace('{t}', tema))}`),
+        ...IDEAS.slice(0, n).map((x, i) => `${i + 1}. ${format === 'Contenido' ? '' : `[${format}] `}${fill(x, tema)}`),
       ]);
       m = `${n} ideas · generado en tu navegador`;
     } else if (tool === 'generador-de-hashtags') {
@@ -321,7 +331,7 @@
       m = `${t.length} caracteres · formato ${PLATFORM_LABEL[platformOf(v('plataforma'))]}`;
     } else if (tool === 'prompt-imagenes') {
       if (!v('sujeto')) return set('Describe el sujeto o escena.');
-      t = `${v('sujeto')}. ${v('estilo') || 'estilo cinematográfico'}, ${v('composicion') || 'composición equilibrada'}, ${v('camara') || 'profundidad de campo natural'}, ${v('luz') || 'iluminación cuidada'}, ${v('ambiente') || 'atmósfera envolvente'}, formato ${v('formato') || '16:9'}.\n\nNEGATIVE PROMPT\n${v('negativos') || 'texto, marcas de agua, baja resolución, deformaciones, anatomía incorrecta'}`;
+      t = `${v('sujeto')}. ${cap(v('estilo') || 'estilo cinematográfico')}, ${v('composicion') || 'composición equilibrada'}, ${v('camara') || 'profundidad de campo natural'}, ${v('luz') || 'iluminación cuidada'}, ${v('ambiente') || 'atmósfera envolvente'}, formato ${v('formato') || '16:9'}.\n\nNEGATIVE PROMPT\n${v('negativos') || 'texto, marcas de agua, baja resolución, deformaciones, anatomía incorrecta'}`;
     }
     set(t, m);
   };

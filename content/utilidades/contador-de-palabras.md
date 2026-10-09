@@ -20,13 +20,13 @@ Muchos textos tienen límites de extensión: trabajos académicos, descripciones
 | Palabras | Número de palabras del texto (los números también cuentan). |
 | Caracteres | Todos los caracteres, con espacios y signos. |
 | Sin espacios | Los caracteres sin contar espacios ni saltos de línea. |
-| Frases | Fragmentos separados por punto, signo de exclamación, de interrogación o puntos suspensivos. Si el texto no termina en punto, la última frase también cuenta. |
+| Frases | Fragmentos separados por punto, signo de exclamación, de interrogación o puntos suspensivos, o por un salto de línea (así, un título o un elemento de lista cuentan como frase propia). Si el texto no termina en punto, la última frase también cuenta. |
 | Párrafos | Bloques separados por una línea en blanco. |
 | Media por frase | Palabras por frase, de media. |
 | Frases de más de 30 palabras | Cuántas frases conviene revisar por si se pueden dividir. |
 | Lectura | Minutos aproximados de lectura, calculados a 200 palabras por minuto. |
 | Locución | Minutos aproximados leyendo en voz alta, calculados a 130 palabras por minuto. |
-| Palabras más repetidas | Hasta 8 palabras de 4 letras o más que aparecen al menos 2 veces. No cuenta palabras muy comunes del español como «para», «como», «este» o «tiene». |
+| Palabras más repetidas | Hasta 8 palabras de 4 letras o más (sin contar números) que aparecen al menos 2 veces. No cuenta palabras muy comunes del español como «para», «como», «este» o «tiene». |
 
 Las velocidades de lectura y de locución son una referencia fija para hacer el cálculo: cada persona lee a su ritmo, así que tómalas como una estimación.
 
@@ -46,7 +46,7 @@ Con el texto de ejemplo, que repite tres veces «inteligencia artificial» en tr
 - **Estudiantes**: comprobar que un trabajo o una redacción cumple el número de palabras exigido.
 - **Redactores y creadores**: ajustar textos a los límites de cada red social o calcular la duración aproximada de un guion leído en voz alta.
 - **Búsqueda de empleo**: ajustar cartas de presentación y respuestas a formularios con límite de caracteres.
-- **Revisión de textos de IA**: los asistentes tienden a repetir ciertas palabras y a encadenar frases largas; el análisis te ayuda a localizarlas.
+- **Revisión de textos de IA**: si un texto generado repite palabras o encadena frases largas, el análisis te ayuda a localizarlas.
 
 ## Consejos para mejorar tu texto
 

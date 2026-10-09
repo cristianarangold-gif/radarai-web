@@ -11,7 +11,7 @@ Este generador te ayuda a escribir peticiones completas para cualquier asistente
 
 ## Para qué sirve
 
-La mayoría de respuestas mediocres de la IA se deben a peticiones incompletas. Este generador te obliga a pensar en los elementos que marcan la diferencia: **qué quieres conseguir, el contexto, para quién es, en qué formato y con qué tono**, además de las restricciones que debe respetar. Es la misma estructura que explicamos en nuestra guía de [cómo escribir buenos prompts](/guias/mejores-prompts/), convertida en un formulario.
+Muchas respuestas mediocres de la IA se deben a peticiones incompletas. Este generador te obliga a pensar en los elementos que marcan la diferencia: **qué quieres conseguir, el contexto, para quién es, en qué formato y con qué tono**, además de las restricciones que debe respetar. Es la misma estructura que explicamos en nuestra guía de [cómo escribir buenos prompts](/guias/mejores-prompts/), convertida en un formulario.
 
 ## Cómo usarlo paso a paso
 
@@ -49,7 +49,7 @@ Con el objetivo «pedir una reunión para revisar mi salario», un contexto con 
 ## Consejos para sacarle partido
 
 - **Un objetivo por prompt**: si necesitas varias cosas, genera un prompt para cada una.
-- **El contexto es lo que más cambia el resultado**: datos, cifras, el texto original o la situación concreta. La IA no puede adivinarlos.
+- **El contexto suele marcar la diferencia**: datos, cifras, el texto original o la situación concreta. La IA no puede adivinarlos.
 - **Pide un formato que puedas usar**: «tabla con tres columnas», «correo de menos de 150 palabras», «5 opciones numeradas».
 - **Revisa la respuesta**: los asistentes pueden equivocarse con total seguridad. Comprueba siempre los datos importantes.
 - **Guarda los prompts que te funcionen** para reutilizarlos y adaptarlos.

@@ -7,7 +7,7 @@ Radar IA es un medio independiente. Esta página explica cómo decidimos qué pu
 
 Cada página responde a una necesidad concreta del lector: qué herramienta elegir, cuánto cuesta, cómo usarla y qué limitaciones tiene. No publicamos fichas vacías ni descripciones copiadas de la web del fabricante.
 
-## Honestidad sobre lo que hemos probado
+## Honestidad: investigación, no pruebas propias
 
 Nuestras fichas, comparativas y guías se basan en **investigación**: documentación oficial, páginas de precios y anuncios de las empresas, siempre con su fecha y su fuente. No publicamos pruebas de uso de cada herramienta y nunca afirmamos haber probado una herramienta si no lo hemos hecho. Si en algún momento incluimos una experiencia de uso propia, lo indicaremos de forma explícita en la propia página.
 

@@ -11,7 +11,7 @@ script: /herramientas-radar/app.js
 
 ## Para qué sirve
 
-La mayoría de las respuestas flojas de un asistente de IA no se deben a la herramienta, sino a una petición incompleta: falta contexto, no se dice para quién es ni qué formato se espera. Este mejorador **revisa tu prompt punto por punto**, te explica qué le falta y te devuelve una versión ordenada por bloques para que la completes y la pegues en ChatGPT, Claude, Gemini o el asistente que uses.
+Muchas respuestas flojas de un asistente de IA se deben a una petición incompleta: falta contexto, no se dice para quién es ni qué formato se espera. Este mejorador **revisa tu prompt punto por punto**, te explica qué le falta y te devuelve una versión ordenada por bloques para que la completes y la pegues en ChatGPT, Claude, Gemini o el asistente que uses.
 
 ## Cómo usarlo paso a paso
 
@@ -28,11 +28,11 @@ Pulsa **Mejorar prompt**. Arriba verás el diagnóstico y debajo, el prompt mejo
 | Punto | Se da por cumplido si… |
 |---|---|
 | Detalle | El prompt tiene al menos 15 palabras. |
-| Contexto | Rellenas el campo de contexto o el prompt dice quién eres o para qué es («soy…», «trabajo en…», «mi empresa…»). |
+| Contexto | Rellenas el campo de contexto o el prompt dice quién eres o para qué es («soy…», «trabajo en…», «mi empresa…», «es para…»). |
 | Audiencia | Rellenas el campo de audiencia o el prompt menciona destinatarios («mis alumnos», «clientes», «dirigido a…»). |
-| Formato | Rellenas el campo de formato o el prompt pide uno («tabla», «lista», «pasos», «palabras»…). |
+| Formato | Rellenas el campo de formato o el prompt pide uno («tabla», «lista», «pasos», «300 palabras»…). |
 | Ejemplo | El prompt incluye un ejemplo («por ejemplo…»). Es opcional, pero ayuda mucho. |
-| Límites | El prompt marca límites («máximo», «evita», «no inventes», «120 palabras»…). |
+| Límites | El prompt marca límites («máximo», «extensión máxima», «evita», «no inventes», «120 palabras»…). |
 
 Es una comprobación por palabras clave: te ayuda a no olvidar nada, pero no entiende el sentido de tu texto. Si crees que un punto ya está cubierto con otras palabras, puedes ignorar el aviso.
 

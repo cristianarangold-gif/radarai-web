@@ -9,7 +9,7 @@ descripcion: Quién está detrás de Radar IA: Cristian Arango, entrenador perso
 
 ## Quién es
 
-Cristian es **entrenador personal y dietista-nutricionista**. En su trabajo ayuda a las personas a mejorar su condición física, cuidar su alimentación y adoptar hábitos de vida saludables, con un enfoque personalizado que combina entrenamiento y nutrición para conseguir resultados reales y mantenerlos a largo plazo.
+Cristian es **entrenador personal y dietista-nutricionista**. En su trabajo combina el entrenamiento y la nutrición para ayudar a las personas a cuidar su condición física y sus hábitos.
 
 Radar IA es un proyecto independiente de su actividad profesional: en este portal no se dan consejos de salud, de entrenamiento ni de nutrición, y cuando una página toca un tema delicado remite a fuentes oficiales y a profesionales.
 
@@ -32,7 +32,7 @@ Cristian combina varias herramientas, gratuitas y de pago, según la tarea:
 - **[ChatGPT](/herramientas/chatgpt/)**, para crear imágenes, vídeos y animaciones.
 - **[Gemini](/herramientas/gemini/)** y, sobre todo, **[Gemini Notebook](/herramientas/notebooklm/)** (antes NotebookLM), para estudiar, organizar información y preparar resúmenes.
 
-Además, ha trabajado con Dola AI y ha probado muchas otras herramientas: le gusta explorar opciones nuevas, comparar sus capacidades y aprovechar las ventajas de cada una para mejorar su productividad y seguir aprendiendo.
+Además, ha usado Dola AI y ha probado muchas otras herramientas: le gusta explorar opciones nuevas, comparar sus capacidades y aprovechar las ventajas de cada una para mejorar su productividad y seguir aprendiendo.
 
 Esta es su experiencia personal como usuario. Las fichas y comparativas de Radar IA no se basan en ella, sino en la documentación y las páginas de precios oficiales, como explicamos en la [metodología](/metodologia/).
 
@@ -45,7 +45,7 @@ Su propósito es acercar la IA a todo el mundo, compartir conocimientos y mostra
 ## Cómo trabaja en Radar IA
 
 - **Fuentes oficiales y fechas**: consulta siempre la documentación y las páginas de precios oficiales de cada herramienta, e indica la fecha de comprobación.
-- **Sin pruebas inventadas**: nunca escribe que ha probado una herramienta si no es así. Lo que se publica procede de fuentes que se enlazan.
+- **Sin pruebas inventadas**: nunca escribe que ha probado una herramienta si no es así. Los datos de herramientas, precios y noticias proceden de fuentes que se enlazan.
 - **Noticias con criterio**: enlaza las fuentes de cada noticia, explica qué cambia para un usuario en España y no reproduce textos de otros medios.
 - **IA como apoyo, con revisión humana**: usa herramientas de IA para recopilar novedades y preparar borradores, pero revisa, corrige y aprueba personalmente todo lo que se publica.
 - **Correcciones**: corrige los errores en cuanto los detecta y lo indica. Consulta la [política editorial](/politica-editorial/).

@@ -24,11 +24,11 @@ Pulsa **Generar hashtags**, revisa la propuesta y elimina los que no tengan rela
 
 ## Cómo crea los hashtags
 
-- **Específicos**: cada frase corta que escribes (de 2 a 4 palabras) se convierte en un hashtag completo, como #CocinaSinGluten o #PersonasCeliacas. Si la frase es más larga, el generador saca los trozos con sentido: de «receta de bizcocho sin gluten» salen #BizcochoSinGluten y #RecetaDeBizcocho.
+- **Específicos**: cada frase corta que escribes (de 2 a 4 palabras, con al menos 2 que no sean artículos ni preposiciones) se convierte en un hashtag completo, como #CocinaSinGluten o #PersonasCeliacas. Si la frase es más larga, el generador saca los trozos con sentido: de «receta de bizcocho sin gluten» salen #BizcochoSinGluten y #RecetaDeBizcocho.
 - **Amplios**: las palabras sueltas con significado, como #Bizcocho o #Reposteria. No usa artículos, preposiciones ni otras palabras muy comunes.
 - **Mayúscula en cada palabra**: #BizcochoSinGluten se lee mejor que #bizcochosingluten, también para quien usa un lector de pantalla.
 - **Siglas**: se respetan las siglas en mayúsculas y las marcas con mayúsculas internas, como #IA, #SEOLocal o #NotebookLM.
-- **Sin tildes ni signos**: el hashtag se escribe igual en cualquier teclado.
+- **Sin tildes ni signos, pero con eñe**: se quitan las tildes para que el hashtag se escriba igual en cualquier teclado, y se conserva la ñ para no cambiar el significado (#AñoNuevo, no #AnoNuevo).
 
 Si con lo que has escrito no se llega a la cantidad que pides, el generador te lo dice en lugar de inventar etiquetas. La solución es añadir más detalle en el nicho o en la audiencia.
 

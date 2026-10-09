@@ -37,3 +37,17 @@ def test_ideas_are_real_titles_with_format_and_closing():
 def test_prompt_improver_diagnosis_is_computed():
     assert '✓ Objetivo definido\\n✓ Contexto separado' not in APP
     assert '[completa:' in APP and ' de 6' in APP
+
+
+def test_no_regex_lookbehind_for_older_safari():
+    assert '(?<=' not in APP and '(?<!' not in APP
+
+
+def test_hashtags_keep_enye():
+    assert 'ñÑ' in APP.split('const tagWord')[1].split('};')[0]
+
+
+def test_prompt_checks_accept_plurals_and_feminine():
+    diag = APP.split('const diagnose')[1].split('const run')[0]
+    for stem in ('m[áa]xim[oa]s?', 'l[íi]mites?', 'listas?', 'tablas?', 'ejemplos?', 'es para'):
+        assert stem in diag, stem

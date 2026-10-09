@@ -47,7 +47,7 @@ Si dejas un campo vacío, se rellena con un valor neutro para que el prompt qued
 
 ## Ejemplo
 
-Con el sujeto «Una ciudad futurista bajo la lluvia», estilo «fotografía nocturna», iluminación «neón reflejado en el asfalto mojado» y formato «9:16», obtienes un prompt como: «Una ciudad futurista bajo la lluvia. fotografía nocturna, composición equilibrada, profundidad de campo natural, neón reflejado en el asfalto mojado, atmósfera envolvente, formato 9:16», seguido de la lista de elementos a evitar.
+Con el sujeto «Una ciudad futurista bajo la lluvia», estilo «fotografía nocturna», iluminación «neón reflejado en el asfalto mojado» y formato «9:16», obtienes un prompt como: «Una ciudad futurista bajo la lluvia. Fotografía nocturna, composición equilibrada, profundidad de campo natural, neón reflejado en el asfalto mojado, atmósfera envolvente, formato 9:16», seguido de la lista de elementos a evitar.
 
 ## Cómo usar la parte «Evitar» en cada herramienta
 
@@ -61,7 +61,7 @@ El formato funciona de forma parecida: en Midjourney se indica con el parámetro
 
 ## Consejos
 
-- **Sé concreto con la luz y el encuadre**: son los elementos que más cambian el resultado.
+- **Sé concreto con la luz y el encuadre**: suelen ser de los elementos que más cambian el resultado.
 - **No pidas demasiadas cosas en una sola escena**: dos o tres elementos principales suelen funcionar mejor que diez.
 - **Describe, no ordenes**: «una taza de café humeante sobre una mesa de madera» funciona mejor que «haz una foto de café».
 - **El texto dentro de la imagen puede salir con errores**: si necesitas un cartel o un título exacto, es más seguro añadirlo después con un editor como Canva.

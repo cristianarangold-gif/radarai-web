@@ -22,7 +22,7 @@ La descripción de un vídeo cumple dos funciones: explica al espectador qué va
 5. **Llamada a la acción**: qué quieres que haga el espectador al terminar. Si la dejas vacía, se usa una adecuada a la plataforma.
 6. **Tono**: cercano, divertido, educativo… Se incluye en la frase de presentación («Un vídeo cercano sobre…»).
 
-Pulsa **Crear descripción**, revisa el borrador y personalízalo. Debajo del resultado verás cuántos caracteres tiene.
+Pulsa **Crear descripción**, revisa el borrador y personalízalo. Encima del resultado verás cuántos caracteres tiene.
 
 ## Qué estructura recibes según la plataforma
 
@@ -37,7 +37,7 @@ Los **hashtags** salen solo de tus palabras clave (hasta 5), escritos con mayús
 
 ## Ejemplo
 
-Con el tema «cómo organizar tus apuntes con IA», plataforma YouTube, audiencia «estudiantes universitarios», palabras clave «apuntes, NotebookLM, resúmenes» y tono «cercano», el borrador empieza así: «Un vídeo cercano sobre cómo organizar tus apuntes con IA, pensado para estudiantes universitarios». Después vienen la lista «Lo que verás», un hueco para las marcas de tiempo, la llamada a la acción y los hashtags #Apuntes #NotebookLM #Resumenes.
+Con el tema «cómo organizar tus apuntes con IA», plataforma YouTube, audiencia «estudiantes universitarios», palabras clave «apuntes, NotebookLM, resúmenes» y tono «cercano», después del título, el borrador presenta el vídeo así: «Un vídeo cercano sobre cómo organizar tus apuntes con IA, pensado para estudiantes universitarios». Después vienen la lista «Lo que verás», un hueco para las marcas de tiempo, la llamada a la acción y los hashtags #Apuntes #NotebookLM #Resumenes.
 
 ## Consejos para mejores descripciones
 
