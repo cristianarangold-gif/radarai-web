@@ -22,3 +22,18 @@ def test_hashtags_have_no_fixed_tags_and_no_platform_field():
 
 def test_titles_do_not_claim_own_tests():
     assert 'Probé' not in APP and 'probé' not in APP
+
+
+def test_video_description_has_no_fixed_hashtags_and_adapts_to_platform():
+    assert '#IA #Tecnologia #Aprendizaje' not in APP
+    assert 'MARCAS DE TIEMPO' in APP and 'comentarios' in APP
+
+
+def test_ideas_are_real_titles_with_format_and_closing():
+    assert 'Desarrolla el ángulo' not in APP
+    assert 'Carrusel' in APP and 'Vídeo corto' in APP and 'Cierra' in APP
+
+
+def test_prompt_improver_diagnosis_is_computed():
+    assert '✓ Objetivo definido\\n✓ Contexto separado' not in APP
+    assert '[completa:' in APP and ' de 6' in APP

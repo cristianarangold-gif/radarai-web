@@ -29,7 +29,7 @@
 'generador-de-prompts':[['objetivo','Objetivo','Qué quieres conseguir','ta'],['contexto','Contexto','Datos y antecedentes','ta'],['audiencia','Audiencia','Para quién es','text'],['formato','Formato','Tabla, pasos, guion, JSON…','text'],['tono','Tono','Profesional, cercano, técnico…','text'],['restricciones','Restricciones','Límites y requisitos','ta']],
 'mejorador-de-prompts':[['objetivo','Prompt actual','Pega el prompt que quieres mejorar','ta'],['contexto','Contexto adicional','Información útil','ta'],['audiencia','Audiencia','Destinatario','text'],['modelo','Uso o modelo','Chat, imagen, vídeo, código…','text'],['formato','Formato deseado','Cómo debe responder','text']],
 'generador-de-titulos':[['tema','Tema o contenido','Describe el contenido','ta'],['plataforma','Plataforma','YouTube, TikTok, blog…','text'],['audiencia','Audiencia','A quién quieres atraer','text'],['palabras','Palabras clave','Separadas por comas','text'],['tono','Tono','Curioso, experto, emocional…','text']],
-'generador-de-ideas':[['tema','Tema o nicho','Ej.: IA, fitness, educación…','ta'],['objetivo','Objetivo','Educar, vender, entretener…','text'],['plataforma','Plataforma','TikTok, YouTube, blog…','text'],['audiencia','Audiencia','Perfil del público','text'],['cantidad','Cantidad','5–20','number']],
+'generador-de-ideas':[['tema','Tema o nicho','Ej.: IA, fitness, educación…','ta'],['objetivo','Objetivo','Educar, vender, entretener…','text'],['plataforma','Plataforma','TikTok, YouTube, blog…','text'],['audiencia','Audiencia','Perfil del público','text'],['cantidad','Cantidad','5–16','number']],
 'generador-de-hashtags':[['tema','Tema','Ej.: receta de bizcocho sin gluten','text'],['nicho','Nicho','Comunidad o subtema, separados por comas','text'],['audiencia','Audiencia','Público objetivo','text'],['cantidad','Cantidad','5–30','number']],
 'contador-de-palabras':[['texto','Texto','Pega el texto','ta']],
 'descripcion-video':[['tema','Tema o título','Qué contiene el vídeo','ta'],['plataforma','Plataforma','YouTube, TikTok…','text'],['audiencia','Audiencia','Público objetivo','text'],['keywords','Palabras clave','Separadas por comas','text'],['cta','Llamada a la acción','Suscríbete, comenta…','text'],['tono','Tono','Educativo, cercano…','text']],
@@ -85,7 +85,8 @@
   // Las siglas en mayúsculas (IA, SEO, PYME) se respetan; el resto va con mayúscula inicial.
   const tagWord = (w) => {
     const plain = deaccent(w).replace(/[^A-Za-z0-9]/g, '');
-    return plain.length <= 5 && plain === plain.toUpperCase() && /[A-Z]/.test(plain) ? plain : cap(plain.toLowerCase());
+    if (plain.length <= 5 && plain === plain.toUpperCase() && /[A-Z]/.test(plain)) return plain;
+    return /[a-z][A-Z]/.test(plain) ? cap(plain) : cap(plain.toLowerCase()); // NotebookLM, ChatGPT
   };
   const toTag = (ws) => '#' + ws.map(tagWord).join('');
   const hashtags = () => {
@@ -135,6 +136,90 @@
     return 'general';
   };
 
+  // Descripción de vídeo: estructura según la plataforma; hashtags solo de tus palabras clave.
+  const platformOf = (s) => {
+    const t = deaccent(s.toLowerCase());
+    if (/short|reel|tiktok|instagram/.test(t)) return 'corto';
+    if (/youtube/.test(t)) return 'youtube';
+    if (/linkedin/.test(t)) return 'linkedin';
+    return 'general';
+  };
+  const PLATFORM_LABEL = { youtube: 'YouTube', corto: 'vídeo corto (TikTok, Reels, Shorts)', linkedin: 'LinkedIn', general: 'general' };
+  const videoDescription = (tema) => {
+    const kind = platformOf(v('plataforma'));
+    const kws = list(v('keywords'));
+    const tags = kws.slice(0, 5).map((k) => toTag(words(k))).filter((x) => x.length > 2).join(' ');
+    const audiencia = v('audiencia');
+    const cta = v('cta');
+    const intro = `Un vídeo${v('tono') ? ' ' + v('tono').toLowerCase() : ''} sobre ${tema}${audiencia ? ', pensado para ' + audiencia : ''}.`;
+    if (kind === 'youtube') {
+      return block([cap(tema), '',
+        intro, '',
+        'LO QUE VERÁS', ...(kws.length ? kws.map((k) => '• ' + k) : ['• [añade los puntos clave del vídeo]']), '',
+        'MARCAS DE TIEMPO', '00:00 Introducción', '[00:00] [siguiente sección]', '',
+        '👉 ' + (cta || 'Suscríbete y cuéntame tu opinión en los comentarios.'),
+        !!tags && '', !!tags && tags]);
+    }
+    if (kind === 'corto') {
+      return block([cap(tema), !!audiencia && `Para ${audiencia}.`, '👉 ' + (cta || 'Guárdalo para verlo después.'), !!tags && '', !!tags && tags]);
+    }
+    if (kind === 'linkedin') {
+      return block([cap(tema), '',
+        intro,
+        kws.length > 0 && 'Puntos clave: ' + kws.join(', ') + '.', '',
+        '¿Qué opinas? Te leo en los comentarios.', !!cta && cta,
+        !!tags && '', !!tags && tags]);
+    }
+    return block([cap(tema), '',
+      intro, '',
+      '👉 ' + (cta || 'Suscríbete y comparte tu opinión.'),
+      kws.length > 0 && '', kws.length > 0 && 'PALABRAS CLAVE\n' + kws.join(' · '), !!tags && '', !!tags && tags]);
+  };
+
+  // Ideas: títulos distintos, con formato según la plataforma y cierre según el objetivo.
+  const IDEAS = ['Los 3 errores más comunes con {t} (y cómo evitarlos)', 'Mitos sobre {t}: qué es cierto y qué no',
+    'Tutorial: {t} paso a paso para empezar hoy', 'Comparativa: dos formas de abordar {t} y cuándo elegir cada una',
+    'Caso práctico: {t} en una situación real', 'La pregunta incómoda sobre {t} que pocos responden',
+    'Antes y después de {t}: qué cambia de verdad', 'Lista de comprobación de {t}: lo imprescindible en 5 puntos',
+    'Reto de 7 días relacionado con {t}', 'Respuestas a las 5 dudas más frecuentes sobre {t}',
+    'Novedades sobre {t}: qué ha cambiado y a quién le afecta', 'Una semana con {t}: qué pasa y qué aprendes',
+    'Opinión argumentada sobre {t}: a favor y en contra', '{T} para principiantes: lo que necesitas saber el primer día',
+    '{T} a nivel avanzado: detalles que marcan la diferencia', 'Serie de contenidos: {t} en 4 entregas'];
+  const formatOf = (s) => {
+    const t = deaccent(s.toLowerCase());
+    if (/short|reel|tiktok/.test(t)) return 'Vídeo corto';
+    if (/youtube/.test(t)) return 'Vídeo';
+    if (/instagram/.test(t)) return 'Carrusel';
+    if (/linkedin/.test(t)) return 'Publicación';
+    if (/newsletter|boletin|correo|email/.test(t)) return 'Correo';
+    if (/podcast/.test(t)) return 'Episodio';
+    if (/blog|web/.test(t)) return 'Artículo';
+    return 'Contenido';
+  };
+  const closingOf = (s) => {
+    const t = deaccent(s.toLowerCase());
+    if (/educ|ensen|explic/.test(t)) return 'Cierra con un resumen en 3 puntos.';
+    if (/vend|venta|client|conver/.test(t)) return 'Cierra explicando cómo ayuda tu producto o servicio, sin exagerar.';
+    if (/entreten|divert|humor/.test(t)) return 'Cierra con una pregunta divertida para los comentarios.';
+    if (/comunidad|fideli|seguidor/.test(t)) return 'Cierra invitando a contar su experiencia.';
+    if (/visib|alcance|viral|crec/.test(t)) return 'Cierra invitando a guardar o compartir.';
+    return 'Cierra con una acción útil para tu audiencia.';
+  };
+
+  // Mejorador de prompts: diagnóstico calculado sobre tu texto, no fijo.
+  const diagnose = (p) => {
+    const n = words(p).length;
+    const has = (re) => re.test(p);
+    return [
+      [n >= 15, `Tiene detalle suficiente (${n} palabras).`, `Es muy corto (${n} palabras): explica qué quieres conseguir y con qué datos.`],
+      [!!v('contexto') || has(/\b(contexto|soy|trabajo en|tengo|mi (empresa|negocio|clase|proyecto|equipo))\b/i), 'Da contexto (quién eres, para qué es, datos de partida).', 'No da contexto: di quién eres, para qué es y de qué datos partes.'],
+      [!!v('audiencia') || has(/\b(p[úu]blico|audiencia|lector(es)?|clientes?|alumn[oa]s|estudiantes|dirigid[oa]s?|destinad[oa]s?)\b/i), 'Dice a quién va dirigido el resultado.', 'No dice a quién va dirigido el resultado.'],
+      [!!v('formato') || has(/\b(tabla|lista|vi[ñn]etas|pasos|p[áa]rrafos?|json|esquema|guion|correo|palabras|caracteres|puntos)\b/i), 'Pide un formato concreto.', 'No pide un formato (tabla, lista, pasos, extensión…).'],
+      [has(/\b(por ejemplo|ejemplo|como este)\b/i), 'Incluye un ejemplo de lo que esperas.', 'No incluye un ejemplo (es opcional, pero ayuda mucho).'],
+      [has(/\b(m[áa]ximo|m[íi]nimo|no inventes|no uses|no incluyas|evita|l[íi]mite|\d+ (palabras|caracteres|l[íi]neas|frases))\b/i), 'Pone límites.', 'No pone límites (extensión, qué evitar, «no inventes»).'],
+    ];
+  };
+
   const run = () => {
     let t = '';
     let m = 'Generado en tu navegador';
@@ -150,12 +235,33 @@
         'CONTROL DE CALIDAD\nComprueba objetivo, formato, precisión y restricciones antes de responder.']);
     } else if (tool === 'mejorador-de-prompts') {
       if (!v('objetivo')) return set('Pega un prompt para mejorarlo.');
-      t = lines(['PROMPT MEJORADO', 'Actúa como experto en transformar instrucciones ambiguas en resultados precisos.', 'TAREA\n' + v('objetivo'),
-        'CONTEXTO\n' + (v('contexto') || 'Usa solo datos proporcionados y separa hechos de supuestos.'),
-        'AUDIENCIA\n' + (v('audiencia') || 'Adapta la respuesta al destinatario.'), 'USO\n' + (v('modelo') || 'IA general'),
-        'FORMATO\n' + (v('formato') || 'Usa encabezados, pasos y ejemplos cuando aporten claridad.'),
-        'CRITERIOS\nDefine el resultado, elimina ambigüedades, añade requisitos verificables y revisa el cumplimiento.',
-        'DIAGNÓSTICO\n✓ Objetivo definido\n✓ Contexto separado\n✓ Audiencia y formato contemplados\n✓ Control de calidad añadido']);
+      const checks = diagnose(v('objetivo'));
+      const ok = (i) => checks[i][0];
+      const score = checks.filter(([pass]) => pass).length;
+      t = block([
+        'DIAGNÓSTICO',
+        ...checks.map(([pass, good, bad]) => (pass ? '✓ ' + good : '✗ ' + bad)),
+        `Puntuación: ${score} de 6`,
+        score === 6 && 'Tu prompt ya está bien planteado: la versión de abajo solo lo ordena por bloques.',
+        '',
+        'PROMPT MEJORADO',
+        'Actúa como experto en la tarea que te describo.',
+        '',
+        'TAREA\n' + v('objetivo'),
+        '',
+        'CONTEXTO\n' + (v('contexto') || (ok(1) ? 'El indicado en la tarea.' : '[completa: quién eres, para qué es y datos de partida]')),
+        '',
+        'AUDIENCIA\n' + (v('audiencia') || (ok(2) ? 'La indicada en la tarea.' : '[completa: para quién es el resultado]')),
+        '',
+        'FORMATO\n' + (v('formato') || (ok(3) ? 'El indicado en la tarea.' : '[completa: tabla, lista, pasos, extensión…]')),
+        !ok(4) && '',
+        !ok(4) && 'EJEMPLO\n[opcional: pega un ejemplo del resultado que esperas]',
+        '',
+        'LÍMITES\nNo inventes datos: si falta información, pregúntamela antes de responder.' + (ok(5) ? '' : '\n[completa: extensión máxima u otros límites]'),
+        !!v('modelo') && '',
+        !!v('modelo') && 'USO\n' + v('modelo'),
+      ]);
+      m = `${score} de 6 puntos · analizado en tu navegador`;
     } else if (tool === 'generador-de-titulos') {
       if (!tema) return set('Escribe un tema.');
       const tone = toneOf(v('tono'));
@@ -172,12 +278,21 @@
       m = `${titles.length} títulos · generado en tu navegador`;
     } else if (tool === 'generador-de-ideas') {
       if (!tema) return set('Escribe un tema o nicho.');
-      const n = clamp(parseInt(v('cantidad'), 10), 5, 30, 10);
-      const angles = ['error común', 'mito', 'tutorial', 'comparativa', 'caso práctico', 'pregunta polémica', 'antes y después', 'checklist', 'reto',
-        'preguntas frecuentes', 'tendencia', 'experimento', 'opinión argumentada', 'guía para principiantes', 'nivel avanzado', 'serie de contenidos'];
-      t = 'PLAN DE IDEAS\nObjetivo: ' + (v('objetivo') || 'aportar valor') + '\nPlataforma: ' + (v('plataforma') || 'redes') + '\nAudiencia: ' +
-        (v('audiencia') || 'público interesado') + '\n\n' + Array.from({ length: n }, (_, i) =>
-        (i + 1) + '. ' + angles[i % angles.length] + ': ' + tema + '. Desarrolla el ángulo con un ejemplo y termina con una acción útil.').join('\n');
+      const asked = parseInt(v('cantidad'), 10);
+      const n = clamp(asked, 5, IDEAS.length, 10);
+      const format = formatOf(v('plataforma'));
+      const closing = closingOf(v('objetivo'));
+      t = block([
+        'PLAN DE IDEAS',
+        format !== 'Contenido' && 'Formato: ' + format + ` (para ${v('plataforma')})`,
+        !!v('objetivo') && 'Objetivo: ' + v('objetivo'),
+        !!v('audiencia') && 'Audiencia: ' + v('audiencia'),
+        'Cierre recomendado: ' + closing.replace(/^Cierra /, '').replace(/^./, (c) => c.toUpperCase()),
+        Number.isFinite(asked) && asked !== n && `La cantidad va de 5 a ${IDEAS.length}: usamos ${n}.`,
+        '',
+        ...IDEAS.slice(0, n).map((x, i) => `${i + 1}. ${format === 'Contenido' ? '' : `[${format}] `}${cap(x.replace('{T}', cap(tema)).replace('{t}', tema))}`),
+      ]);
+      m = `${n} ideas · generado en tu navegador`;
     } else if (tool === 'generador-de-hashtags') {
       if (!tema) return set('Escribe un tema.');
       const asked = parseInt(v('cantidad'), 10);
@@ -202,7 +317,8 @@
       m = 'Analizado en tu navegador';
     } else if (tool === 'descripcion-video') {
       if (!tema) return set('Describe el vídeo.');
-      t = `${tema}\n\nEn este vídeo descubrirás los puntos clave de ${tema}, explicado de forma ${v('tono') || 'clara'} para ${v('audiencia') || 'personas interesadas en el tema'}. Encontrarás ideas, ejemplos y pasos aplicables desde hoy.\n\n👉 ${v('cta') || 'Suscríbete y comparte tu opinión'}.\n\nPALABRAS CLAVE\n${list(v('keywords')).join(' · ') || 'Añade palabras clave específicas'}\n\n#IA #Tecnologia #Aprendizaje`;
+      t = videoDescription(tema);
+      m = `${t.length} caracteres · formato ${PLATFORM_LABEL[platformOf(v('plataforma'))]}`;
     } else if (tool === 'prompt-imagenes') {
       if (!v('sujeto')) return set('Describe el sujeto o escena.');
       t = `${v('sujeto')}. ${v('estilo') || 'estilo cinematográfico'}, ${v('composicion') || 'composición equilibrada'}, ${v('camara') || 'profundidad de campo natural'}, ${v('luz') || 'iluminación cuidada'}, ${v('ambiente') || 'atmósfera envolvente'}, formato ${v('formato') || '16:9'}.\n\nNEGATIVE PROMPT\n${v('negativos') || 'texto, marcas de agua, baja resolución, deformaciones, anatomía incorrecta'}`;
@@ -214,6 +330,9 @@
     'contador-de-palabras': { texto: 'La inteligencia artificial está cambiando la forma de crear, aprender y trabajar. La inteligencia artificial ayuda a resumir textos largos. Pero conviene revisar siempre lo que escribe la inteligencia artificial.' },
     'prompt-imagenes': { sujeto: 'Una ciudad futurista bajo la lluvia' },
     'generador-de-hashtags': { tema: 'receta de bizcocho sin gluten', nicho: 'repostería saludable, cocina sin gluten', audiencia: 'personas celíacas', cantidad: '10' },
+    'descripcion-video': { tema: 'cómo organizar tus apuntes con IA', plataforma: 'YouTube', audiencia: 'estudiantes universitarios', keywords: 'apuntes, NotebookLM, resúmenes', tono: 'cercano' },
+    'generador-de-ideas': { tema: 'la IA para estudiar', objetivo: 'educar', plataforma: 'Instagram', audiencia: 'estudiantes de bachillerato', cantidad: '6' },
+    'mejorador-de-prompts': { objetivo: 'Hazme un resumen de este tema' },
     'generador-de-titulos': { tema: 'usar la IA para estudiar', audiencia: 'estudiantes de bachillerato', palabras: 'IA, estudiar, exámenes', tono: 'curioso' },
   };
   $('#run-tool')?.addEventListener('click', run);
