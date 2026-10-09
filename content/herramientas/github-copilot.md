@@ -93,8 +93,6 @@ Las comparamos en [la mejor IA para programar](/mejor-ia-para-programar/).
 
 GitHub Copilot es la opción más natural si **ya trabajas con GitHub y VS Code**. El plan **Free** permite probarlo de verdad, y **Pro (10 $/mes)** es una de las suscripciones de IA para programar con mejor relación calidad-precio gracias al autocompletado ilimitado. Si eres estudiante o docente, solicita el acceso gratuito antes de pagar. Pro+ y Max solo compensan si usas los agentes de forma intensiva.
 
-<!-- NUESTRA PRUEBA: espacio reservado para la prueba personal de Cristian Arango. -->
-
 ## Preguntas frecuentes
 
 ### ¿GitHub Copilot es gratis?

@@ -93,8 +93,6 @@ Las comparamos en [la mejor IA para marketing](/mejor-ia-para-marketing/) y [la 
 
 Canva IA es la opción más práctica para **crear diseños completos con ayuda de la IA** sin conocimientos de diseño. El plan gratuito sirve para empezar; **Pro (110 €/año)** es el plan lógico para autónomos y creadores, y **Business (170 €/año por persona)** compensa si gestionas una marca, anuncios o un equipo pequeño. Si lo que necesitas son imágenes artísticas de máxima calidad, combínalo con una herramienta especializada.
 
-<!-- NUESTRA PRUEBA: espacio reservado para la prueba personal de Cristian Arango. -->
-
 ## Preguntas frecuentes
 
 ### ¿La IA de Canva es gratis?

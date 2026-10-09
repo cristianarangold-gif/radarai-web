@@ -98,8 +98,6 @@ Las comparamos en [la mejor IA para estudiar](/mejor-ia-para-estudiar/).
 
 Gemini Notebook es, probablemente, **la mejor herramienta gratuita para estudiar con IA**: al basarse solo en tus fuentes y citarlas, inventa mucho menos que un chatbot general. El plan gratuito cubre las necesidades de la mayoría de estudiantes; los planes de Google AI solo compensan si trabajas con muchas fuentes o generas resúmenes en audio y vídeo a diario.
 
-<!-- NUESTRA PRUEBA: espacio reservado para la prueba personal de Cristian Arango. -->
-
 ## Preguntas frecuentes
 
 ### ¿NotebookLM ha cambiado de nombre?

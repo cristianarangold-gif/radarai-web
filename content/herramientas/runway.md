@@ -99,8 +99,6 @@ Las comparamos en [la mejor IA para vídeo](/mejor-ia-para-video/).
 
 Runway es una de las opciones más completas para **generar y transformar vídeo con IA** desde el navegador. El plan **Standard (15 $/mes, 12 $ con pago anual)** sirve para probar en serio y elimina la marca de agua, pero sus créditos dan para poco; **Pro (35 $/mes)** es el plan razonable para un creador que publica con regularidad. Antes de pagar, aprovecha los 125 créditos gratuitos para comprobar si el estilo de sus modelos encaja con lo que necesitas.
 
-<!-- NUESTRA PRUEBA: espacio reservado para la prueba personal de Cristian Arango. -->
-
 ## Preguntas frecuentes
 
 ### ¿Runway es gratis?

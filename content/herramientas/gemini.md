@@ -93,8 +93,6 @@ Las comparamos por tareas en [la mejor IA para productividad](/mejor-ia-para-pro
 
 Gemini es la opción más lógica para **quien ya vive en Google**. Su plan gratuito es de los más completos del mercado, y **Google AI Plus (4,99 €/mes)** es probablemente la suscripción de IA con mejor relación calidad-precio para un uso doméstico, porque añade almacenamiento y la IA en Gmail. **Google AI Pro (21,99 €/mes)** compensa si además aprovechas los 5 TB y las funciones avanzadas. Ultra solo tiene sentido para usos muy intensivos.
 
-<!-- NUESTRA PRUEBA: espacio reservado para la prueba personal de Cristian Arango. -->
-
 ## Preguntas frecuentes
 
 ### ¿Gemini es gratis?

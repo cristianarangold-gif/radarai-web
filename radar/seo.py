@@ -11,6 +11,9 @@ from .models import Page
 SITE = 'https://radarai.es'
 SITE_NAME = 'Radar IA'
 AUTHOR_URL = SITE + '/autor/'
+AUTHOR_NAME = 'Cristian Arango'
+AUTHOR_IMAGE = SITE + '/static/img/cristian-arango.jpg'
+AUTHOR_SAME_AS = ['https://www.instagram.com/cristian__fit/']
 
 SECTION_BY_KIND = {
     'noticia': ('Noticias', '/noticias/'),
@@ -28,7 +31,10 @@ def canonical(url: str) -> str:
 
 
 def _person(name: str) -> dict:
-    return {'@type': 'Person', 'name': name, 'url': AUTHOR_URL}
+    person = {'@type': 'Person', 'name': name, 'url': AUTHOR_URL}
+    if name == AUTHOR_NAME:
+        person['sameAs'] = AUTHOR_SAME_AS
+    return person
 
 
 def _breadcrumb(page: Page) -> dict:
@@ -54,6 +60,12 @@ def jsonld(page: Page, image: Optional[str] = None) -> List[dict]:
             'description': page.description,
         }]
     data = []
+    if page.url == '/autor/':
+        data.append({
+            '@context': 'https://schema.org', '@type': 'ProfilePage', 'url': canonical(page.url),
+            'mainEntity': dict(_person(AUTHOR_NAME), image=AUTHOR_IMAGE, jobTitle='Creador y editor de Radar IA',
+                               description=page.description),
+        })
     article_type = {'noticia': 'NewsArticle', 'guia': 'Article', 'comparativa': 'Article', 'duelo': 'Article', 'profesion': 'Article'}.get(page.kind)
     if article_type or page.kind == 'ficha':
         article = {

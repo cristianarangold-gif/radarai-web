@@ -98,8 +98,6 @@ Las comparamos en [la mejor IA para escribir](/mejor-ia-para-escribir/).
 
 DeepL es la herramienta más recomendable cuando necesitas **traducciones naturales y confidenciales**. El plan gratuito basta para un uso ocasional; **DeepL Pro Individual (7,49 €/mes con pago anual)** es la opción lógica para profesionales que traducen documentos con frecuencia, sobre todo por las garantías de privacidad. Si tu necesidad principal es mejorar tus textos, el complemento DeepL Write Pro (6,99 €/mes) es una alternativa sencilla a los asistentes generalistas.
 
-<!-- NUESTRA PRUEBA: espacio reservado para la prueba personal de Cristian Arango. -->
-
 ## Preguntas frecuentes
 
 ### ¿DeepL es gratis?

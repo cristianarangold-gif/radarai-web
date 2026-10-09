@@ -9,7 +9,7 @@ Cada página responde a una necesidad concreta del lector: qué herramienta eleg
 
 ## Honestidad sobre lo que hemos probado
 
-Distinguimos siempre entre la **investigación** (documentación oficial, páginas de precios, anuncios de las empresas) y las **pruebas propias**. Nunca afirmamos haber probado una herramienta si no lo hemos hecho. Las pruebas propias aparecen en bloques marcados como «Nuestra prueba».
+Nuestras fichas, comparativas y guías se basan en **investigación**: documentación oficial, páginas de precios y anuncios de las empresas, siempre con su fecha y su fuente. No publicamos pruebas de uso de cada herramienta y nunca afirmamos haber probado una herramienta si no lo hemos hecho. Si en algún momento incluimos una experiencia de uso propia, lo indicaremos de forma explícita en la propia página.
 
 ## Fuentes y fechas
 

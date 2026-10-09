@@ -29,7 +29,7 @@ No asignamos puntuaciones numéricas: preferimos explicar en qué destaca cada h
 Distinguimos dos tipos de información:
 
 - **Investigación**: datos procedentes de fuentes oficiales, como precios, planes, funciones y políticas. Siempre se indica la fecha y la fuente.
-- **Pruebas propias**: experiencias de uso directo del autor. Solo aparecen cuando realmente se han realizado y se identifican de forma explícita.
+- **Pruebas propias**: experiencias de uso directo del autor. Por ahora, nuestras fichas y comparativas no incluyen pruebas propias: se basan solo en investigación. Si alguna vez las incluimos, aparecerán identificadas de forma explícita.
 
 Nunca presentamos como prueba propia algo que procede de la documentación de una empresa.
 
