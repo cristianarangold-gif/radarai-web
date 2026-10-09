@@ -1,8 +1,8 @@
 titulo: Generador de hashtags para redes sociales
-descripcion: Genera hashtags para Instagram, TikTok, LinkedIn y otras redes a partir de tu tema, nicho, audiencia y plataforma. Herramienta gratuita que funciona en tu navegador.
+descripcion: Genera hashtags para Instagram, TikTok, LinkedIn y otras redes a partir de tu tema, tu nicho y tu audiencia, sin etiquetas de relleno. Herramienta gratuita que funciona en tu navegador.
 script: /herramientas-radar/app.js
 
-Esta utilidad te propone hashtags relacionados con tu publicación, combinando términos generales y de nicho y adaptándolos a la red social en la que vas a publicar.
+Esta utilidad te propone hashtags relacionados con tu publicación, separados en hashtags específicos (frases completas, como #BizcochoSinGluten) y amplios (palabras sueltas).
 
 <div class="utility-app" data-tool="generador-de-hashtags" markdown="0">
 <form id="radar-form" class="utility-grid"></form>
@@ -11,15 +11,14 @@ Esta utilidad te propone hashtags relacionados con tu publicación, combinando t
 
 ## Para qué sirve
 
-Los hashtags ayudan a que tus publicaciones aparezcan en búsquedas y temas concretos. Elegirlos a mano lleva tiempo y es fácil caer siempre en los mismos. El generador combina tu **tema**, tu **nicho** y tu **audiencia** para proponerte una mezcla de etiquetas amplias y específicas, ajustada a la **plataforma** y a la **cantidad** que necesites.
+Los hashtags ayudan a que tus publicaciones aparezcan en búsquedas y temas concretos. Elegirlos a mano lleva tiempo y es fácil caer siempre en los mismos. El generador combina tu **tema**, tu **nicho** y tu **audiencia** para proponerte una mezcla de etiquetas específicas y amplias, hasta la **cantidad** que necesites.
 
 ## Cómo usarlo paso a paso
 
 1. **Tema**: de qué trata la publicación (por ejemplo, «receta de bizcocho sin gluten»).
-2. **Plataforma**: Instagram, TikTok, LinkedIn, X…
-3. **Nicho**: el sector o comunidad concreta (repostería saludable, celíacos).
-4. **Audiencia**: a quién quieres llegar.
-5. **Cantidad**: cuántos hashtags quieres obtener.
+2. **Nicho**: el sector o comunidad concreta (repostería saludable, celíacos).
+3. **Audiencia**: a quién quieres llegar.
+4. **Cantidad**: cuántos hashtags quieres obtener.
 
 Pulsa el botón, revisa la propuesta y elimina los que no tengan relación directa con tu contenido.
 
