@@ -1,5 +1,5 @@
 titulo: Cristian Arango, autor de Radar IA
-descripcion: Quién está detrás de Radar IA: Cristian Arango, entrenador personal y dietista-nutricionista que usa la IA a diario desde la llegada de ChatGPT y edita el portal.
+descripcion: Quién está detrás de Radar IA: Cristian Arango, entrenador personal especializado en nutrición deportiva que usa la IA a diario desde la llegada de ChatGPT y edita el portal.
 
 <img class="author-photo" src="/static/img/cristian-arango.jpg" alt="Cristian Arango" width="160" height="160">
 
@@ -9,7 +9,7 @@ descripcion: Quién está detrás de Radar IA: Cristian Arango, entrenador perso
 
 ## Quién es
 
-Cristian es **entrenador personal y dietista-nutricionista**. En su trabajo combina el entrenamiento y la nutrición para ayudar a las personas a cuidar su condición física y sus hábitos.
+Cristian es **entrenador personal especializado en nutrición deportiva**. En su trabajo combina el entrenamiento y la nutrición para ayudar a las personas a cuidar su condición física y sus hábitos.
 
 Radar IA es un proyecto independiente de su actividad profesional: en este portal no se dan consejos de salud, de entrenamiento ni de nutrición, y cuando una página toca un tema delicado remite a fuentes oficiales y a profesionales.
 

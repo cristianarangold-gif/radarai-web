@@ -133,3 +133,10 @@ def test_author_page_has_photo_and_profile():
     text = (root / 'content' / 'paginas' / 'autor.md').read_text(encoding='utf-8')
     assert '/static/img/cristian-arango.jpg' in text and 'instagram.com/cristian__fit' in text
     assert (root / 'static' / 'img' / 'cristian-arango.jpg').stat().st_size < 60_000
+
+
+def test_author_title_is_not_a_regulated_profession_claim():
+    from pathlib import Path
+    root = Path(__file__).resolve().parent.parent
+    text = (root / 'content' / 'paginas' / 'autor.md').read_text(encoding='utf-8')
+    assert 'dietista' not in text.lower() and 'entrenador personal especializado en nutrición deportiva' in text
