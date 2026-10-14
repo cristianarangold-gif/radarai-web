@@ -2,7 +2,8 @@ name: Noticias candidatas
 
 on:
   schedule:
-    - cron: '0 5 * * *'   # 07:00 en Madrid (horario de verano), 06:00 en invierno
+    # 06:17 en Madrid (horario de verano), 05:17 en invierno. Fuera de la hora en punto, que GitHub retrasa más.
+    - cron: '17 4 * * *'
   workflow_dispatch:
 
 permissions:
@@ -25,5 +26,10 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         run: |
           if [ ! -s candidatas.md ]; then echo "Sin candidatas hoy"; exit 0; fi
+          TITLE="Noticias candidatas $(date -u +%Y-%m-%d)"
+          # La rutina de redacción crea la issue ella misma si este workflow llega tarde: no la dupliques.
+          if gh issue list --label noticias --state all --search "\"$TITLE\" in:title" --json title --jq '.[].title' | grep -qx "$TITLE"; then
+            echo "La issue de hoy ya existe"; exit 0
+          fi
           gh label create noticias --color FFB86B --description "Candidatas de noticias" 2>/dev/null || true
-          gh issue create --title "Noticias candidatas $(date -u +%Y-%m-%d)" --label noticias --body-file candidatas.md
+          gh issue create --title "$TITLE" --label noticias --body-file candidatas.md

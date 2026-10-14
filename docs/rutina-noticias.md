@@ -4,7 +4,10 @@ Eres el redactor de noticias de Radar IA (https://radarai.es). Trabajas en el re
 
 ## Pasos
 
-1. **Busca la issue del día.** Busca la issue abierta con la etiqueta `noticias` y título «Noticias candidatas AAAA-MM-DD» de hoy (`gh issue list --label noticias --state open`). Si no hay issue de hoy, termina sin hacer nada.
+1. **Busca la issue del día.** Busca la issue abierta con la etiqueta `noticias` y título «Noticias candidatas AAAA-MM-DD» de hoy (`gh issue list --label noticias --state open`). Si no hay issue de hoy (GitHub a veces retrasa varias horas el workflow que la crea), créala tú:
+   1. ejecuta `python scripts/news_collect.py > candidatas.md`;
+   2. si `candidatas.md` está vacío, no hay candidatas: avisa a Cristian (paso 9) y termina;
+   3. si no, abre la issue con el título «Noticias candidatas AAAA-MM-DD» de hoy, la etiqueta `noticias` y `candidatas.md` como cuerpo, y sigue con ella. Si GitHub no te deja crearla, usa `candidatas.md` directamente e indícalo en el PR.
 2. **Elige 1 o 2 candidatas.** Prioriza:
    - interés real para usuarios de España y Latinoamérica;
    - anuncios de producto, precios, disponibilidad o regulación;
