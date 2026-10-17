@@ -1,6 +1,6 @@
 """Recoge noticias candidatas de IA de las fuentes RSS/Atom y genera el cuerpo de una issue.
 
-Uso: python scripts/news_collect.py [--hours 26] [--limit 10]
+Uso: python scripts/news_collect.py [--hours 26] [--limit 12]
 Escribe el cuerpo en stdout; si no hay candidatas no escribe nada (código de salida 0).
 """
 from __future__ import annotations
@@ -70,24 +70,41 @@ def parse_feed(xml_text: str, source: str, official: bool) -> List[Item]:
         return []
 
 
-def load_sources(path: Path = SOURCES) -> List[Tuple[str, str, bool]]:
+# Fuentes generales (prensa de empresa, periódicos): solo entran titulares que hablan de IA.
+AI_TITLE = re.compile(
+    r'\b(IA|AI|inteligencia artificial|artificial intelligence|machine learning|LLM|agentes?|agents?|chatbots?|'
+    r'Copilot|Gemini|ChatGPT|OpenAI|Anthropic|Claude|Llama|Mistral|DeepSeek|Grok|Siri|Apple Intelligence|'
+    r'Galaxy AI|Meta AI|modelos? de lenguaje|language models?|IA generativa|generative)\b')
+
+
+def is_ai_related(title: str) -> bool:
+    return bool(AI_TITLE.search(title))
+
+
+def load_sources(path: Path = SOURCES) -> List[Tuple[str, str, bool, bool]]:
+    """Devuelve (nombre, url, oficial, filtrar); «filtrar» marca fuentes generales que pasan por is_ai_related."""
     sources = []
     for line in Path(path).read_text(encoding='utf-8').splitlines():
         line = line.strip()
         if not line or line.startswith('#'):
             continue
-        kind, name, url = [p.strip() for p in line.split('·')]
-        sources.append((name, url, kind == 'oficial'))
+        parts = [p.strip() for p in line.split('·')]
+        kind, name, url = parts[:3]
+        sources.append((name, url, kind == 'oficial', parts[3:] == ['filtrar']))
     return sources
 
 
-def select_candidates(items: List[Item], now: datetime, hours: int = 26, limit: int = 10) -> List[Item]:
+def select_candidates(items: List[Item], now: datetime, hours: int = 26, limit: int = 12,
+                      per_source: int = 2) -> List[Item]:
     since = now - timedelta(hours=hours)
-    seen, fresh = set(), []
+    seen, fresh, by_source = set(), [], {}
     for it in sorted(items, key=lambda i: (not i.official, -i.published.timestamp())):
         if it.published < since or it.published > now + timedelta(hours=1) or it.url in seen:
             continue
+        if by_source.get(it.source, 0) >= per_source:
+            continue
         seen.add(it.url)
+        by_source[it.source] = by_source.get(it.source, 0) + 1
         fresh.append(it)
     return fresh[:limit]
 
@@ -100,7 +117,7 @@ def render_issue(items: List[Item], failures: List[str], today: str, hours: int 
         tag = 'oficial' if it.official else 'medio'
         hora = it.published.strftime('%d/%m %H:%M UTC')
         lines.append(f'- [ ] [{it.title}]({it.url}) — {it.source} ({tag}, {hora})')
-    lines += ['', 'La rutina de redacción elegirá 1–2 candidatas y abrirá un PR en borrador siguiendo '
+    lines += ['', 'La rutina de redacción elegirá 1–2 candidatas y abrirá un PR siguiendo '
               '`content/GUIA_EDITORIAL.md`. Nada se publica sin revisión.']
     if failures:
         lines += ['', 'Fuentes que no se pudieron leer hoy: ' + ', '.join(failures) + '.']
@@ -116,12 +133,13 @@ def fetch(url: str, timeout: int = 20) -> str:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument('--hours', type=int, default=26)
-    parser.add_argument('--limit', type=int, default=10)
+    parser.add_argument('--limit', type=int, default=12)
     args = parser.parse_args()
     items, failures = [], []
-    for name, url, official in load_sources():
+    for name, url, official, only_ai in load_sources():
         try:
-            items += _parse(fetch(url), name, official)
+            found = _parse(fetch(url), name, official)
+            items += [i for i in found if is_ai_related(i.title)] if only_ai else found
         except Exception as exc:  # noqa: BLE001 — una fuente caída no debe parar la recogida
             failures.append(name)
             print(f'Aviso: {name}: {exc}', file=sys.stderr)
