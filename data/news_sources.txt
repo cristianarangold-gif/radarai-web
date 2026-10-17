@@ -1,7 +1,15 @@
-# tipo · nombre · URL del feed (RSS o Atom)
+# tipo · nombre · URL del feed (RSS o Atom) [· filtrar]
+# «filtrar» = fuente general: solo entran los titulares que hablan de IA (scripts/news_collect.py, is_ai_related).
 oficial · OpenAI · https://openai.com/news/rss.xml
 oficial · Google (IA) · https://blog.google/technology/ai/rss/
+oficial · Google Gemini · https://blog.google/products/gemini/rss/
 oficial · Google DeepMind · https://deepmind.google/blog/rss.xml
+oficial · Microsoft · https://news.microsoft.com/source/feed/ · filtrar
+oficial · Meta · https://about.fb.com/news/feed/ · filtrar
+oficial · Apple · https://www.apple.com/newsroom/rss-feed.rss · filtrar
+oficial · Samsung · https://news.samsung.com/global/feed · filtrar
+oficial · GitHub · https://github.blog/feed/ · filtrar
+oficial · Comisión Europea (Estrategia digital) · https://digital-strategy.ec.europa.eu/en/rss.xml · filtrar
 oficial · Hugging Face · https://huggingface.co/blog/feed.xml
 oficial · NVIDIA · https://blogs.nvidia.com/feed/
 oficial · Apple Machine Learning · https://machinelearning.apple.com/rss.xml
@@ -9,3 +17,5 @@ medio · The Verge (IA) · https://www.theverge.com/rss/ai-artificial-intelligen
 medio · TechCrunch (IA) · https://techcrunch.com/category/artificial-intelligence/feed/
 medio · Xataka (IA) · https://www.xataka.com/tag/inteligencia-artificial/rss2.xml
 medio · Genbeta (IA) · https://www.genbeta.com/tag/inteligencia-artificial/rss2.xml
+medio · El País (Tecnología) · https://feeds.elpais.com/mrss-s/pages/ep/site/elpais.com/section/tecnologia/portada · filtrar
+medio · Hipertextual · https://hipertextual.com/feed · filtrar
