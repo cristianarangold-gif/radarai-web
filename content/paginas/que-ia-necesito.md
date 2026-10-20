@@ -1,5 +1,5 @@
-titulo: ¿Qué IA necesito? Asistente gratuito para elegir herramienta
-descripcion: Responde 4 preguntas (tarea, presupuesto, experiencia y para quién) y descubre qué herramienta de inteligencia artificial encaja contigo y por qué.
+titulo: ¿Qué IA necesito? Descubre cuál usar con 4 preguntas
+descripcion: ¿No sabes qué IA usar? Responde 4 preguntas (tarea, presupuesto, experiencia y para quién) y descubre qué herramienta de inteligencia artificial te conviene.
 
 ## Cómo funciona este asistente
 
