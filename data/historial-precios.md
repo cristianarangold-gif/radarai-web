@@ -20,6 +20,9 @@ ChatGPT
 Claude
 2023-09-07 | claude | nuevo | Pro | 20 $/mes | Nace Claude Pro, con 5 veces más uso que el plan gratuito, en EE. UU. y Reino Unido. | https://www.anthropic.com/news/claude-pro
 2025-04-09 | claude | nuevo | Max | desde 100 $/mes | Llega Max: 100 $ al mes con 5 veces el uso de Pro, o 200 $ con 20 veces. | https://techcrunch.com/2025/04/09/anthropic-rolls-out-a-200-per-month-claude-subscription/
+2026-10-20 | claude | condiciones | Free | 0 € | Desde España, la web oficial muestra ahora los precios en euros. | https://claude.com/pricing
+2026-10-20 | claude | condiciones | Pro | 18 €/mes | Desde España figura a 18 € al mes (15 € con pago anual); en dólares sigue a 20 $. No es una subida ni una bajada. | https://claude.com/pricing
+2026-10-20 | claude | condiciones | Max | desde 90 €/mes | Desde España figura desde 90 € al mes; en dólares, desde 100 $. | https://claude.com/pricing
 
 Gemini
 2024-02-08 | gemini | nuevo | Google AI Pro | 21,99 €/mes | Nace en España como Google One AI Premium, con Gemini Advanced y 2 TB de almacenamiento. | https://www.xatakamovil.com/aplicaciones/google-comienza-a-cobrar-su-ia-llega-gemini-advanced
@@ -60,6 +63,11 @@ Cursor
 
 Midjourney
 2023-03-30 | midjourney | retirado | Prueba gratuita |  | Midjourney elimina la prueba gratuita por abusos: usarlo pasa a costar al menos 10 $ al mes. | https://www.engadget.com/midjourney-ends-free-trials-of-its-ai-image-generator-due-to-extraordinary-abuse-153853905.html
+
+Suno
+2026-10-20 | suno | condiciones | Free | 0 € | Desde España, la web oficial muestra ahora los precios en euros. | https://suno.com/pricing
+2026-10-20 | suno | condiciones | Pro | 9 €/mes | Desde España figura a 9 € al mes (7,20 € con pago anual); en dólares, 10 $. | https://suno.com/pricing
+2026-10-20 | suno | condiciones | Premier | 28 €/mes | Desde España figura a 28 € al mes (22 € con pago anual); en dólares, 30 $. | https://suno.com/pricing
 
 Runway
 2026-06-01 | runway | nuevo | Max | 95 $/mes | Llega Max, con créditos mensuales y arrastre de un mes, en lugar de Unlimited. | https://help.runwayml.com/hc/en-us/articles/52068047744019-Unlimited-plan-is-switching-to-Max

@@ -103,7 +103,7 @@ Paga solo cuando una herramienta forme parte de tu trabajo diario y sus límites
 
 - **Google AI Plus**: 4,99 €/mes.
 - **ChatGPT Go**: 8 €/mes.
-- **Suno Pro**: 10 $/mes (8 $ con pago anual), con uso comercial.
+- **Suno Pro**: 9 €/mes (7,20 € con pago anual), con uso comercial.
 - **ElevenLabs Starter**: 6 $/mes, con licencia comercial.
 
 Los precios cambian a menudo: en nuestro [historial de precios](/historial-de-precios/) puedes ver qué planes han subido, bajado o aparecido desde 2023, con la fuente de cada cambio.

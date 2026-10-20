@@ -20,7 +20,7 @@ Programar con inteligencia artificial ha pasado de las sugerencias de autocomple
 ## Respuesta rápida
 
 - **Para programar en tu editor de siempre: [GitHub Copilot](/herramientas/github-copilot/).** Tiene plan gratuito, y Pro cuesta 10 $/mes con autocompletado ilimitado y modelos de varias empresas. Gratis para estudiantes y docentes verificados.
-- **Para delegar tareas a un agente desde el terminal: Claude Code o Codex.** [Claude Code](/herramientas/claude/) viene incluido desde Claude Pro (20 $/mes) y Codex está en todos los planes de [ChatGPT](/herramientas/chatgpt/), con un uso más amplio desde Plus (23 €/mes).
+- **Para delegar tareas a un agente desde el terminal: Claude Code o Codex.** [Claude Code](/herramientas/claude/) viene incluido desde Claude Pro (18 €/mes) y Codex está en todos los planes de [ChatGPT](/herramientas/chatgpt/), con un uso más amplio desde Plus (23 €/mes).
 - **Para empezar sin pagar: GitHub Copilot Free o Google Antigravity.** Los dos tienen plan gratuito con límites.
 - **Para crear una app sin saber programar: Replit o Lovable.** Describes lo que quieres y el agente lo construye en el navegador; Lovable Pro cuesta 25 €/mes.
 
@@ -41,7 +41,7 @@ No publicamos pruebas propias de rendimiento: cuando una herramienta presume de 
 | Herramienta | Dónde trabaja | Plan gratuito | Precio desde | Comprobado |
 |---|---|---|---|---|
 | GitHub Copilot | VS Code, JetBrains, Visual Studio, Xcode, terminal y GitHub | Sí (2.000 sugerencias y 50 chats al mes) | 10 $/mes (Pro) | 20 oct. 2026 |
-| Claude Code | Terminal y editor | No (incluido desde Claude Pro) | 20 $/mes (17 $ con pago anual) | 20 oct. 2026 |
+| Claude Code | Terminal y editor | No (incluido desde Claude Pro) | 18 €/mes (15 € con pago anual) | 20 oct. 2026 |
 | ChatGPT (Codex) | App de escritorio; web, CLI y editor desde Plus | Sí, limitado | 23 €/mes (Plus) | 20 oct. 2026 |
 | Cursor | Editor propio (basado en VS Code) | Sí, limitado | 8 $/mes (Plus, solo modelos Grok) | 20 oct. 2026 |
 | Google Antigravity | Editor y terminal (Antigravity CLI) | Sí, con límites semanales | Incluido en Google AI Pro | 20 oct. 2026 |
@@ -63,7 +63,7 @@ Permite elegir modelos de Anthropic, OpenAI, Google y otras empresas. Los **estu
 
 ### Claude Code: el agente de Anthropic para el terminal
 
-Claude Code trabaja directamente sobre tu repositorio desde el terminal o el editor: lee el código, propone cambios, ejecuta tests y hace *commits*. **No está en el plan gratuito de Claude**, pero viene incluido desde **Claude Pro (20 $/mes, 17 $ con pago anual)**, y los planes **Max (desde 100 $/mes)** multiplican el uso por 5 o por 20. Comparte el límite de uso con el chat: se renueva en ventanas de cinco horas y, en los planes de pago, también tiene un límite semanal. Si una sesión intensa te deja sin cuota, puedes pasar a pagar por uso. Encaja muy bien si te sientes cómodo en la línea de comandos. Lee la [ficha de Claude](/herramientas/claude/).
+Claude Code trabaja directamente sobre tu repositorio desde el terminal o el editor: lee el código, propone cambios, ejecuta tests y hace *commits*. **No está en el plan gratuito de Claude**, pero viene incluido desde **Claude Pro (18 €/mes, 15 € con pago anual)**, y los planes **Max (desde 90 €/mes)** multiplican el uso por 5 o por 20. Comparte el límite de uso con el chat: se renueva en ventanas de cinco horas y, en los planes de pago, también tiene un límite semanal. Si una sesión intensa te deja sin cuota, puedes pasar a pagar por uso. Encaja muy bien si te sientes cómodo en la línea de comandos. Lee la [ficha de Claude](/herramientas/claude/).
 
 ### ChatGPT con Codex: el agente incluido en todos los planes de ChatGPT
 
@@ -103,7 +103,7 @@ Son las tres opciones que más se comparan para delegar tareas completas a un ag
 | | Claude Code | Codex (ChatGPT) | GitHub Copilot |
 |---|---|---|---|
 | Plan gratuito | No | Sí, limitado (app de escritorio) | Sí (50 chats al mes) |
-| Plan de pago de entrada | Claude Pro, 20 $/mes | ChatGPT Plus, 23 €/mes | Copilot Pro, 10 $/mes |
+| Plan de pago de entrada | Claude Pro, 18 €/mes | ChatGPT Plus, 23 €/mes | Copilot Pro, 10 $/mes |
 | Dónde funciona | Terminal y editor | App, web, terminal y editor (desde Plus) | Editores, terminal y GitHub |
 | Modelos | Claude | Modelos de OpenAI | Varias empresas |
 | Cómo se mide el uso | Ventanas de 5 horas y límite semanal | Ventanas de 5 horas (sin límite en Pro) | Créditos de IA al mes |
@@ -158,7 +158,7 @@ Depende de cómo trabajes. **GitHub Copilot Free** ofrece 2.000 sugerencias y 50
 
 ### ¿Claude Code o ChatGPT para programar?
 
-Los dos tienen un agente de programación muy completo. **Claude Code** viene incluido desde Claude Pro (20 $/mes) y no está en el plan gratuito; **Codex** está en todos los planes de ChatGPT y se amplía desde Plus (23 €/mes), con web, terminal y editor. Si ya pagas uno de los dos asistentes, empieza por el agente que tienes incluido.
+Los dos tienen un agente de programación muy completo. **Claude Code** viene incluido desde Claude Pro (18 €/mes) y no está en el plan gratuito; **Codex** está en todos los planes de ChatGPT y se amplía desde Plus (23 €/mes), con web, terminal y editor. Si ya pagas uno de los dos asistentes, empieza por el agente que tienes incluido.
 
 ### ¿Qué IA es mejor para aprender a programar?
 

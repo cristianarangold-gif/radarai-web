@@ -1,10 +1,11 @@
 titulo: Claude de Anthropic: planes, precios y para qué destaca
 descripcion: Análisis de Claude, el asistente de Anthropic: planes Free, Pro, Max y Team, precios, funciones, privacidad y alternativas en 2026.
 fecha: 2026-10-06
+actualizado: 2026-10-20
 web: https://claude.ai/
 plataforma: Web, iOS, Android, Windows y macOS
-precio_desde: 0 $
-plan_pago: Pro 20 $/mes
+precio_desde: 0 €
+plan_pago: Pro 18 €/mes
 ideal_para: Escribir y documentos
 veredicto: Una de las mejores opciones para escribir y trabajar con documentos; Pro es la elección lógica si lo usas a diario o quieres Claude Code.
 fuentes: https://claude.com/pricing
@@ -25,15 +26,15 @@ Es especialmente recomendable para:
 
 ## Planes y precios
 
-Anthropic factura en dólares estadounidenses; el cargo en euros depende del cambio que aplique tu banco. Precios de la página oficial (comprobado el 6 de octubre de 2026):
+Desde España, la página oficial de Anthropic muestra los precios en euros (comprobado el 20 de octubre de 2026):
 
 | Plan | Precio | Para quién |
 |---|---|---|
-| Free | 0 $ | Uso diario moderado |
-| Pro | 20 $/mes o 17 $/mes con pago anual (200 $/año) | Uso profesional individual |
-| Max | desde 100 $/mes | Uso muy intensivo (5x o 20x el uso de Pro) |
-| Team Standard | 25 $/usuario/mes o 20 $ con pago anual | Equipos |
-| Team Premium | 125 $/usuario/mes o 100 $ con pago anual | Equipos con uso intensivo |
+| Free | 0 € | Uso diario moderado |
+| Pro | 18 €/mes o 15 €/mes con pago anual (180 €/año) | Uso profesional individual |
+| Max | desde 90 €/mes | Uso muy intensivo (5x o 20x el uso de Pro) |
+| Team Standard | 21,04 €/usuario/mes o 18 € con pago anual | Equipos |
+| Team Premium | 105,23 €/usuario/mes o 90 € con pago anual | Equipos con uso intensivo |
 | Enterprise | 20 $/usuario/mes + uso a precio de API | Grandes organizaciones |
 
 Lo que incluye cada nivel, según Anthropic:
@@ -73,7 +74,6 @@ Claude generará un *artifact* interactivo que puedes usar en el momento.
 ## Limitaciones
 
 - **Límites de uso.** Incluso en Pro, un uso muy intensivo puede agotar la cuota durante unas horas; por eso existe el plan Max.
-- **Facturación en dólares**, con posibles variaciones en el cargo final.
 - **Puede equivocarse** con datos concretos, igual que cualquier modelo de lenguaje: revisa cifras, fechas y citas.
 - **Menos integrado en ofimática** que Gemini (Google Workspace) o Copilot (Microsoft 365), aunque ofrece extensiones y conectores.
 - **Generación de imágenes**: no es su punto fuerte; para eso conviene una herramienta específica como [Midjourney](/herramientas/midjourney/).
@@ -95,7 +95,7 @@ Comparamos todas por tareas en [la mejor IA para productividad](/mejor-ia-para-p
 
 ## Veredicto
 
-Claude es una de las mejores opciones para **escribir y trabajar con documentos**, con un plan gratuito suficiente para empezar. **Pro (20 $/mes, 17 $ con pago anual)** es la elección lógica si lo usas a diario o quieres Claude Code. Max solo tiene sentido si chocas con los límites de Pro de forma habitual. Si necesitas generar imágenes o vives en el ecosistema de Google o Microsoft, quizá te encaje mejor otra herramienta.
+Claude es una de las mejores opciones para **escribir y trabajar con documentos**, con un plan gratuito suficiente para empezar. **Pro (18 €/mes, 15 € con pago anual)** es la elección lógica si lo usas a diario o quieres Claude Code. Max solo tiene sentido si chocas con los límites de Pro de forma habitual. Si necesitas generar imágenes o vives en el ecosistema de Google o Microsoft, quizá te encaje mejor otra herramienta.
 
 ## Preguntas frecuentes
 
@@ -105,7 +105,7 @@ Sí. El plan Free permite chatear, buscar en la web, crear archivos y usar memor
 
 ### ¿Cuánto cuesta Claude Pro?
 
-20 $ al mes con pago mensual o 200 $ al año (17 $/mes) con pago anual, según la página oficial a 6 de octubre de 2026.
+18 € al mes con pago mensual o 180 € al año (15 €/mes) con pago anual, según la página oficial vista desde España el 20 de octubre de 2026. En dólares, el precio es de 20 $ al mes.
 
 ### ¿Claude usa mis conversaciones para entrenar sus modelos?
 
