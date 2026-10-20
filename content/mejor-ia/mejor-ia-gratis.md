@@ -14,6 +14,7 @@ fuentes: https://chatgpt.com/es-ES/pricing/
     https://suno.com/pricing
     https://www.perplexity.ai/pro
     https://cursor.com/pricing
+    https://antigravity.google/pricing
     https://ideogram.ai/pricing
     https://www.canva.com/es_es/precios/
 
@@ -60,7 +61,7 @@ Hemos seleccionado herramientas con un **plan gratuito permanente** (no solo una
 
 ### Para programar
 
-**GitHub Copilot Free** incluye 2.000 sugerencias de código y 50 peticiones de chat al mes, además del modo agente. **Cursor** tiene un plan Hobby gratuito con peticiones limitadas. Estudiantes y docentes verificados pueden acceder gratis a GitHub Copilot con más funciones. Más en [la mejor IA para programar](/mejor-ia-para-programar/).
+**GitHub Copilot Free** incluye 2.000 sugerencias de código y 50 peticiones de chat al mes, además del modo agente. **Cursor** tiene un plan Free con uso limitado, que sustituyó al antiguo plan Hobby el 12 de octubre de 2026, y **Google Antigravity** ofrece un plan gratuito con límites semanales. Estudiantes y docentes verificados pueden acceder gratis a GitHub Copilot con más funciones. Más en [la mejor IA para programar](/mejor-ia-para-programar/).
 
 ### Para traducir y corregir
 
