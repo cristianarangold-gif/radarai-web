@@ -1,6 +1,7 @@
 titulo: Perplexity vs ChatGPT: cuál elegir para buscar en 2026
 descripcion: Perplexity o ChatGPT para buscar e informarte: respuestas con fuentes, investigación, planes y precios, límites y privacidad, cara a cara.
 fecha: 2026-10-07
+actualizado: 2026-10-20
 herramientas: perplexity, chatgpt
 respuesta: Si sobre todo quieres encontrar información actual y saber de dónde sale cada dato, Perplexity está pensado justo para eso. Si buscas un asistente para casi todo (escribir, crear imágenes, analizar archivos, programar) que además investigue, ChatGPT es más completo.
 elige_1: buscas información de actualidad y quieres comprobar cada fuente | contrastas datos para estudiar, escribir o trabajar | quieres elegir qué modelo de IA genera la respuesta (en Pro)
@@ -38,7 +39,7 @@ Aquí está la diferencia que más se nota en el día a día.
 ## Qué incluye el plan gratuito
 
 - **Perplexity gratis**: búsquedas con respuestas que citan sus fuentes, con un uso limitado de las funciones avanzadas. Para el día a día ya es muy útil.
-- **ChatGPT gratis**: chats de texto ilimitados con GPT-5.6 Luna, sujetos a medidas contra abusos, con límites en cargas de archivos, imágenes, voz, investigación avanzada, memoria y Codex.
+- **ChatGPT gratis**: chats de texto ilimitados con GPT-6, sujetos a medidas contra abusos, con límites en cargas de archivos, imágenes, voz, investigación avanzada, memoria y Codex.
 
 Si lo que haces es sobre todo buscar, el gratuito de Perplexity cubre bien esa tarea. Si quieres un poco de todo, el de ChatGPT es más versátil.
 

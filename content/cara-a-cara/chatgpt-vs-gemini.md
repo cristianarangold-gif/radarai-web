@@ -1,6 +1,7 @@
 titulo: ChatGPT vs Gemini 2026: diferencias, precios y cuál elegir
 descripcion: ¿ChatGPT o Gemini? Sus diferencias con datos oficiales: planes y precios en euros, qué incluye gratis cada uno, integración con Google y privacidad.
 fecha: 2026-10-07
+actualizado: 2026-10-20
 herramientas: chatgpt, gemini
 respuesta: Si usas Gmail, Drive y Android, Gemini encaja mejor: su plan Plus cuesta 4,99 €/mes e incluye 400 GB de almacenamiento. Si quieres un asistente independiente de cualquier ecosistema, con proyectos, GPT personalizados y Codex en sus planes de pago, ChatGPT encaja mejor.
 elige_1: quieres un asistente independiente que no dependa de usar Google | te interesan los proyectos, las tareas programadas y los GPT personalizados del plan Plus | prefieres un único chat para escribir, crear imágenes, programar y analizar datos
@@ -32,8 +33,8 @@ ChatGPT, en cambio, centra todo el valor en el asistente. Su plan de entrada, **
 
 Aquí los dos están muy igualados, y ambos son de los gratuitos más completos del mercado.
 
-- **ChatGPT gratis**: chats de texto ilimitados con GPT-5.6 Luna, sujetos a medidas contra abusos, con límites en cargas de archivos, creación de imágenes, voz, investigación avanzada, memoria y Codex.
-- **Gemini gratis**: Gemini 3.6 Flash con acceso variable a Gemini 3.1 Pro, generación y edición de imágenes, Deep Research, Gemini Live (voz, también con la cámara), Canvas, Gems (asistentes personalizados) y acceso limitado a Google Flow.
+- **ChatGPT gratis**: chats de texto ilimitados con GPT-6, sujetos a medidas contra abusos, con límites en cargas de archivos, creación de imágenes, voz, investigación avanzada, memoria y Codex.
+- **Gemini gratis**: su modelo Flash-Lite, generación y edición de imágenes, Deep Research, Gemini Live (voz, también con la cámara), Canvas, Gems (asistentes personalizados) y acceso limitado a Google Flow.
 
 Un matiz: en Gemini, el acceso a los modelos más potentes en el plan gratuito es «variable», es decir, depende de la demanda. En ChatGPT, los límites se notan sobre todo al usar archivos, imágenes o la investigación avanzada.
 

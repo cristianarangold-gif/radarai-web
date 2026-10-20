@@ -1,6 +1,7 @@
 titulo: Gemini de Google: plan gratuito, Google AI Plus, Pro y Ultra explicados
 descripcion: Análisis de Gemini, la IA de Google: plan gratuito, Google AI Plus, Pro y Ultra con precios en euros, funciones, privacidad y alternativas.
 fecha: 2026-10-06
+actualizado: 2026-10-20
 web: https://gemini.google.com/
 plataforma: Web, Android, iOS e integrado en Google Workspace
 precio_desde: 0 €
@@ -25,20 +26,20 @@ Encaja especialmente bien en estos perfiles:
 
 ## Planes y precios en euros
 
-Precios de la página oficial de suscripciones de Google (comprobado el 6 de octubre de 2026):
+Precios de la página oficial de suscripciones de Google (comprobado el 20 de octubre de 2026):
 
 | Plan | Precio | Almacenamiento | Lo más destacado |
 |---|---|---|---|
-| Gratis | 0 € | 15 GB | Gemini 3.6 Flash, acceso variable a 3.1 Pro, Deep Research, Live |
-| Google AI Plus | 4,99 €/mes | 400 GB | Doble de límites, vídeo, Gemini en Gmail y Vids |
-| Google AI Pro | 21,99 €/mes | 5 TB | 4x límites, funciones agénticas, YouTube Premium Lite |
-| Google AI Ultra | 99,99 €/mes o 219,99 €/mes | 20 TB o más | Límites máximos, acceso anticipado a Deep Think |
+| Gratis | 0 € | 15 GB | Modelo Flash-Lite, Deep Research, Live, imágenes |
+| Google AI Plus | 4,99 €/mes | 400 GB | Modelo Flash, doble de límites, vídeo, Gemini en Gmail y Vids |
+| Google AI Pro | 21,99 €/mes | 5 TB | Gemini 4 Argon, 4x límites, funciones agénticas, YouTube Premium Lite |
+| Google AI Ultra | 99,99 €/mes o 219,99 €/mes | 20 TB o más | Acceso total a Gemini 4 Argon, límites máximos, acceso anticipado a Deep Think |
 
 Detalles de cada plan, según Google:
 
-- **Gratis**: acceso a Gemini 3.6 Flash con acceso variable a Gemini 3.1 Pro, generación y edición de imágenes, Deep Research, Gemini Live, Canvas, Gems (asistentes personalizados) y acceso limitado a Google Flow.
-- **Google AI Plus**: duplica los límites de uso, añade generación de vídeo, más puntos de Flow e integra Gemini en Gmail, Vids y otras apps.
-- **Google AI Pro**: cuadruplica los límites del plan gratuito, incluye funciones de búsqueda profunda y agénticas, un uso inicial de Google Antigravity, más resúmenes en Gemini Notebook, 5 TB de almacenamiento y YouTube Premium Lite.
+- **Gratis**: acceso a su modelo Flash-Lite, generación y edición de imágenes, Deep Research, Gemini Live, Canvas, Gems (asistentes personalizados) y acceso limitado a Google Flow.
+- **Google AI Plus**: da acceso al modelo Flash, duplica los límites de uso, añade generación de vídeo, más puntos de Flow e integra Gemini en Gmail, Vids y otras apps.
+- **Google AI Pro**: incluye Gemini 4 Argon, su modelo más avanzado, cuadruplica los límites del plan gratuito, incluye funciones de búsqueda profunda y agénticas, un uso inicial de Google Antigravity, más resúmenes en Gemini Notebook, 5 TB de almacenamiento y YouTube Premium Lite.
 - **Google AI Ultra**: dos modalidades (5x o 20x los límites de Pro), acceso anticipado a Deep Think, YouTube Premium individual y 20 TB o más de almacenamiento.
 
 ## Funciones clave
@@ -97,7 +98,7 @@ Gemini es la opción más lógica para **quien ya vive en Google**. Su plan grat
 
 ### ¿Gemini es gratis?
 
-Sí. El plan gratuito incluye Gemini 3.6 Flash, Deep Research, Gemini Live, Canvas, Gems y generación de imágenes, con límites de uso.
+Sí. El plan gratuito incluye el modelo Flash-Lite, Deep Research, Gemini Live, Canvas, Gems y generación de imágenes, con límites de uso.
 
 ### ¿Qué diferencia hay entre Google AI Plus y Google AI Pro?
 

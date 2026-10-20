@@ -1,6 +1,7 @@
 titulo: NotebookLM vs ChatGPT para estudiar: cuál elegir en 2026
 descripcion: Gemini Notebook (antes NotebookLM) o ChatGPT para estudiar: cómo usan tus apuntes, resúmenes en audio, límites, planes y privacidad, cara a cara.
 fecha: 2026-10-07
+actualizado: 2026-10-20
 herramientas: notebooklm, chatgpt
 respuesta: Para estudiar con tus propios apuntes y temarios, Gemini Notebook (antes NotebookLM) encaja mejor: responde solo con tus fuentes y cita el fragmento exacto. ChatGPT sirve más como profesor particular que explica, pone ejemplos y te examina, aunque mezcla conocimiento general.
 elige_1: estudias a partir de un temario, apuntes o PDF concretos | quieres que cada respuesta cite el fragmento exacto de tus fuentes | te vienen bien los resúmenes en audio o vídeo para repasar
@@ -40,7 +41,7 @@ Gemini Notebook se usa gratis con una cuenta de Google; los planes de pago son l
 | Conversaciones al día | 50 | 200 | 500 |
 | Resúmenes en audio al día | 3 | 6 | 20 |
 
-**ChatGPT gratis** ofrece chats de texto ilimitados con GPT-5.6 Luna, sujetos a medidas contra abusos, pero limita las cargas de archivos, que es justo lo que más se usa al estudiar con apuntes propios.
+**ChatGPT gratis** ofrece chats de texto ilimitados con GPT-6, sujetos a medidas contra abusos, pero limita las cargas de archivos, que es justo lo que más se usa al estudiar con apuntes propios.
 
 ## Qué hace mejor cada uno
 

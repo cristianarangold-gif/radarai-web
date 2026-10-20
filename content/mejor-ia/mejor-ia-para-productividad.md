@@ -1,6 +1,7 @@
 titulo: La mejor IA para productividad en 2026: asistentes comparados
 descripcion: Comparamos ChatGPT, Claude, Gemini, Microsoft Copilot, Perplexity, Notion AI y Zapier para trabajar mejor: precios en euros, puntos fuertes y para quién es cada uno.
 fecha: 2026-10-06
+actualizado: 2026-10-20
 fuentes: https://chatgpt.com/es-ES/pricing/
     https://claude.com/pricing
     https://gemini.google/subscriptions/
@@ -43,7 +44,7 @@ Hemos revisado la documentación y las páginas de precios oficiales (consultada
 
 ### ChatGPT: el más completo
 
-ChatGPT reúne en una sola aplicación casi todo lo que se espera de un asistente: conversación, análisis de archivos, generación de imágenes, investigación avanzada, voz, proyectos y tareas programadas. Su plan gratuito ya permite chatear sin límite de mensajes de texto con GPT-5.6 Luna. **Go (8 €/mes)** amplía límites, y **Plus (23 €/mes)** añade los modelos de razonamiento de la familia GPT-6, la investigación avanzada y ChatGPT Work para tareas de varios pasos. Lee la [ficha de ChatGPT](/herramientas/chatgpt/).
+ChatGPT reúne en una sola aplicación casi todo lo que se espera de un asistente: conversación, análisis de archivos, generación de imágenes, investigación avanzada, voz, proyectos y tareas programadas. Su plan gratuito ya permite chatear sin límite de mensajes de texto con GPT-6. **Go (8 €/mes)** amplía límites, y **Plus (23 €/mes)** añade los modelos de razonamiento de la familia GPT-6, la investigación avanzada y ChatGPT Work para tareas de varios pasos. Lee la [ficha de ChatGPT](/herramientas/chatgpt/).
 
 ### Claude: el mejor para documentos y escritura
 

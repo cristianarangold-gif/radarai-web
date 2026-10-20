@@ -1,6 +1,7 @@
 titulo: ChatGPT vs Claude 2026: diferencias, precios y cuál elegir
 descripcion: ¿ChatGPT o Claude? Comparamos sus planes y precios, qué hace mejor cada uno, sus límites y su privacidad para que elijas el asistente que encaja contigo.
 fecha: 2026-10-07
+actualizado: 2026-10-20
 herramientas: chatgpt, claude
 respuesta: Si quieres una sola herramienta para casi todo, con imágenes, voz y planes en euros desde 8 €/mes, elige ChatGPT. Si lo que más haces es escribir y trabajar con documentos largos, o prefieres que tus chats solo sirvan para entrenar si das permiso, Claude encaja mejor.
 elige_1: quieres un asistente para casi todo, también para crear imágenes y hablar por voz | buscas un plan de pago barato en euros (Go, 8 €/mes) | te interesa la investigación avanzada, con informes y fuentes
@@ -31,7 +32,7 @@ En la parte alta, los dos tienen planes para uso muy intensivo: ChatGPT Pro, des
 
 ## Qué incluye el plan gratuito
 
-**ChatGPT gratis** ofrece chats de texto ilimitados con su modelo GPT-5.6 Luna, sujetos a medidas contra abusos, pero limita las cargas de archivos, la creación de imágenes, el modo de voz, la investigación avanzada, la memoria y el acceso a Codex. Para conversar y redactar a diario es suficiente; en cuanto se usan archivos o imágenes con frecuencia, los límites se notan.
+**ChatGPT gratis** ofrece chats de texto ilimitados con GPT-6, sujetos a medidas contra abusos, pero limita las cargas de archivos, la creación de imágenes, el modo de voz, la investigación avanzada, la memoria y el acceso a Codex. Para conversar y redactar a diario es suficiente; en cuanto se usan archivos o imágenes con frecuencia, los límites se notan.
 
 **Claude Free** incluye chat en web, escritorio y móvil, búsqueda web, creación de archivos, ejecución de código, memoria, conexión con otras aplicaciones y *artifacts*, las piezas interactivas (documentos, tablas o pequeñas aplicaciones) que se generan junto a la conversación. Todo ello con límites de uso.
 

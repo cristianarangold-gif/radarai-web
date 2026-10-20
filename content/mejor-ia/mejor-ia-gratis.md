@@ -34,8 +34,8 @@ Hemos seleccionado herramientas con un **plan gratuito permanente** (no solo una
 
 | Tarea | Herramienta gratuita | Qué incluye gratis | Principal límite |
 |---|---|---|---|
-| Asistente general | ChatGPT | Chat de texto ilimitado con GPT-5.6 Luna | Archivos, imágenes y voz limitados |
-| Asistente general | Gemini | Gemini 3.6 Flash, Deep Research, Live, Canvas | Acceso variable a modelos superiores |
+| Asistente general | ChatGPT | Chat de texto ilimitado con GPT-6 | Archivos, imágenes y voz limitados |
+| Asistente general | Gemini | Modelo Flash-Lite, Deep Research, Live, Canvas | Acceso variable a modelos superiores |
 | Asistente general | Claude | Chat, búsqueda web, archivos, memoria | Límites de uso diarios |
 | Estudiar | Gemini Notebook | 100 cuadernos, 50 fuentes, 3 resúmenes de audio/día | 50 conversaciones al día |
 | Imágenes | Adobe Firefly | Creaciones generativas diarias | Límite diario |
@@ -49,7 +49,7 @@ Hemos seleccionado herramientas con un **plan gratuito permanente** (no solo una
 
 ### Para conversar, escribir y resolver dudas
 
-**ChatGPT** ofrece en su plan gratuito chats de texto ilimitados con el modelo GPT-5.6 Luna, con funciones limitadas de archivos, imágenes, voz e investigación. **Gemini** incluye gratis Deep Research, Gemini Live, Canvas, Gems y generación de imágenes. **Claude** permite chatear, buscar en la web, crear archivos y ejecutar código. Tener cuenta en los tres te permite seguir trabajando cuando agotas el límite de uno. Más en [la mejor IA para productividad](/mejor-ia-para-productividad/).
+**ChatGPT** ofrece en su plan gratuito chats de texto ilimitados con GPT-6, con funciones limitadas de archivos, imágenes, voz e investigación. **Gemini** incluye gratis Deep Research, Gemini Live, Canvas, Gems y generación de imágenes. **Claude** permite chatear, buscar en la web, crear archivos y ejecutar código. Tener cuenta en los tres te permite seguir trabajando cuando agotas el límite de uno. Más en [la mejor IA para productividad](/mejor-ia-para-productividad/).
 
 ### Para estudiar
 
@@ -124,7 +124,7 @@ No. Todas las herramientas gratuitas tienen algún límite de uso, de funciones 
 
 ### ¿Cuál es la IA gratis más potente?
 
-No hay una sola: depende de la tarea. Según sus páginas oficiales a 6 de octubre de 2026, el plan gratuito de **ChatGPT** ofrece chat de texto ilimitado con GPT-5.6 Luna; el de **Gemini** incluye Gemini 3.6 Flash con Deep Research, Gemini Live y Canvas, y el de **Claude** permite buscar en la web, trabajar con archivos y ejecutar código. Los modelos más avanzados de cada empresa suelen reservarse a los planes de pago o tienen un acceso limitado en el gratuito. Si quieres investigar a fondo sin pagar, Gemini incluye Deep Research; para revisar documentos largos, prueba Claude.
+No hay una sola: depende de la tarea. Según sus páginas oficiales a 20 de octubre de 2026, el plan gratuito de **ChatGPT** ofrece chat de texto ilimitado con GPT-6; el de **Gemini** incluye su modelo Flash-Lite con Deep Research, Gemini Live y Canvas, y el de **Claude** permite buscar en la web, trabajar con archivos y ejecutar código. Los modelos más avanzados de cada empresa, como GPT-6 Sol o Gemini 4 Argon, se reservan a los planes de pago o tienen un acceso limitado en el gratuito. Si quieres investigar a fondo sin pagar, Gemini incluye Deep Research; para revisar documentos largos, prueba Claude.
 
 ### ¿Qué IA gratis sirve para crear vídeos?
 

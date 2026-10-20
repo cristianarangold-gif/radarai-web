@@ -1,6 +1,7 @@
 titulo: ChatGPT en España: planes, precios en euros y cuál elegir
 descripcion: Análisis de ChatGPT en 2026: planes Gratis, Go, Plus y Pro con precios en euros, funciones, límites, privacidad y alternativas.
 fecha: 2026-10-06
+actualizado: 2026-10-20
 web: https://chatgpt.com/
 plataforma: Web, iOS, Android, Windows y macOS
 precio_desde: 0 €
@@ -24,7 +25,7 @@ Encaja especialmente bien en estos perfiles:
 
 ## Planes y precios en España
 
-Precios mostrados en la página oficial de precios de ChatGPT para España (comprobado el 6 de octubre de 2026):
+Precios mostrados en la página oficial de precios de ChatGPT para España (comprobado el 20 de octubre de 2026):
 
 | Plan | Precio | Para quién |
 |---|---|---|
@@ -36,7 +37,7 @@ Precios mostrados en la página oficial de precios de ChatGPT para España (comp
 
 Algunos detalles importantes de cada plan, según la propia OpenAI:
 
-- **Gratis** incluye chats de texto ilimitados con el modelo GPT-5.6 Luna (sujetos a medidas contra abusos), pero limita las cargas de archivos, la creación de imágenes, el modo de voz, la investigación avanzada, la memoria y el acceso a Codex.
+- **Gratis** incluye chats de texto ilimitados con GPT-6 (sujetos a medidas contra abusos), pero limita las cargas de archivos, la creación de imágenes, el modo de voz, la investigación avanzada, la memoria y el acceso a Codex.
 - **Go** amplía mensajes con herramientas, cargas, imágenes, voz y memoria. OpenAI advierte de que este plan puede incluir anuncios.
 - **Plus** añade los modelos de razonamiento avanzado de la familia GPT-6, la investigación avanzada, los proyectos, las tareas programadas, los GPT personalizados, un uso ampliado de Codex y ChatGPT Work en escritorio, web y móvil.
 - **Pro** ofrece tres niveles de uso, el razonamiento «Pro» con GPT-6 Astra, sesiones más largas de Codex y ChatGPT Work, un agente siempre disponible llamado Dot y creación de imágenes ilimitada.
@@ -100,11 +101,11 @@ ChatGPT sigue siendo la opción más completa para quien quiere **una sola herra
 
 ### ¿ChatGPT es gratis?
 
-Sí, hay un plan gratuito con chats de texto ilimitados con el modelo GPT-5.6 Luna, aunque con límites en archivos, imágenes, voz e investigación avanzada.
+Sí, hay un plan gratuito con chats de texto ilimitados con GPT-6, aunque con límites en archivos, imágenes, voz e investigación avanzada.
 
 ### ¿Cuánto cuesta ChatGPT Plus en España?
 
-La página oficial muestra 23 € al mes para España (comprobado el 6 de octubre de 2026).
+La página oficial muestra 23 € al mes para España (comprobado el 20 de octubre de 2026).
 
 ### ¿Puedo evitar que ChatGPT use mis conversaciones para entrenar?
 
