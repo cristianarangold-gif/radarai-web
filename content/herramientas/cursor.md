@@ -1,15 +1,18 @@
 titulo: Cursor: el editor de código con agentes de IA, planes y precios
-descripcion: Análisis de Cursor, el editor de código con IA: plan Hobby gratuito, Pro desde 20 $/mes, Teams, agentes, privacidad y alternativas en 2026.
+descripcion: Cursor, el editor de código con agentes de IA, ahora de SpaceX: nuevos planes desde 8 $/mes centrados en Grok, plan gratuito, Teams y alternativas.
 fecha: 2026-10-06
+actualizado: 2026-10-20
 web: https://cursor.com/
 plataforma: Windows, macOS y Linux
 precio_desde: 0 $
-plan_pago: Individual desde 20 $/mes
+plan_pago: Plus desde 8 $/mes (solo modelos Grok)
 ideal_para: Programar con agentes
-veredicto: Una de las mejores opciones para programar con agentes de IA; el plan Individual desde 20 $/mes es el punto de partida profesional.
+veredicto: Un editor muy completo para programar con agentes; desde octubre de 2026 gira en torno a Grok y los modelos de otras empresas se pagan aparte desde Premium (30 $/mes).
 fuentes: https://cursor.com/pricing
+    https://cursor.com/blog/joining-spacex
+    https://web.archive.org/web/20261013001123/https://cursor.com/pricing
 
-Cursor es un **editor de código construido alrededor de la inteligencia artificial**. Está basado en VS Code, por lo que su aspecto y sus extensiones resultan familiares, pero añade autocompletado avanzado, un chat que entiende todo tu proyecto y agentes capaces de planificar y ejecutar cambios en muchos archivos. Se ha convertido en una de las herramientas favoritas de desarrolladores y equipos de producto. En esta ficha repasamos sus planes, lo que ofrece cada uno y cuándo compensa frente a otras opciones.
+Cursor es un **editor de código construido alrededor de la inteligencia artificial**. Está basado en VS Code, por lo que su aspecto y sus extensiones resultan familiares, pero añade autocompletado avanzado, un chat que entiende todo tu proyecto y agentes capaces de planificar y ejecutar cambios en muchos archivos. Se ha convertido en una de las herramientas favoritas de desarrolladores y equipos de producto. Desde el 14 de agosto de 2026 forma parte de **SpaceX**, la empresa que desarrolla Grok, y el 12 de octubre de 2026 cambió por completo sus planes. En esta ficha repasamos sus planes, lo que ofrece cada uno y cuándo compensa frente a otras opciones.
 
 ## Qué es Cursor y para quién es
 
@@ -24,28 +27,31 @@ Encaja especialmente bien en estos perfiles:
 
 ## Planes y precios
 
-Cursor factura en dólares estadounidenses. Datos de su página oficial de precios (comprobado el 6 de octubre de 2026):
+Cursor factura en dólares estadounidenses. Datos de su página oficial de precios (comprobado el 20 de octubre de 2026):
 
-| Plan | Precio | Para quién |
+| Plan | Precio | Qué incluye |
 |---|---|---|
-| Hobby | Gratis, sin tarjeta | Probar Cursor y proyectos personales |
-| Individual (Pro, Pro+, Ultra) | desde 20 $/mes | Desarrolladores individuales |
-| Teams (Standard, Premium) | 40 $/usuario/mes | Equipos |
-| Enterprise | a medida | Grandes organizaciones |
+| Free | 0 $/mes | Uso de IA, del agente y del chat limitado |
+| Plus | 8 $/mes | Cursor y Grok (chat, voz, imágenes); **solo modelos Grok** |
+| Premium | 30 $/mes | 4 veces el uso de Plus, agentes en la nube y modelos de otras empresas, que se pagan aparte |
+| Super | 100 $/mes | 15 veces el uso de Plus y prioridad en horas punta |
+| Ultra | 200 $/mes | 50 veces el uso de Plus y acceso anticipado a novedades |
+| Teams | desde 30 $/usuario/mes | Uso compartido, facturación centralizada, analítica e inicio de sesión único |
+| Enterprise | a medida | Facturación por pedido, SCIM, registros de auditoría y soporte prioritario |
 
-Según la página oficial:
+Lo que cambia respecto a los planes anteriores, según la página oficial:
 
-- **Hobby** incluye un número limitado de peticiones al agente y acceso a Composer, el modelo propio de Cursor.
-- **Individual** amplía los límites del agente, da acceso a los modelos punteros de distintos proveedores, agentes en la nube, servidores MCP, *skills* y *hooks*. Se ofrece en tres niveles (Pro, Pro+ y Ultra) con distintos límites de uso; Bugbot, su revisor automático de código, se factura según el uso.
-- **Teams** añade facturación y administración centralizadas, un catálogo interno de reglas y *skills*, agentes en la nube con contexto compartido, analítica de uso, **modo de privacidad para todo el equipo** e inicio de sesión único (SAML/OIDC).
-- **Enterprise** suma uso compartido, facturación por pedido, gestión de usuarios SCIM, controles de acceso a repositorios, modelos y MCP, registros de auditoría y soporte prioritario.
+- **El uso se renueva cada semana**, no cada mes, de modo que un día de uso intensivo no agota todo el mes.
+- **Plus solo da acceso a los modelos Grok.** Para usar en Cursor modelos de otras empresas, como Claude o GPT, hace falta Premium o superior, y ese uso **se cobra aparte al precio de su API**.
+- **Las suscripciones se venden a través de X**: los planes de pago incluyen también ventajas de la red social X y de la aplicación de Grok.
+- **Hasta el 12 de octubre de 2026**, Cursor tenía un plan gratuito Hobby y planes Individual (Pro, Pro+ y Ultra) desde 20 $/mes. Lo puedes ver en nuestro [historial de precios](/historial-de-precios/).
 
 ## Funciones clave
 
 - **Autocompletado multilínea** que predice la siguiente edición, no solo la siguiente palabra.
 - **Agente**: le describes una tarea y planifica, edita varios archivos y ejecuta comandos hasta completarla.
 - **Agentes en la nube**: tareas que se ejecutan en segundo plano mientras sigues trabajando.
-- **Elección de modelo**, incluidos modelos de varios proveedores y el modelo propio Composer.
+- **Elección de modelo**: los modelos Grok en todos los planes y, desde Premium, modelos de otras empresas pagando su uso aparte.
 - **Reglas y skills**: instrucciones persistentes sobre cómo quieres que se escriba el código de tu proyecto.
 - **Compatibilidad con VS Code**: extensiones, temas y atajos.
 
@@ -72,14 +78,14 @@ Según la página oficial:
 
 ## Limitaciones
 
-- **El plan Hobby es muy limitado** para un uso profesional.
-- **El coste real puede variar** según los modelos que uses y si activas funciones que se cobran por uso.
+- **El plan Free es muy limitado** para un uso profesional, y Plus solo permite modelos Grok.
+- **El coste real puede variar**: los modelos de otras empresas se cobran aparte, según su uso.
 - **Exige revisar**: los agentes pueden introducir errores sutiles o cambios que no pediste.
 - **Requiere cambiar de editor**, algo que no todos los equipos pueden hacer (por ejemplo, quienes dependen de un IDE de JetBrains).
 
 ## Privacidad y uso de tu código
 
-Cursor ofrece un **modo de privacidad**, y en el plan Teams puede imponerse a todo el equipo. Si trabajas con código de clientes o de tu empresa, actívalo y revisa la política de privacidad y las opciones de retención de datos antes de empezar. Nunca incluyas claves de API, contraseñas ni datos personales en los archivos que compartes con el asistente.
+Si trabajas con código de clientes o de tu empresa, actívalo y revisa la política de privacidad y las opciones de retención de datos antes de empezar. Nunca incluyas claves de API, contraseñas ni datos personales en los archivos que compartes con el asistente.
 
 ## Alternativas a Cursor
 
@@ -91,17 +97,21 @@ Las comparamos en [la mejor IA para programar](/mejor-ia-para-programar/).
 
 ## Veredicto
 
-Cursor es una de las mejores opciones para **programar con agentes de IA** de forma intensiva. El plan Hobby sirve para comprobar si te encaja; el plan **Individual desde 20 $/mes** es el punto de partida razonable para un uso profesional. Si prefieres no cambiar de editor o buscas algo más económico, GitHub Copilot Pro es una alternativa sólida.
+Cursor sigue siendo un editor muy completo para **programar con agentes de IA**, pero sus nuevos planes cambian la ecuación. **Plus (8 $/mes)** es barato si te basta con los modelos Grok; si quieres trabajar con modelos de otras empresas, necesitas **Premium (30 $/mes)** y pagar ese uso aparte. Si prefieres no cambiar de editor o quieres elegir libremente el modelo con un precio cerrado, GitHub Copilot Pro (10 $/mes) o Claude Code (incluido en Claude Pro) son alternativas sólidas.
 
 ## Preguntas frecuentes
 
 ### ¿Cursor es gratis?
 
-Tiene un plan Hobby gratuito y sin tarjeta, con peticiones al agente limitadas y acceso a Composer.
+Tiene un plan Free con uso limitado de la IA, del agente y del chat. Desde el 12 de octubre de 2026 sustituye al antiguo plan Hobby.
 
-### ¿Cuánto cuesta Cursor Pro?
+### ¿Cuánto cuesta Cursor?
 
-El plan Individual parte de 20 $ al mes, según la página oficial a 6 de octubre de 2026, con niveles superiores (Pro+ y Ultra) para un uso más intensivo.
+Según su página oficial a 20 de octubre de 2026: Plus cuesta 8 $/mes (solo modelos Grok), Premium 30 $/mes, Super 100 $/mes y Ultra 200 $/mes. Los antiguos planes Pro y Pro+ ya no aparecen.
+
+### ¿Puedo usar Claude o GPT en Cursor?
+
+Sí, pero no en el plan Plus, que solo incluye modelos Grok. Desde Premium puedes usar modelos de otras empresas, y ese uso se cobra aparte al precio de su API.
 
 ### ¿Puedo usar mis extensiones de VS Code en Cursor?
 

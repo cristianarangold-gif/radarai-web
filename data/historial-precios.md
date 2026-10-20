@@ -50,6 +50,13 @@ GitHub Copilot
 Cursor
 2025-06-16 | cursor | condiciones | Pro |  | Pro pasa de 500 peticiones al mes a 20 $ de uso de modelos a precio de API. | https://cursor.com/blog/june-2025-pricing
 2025-06-16 | cursor | nuevo | Ultra | 200 $/mes | Llega Ultra, con 20 veces el uso de Pro. | https://cursor.com/blog/new-tier
+2026-10-12 | cursor | retirado | Hobby | 0 $ | Desaparece el plan gratuito Hobby; lo sustituye un plan Free con uso limitado de la IA, el agente y el chat. | https://web.archive.org/web/20261013001123/https://cursor.com/pricing
+2026-10-12 | cursor | retirado | Individual (Pro, Pro+, Ultra) | desde 20 $/mes | Desaparecen Pro y Pro+, dos meses después de que Cursor pasara a formar parte de SpaceX. | https://web.archive.org/web/20261013001123/https://cursor.com/pricing
+2026-10-12 | cursor | nuevo | Free | 0 $ | Nuevo plan gratuito con uso limitado, en sustitución de Hobby. | https://web.archive.org/web/20261013001123/https://cursor.com/pricing
+2026-10-12 | cursor | nuevo | Plus | 8 $/mes | Nuevo plan de entrada que solo incluye modelos Grok, junto con el chat, la voz y las imágenes de Grok. | https://web.archive.org/web/20261013001123/https://cursor.com/pricing
+2026-10-12 | cursor | nuevo | Premium | 30 $/mes | Cuatro veces el uso de Plus y modelos de otras empresas, cuyo uso se cobra aparte al precio de su API. | https://web.archive.org/web/20261013001123/https://cursor.com/pricing
+2026-10-12 | cursor | nuevo | Super | 100 $/mes | Quince veces el uso de Plus y prioridad en horas punta. | https://web.archive.org/web/20261013001123/https://cursor.com/pricing
+2026-10-12 | cursor | nuevo | Ultra | 200 $/mes | Ultra mantiene el precio dentro de la nueva gama, con 50 veces el uso de Plus. | https://web.archive.org/web/20261013001123/https://cursor.com/pricing
 
 Midjourney
 2023-03-30 | midjourney | retirado | Prueba gratuita |  | Midjourney elimina la prueba gratuita por abusos: usarlo pasa a costar al menos 10 $ al mes. | https://www.engadget.com/midjourney-ends-free-trials-of-its-ai-image-generator-due-to-extraordinary-abuse-153853905.html
