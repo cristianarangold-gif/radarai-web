@@ -33,7 +33,7 @@ Hemos revisado las páginas oficiales de precios y funciones (consultadas el 6 d
 |---|---|---|---|---|
 | Canva IA | Diseño con IA | Plan gratuito | 110 €/año (Pro) | 6 oct. 2026 |
 | ChatGPT | Textos, ideas, imágenes | Plan gratuito | 8 €/mes (Go) | 6 oct. 2026 |
-| Claude | Textos largos y estrategia | Plan gratuito | 20 $/mes (Pro) | 6 oct. 2026 |
+| Claude | Textos largos y estrategia | Plan gratuito | 18 €/mes (Pro) | 20 oct. 2026 |
 | Jasper | Contenido de marca a escala | Prueba de 7 días | 59 $/mes por puesto (anual) | 6 oct. 2026 |
 | HeyGen | Vídeos con avatar | Plan gratuito | 29 $/mes (24 $ anual) | 6 oct. 2026 |
 | Gamma | Presentaciones y webs | Plan gratuito | 8 €/mes (Plus, anual) | 6 oct. 2026 |

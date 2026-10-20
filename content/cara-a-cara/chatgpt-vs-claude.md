@@ -13,21 +13,21 @@ ChatGPT, de OpenAI, y Claude, de Anthropic, son dos asistentes de inteligencia a
 
 ## Precios y planes
 
-Los dos permiten empezar gratis, pero se pagan de forma distinta. **ChatGPT muestra sus precios en euros para España** en su página oficial; **Claude factura en dólares**, así que el cargo final en euros depende del cambio que aplique tu banco.
+Los dos permiten empezar gratis y, desde España, **los dos muestran sus precios en euros** en su página oficial, así que puedes compararlos directamente.
 
 | Plan | ChatGPT | Claude |
 |---|---|---|
-| Gratis | 0 € | 0 $ |
+| Gratis | 0 € | 0 € |
 | Plan de entrada | Go: 8 €/mes | — |
-| Plan principal | Plus: 23 €/mes | Pro: 20 $/mes (17 $/mes con pago anual) |
-| Uso intensivo | Pro: desde 103 €/mes | Max: desde 100 $/mes |
-| Equipos | Business, por usuario (desde 2 usuarios) | Team Standard: 25 $/usuario/mes (20 $ con pago anual) |
+| Plan principal | Plus: 23 €/mes | Pro: 18 €/mes (15 €/mes con pago anual) |
+| Uso intensivo | Pro: desde 103 €/mes | Max: desde 90 €/mes |
+| Equipos | Business, por usuario (desde 2 usuarios) | Team Standard: 21,04 €/usuario/mes (18 € con pago anual) |
 
 Precios de las páginas oficiales, comprobados el 6 de octubre de 2026.
 
-La gran diferencia está en el escalón más bajo. ChatGPT tiene un plan intermedio, **Go**, que por 8 €/mes amplía los mensajes con herramientas, las cargas de archivos, las imágenes, la voz y la memoria; OpenAI advierte de que este plan puede incluir anuncios. Claude no tiene un plan equivalente: del gratuito se pasa directamente a **Pro**. En el plan principal, ChatGPT Plus cuesta 23 € al mes y Claude Pro, 20 $ al mes (17 $ con pago anual); como uno se cobra en euros y el otro en dólares, la diferencia real depende del tipo de cambio.
+La gran diferencia está en el escalón más bajo. ChatGPT tiene un plan intermedio, **Go**, que por 8 €/mes amplía los mensajes con herramientas, las cargas de archivos, las imágenes, la voz y la memoria; OpenAI advierte de que este plan puede incluir anuncios. Claude no tiene un plan equivalente: del gratuito se pasa directamente a **Pro**. En el plan principal, ChatGPT Plus cuesta 23 € al mes y Claude Pro, 18 € al mes (15 € con pago anual): Claude Pro sale algo más barato.
 
-En la parte alta, los dos tienen planes para uso muy intensivo: ChatGPT Pro, desde 103 €/mes, y Claude Max, que multiplica por 5 o por 20 el uso de Pro desde 100 $/mes. Solo compensan a quien usa la IA muchas horas al día.
+En la parte alta, los dos tienen planes para uso muy intensivo: ChatGPT Pro, desde 103 €/mes, y Claude Max, que multiplica por 5 o por 20 el uso de Pro desde 90 €/mes. Solo compensan a quien usa la IA muchas horas al día.
 
 ## Qué incluye el plan gratuito
 
@@ -57,7 +57,7 @@ Los dos tienen memoria entre sesiones y, en sus planes de pago (Plus en ChatGPT 
 
 Ninguno de los dos es infalible: **ambos pueden inventar datos**, fechas, cifras o citas con total seguridad, así que lo importante hay que comprobarlo siempre. Te lo explicamos en el [glosario](/glosario/#alucinacion).
 
-Con ChatGPT, los límites del plan gratuito aparecen pronto si usas archivos, imágenes o investigación avanzada, y el plan Go puede mostrar anuncios. Con Claude, incluso en Pro, un uso muy intensivo puede agotar la cuota durante unas horas (para eso existe Max), la facturación en dólares puede variar el cargo final y está menos integrado en las herramientas de ofimática que Gemini o Copilot, aunque ofrece extensiones y conectores.
+Con ChatGPT, los límites del plan gratuito aparecen pronto si usas archivos, imágenes o investigación avanzada, y el plan Go puede mostrar anuncios. Con Claude, incluso en Pro, un uso muy intensivo puede agotar la cuota durante unas horas (para eso existe Max) y está menos integrado en las herramientas de ofimática que Gemini o Copilot, aunque ofrece extensiones y conectores.
 
 ## Privacidad y uso de tus datos
 
@@ -83,7 +83,7 @@ Claude tiene fama de escribir con un estilo natural y de respetar bien el tono y
 
 ### ¿Cuál es más barato?
 
-Para empezar, los dos son gratis. En el pago, el plan más barato es ChatGPT Go (8 €/mes). En el plan principal, Claude Pro cuesta 20 $/mes (17 $/mes con pago anual) y ChatGPT Plus, 23 €/mes. Precios comprobados el 6 de octubre de 2026.
+Para empezar, los dos son gratis. En el pago, el plan más barato es ChatGPT Go (8 €/mes). En el plan principal, Claude Pro cuesta 18 €/mes (15 €/mes con pago anual) y ChatGPT Plus, 23 €/mes. Precios comprobados el 20 de octubre de 2026.
 
 ### ¿Cuál cuida más la privacidad?
 

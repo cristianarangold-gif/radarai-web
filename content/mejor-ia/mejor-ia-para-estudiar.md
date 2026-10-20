@@ -33,7 +33,7 @@ Hemos revisado las funciones y los límites oficiales de cada herramienta (consu
 | Gemini Notebook | Estudiar con tus apuntes, resúmenes en audio | Sí (50 fuentes por cuaderno) | 4,99 €/mes (Google AI Plus) | 6 oct. 2026 |
 | ChatGPT | Explicaciones y preguntas de repaso | Sí | 8 €/mes (Go) | 6 oct. 2026 |
 | Gemini | Deep Research y Gemini Live | Sí | 4,99 €/mes (AI Plus) | 6 oct. 2026 |
-| Claude | Analizar textos largos y redactar | Sí | 20 $/mes (Pro) | 6 oct. 2026 |
+| Claude | Analizar textos largos y redactar | Sí | 18 €/mes (Pro) | 20 oct. 2026 |
 | Perplexity | Buscar información con fuentes | Sí | 17 US$/mes (Pro, anual) | 6 oct. 2026 |
 | DeepL | Traducir apuntes y artículos | Sí (50.000 caracteres) | 7,49 €/mes (Pro, anual) | 6 oct. 2026 |
 

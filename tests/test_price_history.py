@@ -245,12 +245,12 @@ def test_build_requires_data_for_page(tmp_path):
 def test_build_rejects_snapshot_out_of_sync(tmp_path):
     import shutil
     from scripts.build import build
-    real = ROOT / 'data' / 'tomas-precios' / '2026-10-06.json'
+    real = sorted((ROOT / 'data' / 'tomas-precios').glob('*.json'))[-1]  # solo se valida la última toma
     data = json.loads(real.read_text(encoding='utf-8'))
     data['herramientas']['chatgpt']['planes']['Go'] = '7 €/mes'
     work = tmp_path / 'repo'
     shutil.copytree(ROOT, work, ignore=shutil.ignore_patterns('.git', '.venv', '_site', '__pycache__', 'node_modules'))
-    (work / 'data' / 'tomas-precios' / '2026-10-06.json').write_text(json.dumps(data), encoding='utf-8')
+    (work / 'data' / 'tomas-precios' / real.name).write_text(json.dumps(data), encoding='utf-8')
     with pytest.raises(ValueError, match=r'«chatgpt» Go: el precio «7 €» no aparece en la ficha'):
         build(work, tmp_path / '_site')
 
@@ -341,8 +341,8 @@ def test_entry_points_and_search(site):
     box = ficha.split('class="tool-duels tool-prices"')[1].split('</nav>')[0]
     assert 'Historial de precios' in box and 'href="/historial-de-precios/#precios-chatgpt"' in box
     assert 'Ver todos los cambios →' in box and box.count('<li') == 1 and '26 de agosto de 2026' in box
-    suno = (site / 'herramientas' / 'suno' / 'index.html').read_text()
-    assert 'Sin cambios de precio verificables desde enero de 2023' in suno.split('class="tool-duels tool-prices"')[1]
+    deepl = (site / 'herramientas' / 'deepl-write' / 'index.html').read_text()
+    assert 'Sin cambios de precio verificables desde enero de 2023' in deepl.split('class="tool-duels tool-prices"')[1]
     footer = (site / 'index.html').read_text().split('<footer')[1]
     assert '<a href="/historial-de-precios/">Historial de precios</a>' in footer
     assert 'href="/historial-de-precios/"' in (site / 'empieza-aqui' / 'index.html').read_text()

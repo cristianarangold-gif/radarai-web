@@ -31,7 +31,7 @@ Para esta comparativa hemos revisado la documentación y las páginas de precios
 
 | Herramienta | Destaca en | Plan gratuito | Precio desde | Comprobado |
 |---|---|---|---|---|
-| Claude | Textos largos, tono y estructura | Sí | 20 $/mes (17 $ anual) | 6 oct. 2026 |
+| Claude | Textos largos, tono y estructura | Sí | 18 €/mes (15 € anual) | 20 oct. 2026 |
 | ChatGPT | Versatilidad y multimedia | Sí | 8 €/mes (Go) | 6 oct. 2026 |
 | Gemini | Redactar dentro de Gmail y Docs | Sí | 4,99 €/mes (AI Plus) | 6 oct. 2026 |
 | DeepL Write / Translator | Corrección y traducción | Sí | 6,99 €/mes (Write Pro, anual) | 6 oct. 2026 |
@@ -44,7 +44,7 @@ Para esta comparativa hemos revisado la documentación y las páginas de precios
 
 Claude, de Anthropic, se ha ganado la fama de escribir con un estilo natural y ordenado. Es especialmente bueno cuando le das instrucciones detalladas («tono cercano, sin tópicos, máximo 200 palabras, termina con una pregunta») o cuando le entregas un documento extenso para que lo resuma, lo reestructure o lo adapte a otro público. Sus **proyectos** permiten guardar instrucciones y textos de referencia, por ejemplo, tu guía de estilo, para no repetirlas en cada conversación.
 
-El plan gratuito es suficiente para escribir a diario con moderación, y **Pro cuesta 20 $ al mes** (17 $ con pago anual). Facturan en dólares. Lee nuestra [ficha completa de Claude](/herramientas/claude/).
+El plan gratuito es suficiente para escribir a diario con moderación, y **Pro cuesta 18 € al mes** (15 € con pago anual), según su web vista desde España. Lee nuestra [ficha completa de Claude](/herramientas/claude/).
 
 ### ChatGPT: la opción más versátil
 

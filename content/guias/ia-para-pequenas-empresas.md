@@ -47,7 +47,7 @@ Precios según las páginas oficiales consultadas el 6 de octubre de 2026:
 
 | Necesidad | Opción gratuita | Opción de pago recomendada |
 |---|---|---|
-| Asistente general | ChatGPT, Gemini o Claude gratis | ChatGPT Plus (23 €/mes) o Claude Pro (20 $/mes) |
+| Asistente general | ChatGPT, Gemini o Claude gratis | ChatGPT Plus (23 €/mes) o Claude Pro (18 €/mes) |
 | Correo y documentos de Google | Gemini gratis | Google AI Plus (4,99 €/mes) |
 | Correo y documentos de Office | Copilot gratuito (como chat, fuera de Office) | Microsoft 365 Personal (99 €/año) o planes de empresa |
 | Diseño y redes | Canva Gratis | Canva Pro (110 €/año) |

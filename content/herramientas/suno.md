@@ -1,11 +1,11 @@
 titulo: Suno: crear canciones con IA, planes y derechos de uso
 descripcion: Análisis de Suno, la IA para crear canciones: planes Free, Pro y Premier, créditos, descargas, derechos comerciales, ejemplos y alternativas en 2026.
 fecha: 2026-10-06
-actualizado: 2026-10-08
+actualizado: 2026-10-20
 web: https://suno.com/
 plataforma: Web, iOS y Android
-precio_desde: 0 $
-plan_pago: Pro 10 $/mes
+precio_desde: 0 €
+plan_pago: Pro 9 €/mes
 ideal_para: Crear canciones
 veredicto: La forma más sencilla de convertir una idea en una canción; Pro incluye derechos comerciales y 20 descargas al mes.
 fuentes: https://suno.com/pricing
@@ -25,13 +25,13 @@ Encaja especialmente bien en estos perfiles:
 
 ## Planes y precios
 
-Suno factura en dólares estadounidenses. Datos de su página oficial de precios (comprobado el 8 de octubre de 2026):
+Desde España, la página oficial de Suno muestra los precios en euros. Precios comprobados el 20 de octubre de 2026; créditos y descargas, el 8 de octubre de 2026:
 
 | Plan | Mensual | Con pago anual | Créditos | Descargas | Uso comercial |
 |---|---|---|---|---|---|
-| Free | 0 $ | — | 50 al día | No | No |
-| Pro | 10 $ | 8 $/mes | 2.500 al mes | 20 canciones/mes | Sí |
-| Premier | 30 $ | 24 $/mes | 10.000 al mes | 60 canciones/mes | Sí |
+| Free | 0 € | — | 50 al día | No | No |
+| Pro | 9 € | 7,20 €/mes | 2.500 al mes | 20 canciones/mes | Sí |
+| Premier | 28 € | 22 €/mes | 10.000 al mes | 60 canciones/mes | Sí |
 
 Otros detalles de la página oficial:
 
@@ -96,7 +96,7 @@ Las comparamos en [la mejor IA para crear música](/mejor-ia-para-crear-musica/)
 
 ## Veredicto
 
-Suno es probablemente la forma más sencilla de **convertir una idea en una canción completa**. El plan gratuito sirve para experimentar, pero no permite descargar ni usar las canciones. **Pro (10 $/mes, u 8 $ con pago anual)** es la opción lógica para creadores de contenido y pequeños negocios, porque incluye derechos comerciales y 20 descargas al mes; **Premier** solo compensa si produces música a diario.
+Suno es probablemente la forma más sencilla de **convertir una idea en una canción completa**. El plan gratuito sirve para experimentar, pero no permite descargar ni usar las canciones. **Pro (9 €/mes, o 7,20 € con pago anual)** es la opción lógica para creadores de contenido y pequeños negocios, porque incluye derechos comerciales y 20 descargas al mes; **Premier** solo compensa si produces música a diario.
 
 ## Preguntas frecuentes
 
@@ -110,7 +110,7 @@ Según Suno, el uso comercial requiere un plan de pago (Pro o Premier). Revisa t
 
 ### ¿Cuánto cuesta Suno Pro?
 
-10 $ al mes u 8 $ al mes con pago anual (comprobado el 8 de octubre de 2026).
+9 € al mes o 7,20 € al mes con pago anual, según su web vista desde España el 20 de octubre de 2026. En dólares, 10 $ al mes.
 
 ### ¿Puedo usar mi propia letra en Suno?
 

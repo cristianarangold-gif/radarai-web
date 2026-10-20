@@ -32,7 +32,7 @@ Hemos revisado la documentación y las páginas de precios oficiales (consultada
 | Herramienta | Ideal para | Plan gratuito | Precio desde | Comprobado |
 |---|---|---|---|---|
 | ChatGPT | Uso general completo | Sí | 8 €/mes (Go) · 23 € (Plus) | 6 oct. 2026 |
-| Claude | Documentos y textos largos | Sí | 20 $/mes (Pro) | 6 oct. 2026 |
+| Claude | Documentos y textos largos | Sí | 18 €/mes (Pro) | 20 oct. 2026 |
 | Gemini | Ecosistema Google | Sí | 4,99 €/mes (AI Plus) | 6 oct. 2026 |
 | Microsoft Copilot | Word, Excel, Outlook | Sí (limitado) | 10 €/mes o 99 €/año (M365 Personal) | 6 oct. 2026 |
 | Perplexity | Investigar con fuentes | Sí | 17 US$/mes (Pro, anual) | 6 oct. 2026 |
@@ -47,7 +47,7 @@ ChatGPT reúne en una sola aplicación casi todo lo que se espera de un asistent
 
 ### Claude: el mejor para documentos y escritura
 
-Claude brilla cuando trabajas con textos largos: contratos, informes, actas, propuestas. Sus *artifacts* generan documentos, tablas o pequeñas aplicaciones que puedes editar al momento, y los proyectos guardan el contexto de cada cliente o tema. **Pro cuesta 20 $/mes (17 $ con pago anual)**. Lee la [ficha de Claude](/herramientas/claude/).
+Claude brilla cuando trabajas con textos largos: contratos, informes, actas, propuestas. Sus *artifacts* generan documentos, tablas o pequeñas aplicaciones que puedes editar al momento, y los proyectos guardan el contexto de cada cliente o tema. **Pro cuesta 18 €/mes (15 € con pago anual)**. Lee la [ficha de Claude](/herramientas/claude/).
 
 ### Gemini: la mejor relación calidad-precio si usas Google
 
