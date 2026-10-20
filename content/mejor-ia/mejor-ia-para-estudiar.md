@@ -1,6 +1,7 @@
 titulo: La mejor IA para estudiar en 2026: comparativa y consejos
 descripcion: Comparamos Gemini Notebook (NotebookLM), ChatGPT, Gemini, Claude, Perplexity y DeepL para estudiar: qué hace cada una, precios, límites y cómo usarlas sin plagiar.
 fecha: 2026-10-06
+actualizado: 2026-10-20
 fuentes: https://support.google.com/notebooklm/answer/16213268?hl=es
     https://chatgpt.com/es-ES/pricing/
     https://gemini.google/subscriptions/
@@ -47,7 +48,7 @@ Además, genera **guías de estudio, preguntas frecuentes y resúmenes en audio 
 
 ### ChatGPT: tu profesor particular disponible a cualquier hora
 
-ChatGPT es muy útil para que te expliquen un concepto de varias maneras hasta entenderlo, para que te pongan ejercicios o para que corrijan tus respuestas. Su página de precios incluye un **modo estudio** entre sus funciones. El plan gratuito ofrece chats de texto ilimitados con GPT-5.6 Luna; los planes Go (8 €/mes) y Plus (23 €/mes) amplían archivos, voz e investigación. Más en la [ficha de ChatGPT](/herramientas/chatgpt/).
+ChatGPT es muy útil para que te expliquen un concepto de varias maneras hasta entenderlo, para que te pongan ejercicios o para que corrijan tus respuestas. Su página de precios incluye un **modo estudio** entre sus funciones. El plan gratuito ofrece chats de texto ilimitados con GPT-6; los planes Go (8 €/mes) y Plus (23 €/mes) amplían archivos, voz e investigación. Más en la [ficha de ChatGPT](/herramientas/chatgpt/).
 
 ### Gemini: investigar y practicar idiomas
 

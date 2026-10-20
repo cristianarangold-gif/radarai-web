@@ -1,6 +1,7 @@
 titulo: ChatGPT vs Microsoft Copilot: cuál elegir en 2026
 descripcion: ChatGPT o Microsoft Copilot: planes y precios en euros, qué incluye Microsoft 365, funciones en Word, Excel y Outlook, y privacidad, cara a cara.
 fecha: 2026-10-07
+actualizado: 2026-10-20
 herramientas: chatgpt, copilot
 respuesta: Si ya pagas Microsoft 365 y trabajas con Word, Excel y Outlook, Copilot es prácticamente un extra y te ahorra una suscripción. Si no usas Office o quieres el asistente independiente más completo, ChatGPT ofrece más por su precio.
 elige_1: no usas Office o quieres un asistente independiente de cualquier ecosistema | te interesa la investigación avanzada, los proyectos y los GPT personalizados | buscas un plan barato centrado solo en la IA (Go, 8 €/mes)
@@ -28,7 +29,7 @@ Un matiz importante: en **Microsoft 365 Familia** (13 €/mes o 129 €/año), q
 
 ## Qué incluye la versión gratuita
 
-- **ChatGPT gratis**: chats de texto ilimitados con GPT-5.6 Luna, sujetos a medidas contra abusos, con límites en cargas de archivos, imágenes, voz, investigación avanzada, memoria y Codex.
+- **ChatGPT gratis**: chats de texto ilimitados con GPT-6, sujetos a medidas contra abusos, con límites en cargas de archivos, imágenes, voz, investigación avanzada, memoria y Codex.
 - **Copilot gratis**: chatbot en la web, en Windows y en el móvil, con búsqueda web y generación de imágenes, en una versión limitada y **sujeta a la capacidad disponible** en cada momento.
 
 Para usar Copilot dentro de Word, Excel u Outlook necesitas una suscripción de Microsoft 365: la versión gratuita no llega a los documentos.

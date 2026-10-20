@@ -1,6 +1,7 @@
 titulo: La mejor IA para escribir en 2026: comparativa con precios
 descripcion: Comparamos Claude, ChatGPT, Gemini, DeepL Write y Grammarly para redactar, corregir y traducir textos: precios en euros, puntos fuertes y para quién es cada una.
 fecha: 2026-10-06
+actualizado: 2026-10-20
 fuentes: https://claude.com/pricing
     https://chatgpt.com/es-ES/pricing/
     https://gemini.google/subscriptions/
@@ -48,7 +49,7 @@ El plan gratuito es suficiente para escribir a diario con moderación, y **Pro c
 
 ### ChatGPT: la opción más versátil
 
-ChatGPT redacta bien en español y destaca por todo lo que hace alrededor del texto: puede buscar información, analizar un documento, crear una imagen para acompañar tu artículo o leer tu texto en voz alta. Para escribir, su plan gratuito ya incluye chats de texto ilimitados con GPT-5.6 Luna. En España, **Go cuesta 8 €/mes** y **Plus, 23 €/mes**, que añade modelos de razonamiento más avanzados y proyectos.
+ChatGPT redacta bien en español y destaca por todo lo que hace alrededor del texto: puede buscar información, analizar un documento, crear una imagen para acompañar tu artículo o leer tu texto en voz alta. Para escribir, su plan gratuito ya incluye chats de texto ilimitados con GPT-6. En España, **Go cuesta 8 €/mes** y **Plus, 23 €/mes**, que añade modelos de razonamiento más avanzados y proyectos.
 
 Su punto débil para escribir es cierta tendencia a un estilo reconocible, con estructuras y expresiones repetitivas, que conviene corregir pidiéndole explícitamente otro tono. Más detalles en la [ficha de ChatGPT](/herramientas/chatgpt/).
 
