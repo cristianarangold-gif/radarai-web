@@ -1,5 +1,5 @@
-titulo: La mejor IA para crear vídeo en 2026: comparativa con precios
-descripcion: Comparamos Runway, HeyGen, Synthesia, Gemini, ElevenLabs, Midjourney y Canva para generar y editar vídeo con IA: precios, límites, marca de agua y usos.
+titulo: Mejor IA para crear vídeos (2026): comparativa y precios
+descripcion: ¿Cuál es la mejor IA para crear vídeos? Comparamos Runway, HeyGen, Synthesia, Gemini, ElevenLabs, Midjourney y Canva: precios, límites, marca de agua y usos.
 fecha: 2026-10-06
 fuentes: https://runway.com/pricing
     https://www.heygen.com/pricing

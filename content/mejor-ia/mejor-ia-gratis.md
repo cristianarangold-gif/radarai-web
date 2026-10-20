@@ -1,7 +1,7 @@
-titulo: La mejor IA gratis en 2026: qué puedes hacer sin pagar
-descripcion: Las mejores herramientas de inteligencia artificial gratuitas en 2026 por tarea (chat, estudio, imágenes, vídeo, voz, programación y traducción), con sus límites reales.
+titulo: Mejor IA gratis (2026): las IA gratuitas y sus límites
+descripcion: ¿Cuál es la mejor IA gratis? Las IA gratuitas de 2026 por tarea (chat, imágenes, estudio, programación), con sus límites reales y cuáles van bien en español.
 fecha: 2026-10-06
-actualizado: 2026-10-08
+actualizado: 2026-10-20
 fuentes: https://chatgpt.com/es-ES/pricing/
     https://claude.com/pricing
     https://gemini.google/subscriptions/
@@ -120,6 +120,14 @@ ChatGPT, Gemini y Claude ofrecen planes gratuitos con muy buena calidad en espa�
 ### ¿Hay alguna IA totalmente gratis y sin límites?
 
 No. Todas las herramientas gratuitas tienen algún límite de uso, de funciones o de derechos comerciales.
+
+### ¿Cuál es la IA gratis más potente?
+
+No hay una sola: depende de la tarea. Según sus páginas oficiales a 6 de octubre de 2026, el plan gratuito de **ChatGPT** ofrece chat de texto ilimitado con GPT-5.6 Luna; el de **Gemini** incluye Gemini 3.6 Flash con Deep Research, Gemini Live y Canvas, y el de **Claude** permite buscar en la web, trabajar con archivos y ejecutar código. Los modelos más avanzados de cada empresa suelen reservarse a los planes de pago o tienen un acceso limitado en el gratuito. Si quieres investigar a fondo sin pagar, Gemini incluye Deep Research; para revisar documentos largos, prueba Claude.
+
+### ¿Qué IA gratis sirve para crear vídeos?
+
+**Runway** regala 125 créditos de vídeo una sola vez, suficientes para probarlo, pero no para un uso continuado. En vídeo, casi todas las herramientas exigen un plan de pago para trabajar con regularidad y los planes gratuitos suelen añadir marca de agua. Comparamos las opciones y sus precios en [la mejor IA para crear vídeos](/mejor-ia-para-video/).
 
 ### ¿Puedo usar comercialmente lo que creo con IA gratis?
 
