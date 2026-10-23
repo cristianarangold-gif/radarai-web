@@ -1,4 +1,4 @@
-titulo: OpenAI lanza la Decisions API: respuestas tipadas y 10 veces más rápidas que la Responses API
+titulo: OpenAI lanza la Decisions API: respuestas tipadas y hasta 10 veces más rápidas, según la compañía
 descripcion: La Decisions API ya es de disponibilidad general: clasifica, puntúa y enruta texto, imágenes y JSON con gpt-6-luna a 0,10 $ por millón de tokens de entrada.
 fecha: 2026-10-23
 empresa: openai
