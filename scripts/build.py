@@ -29,6 +29,7 @@ from radar.models import Page, Redirect  # noqa: E402
 from radar.redirects import load_redirects, output_paths, render_redirect  # noqa: E402
 from radar.render import make_env, render_page  # noqa: E402
 from radar.search import build_index, index_json  # noqa: E402
+from radar.availability import availability_context, parse_availability, validate_availability  # noqa: E402
 from radar.glossary import defined_term_set, glossary_context, parse_glossary, validate_glossary  # noqa: E402
 from radar.start import load_start, validate_start  # noqa: E402
 from radar.seo import SITE, rss_xml, sitemap_xml  # noqa: E402
@@ -154,6 +155,15 @@ def build(root: Path, out: Path) -> None:
         titles.update({url: title for url, _, title, _ in LISTINGS})
         base_ctx['glossary'] = glossary_context(terms, titles)
         base_ctx['glossary_jsonld'] = defined_term_set(terms)
+    availability_file = root / 'data' / 'disponibilidad.md'
+    if '/funciona-en-espana/' in by_url and not availability_file.exists():
+        raise ValueError('content/paginas/funciona-en-espana.md necesita data/disponibilidad.md')
+    if availability_file.exists():
+        features = parse_availability(availability_file.read_text(encoding='utf-8'))
+        validate_availability(features, fichas_ok, site_urls, date.today())
+        base_ctx['availability'] = availability_context(features, date.today())
+        for row in base_ctx['availability']['stale']:
+            print(f'Aviso: disponibilidad pendiente de revisar: {row.title} ({row.comprobado})')
     start_file = root / 'data' / 'empieza.json'
     if '/empieza-aqui/' in by_url and not start_file.exists():
         raise ValueError('content/paginas/empieza-aqui.md necesita data/empieza.json')
@@ -167,7 +177,7 @@ def build(root: Path, out: Path) -> None:
     w = Writer(out)
     search_json = index_json(build_index(pages, tools, brands, base_ctx.get('glossary', {}).get('terms'),
                                           [p for g in base_ctx.get('library', {}).get('groups', []) for p in g['prompts']],
-                                          base_ctx.get('price_history', {}).get('tools')))
+                                          base_ctx.get('price_history', {}).get('tools'), base_ctx.get('availability')))
     base_ctx['search_index_url'] = '/search-index.json?v=' + hashlib.sha256(search_json.encode('utf-8')).hexdigest()[:10]
     w.write('search-index.json', search_json, 'índice de búsqueda')
 

@@ -41,6 +41,7 @@ Eres el redactor de noticias de Radar IA (https://radarai.es). Trabajas en el re
      - citas de más de una frase;
      - escribir «hemos probado» o equivalentes.
    - **Cifras y benchmarks:** indica siempre que proceden del fabricante.
+   - **Disponibilidad:** si la noticia confirma con fuente oficial que una función llega, se limita o no está en EE. UU., la UE o España, actualiza o añade su bloque en `data/disponibilidad.md`, con la fecha de hoy y las reglas de la guía editorial (regla 13), y dilo en el cuerpo del PR. Si no hay confirmación oficial, no lo toques. Enlaza la fila desde la noticia con `/funciona-en-espana/#id`.
 6. **Valida:**
    1. `pip install -r requirements-dev.txt`
    2. `pytest -q`

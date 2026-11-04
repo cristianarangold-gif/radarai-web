@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% macro state(value, region) %}{% set info = availability.estados[value] %}<td data-l="{{ region }}"><span class="avail-st {{ info[1] }}">{{ info[0] }}</span></td>{% endmacro %}
+{% block main %}
+<article class="wrap article availability">
+  <header class="article-head">
+    <p class="eyebrow">Disponibilidad</p>
+    <h1>¿Funciona <em>en España</em>?</h1>
+    <p class="lede">{{ page.description }}</p>
+    <p class="price-stamp">Última comprobación: {{ availability.latest }} · {{ availability.count }} funciones</p>
+  </header>
+
+  <form class="avail-controls" role="search" aria-label="Buscar y filtrar funciones" hidden>
+    <input class="avail-search" type="search" placeholder="Busca una función o herramienta…" aria-label="Buscar función o herramienta" data-avail-search>
+    <div class="avail-filters" role="group" aria-label="Filtrar por estado en España">
+      <button class="avail-filter" type="button" aria-pressed="true" data-avail-filter="todas">Todas</button>
+      <button class="avail-filter" type="button" aria-pressed="false" data-avail-filter="no">No disponibles</button>
+      <button class="avail-filter" type="button" aria-pressed="false" data-avail-filter="parcial">Parciales</button>
+      <button class="avail-filter" type="button" aria-pressed="false" data-avail-filter="sin_confirmar">Sin confirmar</button>
+      <button class="avail-filter" type="button" aria-pressed="false" data-avail-filter="si">Disponibles</button>
+    </div>
+  </form>
+  <p class="avail-count" data-avail-count aria-live="polite">{{ availability.count }} funciones</p>
+
+  <table class="avail-table">
+    <caption class="sr-only">Estado de cada función de IA en EE. UU., la UE y España, con fecha de comprobación y fuente</caption>
+    <thead><tr><th scope="col">Función</th><th scope="col">EE. UU.</th><th scope="col">UE</th><th scope="col">España</th><th scope="col">Comprobado</th></tr></thead>
+    <tbody>
+      {% for r in availability.rows %}
+      <tr id="{{ r.id }}" data-es="{{ r.es }}">
+        <th scope="row" class="avail-name"><strong>{% if r.ficha %}<a href="/herramientas/{{ r.ficha }}/">{{ r.title }}</a>{% else %}{{ r.title }}{% endif %}</strong>
+          <span class="avail-company">{{ r.empresa_nombre }}</span>
+          {% if r.nota %}<span class="avail-note">{{ r.nota }}</span>{% endif %}
+          {% if r.noticia %}<a class="avail-news" href="{{ r.noticia }}">Leer la noticia →</a>{% endif %}</th>
+        {{ state(r.eeuu, 'EE. UU.') }}{{ state(r.ue, 'UE') }}{{ state(r.es, 'España') }}
+        <td data-l="Comprobado" class="avail-checked"><time datetime="{{ r.comprobado }}">{{ r.fecha }}</time>
+          {% if r.stale %}<span class="avail-stale">Pendiente de revisar</span>{% endif %}
+          <span class="avail-sources">{% for label, url in r.links %}<a href="{{ url }}" rel="nofollow noopener">{{ label }}</a>{% if not loop.last %} · {% endif %}{% endfor %}</span></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <p class="avail-empty" data-avail-empty hidden>No hay funciones que coincidan. Prueba con otra palabra o quita el filtro.</p>
+
+  <div class="prose avail-text">{{ page.body_html | safe }}</div>
+</article>
+{% endblock %}
+{% block scripts %}<script src="{{ asset('js/availability.js') }}" defer></script>{% endblock %}
