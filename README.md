@@ -55,6 +55,7 @@ La web se publica con `.github/workflows/deploy.yml` (GitHub Actions) en cada pu
 
 1. **Cada mañana (06:17, hora de Madrid)** el workflow `Noticias candidatas` lee las fuentes de `data/news_sources.txt` (las generales, marcadas con `filtrar`, solo aportan titulares sobre IA; máximo 2 por fuente) y abre una issue con la etiqueta `noticias` y las novedades de las últimas 26 horas.
 2. **A las 08:30** una rutina programada de Claude sigue `docs/rutina-noticias.md`: elige 1–2 candidatas, lee la fuente original, redacta la noticia, abre un **pull request** y te avisa al móvil con el enlace. Si la issue del día aún no existe (GitHub retrasa a veces sus tareas programadas), la rutina ejecuta el recolector y la crea ella misma.
+   Si la noticia confirma un cambio de disponibilidad, el PR actualiza también `data/disponibilidad.md` («¿Funciona en España?»).
 3. **Revisión del titular** (nada se publica sin ella):
    - lee el PR en GitHub («Files changed»);
    - edita lo que quieras desde la web de GitHub;

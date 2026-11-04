@@ -261,3 +261,43 @@ def test_stale_badge_rendered(tmp_path):
     html = (tmp_path / '_site' / 'funciona-en-espana' / 'index.html').read_text(encoding='utf-8')
     assert 'Pendiente de revisar' in html.split('id="claude"')[1].split('</tr>')[0]
     assert 'Pendiente de revisar' not in html.split('id="chatgpt"')[1].split('</tr>')[0]
+
+
+def test_home_links_page(site):
+    assert 'href="/funciona-en-espana/"' in (site / 'index.html').read_text(encoding='utf-8')
+
+
+def test_start_links_page(site):
+    assert 'href="/funciona-en-espana/"' in (site / 'empieza-aqui' / 'index.html').read_text(encoding='utf-8')
+
+
+def test_box_in_ficha_with_features(site):
+    html = (site / 'herramientas' / 'gemini' / 'index.html').read_text(encoding='utf-8')
+    box = html.split('class="tool-duels tool-avail"')[1].split('</nav>')[0]
+    assert 'Disponibilidad en España' in box and box.count('<li') == 3
+    assert '✕ No disponible' in box and 'href="/funciona-en-espana/#' in box
+    assert 'href="/funciona-en-espana/">' in box
+
+
+def test_box_absent_without_features(site):
+    assert 'tool-avail' not in (site / 'herramientas' / 'suno' / 'index.html').read_text(encoding='utf-8')
+
+
+def test_search_index_has_features(site):
+    import json
+    idx = json.loads((site / 'search-index.json').read_text(encoding='utf-8'))
+    entries = [e for e in idx if e['k'] == 'Disponibilidad']
+    assert len(entries) == len(_features())
+    siri = [e for e in entries if e['u'] == '/funciona-en-espana/#siri-ai'][0]
+    assert siri['t'] == 'Siri AI' and siri['d'].startswith('España: ✕ No disponible')
+    assert "'Disponibilidad'" in (ROOT / 'static' / 'js' / 'search.js').read_text(encoding='utf-8')
+
+
+def test_nav_unchanged():
+    from radar.render import NAV
+    assert '/funciona-en-espana/' not in [url for _, url in NAV]
+
+
+def test_routine_and_guide_document_it():
+    for doc in ('docs/rutina-noticias.md', 'content/GUIA_EDITORIAL.md', 'README.md'):
+        assert 'data/disponibilidad.md' in (ROOT / doc).read_text(encoding='utf-8'), doc

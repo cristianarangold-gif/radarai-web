@@ -62,7 +62,7 @@ def _page_entry(p: Page, tools: Dict[str, Tool], brands: Dict[str, Brand], cats:
 
 def build_index(pages: List[Page], tools: Dict[str, Tool], brands: Dict[str, Brand],
                 glossary: Optional[list] = None, prompts: Optional[list] = None,
-                price_tools: Optional[list] = None) -> List[dict]:
+                price_tools: Optional[list] = None, availability: Optional[dict] = None) -> List[dict]:
     cats = dict(CATEGORIES)
     entries = [_page_entry(p, tools, brands, cats) for p in pages
                if p.kind in INDEX_KINDS and p.indexable and p.url not in EXCLUDED_URLS]
@@ -85,6 +85,11 @@ def build_index(pages: List[Page], tools: Dict[str, Tool], brands: Dict[str, Bra
                         'x': _keywords([t['name'], 'precio', 'subida', 'bajada'] + [plan for plan, _ in t['planes']]
                                        + [f'{c["label"]} {c["plan"]} {c["text"]}' for c in t['changes']]),
                         'c': '#b5381a', 'm': '€'})
+    for f in (availability or {}).get('rows', []):
+        label = availability['estados'][f.es][0]
+        entries.append({'t': f.title, 'u': f'/funciona-en-espana/#{f.id}', 'k': 'Disponibilidad',
+                        'd': _short(f'España: {label}. {f.nota}'.strip()),
+                        'x': _keywords([f.empresa_nombre, 'España', 'disponible', 'Unión Europea']), 'c': '#135c33', 'm': '?'})
     for term in glossary or []:
         entries.append({'t': term.term, 'u': f'/glosario/#{term.slug}', 'k': 'Glosario', 'd': _short(term.text),
                         'x': _keywords(list(term.alias) + [term.tema_label]), 'c': '#151515', 'm': 'G'})

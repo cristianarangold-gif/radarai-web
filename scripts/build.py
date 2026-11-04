@@ -177,7 +177,7 @@ def build(root: Path, out: Path) -> None:
     w = Writer(out)
     search_json = index_json(build_index(pages, tools, brands, base_ctx.get('glossary', {}).get('terms'),
                                           [p for g in base_ctx.get('library', {}).get('groups', []) for p in g['prompts']],
-                                          base_ctx.get('price_history', {}).get('tools')))
+                                          base_ctx.get('price_history', {}).get('tools'), base_ctx.get('availability')))
     base_ctx['search_index_url'] = '/search-index.json?v=' + hashlib.sha256(search_json.encode('utf-8')).hexdigest()[:10]
     w.write('search-index.json', search_json, 'índice de búsqueda')
 

@@ -55,7 +55,10 @@
       "titulo": "Elige tu primera herramienta",
       "texto": "Responde 4 preguntas (tarea, presupuesto, experiencia y para quién) y te decimos cuál encaja contigo y por qué.",
       "cta": {"texto": "Hacer el test", "url": "/que-ia-necesito/"},
-      "extra": [{"texto": "Fichas de herramientas", "url": "/herramientas/"}]
+      "extra": [
+        {"texto": "Fichas de herramientas", "url": "/herramientas/"},
+        {"texto": "¿Funciona en España?", "url": "/funciona-en-espana/"}
+      ]
     },
     {
       "titulo": "Aprende a pedírselo bien",
