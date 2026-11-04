@@ -77,7 +77,7 @@ URL `/funciona-en-espana/`, con `content/paginas/funciona-en-espana.md` y planti
 - **Controles:** buscador y filtros Todas, No disponibles, Parciales, Sin confirmar y Disponibles, referidos al estado en España. Llevan `hidden` en el HTML y `static/js/availability.js` los muestra. El script solo muestra u oculta filas, sin `innerHTML`, y anuncia con `aria-live` cuántas filas quedan o que no hay resultados.
 - **Tabla:** función, empresa y nota; EE. UU.; UE; España; comprobado y fuente. Con `caption` y `scope`. En móvil, cada fila pasa a ficha apilada, como en la maqueta.
 - **Estados:** texto más icono, nunca solo color. Disponible (✓), Parcial (◐), No disponible (✕), Sin confirmar (?). Cada fila tiene `id` para enlazarla, y su enlace a ficha o noticia si existe.
-- **Texto propio** bajo la tabla: qué significa cada estado, cómo comprobamos los datos, por qué algo llega antes a otros países, y preguntas frecuentes. Debe superar el mínimo de palabras de `check.py`. Sin consejos legales.
+- **Texto propio** bajo la tabla: qué significa cada estado, cómo comprobamos los datos, por qué algo llega antes a otros países, y preguntas frecuentes. Al menos 400 palabras, comprobadas por un test, porque `check.py` no exige mínimo a las páginas de tipo `pagina`. Sin consejos legales.
 - **Colores:** tokens nuevos `--avail-{si,parcial,no,duda}-{bg,fg}` en los dos bloques oscuros de `static/css/radar.css`, con contraste AA en `tests/test_theme.py`.
 - **Anuncios:** la página sigue las reglas generales; no añade huecos propios.
 
