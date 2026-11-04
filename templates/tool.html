@@ -63,7 +63,7 @@
         <nav class="tool-duels tool-avail" aria-labelledby="disponibilidad-{{ page.slug }}-h">
           <h2 id="disponibilidad-{{ page.slug }}-h">Disponibilidad en España</h2>
           <ul>{% for r in mis_funciones[:3] %}<li><a href="/funciona-en-espana/#{{ r.id }}">{{ r.title }}</a>: {{ availability.estados[r.es][0] }}</li>{% endfor %}</ul>
-          <a href="/funciona-en-espana/">Ver todas las funciones →</a>
+          <a href="/funciona-en-espana/">{% if mis_funciones|length > 3 %}Ver {{ 'la otra' if mis_funciones|length == 4 else 'las otras ' ~ (mis_funciones|length - 3) }} en la tabla completa{% else %}Ver todas las funciones{% endif %} →</a>
         </nav>
         {% endif %}
         {% set mis_duelos = duels_by_tool.get(page.slug, []) %}

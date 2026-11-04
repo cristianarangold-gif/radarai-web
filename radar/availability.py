@@ -58,6 +58,7 @@ class Feature:
     comprobado: str = ''  # AAAA-MM-DD; validate_availability comprueba que sea una fecha real
     fuentes: List[str] = field(default_factory=list)
     noticia: str = ''
+    principal: str = ''  # «si» en la función que abre el recuadro de su ficha
     stale: bool = False
 
     @property
@@ -88,7 +89,7 @@ def parse_availability(text: str) -> List[Feature]:
                                 es=meta.get('es', ''), nota=meta.get('nota', ''),
                                 comprobado=meta.get('comprobado', ''),
                                 fuentes=[u.strip() for u in meta.get('fuentes', '').split(',') if u.strip()],
-                                noticia=meta.get('noticia', '')))
+                                noticia=meta.get('noticia', ''), principal=meta.get('principal', '')))
     return features
 
 
@@ -139,12 +140,18 @@ def _check(f: Feature, fichas: Dict[str, Page], site_urls: Set[str], today: date
             _fail(f, f'la fuente «{url}» no es oficial de «{f.empresa}» ni una copia archivada suya')
     if f.noticia and f.noticia not in site_urls:
         _fail(f, f'noticia «{f.noticia}» inexistente')
+    if f.principal and (f.principal != 'si' or not f.ficha):
+        _fail(f, 'principal solo admite «si» y requiere ficha')
 
 
 def validate_availability(features: List[Feature], fichas: Dict[str, Page], site_urls: Set[str], today: date) -> None:
-    ids, titles = set(), set()
+    ids, titles, mains = set(), set(), set()
     for f in features:
         _check(f, fichas, site_urls, today)
+        if f.principal:
+            if f.ficha in mains:
+                _fail(f, f'la ficha «{f.ficha}» ya tiene una función principal')
+            mains.add(f.ficha)
         if f.id in ids:
             _fail(f, f'id «{f.id}» repetido')
         if f.title in titles:
@@ -161,6 +168,8 @@ def availability_context(features: List[Feature], today: date) -> dict:
     for r in rows:
         if r.ficha:
             by_ficha.setdefault(r.ficha, []).append(r)
+    for group in by_ficha.values():
+        group.sort(key=lambda r: not r.principal)
     latest = max((r.comprobado for r in rows), default='')
     return {'rows': rows, 'count': len(rows), 'latest': long_date(latest) if latest else '',
             'stale': [r for r in rows if r.stale], 'by_ficha': by_ficha, 'estados': ESTADOS}

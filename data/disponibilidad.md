@@ -4,7 +4,7 @@ Un bloque por función. Estados: si, parcial, no o sin_confirmar.
 Reglas en content/_investigacion/disponibilidad-2026-11.md y en la especificación:
 no se deduce nada; «no» solo si la empresa lo dice; «Espacio Económico Europeo» o los 27 países en una lista cuentan como toda la UE.
 
-## Siri AI
+## Siri AI en iPhone, iPad y Apple Watch
 id: siri-ai
 empresa: apple
 eeuu: si
@@ -14,6 +14,16 @@ nota: En beta. Apple indica que no estará inicialmente en la UE en iOS, iPadOS 
 comprobado: 2026-11-04
 fuentes: https://www.apple.com/ios/feature-availability/
 noticia: /noticias/siri-ai-espanol-ios-27-2/
+
+## Siri AI en Mac
+id: siri-ai-mac
+empresa: apple
+eeuu: si
+ue: sin_confirmar
+es: sin_confirmar
+nota: En beta. En macOS, Apple no excluye a la UE como hace en iOS, pero tampoco la incluye ni nombra a España.
+comprobado: 2026-11-04
+fuentes: https://www.apple.com/macos/feature-availability/
 
 ## Herramientas de escritura de Apple Intelligence
 id: apple-intelligence-escritura
@@ -43,18 +53,19 @@ ficha: copilot
 eeuu: si
 ue: si
 es: si
-nota: Requiere un PC Copilot+. Microsoft describe opciones propias para el Espacio Económico Europeo, como el código de exportación.
+nota: Requiere un PC Copilot+. Microsoft anunció su llegada al Espacio Económico Europeo en julio de 2025.
 comprobado: 2026-11-04
-fuentes: https://support.microsoft.com/en-us/windows/ai/ai-features/retrace-your-steps-with-recall
+fuentes: https://support.microsoft.com/en-us/servicing/os/windows-11/2025/07/july-22-2025-kb5062660-os-build-26100-4770-preview, https://support.microsoft.com/en-us/windows/ai/ai-features/retrace-your-steps-with-recall
 
 ## Microsoft Copilot
 id: microsoft-copilot
 empresa: microsoft
 ficha: copilot
+principal: si
 eeuu: si
 ue: sin_confirmar
-es: si
-nota: Microsoft habla de más de 170 mercados sin publicar la lista; vende sus planes en España en euros. Las funciones nuevas pueden tardar en llegar.
+es: sin_confirmar
+nota: Microsoft habla de más de 170 mercados sin publicar la lista ni nombrar a España, aunque vende aquí sus planes en euros.
 comprobado: 2026-11-04
 fuentes: https://support.microsoft.com/en-us/microsoft-copilot/supported-regions-and-languages-in-microsoft-copilot, https://www.microsoft.com/es-es/copilot/pricing/individuals
 
@@ -62,6 +73,7 @@ fuentes: https://support.microsoft.com/en-us/microsoft-copilot/supported-regions
 id: gemini-app
 empresa: google
 ficha: gemini
+principal: si
 eeuu: si
 ue: si
 es: si
@@ -165,9 +177,9 @@ id: gemini-en-chrome
 empresa: google
 ficha: gemini
 eeuu: si
-ue: sin_confirmar
-es: sin_confirmar
-nota: Empezó en EE. UU. en inglés y Google anuncia más países sin listar la UE ni España en las páginas consultadas.
+ue: no
+es: no
+nota: Google lo limita a una lista de territorios con EE. UU. y Reino Unido, pero sin ningún Estado de la UE. Despliegue gradual.
 comprobado: 2026-11-04
 fuentes: https://blog.google/products/chrome/chrome-reimagined-with-ai/, https://support.google.com/chrome/answer/16283624?hl=es
 
@@ -175,6 +187,7 @@ fuentes: https://blog.google/products/chrome/chrome-reimagined-with-ai/, https:/
 id: chatgpt
 empresa: openai
 ficha: chatgpt
+principal: si
 eeuu: si
 ue: si
 es: si
@@ -210,7 +223,7 @@ ficha: chatgpt
 eeuu: si
 ue: parcial
 es: parcial
-nota: En el Espacio Económico Europeo, solo para Pro y Enterprise en la aplicación de escritorio para macOS. Requiere Memories.
+nota: En el Espacio Económico Europeo, solo para Pro en la aplicación de escritorio para macOS. Desactivado por defecto; requiere Memories.
 comprobado: 2026-11-04
 fuentes: https://help.openai.com/en/articles/6825453-chatgpt-release-notes, https://web.archive.org/web/20261103175827/https://help.openai.com/en/articles/6825453-chatgpt-release-notes
 

@@ -686,6 +686,7 @@ span.glossary-letter { border-color: var(--rule); color: var(--ink-faint); backg
 .avail-table[hidden] { display: none; }
 .avail-table thead th { padding: 9px 10px; text-align: left; font-size: .8rem; color: var(--on-ink); background: var(--ink); }
 .avail-table tbody th, .avail-table tbody td { padding: 11px 10px; text-align: left; vertical-align: top; font-weight: 400; border-top: 1px solid var(--rule); }
+.avail-table tbody tr { scroll-margin-top: 90px; }
 .avail-table tbody tr:target { outline: 2px solid var(--accent-ink); outline-offset: -2px; }
 .avail-name strong { display: block; color: var(--ink); }
 .avail-company, .avail-note, .avail-news, .avail-sources, .avail-stale { display: block; margin-top: 3px; font-size: .8rem; }

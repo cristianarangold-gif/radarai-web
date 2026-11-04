@@ -1,3 +1,4 @@
+import re
 from datetime import date, timedelta
 from pathlib import Path
 
@@ -166,6 +167,59 @@ def test_context_counts_latest_and_groups_by_ficha():
     assert [r.title for r in ctx['by_ficha']['chatgpt']] == ['A']
 
 
+def test_main_feature_goes_first_in_ficha():
+    text = (block('Zeta', id='z', ficha='chatgpt', principal='si') + block('Alfa', id='a', ficha='chatgpt', es='no', ue='no'))
+    ctx = availability_context(parse_availability(text), TODAY)
+    assert [r.title for r in ctx['by_ficha']['chatgpt']] == ['Zeta', 'Alfa']
+    assert [r.title for r in ctx['rows']] == ['Alfa', 'Zeta']
+
+
+def test_rejects_two_main_features_in_same_ficha():
+    text = block('A', id='a', ficha='chatgpt', principal='si') + block('B', id='b', ficha='chatgpt', principal='si')
+    with pytest.raises(ValueError, match='principal'):
+        check(text)
+
+
+def test_rejects_main_feature_without_ficha_or_bad_value():
+    for extra in ({'principal': 'si'}, {'ficha': 'chatgpt', 'principal': 'sí'}):
+        with pytest.raises(ValueError, match='principal'):
+            check(block('A', id='a', **extra))
+
+
+def _row(row_id):
+    return next(f for f in _features() if f.id == row_id)
+
+
+def test_real_gemini_in_chrome_is_not_available_in_spain():
+    row = _row('gemini-en-chrome')
+    assert (row.eeuu, row.ue, row.es) == ('si', 'no', 'no')
+
+
+def test_real_recall_cites_the_eea_announcement():
+    row = _row('recall-windows')
+    assert row.es == 'si' and any('kb5062660' in u for u in row.fuentes)
+
+
+def test_real_copilot_is_not_deduced_from_prices():
+    assert _row('microsoft-copilot').es == 'sin_confirmar'
+
+
+def test_real_siri_separates_mac_from_mobile():
+    assert _row('siri-ai').title == 'Siri AI en iPhone, iPad y Apple Watch'
+    mac = _row('siri-ai-mac')
+    assert (mac.ue, mac.es) == ('sin_confirmar', 'sin_confirmar')
+    assert mac.fuentes == ['https://www.apple.com/macos/feature-availability/']
+
+
+def test_real_computer_history_note_matches_release_notes():
+    assert 'solo para Pro en' in _row('chatgpt-computer-history').nota
+
+
+def test_rows_clear_the_sticky_header():
+    css = (ROOT / 'static' / 'css' / 'radar.css').read_text(encoding='utf-8')
+    assert re.search(r'\.avail-table tbody tr \{[^}]*scroll-margin-top: 90px', css)
+
+
 def test_real_data_has_minimum():
     features = parse_availability((ROOT / 'data' / 'disponibilidad.md').read_text(encoding='utf-8'))
     assert len(features) >= 12
@@ -279,6 +333,14 @@ def test_box_in_ficha_with_features(site):
     assert 'href="/funciona-en-espana/">' in box
 
 
+def test_box_shows_main_feature_first_and_counts_the_rest(site):
+    html = (site / 'herramientas' / 'gemini' / 'index.html').read_text(encoding='utf-8')
+    box = html.split('class="tool-duels tool-avail"')[1].split('</nav>')[0]
+    first = box.split('<li')[1]
+    assert '#gemini-app' in first and '✓ Disponible' in first
+    assert 'Ver las otras 2 en la tabla completa' in box
+
+
 def test_box_absent_without_features(site):
     assert 'tool-avail' not in (site / 'herramientas' / 'suno' / 'index.html').read_text(encoding='utf-8')
 
@@ -289,7 +351,7 @@ def test_search_index_has_features(site):
     entries = [e for e in idx if e['k'] == 'Disponibilidad']
     assert len(entries) == len(_features())
     siri = [e for e in entries if e['u'] == '/funciona-en-espana/#siri-ai'][0]
-    assert siri['t'] == 'Siri AI' and siri['d'].startswith('España: ✕ No disponible')
+    assert siri['t'] == 'Siri AI en iPhone, iPad y Apple Watch' and siri['d'].startswith('España: ✕ No disponible')
     assert "'Disponibilidad'" in (ROOT / 'static' / 'js' / 'search.js').read_text(encoding='utf-8')
 
 
