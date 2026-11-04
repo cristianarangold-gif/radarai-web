@@ -117,6 +117,8 @@ def test_no_literal_colors_outside_tokens():
     ('price-sube-fg', 'price-sube-bg'), ('price-baja-fg', 'price-baja-bg'), ('price-nuevo-fg', 'price-nuevo-bg'),
     ('price-retirado-fg', 'price-retirado-bg'), ('price-condiciones-fg', 'price-condiciones-bg'),
     ('on-amber', 'amber'), ('on-amber', 'slot-filled'), ('ink', 'mark-bg'), ('on-ink-accent', 'ink'),
+    ('avail-si-fg', 'avail-si-bg'), ('avail-parcial-fg', 'avail-parcial-bg'), ('avail-no-fg', 'avail-no-bg'),
+    ('avail-duda-fg', 'avail-duda-bg'),
 ])
 def test_component_contrast(theme, fg, bg):
     tokens = LIGHT if theme == 'light' else {**LIGHT, **DARK_MEDIA}

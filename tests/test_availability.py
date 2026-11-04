@@ -170,3 +170,94 @@ def test_real_data_has_minimum():
     features = parse_availability((ROOT / 'data' / 'disponibilidad.md').read_text(encoding='utf-8'))
     assert len(features) >= 12
     assert all(f.fuentes and f.comprobado for f in features)
+
+
+def test_feature_display_helpers():
+    f = parse_availability(block(fuentes='https://www.apple.com/es/ios/, '
+                                         'https://web.archive.org/web/20261020120000/https://www.apple.com/es/ios/'))[0]
+    assert f.fecha == '4 de noviembre de 2026' and f.empresa_nombre == 'Apple'
+    assert [label for label, _ in f.links] == ['apple.com', 'copia archivada']
+
+
+@pytest.fixture(scope='module')
+def site():
+    import subprocess
+    import sys
+    import tempfile
+    out = Path(tempfile.mkdtemp()) / 'site'
+    subprocess.run([sys.executable, str(ROOT / 'scripts' / 'build.py'), '--out', str(out)], check=True,
+                   capture_output=True)
+    return out
+
+
+@pytest.fixture(scope='module')
+def page(site):
+    return (site / 'funciona-en-espana' / 'index.html').read_text(encoding='utf-8')
+
+
+def _features():
+    return parse_availability((ROOT / 'data' / 'disponibilidad.md').read_text(encoding='utf-8'))
+
+
+def test_page_lists_all_rows_without_js(page):
+    rows = page.split('<tbody')[1].split('</tbody>')[0]
+    assert rows.count('<tr') == len(_features())
+    for f in _features():
+        assert f'id="{f.id}"' in rows and f'data-es="{f.es}"' in rows
+    assert '<caption' in page and 'scope="col"' in page and 'scope="row"' in page
+
+
+def test_controls_hidden_in_html(page):
+    import re
+    assert re.search(r'<form class="avail-controls"[^>]*\bhidden\b', page)
+    for attr in ('data-avail-search', 'data-avail-count'):
+        assert attr in page
+    for value in ('todas', 'no', 'parcial', 'sin_confirmar', 'si'):
+        assert f'data-avail-filter="{value}"' in page
+    assert 'js/availability.js' in page
+
+
+def test_sources_and_dates_rendered(page):
+    siri = page.split('id="siri-ai"')[1].split('</tr>')[0]
+    assert '✕ No disponible' in siri and '4 de noviembre de 2026' in siri
+    assert 'href="https://www.apple.com/ios/feature-availability/"' in siri
+    assert 'href="/noticias/siri-ai-espanol-ios-27-2/"' in siri
+
+
+def test_page_has_empty_state(page):
+    import re
+    assert re.search(r'<p[^>]*data-avail-empty[^>]*\bhidden\b', page)
+    assert re.search(r'<p[^>]*data-avail-count[^>]*aria-live="polite"', page)
+
+
+def test_page_indexable_and_in_sitemap(site, page):
+    assert 'noindex' not in page.split('</head>')[0]
+    assert '<loc>https://radarai.es/funciona-en-espana/</loc>' in (site / 'sitemap.xml').read_text()
+
+
+def test_own_text_has_400_words():
+    text = (ROOT / 'content' / 'paginas' / 'funciona-en-espana.md').read_text(encoding='utf-8')
+    assert len(text.split()) >= 400
+
+
+def test_js_has_no_innerhtml():
+    assert 'innerHTML' not in (ROOT / 'static' / 'js' / 'availability.js').read_text(encoding='utf-8')
+
+
+def test_js_folds_accents():
+    assert "normalize('NFD')" in (ROOT / 'static' / 'js' / 'availability.js').read_text(encoding='utf-8')
+
+
+def test_stale_badge_rendered(tmp_path):
+    import shutil
+    from scripts.build import build
+    work = tmp_path / 'repo'
+    shutil.copytree(ROOT, work, ignore=shutil.ignore_patterns('.git', '.venv', '_site', '__pycache__', '.superpowers'))
+    data = work / 'data' / 'disponibilidad.md'
+    data.write_text(data.read_text(encoding='utf-8').replace('id: claude\nempresa: anthropic\nficha: claude\neeuu: si\nue: si\nes: si\ncomprobado: 2026-11-04',
+                                                              'id: claude\nempresa: anthropic\nficha: claude\neeuu: si\nue: si\nes: si\ncomprobado: 2026-01-01'),
+                    encoding='utf-8')
+    build(work, tmp_path / '_site')
+    html = (tmp_path / '_site' / 'funciona-en-espana' / 'index.html').read_text(encoding='utf-8')
+    assert 'Pendiente de revisar' in html.split('id="claude"')[1].split('</tr>')[0]
+    assert 'Pendiente de revisar' not in html.split('id="chatgpt"')[1].split('</tr>')[0]

@@ -36,6 +36,10 @@ ESTADOS: Dict[str, Tuple[str, str]] = {
     'sin_confirmar': ('? Sin confirmar', 'avail-duda'),
     'si': ('✓ Disponible', 'avail-si'),
 }
+NOMBRES = {'anthropic': 'Anthropic', 'apple': 'Apple', 'canva': 'Canva', 'cursor': 'Cursor', 'deepl': 'DeepL',
+           'elevenlabs': 'ElevenLabs', 'github': 'GitHub', 'google': 'Google', 'meta': 'Meta',
+           'microsoft': 'Microsoft', 'notion': 'Notion', 'openai': 'OpenAI', 'perplexity': 'Perplexity',
+           'runway': 'Runway', 'suno': 'Suno'}
 REQUIRED = ('id', 'empresa', 'eeuu', 'ue', 'es', 'comprobado', 'fuentes')
 ID_RE = re.compile(r'^[a-z0-9]+(-[a-z0-9]+)*$')
 MAX_NOTE_WORDS, MAX_SOURCES, STALE_DAYS = 30, 3, 60
@@ -55,6 +59,18 @@ class Feature:
     fuentes: List[str] = field(default_factory=list)
     noticia: str = ''
     stale: bool = False
+
+    @property
+    def fecha(self) -> str:
+        return long_date(self.comprobado)
+
+    @property
+    def empresa_nombre(self) -> str:
+        return NOMBRES.get(self.empresa, self.empresa)
+
+    @property
+    def links(self) -> List[Tuple[str, str]]:
+        return [('copia archivada' if _host(u) == ARCHIVE_HOST else _host(u), u) for u in self.fuentes]
 
 
 def parse_availability(text: str) -> List[Feature]:
