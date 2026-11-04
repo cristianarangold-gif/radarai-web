@@ -222,7 +222,7 @@ eeuu: si
 ue: si
 es: si
 comprobado: 2026-11-04
-fuentes: https://www.anthropic.com/supported-countries
+fuentes: https://www.anthropic.com/legal/supported-regions
 
 ## Meta AI
 id: meta-ai
