@@ -1,4 +1,5 @@
 from datetime import date
+from pathlib import Path
 
 import pytest
 
@@ -111,3 +112,17 @@ def test_utilidad_url(tmp_path):
 def test_noindex_accent(tmp_path):
     write(tmp_path, 'paginas/n.md', 'titulo: T\ndescripcion: d\nnoindex: sí\n\nx')
     assert load_pages(tmp_path)[0].indexable is False
+
+
+@pytest.mark.parametrize('rel', ['contacto', 'legal/aviso-legal', 'legal/politica-privacidad', 'legal/politica-cookies'])
+def test_contact_and_legal_descriptions_explain_the_page(rel):
+    head = (Path(__file__).parent.parent / 'content' / 'paginas' / f'{rel}.md').read_text(encoding='utf-8')
+    description = next(line for line in head.splitlines() if line.startswith('descripcion:')).split(':', 1)[1].strip()
+    assert 110 <= len(description) <= 160, description
+
+
+@pytest.mark.parametrize('url', ['/noticias/', '/herramientas/'])
+def test_listing_descriptions_explain_the_page(url):
+    from scripts.build import LISTINGS
+    description = next(item[3] for item in LISTINGS if item[0] == url)
+    assert 110 <= len(description) <= 160, description

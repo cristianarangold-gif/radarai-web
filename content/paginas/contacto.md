@@ -1,5 +1,5 @@
 titulo: Contacto
-descripcion: Contacto de Radar IA
+descripcion: Escribe a Radar IA para hacer una consulta, comunicar un error, pedir una corrección o ejercer tus derechos sobre tus datos personales.
 
 <div markdown="0">
 <section class="card">
