@@ -1,6 +1,6 @@
 """Recoge noticias candidatas de IA de las fuentes RSS/Atom y genera el cuerpo de una issue.
 
-Uso: python scripts/news_collect.py [--hours 26] [--limit 12]
+Uso: python scripts/news_collect.py [--hours 26] [--limit 20] [--official-per-source 6]
 Escribe el cuerpo en stdout; si no hay candidatas no escribe nada (código de salida 0).
 """
 from __future__ import annotations
@@ -94,14 +94,15 @@ def load_sources(path: Path = SOURCES) -> List[Tuple[str, str, bool, bool]]:
     return sources
 
 
-def select_candidates(items: List[Item], now: datetime, hours: int = 26, limit: int = 12,
-                      per_source: int = 2) -> List[Item]:
+def select_candidates(items: List[Item], now: datetime, hours: int = 26, limit: int = 20,
+                      per_source: int = 2, official_per_source: int = 6) -> List[Item]:
     since = now - timedelta(hours=hours)
     seen, fresh, by_source = set(), [], {}
     for it in sorted(items, key=lambda i: (not i.official, -i.published.timestamp())):
         if it.published < since or it.published > now + timedelta(hours=1) or it.url in seen:
             continue
-        if by_source.get(it.source, 0) >= per_source:
+        # OpenAI publica varios casos de cliente al día: con un tope bajo, tapan sus anuncios de producto.
+        if by_source.get(it.source, 0) >= (official_per_source if it.official else per_source):
             continue
         seen.add(it.url)
         by_source[it.source] = by_source.get(it.source, 0) + 1
@@ -133,7 +134,8 @@ def fetch(url: str, timeout: int = 20) -> str:
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument('--hours', type=int, default=26)
-    parser.add_argument('--limit', type=int, default=12)
+    parser.add_argument('--limit', type=int, default=20)
+    parser.add_argument('--official-per-source', type=int, default=6)
     args = parser.parse_args()
     items, failures = [], []
     for name, url, official, only_ai in load_sources():
@@ -144,7 +146,7 @@ def main() -> None:
             failures.append(name)
             print(f'Aviso: {name}: {exc}', file=sys.stderr)
     now = datetime.now(timezone.utc)
-    body = render_issue(select_candidates(items, now, args.hours, args.limit), failures,
+    body = render_issue(select_candidates(items, now, args.hours, args.limit, official_per_source=args.official_per_source), failures,
                         now.strftime('%Y-%m-%d'), args.hours)
     if body:
         sys.stdout.write(body)

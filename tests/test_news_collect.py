@@ -74,5 +74,22 @@ def test_is_ai_related():
 def test_select_caps_items_per_source():
     items = [_item(f'N{i}', f'https://n/{i}', 'NVIDIA', hour=4 - i % 4) for i in range(5)]
     items.append(_item('Otra', 'https://o/1', 'OpenAI', hour=1))
-    sel = select_candidates(items, NOW, per_source=2)
+    sel = select_candidates(items, NOW, official_per_source=2)
     assert [i.source for i in sel] == ['NVIDIA', 'NVIDIA', 'OpenAI']
+
+
+def test_select_keeps_older_official_announcement_behind_customer_stories():
+    stories = [_item(f'Caso de cliente {n}', f'https://o/{n}', 'OpenAI', hour=4) for n in range(5)]
+    launch = _item('Introducing GPT-6 Cyber', 'https://o/gpt-6-cyber', 'OpenAI', hour=1)
+    assert launch in select_candidates(stories + [launch], NOW)
+
+
+def test_select_still_caps_media_per_source():
+    items = [_item(f'Titular {n}', f'https://m/{n}', 'Medio', official=False) for n in range(5)]
+    assert len(select_candidates(items, NOW)) == 2
+
+
+def test_select_default_limit_leaves_room_for_media_behind_officials():
+    official = [_item(f'O{s}{n}', f'https://o/{s}/{n}', f'Oficial {s}') for s in range(3) for n in range(6)]
+    media = _item('Medio', 'https://m/1', 'Medio', official=False)
+    assert media in select_candidates(official + [media], NOW)
