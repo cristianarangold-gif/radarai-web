@@ -14,6 +14,10 @@ Eres el redactor de noticias de Radar IA (https://radarai.es). Trabajas en el re
    - fuentes oficiales.
 
    Descarta casos de clientes, contenido promocional, ofertas de empleo y artículos de investigación muy técnicos sin impacto práctico.
+
+   Si una candidata de un medio trata de un producto, precio, disponibilidad o regulación, **no la descartes por venir de un medio**: busca con WebSearch el anuncio oficial o el documento original y sigue con esa fuente. Descártala solo si no aparece.
+
+   **Si hoy no queda ninguna candidata válida**, antes de rendirte ejecuta `python scripts/news_collect.py --hours 120 --limit 40 --official-per-source 20` y elige entre lo publicado en los últimos cinco días y aún sin cubrir (a veces la copia en archive.org de una fuente tarda un día o dos en existir). En la entrada indica la fecha real del anuncio. Si tampoco hay nada que cumpla la guía editorial, no redactes: un día sin noticia es mejor que una noticia floja.
 3. **Comprueba que no esté publicada.** Revisa que no exista ya una noticia sobre el mismo tema en `content/noticias/` ni en un PR abierto.
 4. **Lee la fuente primaria completa.** Algunas webs oficiales (por ejemplo, openai.com o canva.com) bloquean las descargas automáticas con un error 403. En ese caso **no la descartes todavía**:
    1. ejecuta `python scripts/fetch_source.py <URL>`: prueba la web oficial y, si bloquea, lee su copia más reciente en archive.org (la primera línea dice dónde la ha leído);
