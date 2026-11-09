@@ -25,6 +25,7 @@ from radar.price_history import auto_changes, history_context, load_snapshots, p
 from radar.prompt_library import library_context, parse_prompts, validate_prompts  # noqa: E402
 from radar.professions import published, recommended_for, validate_professions  # noqa: E402
 from radar.editorial import load_imprescindibles, radar_tools, validate_fichas, validate_news_meta  # noqa: E402
+from radar.indexnow import KEY as INDEXNOW_KEY, KEY_FILE as INDEXNOW_KEY_FILE  # noqa: E402
 from radar.models import Page, Redirect  # noqa: E402
 from radar.redirects import load_redirects, output_paths, render_redirect  # noqa: E402
 from radar.render import make_env, render_page  # noqa: E402
@@ -38,13 +39,13 @@ from radar.tools import CATEGORIES, load_tools  # noqa: E402
 LISTINGS = [
     # (url, tipo listado, título, descripción)
     ('/noticias/', 'noticia', 'Noticias de inteligencia artificial',
-     'Las novedades de IA que importan, explicadas en español y con lo que cambian para ti.'),
+     'Las novedades de inteligencia artificial que importan, explicadas en español, con sus fuentes y con lo que cambian para ti.'),
     ('/guias/', 'guia', 'Guías prácticas de IA',
      'Guías paso a paso para sacar partido a la inteligencia artificial en el estudio, el trabajo y el día a día.'),
     ('/mejor-ia/', 'comparativa', 'Comparativas: la mejor IA para cada tarea',
      'Comparativas actualizadas para elegir la herramienta de IA adecuada según lo que necesitas hacer.'),
     ('/herramientas/', 'ficha', 'Análisis de herramientas de IA',
-     'Fichas completas de las herramientas de IA más usadas: qué hacen, cuánto cuestan y para quién son.'),
+     'Fichas completas de las herramientas de IA más usadas: qué hacen, cuánto cuestan, qué permite su plan gratuito y para quién son.'),
     ('/ia-por-profesion/', 'profesion', 'IA por profesión: herramientas y prompts para tu trabajo',
      'Qué herramientas de IA usar en tu profesión, con tareas concretas, prompts listos para copiar y precauciones.'),
     ('/herramientas-radar/', 'utilidad', 'Utilidades gratuitas de Radar IA',
@@ -231,6 +232,7 @@ def build(root: Path, out: Path) -> None:
 
     w.write('sitemap.xml', sitemap_xml(all_pages), 'sitemap')
     w.write('rss.xml', rss_xml(news), 'rss')
+    w.write(INDEXNOW_KEY_FILE, INDEXNOW_KEY, 'clave de IndexNow')
     w.write('robots.txt', f'User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n', 'robots')
 
     static = root / 'static'

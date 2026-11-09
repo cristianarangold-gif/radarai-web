@@ -62,6 +62,13 @@ def test_build_outputs_expected_files(tmp_path):
     assert 'href="/noticias/buena/"' in (out / 'index.html').read_text()
 
 
+def test_build_publishes_indexnow_key(tmp_path):
+    from radar.indexnow import KEY, KEY_FILE
+    root, out = make_root(tmp_path), tmp_path / '_site'
+    build(root, out)
+    assert (out / KEY_FILE).read_text() == KEY
+
+
 def test_build_passes_check(tmp_path):
     from radar.check import check_site
     root, out = make_root(tmp_path), tmp_path / '_site'

@@ -4,6 +4,11 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+    inputs:
+      indexnow_all:
+        description: 'Enviar a IndexNow todas las URL del sitemap'
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -18,6 +23,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    outputs:
+      indexnow_urls: ${{ steps.indexnow.outputs.urls }}
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v6
@@ -29,6 +36,10 @@ jobs:
       - run: pytest -q
       - run: python scripts/build.py
       - run: python scripts/check.py
+      - id: indexnow
+        env:
+          INDEXNOW_ALL: ${{ inputs.indexnow_all }}
+        run: echo "urls=$(python scripts/indexnow.py plan)" >> "$GITHUB_OUTPUT"
       - uses: actions/upload-pages-artifact@v4
         with:
           path: _site
@@ -43,3 +54,17 @@ jobs:
     steps:
       - id: deployment
         uses: actions/deploy-pages@v4
+
+  indexnow:
+    needs: [build, deploy]
+    if: needs.build.outputs.indexnow_urls != '[]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - env:
+          INDEXNOW_URLS: ${{ needs.build.outputs.indexnow_urls }}
+        run: python scripts/indexnow.py send

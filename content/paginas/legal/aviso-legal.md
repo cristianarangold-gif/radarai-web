@@ -1,5 +1,5 @@
 titulo: Aviso legal
-descripcion: Aviso legal de Radar IA
+descripcion: Aviso legal de Radar IA: titular del sitio, objeto, condiciones de uso, enlaces externos, propiedad intelectual y publicidad de terceros.
 
 <div markdown="0">
 <section class="card">
