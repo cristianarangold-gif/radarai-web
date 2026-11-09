@@ -11,6 +11,7 @@ import html
 import json
 import re
 import sys
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -20,7 +21,11 @@ USER_AGENT = 'Mozilla/5.0 (compatible; RadarIA-news/1.0; +https://radarai.es)'
 # Páginas de comprobación antibots que algunas webs devuelven con código 200.
 BLOCKED = re.compile(r'Enable JavaScript and cookies to continue|Just a moment\.\.\.|Access denied', re.I)
 
+# Segundos de espera antes de cada reintento a archive.org.
+RETRY_WAITS = (3, 8, 20)
+
 Fetch = Callable[[str], Tuple[int, str]]
+Sleep = Callable[[float], None]
 
 
 def fetch(url: str, timeout: int = 40) -> Tuple[int, str]:
@@ -47,10 +52,21 @@ def _readable(status: int, raw: str) -> bool:
     return status == 200 and not BLOCKED.search(raw)
 
 
-def archive_url(url: str, fetch: Fetch = fetch) -> Optional[str]:
+def _archive_fetch(url: str, fetch: Fetch, sleep: Sleep) -> Tuple[int, str]:
+    """Pide algo a archive.org insistiendo si falla de forma pasajera: a veces rechaza la conexión sin motivo."""
+    status, raw = fetch(url)
+    for seconds in RETRY_WAITS:
+        if status != 0 and status != 429 and status < 500:
+            break
+        sleep(seconds)
+        status, raw = fetch(url)
+    return status, raw
+
+
+def archive_url(url: str, fetch: Fetch = fetch, sleep: Sleep = time.sleep) -> Optional[str]:
     """Copia más reciente de la URL con código 200 en archive.org, o None."""
     query = urllib.parse.urlencode({'url': url, 'output': 'json', 'fl': 'timestamp,statuscode'})
-    status, body = fetch(f'https://web.archive.org/cdx/search/cdx?{query}')
+    status, body = _archive_fetch(f'https://web.archive.org/cdx/search/cdx?{query}', fetch, sleep)
     if status != 200:
         return None
     try:
@@ -61,15 +77,15 @@ def archive_url(url: str, fetch: Fetch = fetch) -> Optional[str]:
     return f'https://web.archive.org/web/{stamps[-1]}/{url}' if stamps else None
 
 
-def read_source(url: str, fetch: Fetch = fetch) -> Tuple[Optional[str], str]:
+def read_source(url: str, fetch: Fetch = fetch, sleep: Sleep = time.sleep) -> Tuple[Optional[str], str]:
     """(URL leída, texto). Primero la web oficial; si bloquea, su última copia buena en archive.org."""
     status, raw = fetch(url)
     if _readable(status, raw):
         return url, page_text(raw)
-    copy = archive_url(url, fetch)
+    copy = archive_url(url, fetch, sleep)
     if copy:
         # «id_» pide a archive.org la página original, sin su barra de navegación.
-        status, raw = fetch(copy.replace(f'/{url}', f'id_/{url}', 1))
+        status, raw = _archive_fetch(copy.replace(f'/{url}', f'id_/{url}', 1), fetch, sleep)
         if _readable(status, raw):
             return copy, page_text(raw)
     return None, ''
