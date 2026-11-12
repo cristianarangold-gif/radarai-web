@@ -80,6 +80,30 @@ es: si
 comprobado: 2026-11-04
 fuentes: https://support.google.com/gemini/answer/13575153?hl=es
 
+## Gemini en Apple CarPlay
+id: gemini-carplay
+empresa: google
+ficha: gemini
+eeuu: si
+ue: sin_confirmar
+es: sin_confirmar
+nota: Google dice que se despliega globalmente en todos los idiomas de Gemini Live, sin nombrar la UE ni España. Exige iPhone con la app actualizada.
+comprobado: 2026-11-12
+fuentes: https://blog.google/innovation-and-ai/products/gemini-app/gemini-on-apple-carplay/
+noticia: /noticias/gemini-apple-carplay-conversaciones-coche/
+
+## Resumen diario (Daily Brief) en Gemini
+id: gemini-daily-brief
+empresa: google
+ficha: gemini
+eeuu: si
+ue: no
+es: no
+nota: Hay que activarlo antes. Google indica que no está disponible para menores de 18 años ni en el Espacio Económico Europeo y Nigeria.
+comprobado: 2026-11-12
+fuentes: https://blog.google/innovation-and-ai/products/gemini-app/gemini-on-apple-carplay/
+noticia: /noticias/gemini-apple-carplay-conversaciones-coche/
+
 ## Personal Intelligence en Gemini
 id: gemini-personal-intelligence
 empresa: google
