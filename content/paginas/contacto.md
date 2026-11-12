@@ -6,7 +6,7 @@ descripcion: Escribe a Radar IA para hacer una consulta, comunicar un error, ped
 <h2>Datos de contacto</h2>
 <p><strong>Titular:</strong> Cristian Arango Londoño</p>
 <p><strong>Correo electrónico:</strong> <a href="mailto:contacto@radarai.es">contacto@radarai.es</a></p>
-<p><strong>Domicilio:</strong> Plaza México, 2, 3.º, 47014 Valladolid, España</p>
+<p><strong>Domicilio:</strong> Plaza México, 47014 Valladolid, España</p>
 </section>
 <section class="card">
 <h2>Consultas sobre privacidad</h2>
