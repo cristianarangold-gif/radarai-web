@@ -6,7 +6,7 @@ Sigue también `content/GUIA_EDITORIAL.md`: sus reglas valen para los tuits.
 
 ## 1. Qué tuits se han hecho ya
 
-- Lee los archivos de `social/x/` (cada uno lleva `fecha`, `tipo` y `url`) y las PR abiertas cuya rama empiece por `tuit/`.
+- Lee **todos** los archivos de `social/x/`, también los que llevan sufijo como `2026-11-12-siri.md` (cada uno lleva `fecha`, `tipo` y `url`), y las PR abiertas cuya rama empiece por `tuit/`.
 - No repitas una `url` tuiteada en los últimos 30 días ni el mismo `tipo` que el tuit anterior.
 - Si ya existe una PR abierta con el tuit de hoy, no hagas otro: avisa a Cristian y termina.
 
