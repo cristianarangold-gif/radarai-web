@@ -338,7 +338,7 @@ def test_box_shows_main_feature_first_and_counts_the_rest(site):
     box = html.split('class="tool-duels tool-avail"')[1].split('</nav>')[0]
     first = box.split('<li')[1]
     assert '#gemini-app' in first and '✓ Disponible' in first
-    assert 'Ver las otras 2 en la tabla completa' in box
+    assert 'Ver las otras 4 en la tabla completa' in box
 
 
 def test_box_absent_without_features(site):
