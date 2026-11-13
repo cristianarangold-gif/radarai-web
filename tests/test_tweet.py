@@ -2,7 +2,7 @@ from urllib.parse import parse_qs, urlparse
 
 import pytest
 
-from scripts.tweet import intent_link, parse_tweet, problems, weighted_length
+from scripts.tweet import intent_link, parse_tweet, pr_body, problems, weighted_length
 
 GOOD = """fecha: 2026-11-13
 tipo: noticia
@@ -81,3 +81,14 @@ def test_intent_link_opens_x_with_text_and_url():
     query = parse_qs(parsed.query)
     assert query['text'][0].startswith('Gemini ya funciona en Apple CarPlay 🚗\n\n')
     assert query['url'] == ['https://radarai.es/noticias/x/']
+
+
+def test_pr_body_has_a_clickable_publish_link():
+    tweet = parse_tweet(GOOD.replace('url:', 'fuente: data/noticias.md\nurl:'))
+    body = pr_body(tweet)
+    # Un enlace Markdown normal: GitHub lo muestra pulsable. Entre comillas invertidas sería código.
+    assert f'👉 **[Publicar en X]({intent_link(tweet)})**' in body
+    assert '`' not in body
+    assert '> Gemini ya funciona en Apple CarPlay 🚗\n>\n> Te contamos qué cambia en España 👇' in body
+    assert 'https://radarai.es/noticias/x/' in body and 'data/noticias.md' in body
+    assert 'Pulsa el enlace' in body

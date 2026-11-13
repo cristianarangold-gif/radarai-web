@@ -1,7 +1,8 @@
 """Comprueba el tuit del día y genera su enlace de «publicar con un toque» en X.
 
-Uso: python scripts/tweet.py social/x/AAAA-MM-DD.md
+Uso: python scripts/tweet.py social/x/AAAA-MM-DD.md [--pr]
 Si el tuit es válido, imprime el enlace https://x.com/intent/post?... y sale con 0.
+Con --pr imprime el cuerpo completo de la PR, con el enlace ya pulsable: cópialo tal cual.
 Si no, imprime cada problema y sale con 1: corrige el archivo y vuelve a ejecutarlo.
 """
 from __future__ import annotations
@@ -86,17 +87,34 @@ def intent_link(tweet: Dict[str, str]) -> str:
     return 'https://x.com/intent/post?' + urllib.parse.urlencode({'text': tweet['texto'], 'url': tweet['url']})
 
 
+def pr_body(tweet: Dict[str, str]) -> str:
+    """Cuerpo de la PR del tuit. El enlace va sin comillas invertidas para que GitHub lo muestre pulsable."""
+    quote = '\n'.join(f'> {line}'.rstrip() for line in tweet['texto'].splitlines())
+    lines = [
+        quote,
+        '',
+        f'👉 **[Publicar en X]({intent_link(tweet)})**',
+        '',
+        f"- Página enlazada: {tweet['url']}",
+    ]
+    if tweet.get('fuente'):
+        lines.append(f"- Datos de: {tweet['fuente']}")
+    lines += ['', 'Pulsa el enlace, revisa el tuit y pulsa Publicar en X. Después fusiona esta PR para que quede registrado.']
+    return '\n'.join(lines) + '\n'
+
+
 def main() -> int:
-    if len(sys.argv) != 2:
+    args = [a for a in sys.argv[1:] if a != '--pr']
+    if len(args) != 1:
         print(__doc__.strip())
         return 2
-    tweet = parse_tweet(Path(sys.argv[1]).read_text(encoding='utf-8'))
+    tweet = parse_tweet(Path(args[0]).read_text(encoding='utf-8'))
     found = problems(tweet)
     if found:
         for problem in found:
             print(f'- {problem}')
         return 1
-    print(intent_link(tweet))
+    print(pr_body(tweet) if '--pr' in sys.argv[1:] else intent_link(tweet))
     return 0
 
 
