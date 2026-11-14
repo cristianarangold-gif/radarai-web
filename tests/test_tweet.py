@@ -1,3 +1,4 @@
+from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
 import pytest
@@ -92,3 +93,12 @@ def test_pr_body_has_a_clickable_publish_link():
     assert '> Gemini ya funciona en Apple CarPlay 🚗\n>\n> Te contamos qué cambia en España 👇' in body
     assert 'https://radarai.es/noticias/x/' in body and 'data/noticias.md' in body
     assert 'Pulsa el enlace' in body
+
+
+def test_tweet_prs_get_their_body_rewritten_by_github():
+    # La rutina en la nube puede estropear el enlace al copiar el cuerpo; GitHub lo regenera con el script.
+    workflow = (Path(__file__).parent.parent / '.github/workflows/tuit-enlace.yml').read_text(encoding='utf-8')
+    assert "startsWith(github.head_ref, 'tuit/')" in workflow
+    assert 'pull-requests: write' in workflow
+    assert 'scripts/tweet.py' in workflow and '--pr' in workflow
+    assert 'gh pr edit' in workflow and '--body-file' in workflow

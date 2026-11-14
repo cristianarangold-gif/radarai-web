@@ -1,0 +1,42 @@
+name: Tuit · enlace pulsable
+
+# Rehace el cuerpo de cada PR de tuit (ramas tuit/...) con scripts/tweet.py --pr,
+# para que el enlace «Publicar en X» siempre se pueda pulsar en GitHub,
+# aunque la rutina lo haya copiado mal (por ejemplo, entre comillas invertidas).
+
+on:
+  pull_request:
+    types: [opened, edited, reopened, synchronize]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  enlace:
+    if: startsWith(github.head_ref, 'tuit/')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+      - name: Reescribir el cuerpo de la PR
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ github.event.pull_request.number }}
+        run: |
+          file=$(gh pr diff "$PR" --name-only | grep -E '^social/x/[^/]+\.md$' | grep -v README.md | head -1 || true)
+          if [ -z "$file" ]; then
+            echo "::warning::La PR no añade ningún tuit en social/x/."
+            exit 0
+          fi
+          if ! python3 scripts/tweet.py "$file" --pr > body.md; then
+            echo "::warning::El tuit tiene problemas:"; cat body.md
+            exit 0
+          fi
+          gh pr view "$PR" --json body --jq .body > old.md
+          if diff -q <(sed -e '$a\' body.md) <(sed -e '$a\' old.md) > /dev/null; then
+            echo "El cuerpo ya estaba bien."
+          else
+            gh pr edit "$PR" --body-file body.md
+            echo "Cuerpo de la PR reescrito con el enlace pulsable."
+          fi
