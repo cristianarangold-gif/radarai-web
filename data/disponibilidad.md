@@ -115,6 +115,18 @@ nota: Personaliza las respuestas con tus aplicaciones de Google. Google la exclu
 comprobado: 2026-11-04
 fuentes: https://support.google.com/gemini/answer/16598406?hl=es
 
+## Google Wallet en Gemini
+id: gemini-google-wallet
+empresa: google
+ficha: gemini
+eeuu: si
+ue: no
+es: no
+nota: Conecta Wallet a Gemini para consultar gastos y presupuestos. Google lo despliega solo para usuarios de la app de Gemini en EE. UU.
+comprobado: 2026-11-14
+fuentes: https://blog.google/innovation-and-ai/products/gemini-app/google-wallet-gemini-app/
+noticia: /noticias/gemini-google-wallet-finanzas-personales/
+
 ## Tareas en Gemini
 id: gemini-tareas
 empresa: google
