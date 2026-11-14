@@ -55,5 +55,5 @@ Ejecuta `python scripts/tweet.py social/x/AAAA-MM-DD.md`. Si muestra problemas, 
 ## 5. Abre la PR y avisa
 
 - Crea la rama `tuit/AAAA-MM-DD`, haz commit **solo** de ese archivo y abre un pull request NORMAL (no borrador) titulado `Tuit del día AAAA-MM-DD: <tema en pocas palabras>`.
-- Cuerpo de la PR: ejecuta `python scripts/tweet.py social/x/AAAA-MM-DD.md --pr` y usa **exactamente** lo que imprime, sin añadir nada alrededor. Muy importante: **nunca** pongas el enlace de «Publicar en X» entre comillas invertidas (`` ` ``) ni dentro de un bloque de código, porque GitHub lo mostraría como texto y Cristian no podría pulsarlo. Tiene que quedar como un enlace Markdown normal: `👉 **[Publicar en X](https://x.com/intent/post?...)**`.
+- Cuerpo de la PR: ejecuta `python scripts/tweet.py social/x/AAAA-MM-DD.md --pr` y pega su salida tal cual, carácter por carácter, sin añadir ni quitar nada. La línea del enlace debe empezar por 👉 seguido de dos asteriscos y un corchete, sin ningún acento grave ni bloque de código: si el enlace queda como código, GitHub no deja pulsarlo. (Por si acaso, una acción de GitHub vuelve a escribir el cuerpo con el script al abrir la PR.)
 - Envía SIEMPRE una notificación al móvil a Cristian con la primera línea del tuit y el enlace de la PR, o el motivo si hoy no has propuesto ningún tuit.
