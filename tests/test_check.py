@@ -207,3 +207,13 @@ def test_link_to_missing_price_history_anchor(tmp_path):
     sitemap(tmp_path, '/', '/historial-de-precios/')
     errors = check_site(tmp_path)
     assert any('#precios-nada' in e for e in errors) and not any('#precios-uno' in e for e in errors)
+
+
+def test_link_to_missing_availability_anchor(tmp_path):
+    page(tmp_path, 'index.html', '/', body='<a href="/funciona-en-espana/#uno">u</a> '
+                                           '<a href="/funciona-en-espana/#nada">n</a>')
+    page(tmp_path, 'funciona-en-espana/index.html', '/funciona-en-espana/', title='F',
+         body='<table><tr id="uno"></tr></table>')
+    sitemap(tmp_path, '/', '/funciona-en-espana/')
+    errors = check_site(tmp_path)
+    assert any('/funciona-en-espana/#nada' in e for e in errors) and not any('#uno' in e for e in errors)
