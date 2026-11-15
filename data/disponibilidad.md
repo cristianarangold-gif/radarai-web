@@ -35,6 +35,56 @@ nota: Apple la lista por idiomas, incluido español de España; no aclara la sit
 comprobado: 2026-11-04
 fuentes: https://www.apple.com/ios/feature-availability/
 
+## Genmoji de Apple Intelligence
+id: apple-genmoji
+empresa: apple
+eeuu: si
+ue: sin_confirmar
+es: si
+nota: Apple la lista por idiomas, incluido español de España; no aclara la situación de toda la UE. Requiere un dispositivo compatible con Apple Intelligence.
+comprobado: 2026-11-15
+fuentes: https://www.apple.com/ios/feature-availability/
+
+## Image Playground de Apple Intelligence
+id: apple-image-playground
+empresa: apple
+eeuu: si
+ue: sin_confirmar
+es: si
+nota: Apple la lista por idiomas, incluido español de España; no aclara la situación de toda la UE. Requiere un dispositivo compatible con Apple Intelligence.
+comprobado: 2026-11-15
+fuentes: https://www.apple.com/ios/feature-availability/
+
+## Traducción en directo con AirPods
+id: apple-traduccion-airpods
+empresa: apple
+eeuu: si
+ue: sin_confirmar
+es: si
+nota: Apple la lista por idiomas, incluido español de España; no aclara la situación de toda la UE. Requiere AirPods compatibles y un iPhone con Apple Intelligence.
+comprobado: 2026-11-15
+fuentes: https://www.apple.com/ios/feature-availability/
+
+## Limpiar en Fotos de Apple Intelligence
+id: apple-fotos-limpiar
+empresa: apple
+eeuu: si
+ue: si
+es: si
+nota: Apple indica que está disponible en todo el mundo salvo en China continental. Requiere un dispositivo compatible con Apple Intelligence.
+comprobado: 2026-11-15
+fuentes: https://www.apple.com/ios/feature-availability/
+
+## Resúmenes de notificaciones de Apple Intelligence
+id: apple-resumen-notificaciones
+empresa: apple
+eeuu: si
+ue: sin_confirmar
+es: si
+nota: Apple la lista por idiomas, incluido español de España; no aclara la situación de toda la UE. Requiere un dispositivo compatible con Apple Intelligence.
+comprobado: 2026-11-15
+fuentes: https://www.apple.com/ios/feature-availability/
+
 ## Preguntar a Copilot en Click to Do
 id: click-to-do-copilot
 empresa: microsoft
@@ -79,6 +129,17 @@ ue: si
 es: si
 comprobado: 2026-11-04
 fuentes: https://support.google.com/gemini/answer/13575153?hl=es
+
+## Gemini Live
+id: gemini-live
+empresa: google
+ficha: gemini
+eeuu: si
+ue: si
+es: si
+nota: Conversación por voz en la aplicación móvil de Gemini; Google remite a la disponibilidad de la aplicación, que incluye España. No está en la web de Gemini.
+comprobado: 2026-11-15
+fuentes: https://support.google.com/gemini/answer/15274899?hl=es, https://support.google.com/gemini/answer/13575153?hl=es
 
 ## Gemini en Apple CarPlay
 id: gemini-carplay
@@ -262,6 +323,27 @@ es: parcial
 nota: En el Espacio Económico Europeo, solo para Pro en la aplicación de escritorio para macOS. Desactivado por defecto; requiere Memories.
 comprobado: 2026-11-04
 fuentes: https://help.openai.com/en/articles/6825453-chatgpt-release-notes, https://web.archive.org/web/20261103175827/https://help.openai.com/en/articles/6825453-chatgpt-release-notes
+
+## Modo agente de ChatGPT
+id: chatgpt-agente
+empresa: openai
+ficha: chatgpt
+eeuu: si
+ue: si
+es: si
+nota: En los planes Plus, Pro, Business, Enterprise y Edu, en todos los países donde funciona ChatGPT, entre ellos España.
+comprobado: 2026-11-15
+fuentes: https://web.archive.org/web/20261103202819/https://help.openai.com/en/articles/11752874-chatgpt-agent, https://help.openai.com/en/articles/7947663-chatgpt-supported-countries
+
+## Aplicación Sora
+id: sora-app
+empresa: openai
+eeuu: si
+ue: no
+es: no
+nota: La lista oficial de países de Sora, en su copia archivada del 26 de abril de 2026, no incluye a España ni a ningún país de la UE.
+comprobado: 2026-11-15
+fuentes: https://web.archive.org/web/20260426025236/https://help.openai.com/en/articles/12461230-sora-app-and-sora-2-supported-countries
 
 ## Claude
 id: claude
