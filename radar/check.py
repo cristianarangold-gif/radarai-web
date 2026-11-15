@@ -42,9 +42,11 @@ def _target_exists(site: Path, href: str) -> bool:
 
 def _anchor_missing(site: Path, href: str) -> bool:
     """True si `href` apunta a una categoría del catálogo (#cat-…) o a un término del glosario
-    (/glosario/#…), un prompt de la biblioteca (/prompts/#…) o una herramienta del historial de precios
-    (/historial-de-precios/#…) que no existe en la página destino."""
-    if '#cat-' not in href and not href.startswith(('/glosario/#', '/prompts/#', '/historial-de-precios/#')):
+    (/glosario/#…), un prompt de la biblioteca (/prompts/#…), una herramienta del historial de precios
+    (/historial-de-precios/#…) o una función de «¿Funciona en España?» (/funciona-en-espana/#…) que no
+    existe en la página destino."""
+    if '#cat-' not in href and not href.startswith(('/glosario/#', '/prompts/#', '/historial-de-precios/#',
+                                                     '/funciona-en-espana/#')):
         return False
     path, frag = href.split('#', 1)
     path = path or '/'
