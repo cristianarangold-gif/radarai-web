@@ -382,3 +382,12 @@ def test_chart_merges_repeated_prices(tmp_path):
 def test_time_elements_have_datetime(site):
     html = (site / 'historial-de-precios' / 'index.html').read_text()
     assert '<time datetime="2026-08-26">26 de agosto de 2026</time>' in html and '<time>' not in html
+
+
+def test_price_routine_doc_keeps_the_safety_rules():
+    doc = (ROOT / 'docs/rutina-precios.md').read_text(encoding='utf-8')
+    for must in ('scripts/fetch_source.py', 'data/tomas-precios/', 'no comprobad', 'toma anterior',
+                 'content/herramientas/', 'precios/AAAA-MM-DD', 'desde España', 'euros',
+                 'scripts/build.py', 'scripts/check.py'):
+        assert must in doc
+    assert 'Tienes prohibido fusionar' in doc
