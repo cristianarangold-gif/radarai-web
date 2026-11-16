@@ -365,3 +365,12 @@ def test_nav_unchanged():
 def test_routine_and_guide_document_it():
     for doc in ('docs/rutina-noticias.md', 'content/GUIA_EDITORIAL.md', 'README.md'):
         assert 'data/disponibilidad.md' in (ROOT / doc).read_text(encoding='utf-8'), doc
+
+
+def test_accepts_samsung_official_sources():
+    check(block(empresa='samsung', fuentes='https://www.samsung.com/es/galaxy-ai/, https://www.samsung.com/us/galaxy-ai/'))
+
+
+def test_every_official_company_has_a_display_name():
+    from radar.availability import NOMBRES, OFICIALES
+    assert set(OFICIALES) <= set(NOMBRES)

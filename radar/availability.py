@@ -27,6 +27,7 @@ OFICIALES: Dict[str, List[str]] = {
     'openai': ['openai.com', 'chatgpt.com'],
     'perplexity': ['perplexity.ai'],
     'runway': ['runwayml.com', 'runway.com'],
+    'samsung': ['samsung.com'],
     'suno': ['suno.com'],
 }
 # Estado → (etiqueta, clase CSS). El orden es el de la tabla.
@@ -39,7 +40,7 @@ ESTADOS: Dict[str, Tuple[str, str]] = {
 NOMBRES = {'anthropic': 'Anthropic', 'apple': 'Apple', 'canva': 'Canva', 'cursor': 'Cursor', 'deepl': 'DeepL',
            'elevenlabs': 'ElevenLabs', 'github': 'GitHub', 'google': 'Google', 'meta': 'Meta',
            'microsoft': 'Microsoft', 'notion': 'Notion', 'openai': 'OpenAI', 'perplexity': 'Perplexity',
-           'runway': 'Runway', 'suno': 'Suno'}
+           'runway': 'Runway', 'samsung': 'Samsung', 'suno': 'Suno'}
 REQUIRED = ('id', 'empresa', 'eeuu', 'ue', 'es', 'comprobado', 'fuentes')
 ID_RE = re.compile(r'^[a-z0-9]+(-[a-z0-9]+)*$')
 MAX_NOTE_WORDS, MAX_SOURCES, STALE_DAYS = 30, 3, 60
