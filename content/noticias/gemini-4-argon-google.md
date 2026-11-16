@@ -25,7 +25,7 @@ El despliegue es gradual:
 1. **Primero**, a defensores de ciberseguridad de confianza a través del programa Fairwind de Google.
 2. **Después**, Google prevé llevarlo a clientes de pago de la API y a suscriptores de **Google AI Ultra**, y extenderlo a desarrolladores, empresas y consumidores «lo antes posible», según sus palabras.
 
-El anuncio no especifica la disponibilidad por países ni menciona expresamente la Unión Europea. En España, Google AI Ultra cuesta 99,99 €/mes o 219,99 €/mes según la modalidad, de acuerdo con la página oficial de suscripciones.
+El anuncio no especifica la disponibilidad por países ni menciona expresamente la Unión Europea. En España, Google AI Ultra cuesta 99,99 €/mes o 219,99 €/mes según la modalidad, de acuerdo con la página oficial de suscripciones (puedes ver cómo han cambiado en el [historial de precios de Gemini](/historial-de-precios/#precios-gemini)).
 
 **Precio en la API:** durante un periodo introductorio, 2 $ por millón de *tokens* de entrada y 10 $ por millón de salida; después, 4 $ y 20 $ respectivamente. Las entradas en caché tienen un descuento del 95 %.
 

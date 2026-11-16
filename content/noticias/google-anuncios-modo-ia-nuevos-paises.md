@@ -17,7 +17,7 @@ Para justificar el movimiento, la compañía aporta dos datos propios. El primer
 
 ## Por qué importa en España y Latinoamérica
 
-España no figura, de momento, ni entre los diez países de la primera tanda ni entre los ejemplos del cuarto trimestre. Eso no significa que quede fuera para siempre: Google habla de «locales adicionales» sin cerrar la lista, pero no hay ningún compromiso sobre el mercado español en el texto.
+España no figura, de momento, ni entre los diez países de la primera tanda ni entre los ejemplos del cuarto trimestre. Eso no significa que quede fuera para siempre: Google habla de «locales adicionales» sin cerrar la lista, pero no hay ningún compromiso sobre el mercado español en el texto. El propio Modo IA sí funciona en España: lo seguimos en [¿Funciona en España?](/funciona-en-espana/#google-modo-ia).
 
 En Latinoamérica la lectura es distinta. México y Brasil aparecen citados como próximos destinos, dos de los mercados digitales más grandes de la región. Para un usuario mexicano o brasileño, lo razonable es esperar que, antes de que termine el año, parte de las respuestas del Modo IA incluya enlaces patrocinados. Para el resto de países hispanohablantes no hay información.
 

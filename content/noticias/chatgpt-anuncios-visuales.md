@@ -20,7 +20,7 @@ OpenAI insiste en un principio que ya había anunciado: **la publicidad no influ
 
 ## Por qué importa en España y Latinoamérica
 
-El nuevo formato se probará primero en Estados Unidos, por lo que no hay cambios inmediatos en España ni en Latinoamérica. Pero la dirección está clara: la publicidad se está convirtiendo en una parte importante del modelo de negocio de ChatGPT. En España, la página oficial de precios ya advierte de que el plan **Go (8 €/mes)** «puede incluir anuncios».
+El nuevo formato se probará primero en Estados Unidos, por lo que no hay cambios inmediatos en España ni en Latinoamérica. Pero la dirección está clara: la publicidad se está convirtiendo en una parte importante del modelo de negocio de ChatGPT. En España, la página oficial de precios ya advierte de que el plan **Go (8 €/mes)** «puede incluir anuncios». Seguimos dónde llegan los anuncios en [¿Funciona en España?](/funciona-en-espana/#chatgpt-anuncios) y el precio de cada plan en el [historial de precios](/historial-de-precios/#precios-chatgpt).
 
 Para las **empresas y agencias de marketing**, ChatGPT empieza a perfilarse como un nuevo canal publicitario con herramientas de medición similares a las de buscadores y redes sociales.
 

@@ -28,7 +28,7 @@ El otro dato relevante es regulatorio. Apple afirma que Siri AI **no está dispo
 ## Qué cambia en la práctica
 
 - **Si vives en Latinoamérica con un dispositivo compatible:** tras actualizar a la versión 27.2 y configurar Siri y el dispositivo en español, podrías activar la beta. Comprueba en Ajustes si te aparece.
-- **Si vives en la UE:** de momento no cambia nada. Apple no ha dado calendario.
+- **Si vives en la UE:** de momento no cambia nada. Apple no ha dado calendario. Seguimos su estado en [¿Funciona en España?](/funciona-en-espana/#siri-ai).
 - **Si eres menor de 13 años:** Siri AI no está disponible.
 - **Límites de uso diarios:** Apple avisa de que las funciones que dependen de modelos en servidores, entre ellas Siri AI, tienen límites diarios que varían según la función, la complejidad de la petición y la demanda. La empresa añade que en el futuro habrá un acceso ampliado **de pago**, sin dar precio.
 
