@@ -107,6 +107,26 @@ nota: Requiere un PC Copilot+. Microsoft anunció su llegada al Espacio Económi
 comprobado: 2026-11-04
 fuentes: https://support.microsoft.com/en-us/servicing/os/windows-11/2025/07/july-22-2025-kb5062660-os-build-26100-4770-preview, https://support.microsoft.com/en-us/windows/ai/ai-features/retrace-your-steps-with-recall
 
+## Búsqueda visual con Bing en Click to Do
+id: click-to-do-busqueda-visual
+empresa: microsoft
+eeuu: si
+ue: no
+es: no
+nota: Microsoft indica que no está disponible en el Espacio Económico Europeo. Requiere un PC Copilot+.
+comprobado: 2026-11-16
+fuentes: https://support.microsoft.com/en-us/windows/ai/ai-features/click-to-do-do-more-with-what-s-on-your-screen
+
+## Redactar con Copilot en Word desde Click to Do
+id: click-to-do-redactar-word
+empresa: microsoft
+eeuu: si
+ue: no
+es: no
+nota: Microsoft indica que no está disponible en el Espacio Económico Europeo. Requiere un PC Copilot+.
+comprobado: 2026-11-16
+fuentes: https://support.microsoft.com/en-us/windows/ai/ai-features/click-to-do-do-more-with-what-s-on-your-screen
+
 ## Microsoft Copilot
 id: microsoft-copilot
 empresa: microsoft
@@ -292,6 +312,26 @@ nota: Para mayores de 18 años.
 comprobado: 2026-11-04
 fuentes: https://support.google.com/flow/answer/16353544?hl=es
 
+## Avatares en Google Flow
+id: google-flow-avatares
+empresa: google
+eeuu: si
+ue: no
+es: no
+nota: Google indica que no está disponible en el Espacio Económico Europeo, Suiza ni el Reino Unido.
+comprobado: 2026-11-16
+fuentes: https://support.google.com/flow/answer/16353544?hl=en
+
+## Editar vídeos subidos en Google Flow
+id: google-flow-editar-videos
+empresa: google
+eeuu: si
+ue: no
+es: no
+nota: Google indica que no está disponible en el Espacio Económico Europeo, Suiza ni el Reino Unido. Sí se pueden crear vídeos desde una descripción.
+comprobado: 2026-11-16
+fuentes: https://support.google.com/flow/answer/16353544?hl=en
+
 ## Gemini Notebook
 id: gemini-notebook
 empresa: google
@@ -388,6 +428,28 @@ es: no
 nota: La lista oficial de países de Sora, en su copia archivada del 26 de abril de 2026, no incluye a España ni a ningún país de la UE.
 comprobado: 2026-11-15
 fuentes: https://web.archive.org/web/20260426025236/https://help.openai.com/en/articles/12461230-sora-app-and-sora-2-supported-countries
+
+## Sites en Codex de ChatGPT
+id: chatgpt-sites
+empresa: openai
+ficha: chatgpt
+eeuu: si
+ue: no
+es: no
+nota: Crear y publicar webs desde Codex. OpenAI indica que no está disponible en el Espacio Económico Europeo, Suiza ni el Reino Unido.
+comprobado: 2026-11-16
+fuentes: https://web.archive.org/web/20260908182121/https://help.openai.com/en/articles/11369540
+
+## Anuncios en ChatGPT
+id: chatgpt-anuncios
+empresa: openai
+ficha: chatgpt
+eeuu: si
+ue: sin_confirmar
+es: sin_confirmar
+nota: En los planes Free y Go; las pruebas empezaron en EE. UU. en febrero de 2026. Los anuncios personalizados no llegan de inicio al Espacio Económico Europeo.
+comprobado: 2026-11-16
+fuentes: https://web.archive.org/web/20261113133956/https://help.openai.com/en/articles/20001047-ads-in-chatgpt
 
 ## Claude
 id: claude
