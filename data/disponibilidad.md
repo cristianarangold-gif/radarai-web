@@ -210,6 +210,50 @@ nota: Google la excluye del Espacio Económico Europeo, Suiza y Reino Unido.
 comprobado: 2026-11-04
 fuentes: https://support.google.com/gemini/answer/16868299?hl=es
 
+## Resúmenes de conversaciones con IA en Gmail
+id: gmail-resumenes
+empresa: google
+ficha: gemini
+eeuu: si
+ue: si
+es: si
+nota: Google la marca como global también para cuentas personales gratuitas, en español entre otros idiomas.
+comprobado: 2026-11-16
+fuentes: https://support.google.com/mail/answer/16831098?hl=en
+
+## Ayúdame a escribir en Gmail
+id: gmail-ayudame-a-escribir
+empresa: google
+ficha: gemini
+eeuu: si
+ue: si
+es: si
+nota: Con cuenta personal gratuita, solo en EE. UU.; en el resto del mundo requiere Google AI Plus, Pro o Ultra o un plan de Workspace.
+comprobado: 2026-11-16
+fuentes: https://support.google.com/mail/answer/16831098?hl=en
+
+## Resumen con IA en la búsqueda de Gmail
+id: gmail-busqueda-ia
+empresa: google
+ficha: gemini
+eeuu: si
+ue: no
+es: no
+nota: Google excluye las cuentas personales del Espacio Económico Europeo. Requiere Google AI Plus, Pro o Ultra o un plan de Workspace.
+comprobado: 2026-11-16
+fuentes: https://support.google.com/mail/answer/16831098?hl=en, https://support.google.com/mail/answer/16789526?hl=en
+
+## Gmail Live
+id: gmail-live
+empresa: google
+ficha: gemini
+eeuu: si
+ue: si
+es: si
+nota: Hablar con Gmail por voz. Google la marca como global, pero solo en inglés, en iOS y Android y con Google AI Plus, Pro o Ultra.
+comprobado: 2026-11-16
+fuentes: https://support.google.com/mail/answer/16831098?hl=en
+
 ## Modo IA de la Búsqueda de Google
 id: google-modo-ia
 empresa: google
@@ -364,3 +408,33 @@ es: si
 nota: Según el anuncio de marzo de 2025, que cubre los países de la UE; las funciones pueden variar por aplicación.
 comprobado: 2026-11-04
 fuentes: https://about.fb.com/news/2025/03/europe-meet-your-newest-assistant-meta-ai/, https://about.fb.com/news/2024/04/meta-ai-assistant-built-with-llama-3/
+
+## Meta AI en las gafas Ray-Ban Meta
+id: meta-ai-gafas
+empresa: meta
+eeuu: si
+ue: parcial
+es: si
+nota: Meta la lanzó en España en noviembre de 2024 y la amplió a otros siete países europeos en 2025, no a toda la UE.
+comprobado: 2026-11-16
+fuentes: https://about.fb.com/news/2025/04/meta-ai-begins-roll-out-on-ray-ban-meta-glasses-to-even-more-countries-in-the-eu/
+
+## Traducción en directo de Galaxy AI
+id: galaxy-ai-traduccion-llamadas
+empresa: samsung
+eeuu: si
+ue: sin_confirmar
+es: si
+nota: Traduce llamadas (Live Translate, dentro de Call Assist). Samsung España la anuncia con español entre sus idiomas; depende del modelo y la versión de One UI.
+comprobado: 2026-11-16
+fuentes: https://www.samsung.com/es/galaxy-ai/, https://www.samsung.com/us/galaxy-ai/
+
+## Now Brief de Galaxy AI
+id: galaxy-ai-now-brief
+empresa: samsung
+eeuu: si
+ue: sin_confirmar
+es: si
+nota: Resúmenes personalizados a lo largo del día. Samsung España la anuncia; depende del modelo y la versión de One UI.
+comprobado: 2026-11-16
+fuentes: https://www.samsung.com/es/galaxy-ai/, https://www.samsung.com/us/galaxy-ai/
