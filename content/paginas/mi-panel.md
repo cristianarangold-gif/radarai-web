@@ -20,6 +20,12 @@ Con el botón **«Añadir a mi calendario»** descargas un archivo con todos tus
 
 Si los planes de una herramienta empiezan en un precio «desde», rellenamos ese mínimo y te lo indicamos: cambia el importe por el que pagas de verdad.
 
+## Tus prompts y tus notas, a mano
+
+En el [generador de prompts](/herramientas-radar/generador-de-prompts/), en las demás utilidades y en cada tarjeta de la [biblioteca de prompts](/prompts/) tienes el botón **«Guardar en mi panel»**. Lo que guardes aparece en la pestaña **Prompts**, donde puedes copiarlo, cambiarle el título, retocar el texto o borrarlo. Si en la biblioteca has rellenado los huecos del prompt, se guarda ya rellenado.
+
+En **Notas** puedes apuntar ideas o enlaces y agruparlos por proyecto: un canal de YouTube, un trabajo de clase, tu negocio… Si borras un proyecto, sus notas no se pierden: pasan a «Sin proyecto».
+
 ## Tus datos no salen de tu navegador
 
 «Mi panel» **no necesita cuenta ni contraseña**. Todo lo que escribes se guarda solo en este navegador, en este dispositivo, y Radar IA no lo recibe ni lo puede ver. Por eso mismo hay que tener en cuenta dos cosas:

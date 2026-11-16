@@ -50,12 +50,30 @@
 
     <section class="panel-sec" id="sec-prompts" role="tabpanel" aria-labelledby="tab-prompts" hidden>
       <h2>Prompts</h2>
-      <p>Muy pronto podrás guardar aquí los prompts del <a href="/herramientas-radar/generador-de-prompts/">generador</a> y de la <a href="/prompts/">biblioteca de prompts</a>.</p>
+      <p>Guarda aquí los prompts que más usas. Pulsa «Guardar en mi panel» en el <a href="/herramientas-radar/generador-de-prompts/">generador de prompts</a>, en las demás utilidades o en cualquier tarjeta de la <a href="/prompts/">biblioteca de prompts</a>.</p>
+      <ul class="panel-list" id="lista-prompts" aria-live="polite"></ul>
     </section>
 
     <section class="panel-sec" id="sec-notas" role="tabpanel" aria-labelledby="tab-notas" hidden>
       <h2>Notas</h2>
-      <p>Muy pronto podrás apuntar aquí ideas y notas agrupadas por proyecto.</p>
+      <p>Apunta ideas, enlaces o lo que vayas aprendiendo, y agrúpalo por proyecto.</p>
+      <form class="panel-form utility-app" id="form-proyecto" autocomplete="off">
+        <div class="utility-grid">
+          <div class="field"><label for="proyecto-nombre">Nuevo proyecto</label><input id="proyecto-nombre" maxlength="60" required placeholder="Por ejemplo: canal de YouTube"></div>
+        </div>
+        <div class="actions"><button class="btn secondary" type="submit">Crear proyecto</button></div>
+      </form>
+      <form class="panel-form utility-app" id="form-nota" autocomplete="off">
+        <div class="utility-grid">
+          <div class="field"><label for="nota-proyecto">Proyecto</label><select id="nota-proyecto"></select></div>
+          <div class="field"><label for="nota-titulo">Título</label><input id="nota-titulo" maxlength="120" required></div>
+        </div>
+        <div class="field"><label for="nota-texto">Nota</label><textarea id="nota-texto" rows="4" maxlength="5000"></textarea></div>
+        <p class="meta" id="nota-aviso" aria-live="polite"></p>
+        <div class="actions"><button class="btn primary" type="submit" id="nota-guardar">Añadir nota</button><button class="btn secondary" type="button" id="nota-cancelar" hidden>Cancelar</button></div>
+      </form>
+      <div class="panel-filtro"><label for="filtro-proyecto">Ver</label><select id="filtro-proyecto"></select><button class="btn secondary" type="button" id="borrar-proyecto" hidden>Borrar este proyecto</button></div>
+      <ul class="panel-list" id="lista-notas" aria-live="polite"></ul>
     </section>
 
     <section class="panel-sec" id="sec-copia" role="tabpanel" aria-labelledby="tab-copia" hidden>

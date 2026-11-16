@@ -44,3 +44,21 @@ def test_site_has_panel_page_and_prices(site):
     data = json.loads((site / 'mi-panel' / 'precios.json').read_text(encoding='utf-8'))
     latest = sorted((ROOT / 'data' / 'tomas-precios').glob('*.json'))[-1].stem
     assert data['fecha'] == latest and 'chatgpt' in data['herramientas']
+
+
+def test_save_prompt_button_is_loaded(site):
+    util = (site / 'herramientas-radar' / 'generador-de-prompts' / 'index.html').read_text(encoding='utf-8')
+    lib = (site / 'prompts' / 'index.html').read_text(encoding='utf-8')
+    assert 'js/guardar-prompt.js' in util and 'js/guardar-prompt.js' in lib
+
+
+def test_word_counter_has_no_save_button(site):
+    html = (site / 'herramientas-radar' / 'contador-de-palabras' / 'index.html').read_text(encoding='utf-8')
+    assert 'js/guardar-prompt.js' not in html
+
+
+def test_panel_has_prompts_and_notes_sections(site):
+    html = (site / 'mi-panel' / 'index.html').read_text(encoding='utf-8')
+    for id_ in ('lista-prompts', 'form-nota', 'nota-proyecto', 'lista-notas', 'filtro-proyecto', 'form-proyecto'):
+        assert f'id="{id_}"' in html
+    assert 'Muy pronto' not in html

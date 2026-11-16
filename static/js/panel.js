@@ -29,7 +29,19 @@
       base[k] = data[k];
     }
     base.suscripciones = base.suscripciones.filter(valida);
+    base.prompts = base.prompts.filter(validaPrompt);
+    base.notas = base.notas.filter(validaNota);
+    base.proyectos = base.proyectos.filter(function (p, i, l) {
+      return typeof p === 'string' && p.trim() && l.indexOf(p) === i;
+    });
     return base;
+  }
+
+  function texto(x) { return typeof x === 'string'; }
+  function validaPrompt(p) { return p && typeof p === 'object' && texto(p.id) && texto(p.titulo) && texto(p.texto) && p.texto; }
+  function validaNota(n) {
+    return n && typeof n === 'object' && texto(n.id) && texto(n.titulo) && n.titulo && texto(n.texto) &&
+      (n.proyecto === undefined || texto(n.proyecto));
   }
 
   function valida(s) {
@@ -320,6 +332,199 @@
     desg.appendChild(ul2);
   }
 
+  // ---------- Prompts ----------
+  function copiarTexto(valor, boton) {
+    var original = boton.textContent;
+    function hecho(msg) { boton.textContent = msg; setTimeout(function () { boton.textContent = original; }, 2000); }
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(valor).then(function () { hecho('Copiado'); }, function () { hecho('No se pudo copiar'); });
+    } else {
+      hecho('No se pudo copiar');
+    }
+  }
+
+  function fechaCorta(iso) { return iso ? fechaLarga(iso) : ''; }
+
+  function pintarPrompts() {
+    var ul = document.getElementById('lista-prompts');
+    ul.textContent = '';
+    if (!estado.prompts.length) {
+      ul.appendChild(el('li', { class: 'panel-vacio', text: 'Aún no has guardado ningún prompt.' }));
+      return;
+    }
+    estado.prompts.forEach(function (p) {
+      var li = el('li', { class: 'panel-item panel-prompt' });
+      var meta = [p.fecha ? 'Guardado el ' + fechaCorta(p.fecha) : ''];
+      var cuerpo = el('div', { class: 'panel-item-main' }, [
+        el('strong', { text: p.titulo || 'Prompt sin título' }),
+        el('p', { class: 'meta' }, [meta[0], p.origen && p.origen.charAt(0) === '/' ? (meta[0] ? ' · ' : '') : '',
+          p.origen && p.origen.charAt(0) === '/' ? el('a', { href: p.origen, text: 'Ver de dónde viene' }) : null]),
+        el('pre', { class: 'panel-texto', text: p.texto })
+      ]);
+      var copiarBtn = el('button', { type: 'button', class: 'btn secondary', text: 'Copiar' });
+      var editarBtn = el('button', { type: 'button', class: 'btn secondary', text: 'Editar' });
+      var borrarBtn = el('button', { type: 'button', class: 'btn secondary', text: 'Borrar' });
+      copiarBtn.addEventListener('click', function () { copiarTexto(p.texto, copiarBtn); });
+      editarBtn.addEventListener('click', function () { editarPrompt(p, li); });
+      borrarBtn.addEventListener('click', function () {
+        if (!window.confirm('¿Borrar el prompt «' + (p.titulo || 'sin título') + '»?')) return;
+        estado.prompts = estado.prompts.filter(function (x) { return x.id !== p.id; });
+        guardar(estado);
+        pintarPrompts();
+      });
+      li.appendChild(cuerpo);
+      li.appendChild(el('div', { class: 'panel-item-actions' }, [copiarBtn, editarBtn, borrarBtn]));
+      ul.appendChild(li);
+    });
+  }
+
+  function editarPrompt(p, li) {
+    var idT = 'pt-' + p.id, idX = 'px-' + p.id;
+    var titulo = el('input', { id: idT, maxlength: '120', value: p.titulo });
+    var area = el('textarea', { id: idX, rows: '8' });
+    area.value = p.texto;
+    var ok = el('button', { type: 'submit', class: 'btn primary', text: 'Guardar cambios' });
+    var no = el('button', { type: 'button', class: 'btn secondary', text: 'Cancelar' });
+    var form = el('form', { class: 'panel-form utility-app panel-editor' }, [
+      el('div', { class: 'field' }, [el('label', { for: idT, text: 'Título' }), titulo]),
+      el('div', { class: 'field' }, [el('label', { for: idX, text: 'Prompt' }), area]),
+      el('div', { class: 'actions' }, [ok, no])
+    ]);
+    no.addEventListener('click', pintarPrompts);
+    form.addEventListener('submit', function (ev) {
+      ev.preventDefault();
+      if (!area.value.trim()) { area.focus(); return; }
+      p.titulo = titulo.value.trim();
+      p.texto = area.value.trim();
+      guardar(estado);
+      pintarPrompts();
+    });
+    li.textContent = '';
+    li.appendChild(form);
+    titulo.focus();
+  }
+
+  // ---------- Notas por proyecto ----------
+  var n = {
+    form: document.getElementById('form-nota'), proyecto: document.getElementById('nota-proyecto'),
+    titulo: document.getElementById('nota-titulo'), texto: document.getElementById('nota-texto'),
+    aviso: document.getElementById('nota-aviso'), boton: document.getElementById('nota-guardar'),
+    cancelar: document.getElementById('nota-cancelar'), filtro: document.getElementById('filtro-proyecto'),
+    borrarProyecto: document.getElementById('borrar-proyecto'), formProyecto: document.getElementById('form-proyecto'),
+    nuevoProyecto: document.getElementById('proyecto-nombre')
+  };
+  var TODAS = '__todas';
+  var editandoNota = null;
+
+  function opciones(select, lista, actual) {
+    select.textContent = '';
+    lista.forEach(function (o) { select.appendChild(el('option', { value: o[0], text: o[1] })); });
+    select.value = lista.some(function (o) { return o[0] === actual; }) ? actual : lista[0][0];
+  }
+
+  function proyectosOrdenados() { return estado.proyectos.slice().sort(function (a, b) { return a.localeCompare(b, 'es'); }); }
+
+  function pintarSelectores() {
+    var ps = proyectosOrdenados().map(function (p) { return [p, p]; });
+    opciones(n.proyecto, [['', 'Sin proyecto']].concat(ps), n.proyecto.value);
+    opciones(n.filtro, [[TODAS, 'Todas las notas'], ['', 'Sin proyecto']].concat(ps), n.filtro.value || TODAS);
+    n.borrarProyecto.hidden = n.filtro.value === TODAS || n.filtro.value === '';
+  }
+
+  function limpiarNota() {
+    editandoNota = null;
+    n.titulo.value = '';
+    n.texto.value = '';
+    n.aviso.textContent = '';
+    n.boton.textContent = 'Añadir nota';
+    n.cancelar.hidden = true;
+  }
+
+  function pintarNotas() {
+    pintarSelectores();
+    var ul = document.getElementById('lista-notas');
+    ul.textContent = '';
+    var filtro = n.filtro.value;
+    var lista = estado.notas.filter(function (x) { return filtro === TODAS || (x.proyecto || '') === filtro; });
+    if (!lista.length) {
+      ul.appendChild(el('li', { class: 'panel-vacio', text: estado.notas.length ? 'No hay notas en este proyecto.' : 'Aún no tienes notas.' }));
+      return;
+    }
+    lista.forEach(function (x) {
+      var editarBtn = el('button', { type: 'button', class: 'btn secondary', text: 'Editar' });
+      var borrarBtn = el('button', { type: 'button', class: 'btn secondary', text: 'Borrar' });
+      editarBtn.addEventListener('click', function () {
+        editandoNota = x.id;
+        n.proyecto.value = x.proyecto || '';
+        n.titulo.value = x.titulo;
+        n.texto.value = x.texto;
+        n.boton.textContent = 'Guardar cambios';
+        n.cancelar.hidden = false;
+        n.form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        n.titulo.focus();
+      });
+      borrarBtn.addEventListener('click', function () {
+        if (!window.confirm('¿Borrar la nota «' + x.titulo + '»?')) return;
+        estado.notas = estado.notas.filter(function (y) { return y.id !== x.id; });
+        guardar(estado);
+        if (editandoNota === x.id) limpiarNota();
+        pintarNotas();
+      });
+      ul.appendChild(el('li', { class: 'panel-item' }, [
+        el('div', { class: 'panel-item-main' }, [
+          el('strong', { text: x.titulo }),
+          el('p', { class: 'meta', text: (x.proyecto || 'Sin proyecto') + (x.fecha ? ' · ' + fechaCorta(x.fecha) : '') }),
+          x.texto ? el('p', { class: 'panel-texto', text: x.texto }) : null
+        ]),
+        el('div', { class: 'panel-item-actions' }, [editarBtn, borrarBtn])
+      ]));
+    });
+  }
+
+  n.formProyecto.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var nombre = n.nuevoProyecto.value.trim().slice(0, 60);
+    if (!nombre) return;
+    if (estado.proyectos.indexOf(nombre) < 0) estado.proyectos.push(nombre);
+    guardar(estado);
+    n.nuevoProyecto.value = '';
+    n.proyecto.value = nombre;
+    pintarSelectores();
+    n.proyecto.value = nombre;
+    n.filtro.value = nombre;
+    pintarNotas();
+  });
+
+  n.form.addEventListener('submit', function (ev) {
+    ev.preventDefault();
+    var titulo = n.titulo.value.trim();
+    if (!titulo) { n.aviso.textContent = 'Ponle un título a la nota.'; n.titulo.focus(); return; }
+    var previa = estado.notas.filter(function (x) { return x.id === editandoNota; })[0];
+    var nota = {
+      id: editandoNota || nuevoId(), proyecto: n.proyecto.value, titulo: titulo.slice(0, 120),
+      texto: n.texto.value.trim().slice(0, 5000), fecha: previa ? previa.fecha : new Date().toISOString().slice(0, 10)
+    };
+    if (previa) estado.notas[estado.notas.indexOf(previa)] = nota; else estado.notas.unshift(nota);
+    guardar(estado);
+    limpiarNota();
+    pintarNotas();
+  });
+
+  n.cancelar.addEventListener('click', limpiarNota);
+  n.filtro.addEventListener('change', pintarNotas);
+
+  n.borrarProyecto.addEventListener('click', function () {
+    var p = n.filtro.value;
+    var cuantas = estado.notas.filter(function (x) { return x.proyecto === p; }).length;
+    if (!window.confirm('¿Borrar el proyecto «' + p + '»?' + (cuantas ? ' Sus ' + cuantas + ' nota' + (cuantas === 1 ? '' : 's') +
+      ' no se borran: pasan a «Sin proyecto».' : ''))) return;
+    estado.proyectos = estado.proyectos.filter(function (x) { return x !== p; });
+    estado.notas.forEach(function (x) { if (x.proyecto === p) x.proyecto = ''; });
+    guardar(estado);
+    n.filtro.value = TODAS;
+    pintarNotas();
+  });
+
   // ---------- Calendario (.ics, RFC 5545) ----------
   function icsTexto(t) {
     return String(t).replace(/\\/g, '\\\\').replace(/;/g, '\\;').replace(/,/g, '\\,').replace(/\r?\n/g, '\\n');
@@ -407,12 +612,14 @@
         copiaEstado.textContent = 'Ese archivo no es una copia de «Mi panel» (o es de otra versión). No se ha cambiado nada.';
         return;
       }
-      var n = datos.suscripciones.length;
-      if (!window.confirm('La copia tiene ' + n + ' suscripción' + (n === 1 ? '' : 'es') +
+      function cuenta(k, uno, varios) { var c = datos[k].length; return c + ' ' + (c === 1 ? uno : varios); }
+      if (!window.confirm('La copia tiene ' + cuenta('suscripciones', 'suscripción', 'suscripciones') + ', ' +
+        cuenta('prompts', 'prompt', 'prompts') + ' y ' + cuenta('notas', 'nota', 'notas') +
         '. Sustituirá todo lo que tienes ahora en el panel. ¿Continuar?')) return;
       estado = datos;
       guardar(estado);
       limpiarFormulario();
+      limpiarNota();
       pintar();
       copiaEstado.textContent = 'Copia cargada.';
     };
@@ -440,11 +647,22 @@
       activar(tabs[(j + tabs.length) % tabs.length], true);
     });
   });
-  var inicial = document.getElementById('tab-' + (location.hash || '').slice(1));
-  if (inicial) activar(inicial, false);
+  function desdeAncla() {
+    var t = document.getElementById('tab-' + (location.hash || '').slice(1));
+    if (t && tabs.indexOf(t) >= 0) activar(t, false);
+  }
+  desdeAncla();
+  window.addEventListener('hashchange', desdeAncla);
 
   // ---------- Arranque ----------
-  function pintar() { pintarLista(); pintarPagos(); }
+  function pintar() { pintarLista(); pintarPagos(); pintarPrompts(); pintarNotas(); }
+
+  // Si guardas un prompt en otra pestaña, el panel abierto se actualiza.
+  window.addEventListener('storage', function (ev) {
+    if (ev.key !== CLAVE) return;
+    estado = cargar();
+    pintar();
+  });
 
   rellenarHerramientas();
   limpiarFormulario();

@@ -11,4 +11,4 @@
   </div>
 </article>
 {% endblock %}
-{% block scripts %}{% if page.extra.get('script') %}<script src="{{ page.extra['script'] }}" defer></script>{% endif %}{% endblock %}
+{% block scripts %}{% if page.extra.get('script') %}<script src="{{ page.extra['script'] }}" defer></script>{% if page.url != '/herramientas-radar/contador-de-palabras/' %}<script src="{{ asset('js/guardar-prompt.js') }}" defer></script>{% endif %}{% endif %}{% endblock %}
