@@ -9,6 +9,8 @@ script: /herramientas-radar/app.js
 <div class="actions"><button id="run-tool" class="btn primary" type="button">✦ Mejorar prompt</button><button id="sample-tool" class="btn secondary" type="button">Probar ejemplo</button><button id="clear-tool" class="btn secondary" type="button">Limpiar</button></div><div class="result"><div class="result-head"><h2>Prompt mejorado</h2><div id="radar-meta" class="meta">Listo para empezar.</div><button id="copy-output" class="btn secondary" type="button">Copiar</button></div><pre id="radar-output">Aquí aparecerá tu prompt mejorado y su diagnóstico.</pre></div>
 </div>
 
+¿Te ha gustado el resultado? Pulsa **«Guardar en mi panel»** y tendrás tu prompt mejorado en [Mi panel](/mi-panel/), junto a tus notas y tus suscripciones de IA, sin registrarte.
+
 ## Para qué sirve
 
 Muchas respuestas flojas de un asistente de IA se deben a una petición incompleta: falta contexto, no se dice para quién es ni qué formato se espera. Este mejorador **revisa tu prompt punto por punto**, te explica qué le falta y te devuelve una versión ordenada por bloques para que la completes y la pegues en ChatGPT, Claude, Gemini o el asistente que uses.

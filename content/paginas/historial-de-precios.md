@@ -21,6 +21,10 @@ Mostramos cada precio en la moneda en que lo publica la empresa. Algunas, como O
 
 El importe final puede variar con los impuestos, el país desde el que pagas o el tipo de facturación (mensual o anual). Antes de contratar, comprueba siempre el precio en la página oficial.
 
+## Controla lo que pagas tú
+
+Si apuntas tus suscripciones en [Mi panel](/mi-panel/), te avisamos cuando el precio de tu plan no coincide con el de nuestra última revisión y ves cuánto gastas en IA al mes y al año. Se guarda solo en tu navegador, sin registro.
+
 ## ¿Has visto un cambio que no aparece?
 
 Si una herramienta ha cambiado sus precios y no lo reflejamos, escríbenos desde [contacto](/contacto/) con el enlace a la fuente. Lo revisaremos y, si se puede comprobar, lo añadiremos con su fecha.

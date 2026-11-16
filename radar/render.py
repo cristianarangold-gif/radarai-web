@@ -177,6 +177,7 @@ def render_page(env: jinja2.Environment, page: Page, ctx: dict) -> str:
         start_payload=ctx.get('start_payload', {}),
         glossary=ctx.get('glossary', {}),
         library=ctx.get('library', {}),
+        panel=ctx.get('panel', False),
         price_history=ctx.get('price_history', {}),
         availability=ctx.get('availability', {}),
         duels=ctx.get('duels', []),

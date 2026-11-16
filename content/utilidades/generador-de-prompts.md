@@ -9,6 +9,8 @@ Este generador te ayuda a escribir peticiones completas para cualquier asistente
 <div class="actions"><button id="run-tool" class="btn primary" type="button">✦ Crear prompt</button><button id="sample-tool" class="btn secondary" type="button">Probar ejemplo</button><button id="clear-tool" class="btn secondary" type="button">Limpiar</button></div><div class="result"><div class="result-head"><h2>Resultado</h2><div id="radar-meta" class="meta">Listo para empezar.</div><button id="copy-output" class="btn secondary" type="button">Copiar</button></div><pre id="radar-output">Aquí aparecerá tu prompt completo.</pre></div>
 </div>
 
+¿Te ha gustado el resultado? Pulsa **«Guardar en mi panel»** y tendrás tu prompt en [Mi panel](/mi-panel/), junto a tus notas y tus suscripciones de IA, sin registrarte.
+
 ## Para qué sirve
 
 Muchas respuestas mediocres de la IA se deben a peticiones incompletas. Este generador te obliga a pensar en los elementos que marcan la diferencia: **qué quieres conseguir, el contexto, para quién es, en qué formato y con qué tono**, además de las restricciones que debe respetar. Es la misma estructura que explicamos en nuestra guía de [cómo escribir buenos prompts](/guias/mejores-prompts/), convertida en un formulario.
