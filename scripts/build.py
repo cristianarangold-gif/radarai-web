@@ -6,6 +6,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import json
 import shutil
 import sys
 from datetime import date
@@ -21,6 +22,7 @@ from radar.compare import compare_payload  # noqa: E402
 from radar.content import load_pages  # noqa: E402
 from radar.covers import cover_for, og_rel, write_cover_png  # noqa: E402
 from radar.duels import duel_links, validate_duels  # noqa: E402
+from radar.panel import panel_prices  # noqa: E402
 from radar.price_history import auto_changes, history_context, load_snapshots, parse_history, validate_history  # noqa: E402
 from radar.prompt_library import library_context, parse_prompts, validate_prompts  # noqa: E402
 from radar.professions import published, recommended_for, validate_professions  # noqa: E402
@@ -181,6 +183,10 @@ def build(root: Path, out: Path) -> None:
                                           base_ctx.get('price_history', {}).get('tools'), base_ctx.get('availability')))
     base_ctx['search_index_url'] = '/search-index.json?v=' + hashlib.sha256(search_json.encode('utf-8')).hexdigest()[:10]
     w.write('search-index.json', search_json, 'índice de búsqueda')
+    if '/mi-panel/' in by_url and base_ctx.get('price_snapshots'):
+        names = {k: v['n'] for k, v in base_ctx.get('compare_by_id', {}).items()}
+        prices = panel_prices(base_ctx['price_snapshots'][-1], names)
+        w.write('mi-panel/precios.json', json.dumps(prices, ensure_ascii=False, separators=(',', ':')), 'precios de Mi panel')
 
     all_pages: List[Page] = list(pages)
     for p in pages:
