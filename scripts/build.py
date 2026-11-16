@@ -106,6 +106,7 @@ def build(root: Path, out: Path) -> None:
                     utilidades=featured('utilidad'), brands=brands, radar=radar_tools(news, tools),
                     imprescindibles=[], logos_dir=root / 'static' / 'logos',
                     fichas={p.slug: p for p in pages if p.kind == 'ficha' and p.indexable})
+    base_ctx['panel'] = any(p.url == '/mi-panel/' for p in pages)
     assistant_file = root / 'data' / 'asistente.json'
     if assistant_file.exists():
         assistant = load_assistant(assistant_file)

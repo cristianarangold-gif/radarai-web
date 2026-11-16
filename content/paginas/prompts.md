@@ -6,6 +6,7 @@ descripcion: Prompts en español listos para usar con ChatGPT, Claude o Gemini: 
 1. **Busca o filtra** por categoría: escribir, estudiar, trabajo, marketing, imágenes, programar, día a día o pensar mejor.
 2. **Rellena los huecos** resaltados en ámbar, como [tema] o [público]. Al escribir en los campos de la tarjeta, el prompt se actualiza al momento; si dejas un hueco vacío, se copia tal cual para que lo completes después.
 3. **Copia el prompt** con el botón y pégalo en la herramienta sugerida o en el asistente que prefieras. Cada tarjeta indica con qué herramientas encaja y enlaza a su [ficha](/herramientas/).
+4. **Guárdalo** con «Guardar en mi panel» si lo vas a usar a menudo: lo tendrás en [Mi panel](/mi-panel/), con los huecos que hayas rellenado, para copiarlo o retocarlo cuando quieras.
 
 Un prompt es un punto de partida, no una fórmula mágica. Si la primera respuesta no te convence, no empieces de cero: dile al asistente qué cambiar («más corto», «con un ejemplo», «en tono más formal»). Te lo explicamos en la guía [cómo escribir buenos prompts](/guias/mejores-prompts/), y si quieres reorganizar un prompt propio, prueba nuestro [mejorador de prompts](/herramientas-radar/mejorador-de-prompts/).
 

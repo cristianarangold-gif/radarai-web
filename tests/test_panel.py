@@ -62,3 +62,25 @@ def test_panel_has_prompts_and_notes_sections(site):
     for id_ in ('lista-prompts', 'form-nota', 'nota-proyecto', 'lista-notas', 'filtro-proyecto', 'form-proyecto'):
         assert f'id="{id_}"' in html
     assert 'Muy pronto' not in html
+
+
+def _main(html):
+    return html.split('<footer', 1)[0]
+
+
+def test_panel_is_linked_from_related_pages(site):
+    for rel in ('herramientas-radar/generador-de-prompts', 'herramientas-radar/mejorador-de-prompts', 'prompts',
+                'historial-de-precios'):
+        assert 'href="/mi-panel/"' in _main((site / rel / 'index.html').read_text(encoding='utf-8')), rel
+
+
+def test_footer_links_to_panel(site):
+    html = (site / 'index.html').read_text(encoding='utf-8')
+    assert 'href="/mi-panel/"' in html.split('<footer', 1)[1]
+
+
+def test_privacy_and_cookies_explain_panel(site):
+    privacy = _main((site / 'legal' / 'politica-privacidad' / 'index.html').read_text(encoding='utf-8'))
+    assert 'Mi panel' in privacy and 'navegador' in privacy and 'href="/mi-panel/"' in privacy
+    cookies = _main((site / 'legal' / 'politica-cookies' / 'index.html').read_text(encoding='utf-8'))
+    assert 'Mi panel' in cookies
