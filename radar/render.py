@@ -126,6 +126,8 @@ def template_for(page: Page, ctx: dict) -> str:
         return 'search.html'
     if page.url == '/que-ia-necesito/':
         return 'assistant.html'
+    if page.url == '/mi-panel/':
+        return 'panel.html'
     if page.url == '/comparador/':
         return 'compare.html'
     if page.url == '/prompts/' and ctx.get('library'):

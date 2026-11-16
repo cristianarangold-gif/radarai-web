@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block main %}
+<section class="wrap article panel-page">
+  <header class="article-head">
+    <p class="eyebrow">Herramienta gratuita · sin registro</p>
+    <h1>Mi <em>panel</em></h1>
+    <p class="lede">Tus suscripciones de IA, tus cobros y tu gasto en un solo sitio. Se guarda solo en este navegador.</p>
+  </header>
+
+  <div id="panel" class="panel" data-precios="/mi-panel/precios.json">
+    <p class="panel-aviso" id="panel-aviso" role="status">Tus datos se guardan solo en este navegador. Haz una copia de seguridad de vez en cuando para no perderlos.</p>
+    <noscript><p class="panel-aviso panel-error">«Mi panel» necesita JavaScript activado.</p></noscript>
+
+    <div class="panel-tabs" role="tablist" aria-label="Secciones de Mi panel">
+      <button type="button" role="tab" id="tab-ias" aria-controls="sec-ias" aria-selected="true">Mis IA</button>
+      <button type="button" role="tab" id="tab-pagos" aria-controls="sec-pagos" aria-selected="false" tabindex="-1">Pagos y gasto</button>
+      <button type="button" role="tab" id="tab-prompts" aria-controls="sec-prompts" aria-selected="false" tabindex="-1">Prompts</button>
+      <button type="button" role="tab" id="tab-notas" aria-controls="sec-notas" aria-selected="false" tabindex="-1">Notas</button>
+      <button type="button" role="tab" id="tab-copia" aria-controls="sec-copia" aria-selected="false" tabindex="-1">Copia de seguridad</button>
+    </div>
+
+    <section class="panel-sec" id="sec-ias" role="tabpanel" aria-labelledby="tab-ias">
+      <h2>Mis IA</h2>
+      <form class="panel-form utility-app" id="form-ia" autocomplete="off">
+        <div class="utility-grid">
+          <div class="field"><label for="ia-herramienta">Herramienta</label><select id="ia-herramienta" required></select></div>
+          <div class="field" id="campo-nombre" hidden><label for="ia-nombre">Nombre de la IA</label><input id="ia-nombre" maxlength="60"></div>
+          <div class="field"><label for="ia-plan">Plan</label><input id="ia-plan" list="ia-planes" maxlength="60" required><datalist id="ia-planes"></datalist></div>
+          <div class="field"><label for="ia-importe">Importe (€)</label><input id="ia-importe" type="number" min="0" step="0.01" inputmode="decimal" required></div>
+          <div class="field"><label for="ia-ciclo">Se paga</label><select id="ia-ciclo"><option value="mensual">Cada mes</option><option value="anual">Cada año</option></select></div>
+          <div class="field"><label for="ia-dia">Día del cobro</label><input id="ia-dia" type="number" min="1" max="31" required></div>
+          <div class="field" id="campo-mes" hidden><label for="ia-mes">Mes del cobro</label><select id="ia-mes"></select></div>
+        </div>
+        <p class="meta" id="ia-nota" aria-live="polite"></p>
+        <div class="actions"><button class="btn primary" type="submit" id="ia-guardar">Añadir</button><button class="btn secondary" type="button" id="ia-cancelar" hidden>Cancelar</button></div>
+      </form>
+      <ul class="panel-list" id="lista-ias" aria-live="polite"></ul>
+    </section>
+
+    <section class="panel-sec" id="sec-pagos" role="tabpanel" aria-labelledby="tab-pagos" hidden>
+      <h2>Pagos y gasto</h2>
+      <div class="panel-totales" id="totales"></div>
+      <h3>Próximos cobros</h3>
+      <div id="cobros"></div>
+      <h3>Gasto por herramienta</h3>
+      <div id="desglose"></div>
+      <div class="actions"><button class="btn primary" type="button" id="descargar-ics">Añadir a mi calendario (.ics)</button></div>
+      <p class="meta">Descarga un archivo con tus cobros como eventos que se repiten. Ábrelo con Google Calendar, el calendario del iPhone o Outlook.</p>
+    </section>
+
+    <section class="panel-sec" id="sec-prompts" role="tabpanel" aria-labelledby="tab-prompts" hidden>
+      <h2>Prompts</h2>
+      <p>Muy pronto podrás guardar aquí los prompts del <a href="/herramientas-radar/generador-de-prompts/">generador</a> y de la <a href="/prompts/">biblioteca de prompts</a>.</p>
+    </section>
+
+    <section class="panel-sec" id="sec-notas" role="tabpanel" aria-labelledby="tab-notas" hidden>
+      <h2>Notas</h2>
+      <p>Muy pronto podrás apuntar aquí ideas y notas agrupadas por proyecto.</p>
+    </section>
+
+    <section class="panel-sec" id="sec-copia" role="tabpanel" aria-labelledby="tab-copia" hidden>
+      <h2>Copia de seguridad</h2>
+      <p>Descarga todo lo que has guardado en un archivo. Para recuperarlo, o para pasarlo a otro dispositivo, cárgalo aquí.</p>
+      <div class="actions"><button class="btn primary" type="button" id="exportar">Descargar copia</button>
+        <label class="btn secondary panel-file">Cargar copia<input type="file" id="importar" accept="application/json,.json"></label></div>
+      <p class="meta" id="copia-estado" aria-live="polite"></p>
+    </section>
+  </div>
+
+  <div class="prose">{{ page.body_html | safe }}</div>
+</section>
+{% endblock %}
+{% block scripts %}<script src="{{ asset('js/panel.js') }}" defer></script>{% endblock %}

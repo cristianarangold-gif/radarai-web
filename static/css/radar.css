@@ -714,3 +714,48 @@ span.glossary-letter { border-color: var(--rule); color: var(--ink-faint); backg
   .mini-radar span, .radar-sweep { animation: none; }
   .blip-in { animation: none; opacity: 1; }
 }
+
+/* Mi panel (/mi-panel/) */
+.panel { margin: 8px 0 40px; }
+.panel-aviso { background: var(--paper-2); border: 1px solid var(--rule); border-radius: var(--radius); padding: 10px 14px; font-size: .92rem; color: var(--ink-2); }
+.panel-aviso.panel-error { background: var(--avail-no-bg); color: var(--avail-no-fg); border-color: transparent; }
+.panel-tabs { display: flex; gap: 6px; flex-wrap: wrap; border-bottom: 1px solid var(--rule); margin: 18px 0 0; }
+.panel-tabs [role="tab"] { background: transparent; border: 1px solid transparent; border-bottom: 0; border-radius: 4px 4px 0 0; padding: 10px 14px; font: 600 .95rem var(--sans); color: var(--ink-2); cursor: pointer; margin-bottom: -1px; }
+.panel-tabs [role="tab"][aria-selected="true"] { background: var(--surface); border-color: var(--rule); color: var(--ink); }
+.panel-tabs [role="tab"]:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.panel-sec { padding: 6px 0 0; }
+.panel-sec h2 { font-size: 1.4rem; }
+.panel-sec h3 { font-size: 1.1rem; margin-top: 24px; }
+.panel-form select, .utility-app select { width: 100%; background: var(--paper); border: 1px solid var(--control-border); border-radius: 4px; color: var(--ink); padding: 11px 13px; font: inherit; font-size: .97rem; }
+.panel-form [hidden] { display: none; }
+.panel-list, .panel-cobros, .panel-desglose { list-style: none; padding: 0; margin: 16px 0; }
+.panel-item { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; border-top: 1px solid var(--rule); padding: 12px 0; }
+.panel-item .meta { margin: 4px 0 0; color: var(--ink-3); font-size: .9rem; }
+.panel-item-actions { display: flex; gap: 8px; flex-shrink: 0; }
+.panel-item-actions .btn, .panel .btn.secondary { padding: 8px 12px; font-size: .88rem; background: transparent; color: var(--ink); }
+.panel-item-actions .btn:hover, .panel .btn.secondary:hover { background: var(--ink); color: var(--on-ink); }
+.panel .btn.primary { background: var(--accent-ink); border-color: var(--accent-ink); color: var(--on-accent); }
+.panel .btn.primary:hover { background: var(--ink); border-color: var(--ink); color: var(--on-ink); }
+.panel-cambio { margin: 6px 0 0; font-size: .9rem; background: var(--price-sube-bg); color: var(--price-sube-fg); padding: 6px 10px; border-radius: 4px; }
+.panel-cambio a { color: inherit; font-weight: 700; }
+.panel-vacio { color: var(--ink-3); font-style: italic; border: 0 !important; }
+.panel-totales { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.panel-total { background: var(--surface); border: 1px solid var(--rule); border-radius: var(--radius); padding: 12px 14px; display: flex; flex-direction: column; gap: 4px; }
+.panel-total span { color: var(--ink-3); font-size: .85rem; }
+.panel-total strong { font: 800 1.5rem var(--serif); color: var(--ink); }
+.panel-mes h4 { margin: 16px 0 6px; font-size: 1rem; }
+.panel-cobros li { display: grid; grid-template-columns: 9em 1fr auto; gap: 10px; padding: 8px 0; border-top: 1px solid var(--rule-2); }
+.panel-cobros time { color: var(--ink-3); }
+.panel-pasado { opacity: .6; }
+.panel-desglose li { display: grid; grid-template-columns: 1fr auto; gap: 4px 10px; padding: 8px 0; border-top: 1px solid var(--rule-2); }
+.panel-barra { grid-column: 1 / -1; height: 6px; background: var(--accent); border-radius: 3px; min-width: 2px; }
+.panel-file { position: relative; overflow: hidden; }
+.panel-file input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+.panel-file:focus-within { outline: 2px solid var(--accent); outline-offset: 2px; }
+@media (max-width: 700px) {
+  .panel-totales { grid-template-columns: 1fr 1fr; }
+  .panel-item { flex-direction: column; }
+  .panel-cobros li { grid-template-columns: 1fr auto; }
+  .panel-cobros time { grid-column: 1 / -1; }
+  .panel-tabs [role="tab"] { padding: 8px 10px; font-size: .88rem; }
+}
