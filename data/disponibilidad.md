@@ -450,6 +450,7 @@ es: sin_confirmar
 nota: En los planes Free y Go; las pruebas empezaron en EE. UU. en febrero de 2026. Los anuncios personalizados no llegan de inicio al Espacio Económico Europeo.
 comprobado: 2026-11-16
 fuentes: https://web.archive.org/web/20261113133956/https://help.openai.com/en/articles/20001047-ads-in-chatgpt
+noticia: /noticias/chatgpt-anuncios-visuales/
 
 ## Claude
 id: claude

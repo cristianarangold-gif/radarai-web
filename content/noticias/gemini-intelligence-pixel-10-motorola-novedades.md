@@ -29,7 +29,7 @@ Pero conviene ser prudente. Las notas al pie del anuncio indican que las funcion
 - **Si tienes un Pixel 10:** tras el Pixel Drop deberías ir viendo las novedades, pero no hay garantía de que todas aparezcan en tu país ni en español.
 - **Si piensas comprar móvil:** no elijas por estas funciones sin comprobar su disponibilidad en tu país. Google dice expresamente que la oferta varía según dispositivo, idioma y región.
 - **Si te preocupa la privacidad:** Create My Widget lee información de tu correo y tu calendario, y Device Assistance entiende el estado de tu teléfono. Antes de activarlas, revisa qué permisos concedes; nuestra guía de [privacidad al usar IA](/guias/privacidad-en-ia/) te ayuda a hacerlo.
-- **Precio:** el anuncio no da cifras. Habla de una posible suscripción para mayor uso, sin precio ni plan concreto. Puedes consultar los planes actuales en la [ficha de Gemini](/herramientas/gemini/).
+- **Precio:** el anuncio no da cifras. Habla de una posible suscripción para mayor uso, sin precio ni plan concreto. Puedes consultar los planes actuales en la [ficha de Gemini](/herramientas/gemini/) y su evolución en el [historial de precios](/historial-de-precios/#precios-gemini).
 
 Google no aporta cifras de rendimiento en este anuncio; todas las descripciones de funciones proceden de la propia compañía.
 

@@ -35,7 +35,7 @@ Conviene recordar que estas cifras proceden de las evaluaciones de la propia emp
 
 Para la mayoría de usuarios particulares, el cambio será poco visible: no llega al chat habitual y se dirige sobre todo a tareas largas de trabajo y programación. Donde sí puede notarse es en **empresas, agencias y desarrolladores** que crean herramientas con la API: un modelo cercano al más avanzado por una fracción del precio reduce el coste de automatizar tareas como analizar documentos, atender consultas o revisar código.
 
-Para pymes y autónomos que ya pagan **ChatGPT Plus (23 €/mes en España)**, la novedad es que pueden usar GPT-6.1 Sol en ChatGPT Work y Codex sin coste adicional.
+Para pymes y autónomos que ya pagan **ChatGPT Plus** (23 €/mes en España; ver su [historial de precios](/historial-de-precios/#precios-chatgpt)), la novedad es que pueden usar GPT-6.1 Sol en ChatGPT Work y Codex sin coste adicional.
 
 ## Qué cambia en la práctica
 
