@@ -767,3 +767,17 @@ span.glossary-letter { border-color: var(--rule); color: var(--ink-faint); backg
 #form-proyecto { margin-bottom: 12px; }
 .guardado-estado { font-size: .88rem; color: var(--ink-2); margin-left: 8px; }
 .guardado-estado a { font-weight: 700; }
+/* Barra principal con «Mi panel»: en pantallas medianas se compacta para no partirse en dos filas. */
+@media (min-width: 821px) and (max-width: 1080px) {
+  .header-in { gap: 12px; }
+  .site-nav { gap: 11px; }
+  .site-nav a { font-size: .87rem; }
+  .site-nav .nav-start { padding: 4px 10px; }
+  .search-open { font-size: 0; gap: 0; padding: 8px 10px; }
+}
+@media (min-width: 821px) and (max-width: 900px) {
+  .site-header .wrap { padding: 0 16px; }
+  .header-in { gap: 10px; }
+  .site-nav { gap: 9px; }
+  .site-nav a { font-size: .84rem; }
+}
