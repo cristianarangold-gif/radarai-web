@@ -93,3 +93,35 @@ def test_header_menu_links_to_panel(site):
         assert 'href="/mi-panel/"' in nav, rel
     nav = re.search(r'<nav id="menu-principal".*?</nav>', (site / 'mi-panel' / 'index.html').read_text(encoding='utf-8'), re.S).group(0)
     assert 'href="/mi-panel/" aria-current="page"' in nav
+
+
+
+def test_every_news_has_two_internal_links_besides_the_listing(site):
+    import re
+    news_dir = site / 'noticias'
+    slugs = [d.name for d in news_dir.iterdir() if (d / 'index.html').exists()
+             and 'noindex' not in (d / 'index.html').read_text(encoding='utf-8')]
+    incoming = {s: 0 for s in slugs}
+    sources = [news_dir / s / 'index.html' for s in slugs] + list((site / 'herramientas').glob('*/index.html'))
+    for f in sources:
+        html = f.read_text(encoding='utf-8')
+        for t in set(re.findall(r'href="/noticias/([^/"]+)/"', html)):
+            if t in incoming and f.parent.name != t:
+                incoming[t] += 1
+    # La noticia más antigua solo tiene «siguiente»; el resto, anterior y siguiente como mínimo.
+    sin_anterior = [s for s in slugs if 'rel="prev"' not in (news_dir / s / 'index.html').read_text(encoding='utf-8')]
+    assert len(sin_anterior) == 1
+    oldest = sin_anterior[0]
+    low = {k: v for k, v in incoming.items() if v < (1 if k == oldest else 2)}
+    assert slugs and not low, low
+
+
+def test_ficha_lists_its_news(site):
+    html = (site / 'herramientas' / 'chatgpt' / 'index.html').read_text(encoding='utf-8')
+    assert 'Últimas noticias de ChatGPT' in html
+
+
+def test_indexable_pages_allow_large_image_previews(site):
+    html = (site / 'noticias' / 'genie-4-deepmind' / 'index.html').read_text(encoding='utf-8')
+    assert '<meta name="robots" content="max-image-preview:large">' in html
+    assert 'max-image-preview' not in (site / 'buscar' / 'index.html').read_text(encoding='utf-8')

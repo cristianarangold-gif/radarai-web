@@ -35,7 +35,7 @@ from radar.search import build_index, index_json  # noqa: E402
 from radar.availability import availability_context, parse_availability, validate_availability  # noqa: E402
 from radar.glossary import defined_term_set, glossary_context, parse_glossary, validate_glossary  # noqa: E402
 from radar.start import load_start, validate_start  # noqa: E402
-from radar.seo import SITE, rss_xml, sitemap_xml  # noqa: E402
+from radar.seo import SITE, rss_xml, section_lastmod, sitemap_xml  # noqa: E402
 from radar.tools import CATEGORIES, load_tools  # noqa: E402
 
 LISTINGS = [
@@ -162,6 +162,7 @@ def build(root: Path, out: Path) -> None:
     availability_file = root / 'data' / 'disponibilidad.md'
     if '/funciona-en-espana/' in by_url and not availability_file.exists():
         raise ValueError('content/paginas/funciona-en-espana.md necesita data/disponibilidad.md')
+    features = []
     if availability_file.exists():
         features = parse_availability(availability_file.read_text(encoding='utf-8'))
         validate_availability(features, fichas_ok, site_urls, date.today())
@@ -237,7 +238,12 @@ def build(root: Path, out: Path) -> None:
         w.owners[rel] = f'portada {p.url}'
         write_cover_png(cover_for(p, brands, tools), out / rel, root / 'static' / 'fonts')
 
-    w.write('sitemap.xml', sitemap_xml(all_pages), 'sitemap')
+    derived = section_lastmod(all_pages)
+    if base_ctx.get('price_snapshots'):
+        derived['/historial-de-precios/'] = date.fromisoformat(base_ctx['price_snapshots'][-1].date)
+    if availability_file.exists() and features:
+        derived['/funciona-en-espana/'] = max(date.fromisoformat(f.comprobado) for f in features)
+    w.write('sitemap.xml', sitemap_xml(all_pages, derived), 'sitemap')
     w.write('rss.xml', rss_xml(news), 'rss')
     w.write(INDEXNOW_KEY_FILE, INDEXNOW_KEY, 'clave de IndexNow')
     w.write('robots.txt', f'User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n', 'robots')

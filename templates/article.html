@@ -25,6 +25,12 @@
       {% include 'partials/ad_slot.html' %}
       {% include 'partials/sources.html' %}
       {% include 'partials/related.html' %}
+      {% if page.kind == 'noticia' and (neighbors[0] or neighbors[1]) %}
+      <nav class="news-pager" aria-label="Otras noticias">
+        {% if neighbors[0] %}<a class="news-pager-prev" href="{{ neighbors[0].url }}" rel="prev"><span>← Noticia anterior</span>{{ neighbors[0].title }}</a>{% endif %}
+        {% if neighbors[1] %}<a class="news-pager-next" href="{{ neighbors[1].url }}" rel="next"><span>Noticia siguiente →</span>{{ neighbors[1].title }}</a>{% endif %}
+      </nav>
+      {% endif %}
     </div>
     <aside class="article-side">
       <div class="side-sticky">

@@ -2,8 +2,8 @@ from datetime import date
 
 import pytest
 
-from radar.editorial import (DEFAULT_RADAR, load_imprescindibles, radar_tools, reading_minutes,
-                             related_news, split_ids, toc, validate_news_meta)
+from radar.editorial import (DEFAULT_RADAR, load_imprescindibles, news_neighbors, radar_tools, reading_minutes,
+                             related_news, split_ids, toc, tool_news, validate_news_meta)
 from radar.models import Brand, Tool
 from tests.helpers import make_page, news
 
@@ -140,3 +140,27 @@ def test_author_title_is_not_a_regulated_profession_claim():
     root = Path(__file__).resolve().parent.parent
     text = (root / 'content' / 'paginas' / 'autor.md').read_text(encoding='utf-8')
     assert 'dietista' not in text.lower() and 'entrenador personal especializado en nutrición deportiva' in text
+
+
+def test_related_news_prefers_same_tool_then_same_company():
+    items = [news('n0', 20, extra={'herramientas': 'claude', 'empresa': 'anthropic'}),
+             news('n1', 19, extra={'herramientas': 'chatgpt', 'empresa': 'openai'}),
+             news('n2', 18, extra={'herramientas': 'gemini', 'empresa': 'google'}),
+             news('n3', 5, extra={'herramientas': 'gemini, chatgpt', 'empresa': 'google'}),
+             news('n4', 4, extra={'herramientas': 'veo', 'empresa': 'google'})]
+    page = news('p', 21, extra={'herramientas': 'gemini', 'empresa': 'google'})
+    assert [p.slug for p in related_news(page, items + [page])] == ['n2', 'n3', 'n4']
+
+
+def test_news_neighbors_link_older_and_newer():
+    items = [news(f'n{i}', 10 - i) for i in range(3)]  # n0 la más reciente
+    assert news_neighbors(items[1], items) == (items[2], items[0])
+    assert news_neighbors(items[0], items) == (items[1], None)
+    assert news_neighbors(items[2], items) == (None, items[1])
+
+
+def test_tool_news_filters_by_tool_and_limits():
+    items = [news(f'n{i}', 20 - i, extra={'herramientas': 'chatgpt' if i % 2 == 0 else 'claude'}) for i in range(14)]
+    got = tool_news('chatgpt', items, n=5)
+    assert [p.slug for p in got] == ['n0', 'n2', 'n4', 'n6', 'n8']
+    assert tool_news('cursor', items) == []

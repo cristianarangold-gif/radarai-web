@@ -54,3 +54,19 @@ def test_jsonld_author_page_is_profile_page():
     person = profile['mainEntity']
     assert person['name'] == 'Cristian Arango' and person['image'] == 'https://radarai.es/static/img/cristian-arango.jpg'
     assert person['sameAs'] == ['https://www.instagram.com/cristian__fit/']
+
+
+def test_sitemap_uses_derived_lastmod_for_undated_pages():
+    xml = sitemap_xml([make_page(url='/'), make_page(url='/sobre/')], {'/': date(2026, 11, 16)})
+    assert '<loc>https://radarai.es/</loc><lastmod>2026-11-16</lastmod>' in xml
+    assert '<loc>https://radarai.es/sobre/</loc></url>' in xml
+
+
+def test_section_lastmod_takes_latest_child():
+    from radar.seo import section_lastmod
+    pages = [news('a', 3), news('b', 9), make_page(kind='guia', url='/guias/x/', date=date(2026, 10, 2)),
+             make_page(kind='guia', url='/guias/y/', updated=date(2026, 10, 7))]
+    got = section_lastmod(pages)
+    assert got['/'] == got['/noticias/'] == date(2026, 10, 9)
+    assert got['/guias/'] == date(2026, 10, 7)
+    assert '/mejor-ia/' not in got
