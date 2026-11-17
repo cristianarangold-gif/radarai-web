@@ -1,9 +1,9 @@
 """Canonical, datos estructurados (JSON-LD), sitemap y RSS."""
 from __future__ import annotations
 
-from datetime import datetime, time, timezone
+from datetime import date, datetime, time, timezone
 from email.utils import format_datetime
-from typing import List, Optional
+from typing import Dict, List, Optional
 from xml.sax.saxutils import escape
 
 from .models import Page
@@ -92,10 +92,27 @@ def jsonld(page: Page, image: Optional[str] = None) -> List[dict]:
     return data
 
 
-def sitemap_xml(pages: List[Page]) -> str:
+SECTIONS = {'/noticias/': 'noticia', '/guias/': 'guia', '/mejor-ia/': 'comparativa', '/herramientas/': 'ficha',
+            '/ia-por-profesion/': 'profesion'}
+
+
+def section_lastmod(pages: List[Page]) -> Dict[str, date]:
+    """Fecha de los listados (y la portada) = la más reciente de las páginas que muestran."""
+    out: Dict[str, date] = {}
+    for url, kind in SECTIONS.items():
+        dates = [p.lastmod for p in pages if p.kind == kind and p.indexable and p.lastmod]
+        if dates:
+            out[url] = max(dates)
+    if '/noticias/' in out:
+        out['/'] = out['/noticias/']
+    return out
+
+
+def sitemap_xml(pages: List[Page], derived: Optional[Dict[str, date]] = None) -> str:
     rows = []
     for p in sorted((p for p in pages if p.indexable), key=lambda p: p.url):
-        lastmod = f'<lastmod>{p.lastmod.isoformat()}</lastmod>' if p.lastmod else ''
+        when = p.lastmod or (derived or {}).get(p.url)
+        lastmod = f'<lastmod>{when.isoformat()}</lastmod>' if when else ''
         rows.append(f'  <url><loc>{escape(canonical(p.url))}</loc>{lastmod}</url>')
     return ('<?xml version="1.0" encoding="UTF-8"?>\n'
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'

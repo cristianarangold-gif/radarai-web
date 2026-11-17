@@ -27,6 +27,13 @@
       <div class="prose">
         {{ page.body_html | safe }}
       </div>
+      {% if tool_news %}
+      <section class="tool-news" aria-labelledby="noticias-{{ page.slug }}-h">
+        <h2 id="noticias-{{ page.slug }}-h">Últimas noticias de {{ name }}</h2>
+        <ul>{% for n in tool_news %}<li><time datetime="{{ n.date.isoformat() }}">{{ n.date | fecha_es }}</time> <a href="{{ n.url }}">{{ n.title }}</a></li>{% endfor %}</ul>
+        <a href="/noticias/">Todas las noticias →</a>
+      </section>
+      {% endif %}
       {% include 'partials/ad_slot.html' %}
       {% include 'partials/sources.html' %}
     </div>

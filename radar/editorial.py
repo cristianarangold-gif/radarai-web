@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import re
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Dict, List, Optional, Tuple
 
 from .content import text_of
 from .models import Brand, Page, Tool
@@ -51,7 +51,27 @@ def toc(body_html: str) -> List[Tuple[str, str]]:
 
 
 def related_news(page: Page, news: List[Page], n: int = 3) -> List[Page]:
-    return [p for p in news if p.url != page.url][:n]
+    """Primero las que comparten herramienta, luego las de la misma empresa; a igualdad, la más reciente."""
+    mine = set(split_ids(page.extra.get('herramientas', '')))
+    company = page.extra.get('empresa', '')
+    def score(p: Page):
+        shared = len(mine & set(split_ids(p.extra.get('herramientas', ''))))
+        return (-shared, 0 if company and p.extra.get('empresa') == company else 1)
+    others = [p for p in news if p.url != page.url]
+    return sorted(others, key=score)[:n]  # sorted es estable: conserva el orden por fecha
+
+
+def news_neighbors(page: Page, news: List[Page]) -> Tuple[Optional[Page], Optional[Page]]:
+    """(noticia anterior, noticia siguiente) en el orden de `news` (de más reciente a más antigua)."""
+    urls = [p.url for p in news]
+    if page.url not in urls:
+        return None, None
+    i = urls.index(page.url)
+    return (news[i + 1] if i + 1 < len(news) else None), (news[i - 1] if i > 0 else None)
+
+
+def tool_news(tool_id: str, news: List[Page], n: int = 5) -> List[Page]:
+    return [p for p in news if tool_id in split_ids(p.extra.get('herramientas', ''))][:n]
 
 
 def load_imprescindibles(path: Path, by_url: Dict[str, Page]) -> List[Page]:

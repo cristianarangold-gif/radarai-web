@@ -14,7 +14,7 @@ from .brands import logo_html
 from .covers import cover_for, cover_svg, og_rel
 from .duels import duel_context, duel_tools
 from .professions import parse_kit, profession_context
-from .editorial import reading_minutes, related_news, toc
+from .editorial import news_neighbors, reading_minutes, related_news, toc, tool_news
 from .models import Brand, Page
 from .seo import SITE, canonical, jsonld
 
@@ -170,6 +170,8 @@ def render_page(env: jinja2.Environment, page: Page, ctx: dict) -> str:
         fichas=ctx.get('fichas', {}),
         toc=toc(page.body_html),
         related=related_news(page, ctx.get('news', [])) if page.kind == 'noticia' else [],
+        neighbors=news_neighbors(page, ctx.get('news', [])) if page.kind == 'noticia' else (None, None),
+        tool_news=tool_news(page.slug, ctx.get('news', [])) if page.kind == 'ficha' else [],
         logos_dir=logos_dir,
         search_index_url=ctx.get('search_index_url', ''),
         assistant_payload=ctx.get('assistant_payload', {}),

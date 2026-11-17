@@ -781,3 +781,16 @@ span.glossary-letter { border-color: var(--rule); color: var(--ink-faint); backg
   .site-nav { gap: 9px; }
   .site-nav a { font-size: .84rem; }
 }
+/* Enlazado interno: noticias de cada ficha y noticia anterior/siguiente */
+.tool-news { margin: 32px 0 8px; border-top: 1px solid var(--rule); padding-top: 18px; }
+.tool-news h2 { font-size: 1.3rem; margin: 0 0 10px; }
+.tool-news ul { list-style: none; padding: 0; margin: 0 0 12px; }
+.tool-news li { padding: 8px 0; border-bottom: 1px solid var(--rule-2); }
+.tool-news time { display: block; color: var(--ink-3); font-size: .85rem; }
+.tool-news a { font-weight: 600; }
+.news-pager { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 28px 0 8px; }
+.news-pager a { display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; border: 1px solid var(--rule); border-radius: var(--radius); color: var(--ink); text-decoration: none; font-weight: 600; line-height: 1.35; }
+.news-pager a:hover { border-color: var(--ink); }
+.news-pager span { color: var(--ink-3); font-size: .85rem; font-weight: 500; }
+.news-pager-next { grid-column: 2; text-align: right; }
+@media (max-width: 600px) { .news-pager { grid-template-columns: 1fr; } .news-pager-next { grid-column: auto; } }
