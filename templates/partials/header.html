@@ -9,6 +9,7 @@
       {% for label, href in NAV %}
       <a href="{{ href }}"{% if href == page.url %} aria-current="page"{% endif %}>{{ label }}</a>
       {% endfor %}
+      {% if panel %}<a href="/mi-panel/"{% if page.url == '/mi-panel/' %} aria-current="page"{% endif %}>Mi panel</a>{% endif %}
     </nav>
   </div>
 </header>

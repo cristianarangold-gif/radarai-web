@@ -100,7 +100,7 @@ def test_menu_and_home_link_to_start_in_real_build(site):
     out = site
     for page in ('index.html', 'noticias/index.html', 'empieza-aqui/index.html'):
         hrefs = re.findall(r'href="([^"]+)"', _nav((out / page).read_text()))
-        assert hrefs[0] == '/empieza-aqui/' and len(hrefs) == 6, page
+        assert hrefs[0] == '/empieza-aqui/' and len(hrefs) == 7 and hrefs[-1] == '/mi-panel/', page
     start_nav = _nav((out / 'empieza-aqui' / 'index.html').read_text())
     assert 'class="nav-start" href="/empieza-aqui/" aria-current="page"' in start_nav
     assert 'aria-current' not in _nav((out / 'index.html').read_text())

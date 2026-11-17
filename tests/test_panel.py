@@ -84,3 +84,12 @@ def test_privacy_and_cookies_explain_panel(site):
     assert 'Mi panel' in privacy and 'navegador' in privacy and 'href="/mi-panel/"' in privacy
     cookies = _main((site / 'legal' / 'politica-cookies' / 'index.html').read_text(encoding='utf-8'))
     assert 'Mi panel' in cookies
+
+
+def test_header_menu_links_to_panel(site):
+    import re
+    for rel in ('index.html', 'mi-panel/index.html'):
+        nav = re.search(r'<nav id="menu-principal".*?</nav>', (site / rel).read_text(encoding='utf-8'), re.S).group(0)
+        assert 'href="/mi-panel/"' in nav, rel
+    nav = re.search(r'<nav id="menu-principal".*?</nav>', (site / 'mi-panel' / 'index.html').read_text(encoding='utf-8'), re.S).group(0)
+    assert 'href="/mi-panel/" aria-current="page"' in nav
