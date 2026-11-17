@@ -501,3 +501,14 @@ es: si
 nota: Resúmenes personalizados a lo largo del día. Samsung España la anuncia; depende del modelo y la versión de One UI.
 comprobado: 2026-11-16
 fuentes: https://www.samsung.com/es/galaxy-ai/, https://www.samsung.com/us/galaxy-ai/
+
+## Ask Maps en Google Maps
+id: ask-maps
+empresa: google
+eeuu: si
+ue: sin_confirmar
+es: parcial
+nota: Google nombra a España en la ampliación a 30 países europeos. Itinerarios y listas, donde esté Ask Maps; citas y consejos de ruta, primero en EE. UU.
+comprobado: 2026-11-17
+fuentes: https://blog.google/products-and-platforms/products/maps/ask-maps-holiday-travel-features-2026/
+noticia: /noticias/google-ask-maps-espana-itinerarios/
