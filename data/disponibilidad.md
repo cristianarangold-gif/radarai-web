@@ -215,9 +215,10 @@ ficha: gemini
 eeuu: si
 ue: no
 es: no
-nota: Requiere Google AI Pro o Ultra y activar Personal Intelligence. Excluida del Espacio Económico Europeo.
-comprobado: 2026-11-04
-fuentes: https://support.google.com/gemini/answer/17094507?hl=es
+nota: Gratis en EE. UU., Japón, Corea, Canadá, Australia e India; España no figura. La ayuda oficial excluye el Espacio Económico Europeo.
+comprobado: 2026-11-18
+fuentes: https://blog.google/innovation-and-ai/products/gemini-app/tasks-in-gemini-free-new-features/, https://support.google.com/gemini/answer/17094507?hl=es
+noticia: /noticias/gemini-tareas-gratis-seis-paises/
 
 ## Importar chats de otras IA a Gemini
 id: gemini-importar-chats
