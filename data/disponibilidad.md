@@ -220,6 +220,18 @@ comprobado: 2026-11-18
 fuentes: https://blog.google/innovation-and-ai/products/gemini-app/tasks-in-gemini-free-new-features/, https://support.google.com/gemini/answer/17094507?hl=es
 noticia: /noticias/gemini-tareas-gratis-seis-paises/
 
+## Uso del ordenador en la app de Gemini para Mac
+id: gemini-computer-use-mac
+empresa: google
+ficha: gemini
+eeuu: si
+ue: no
+es: no
+nota: Google lo despliega en inglés en EE. UU., para cuentas personales mayores de 18 en Google AI Plus, Pro y Ultra. Exige Mac con Apple Silicon y macOS 15.
+comprobado: 2026-11-20
+fuentes: https://blog.google/innovation-and-ai/products/gemini-app/computer-use-mac/
+noticia: /noticias/gemini-usa-tu-mac-uso-del-ordenador/
+
 ## Importar chats de otras IA a Gemini
 id: gemini-importar-chats
 empresa: google
