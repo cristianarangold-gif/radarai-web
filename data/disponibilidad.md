@@ -160,6 +160,7 @@ es: si
 nota: Conversación por voz en la aplicación móvil de Gemini; Google remite a la disponibilidad de la aplicación, que incluye España. No está en la web de Gemini.
 comprobado: 2026-11-15
 fuentes: https://support.google.com/gemini/answer/15274899?hl=es, https://support.google.com/gemini/answer/13575153?hl=es
+noticia: /noticias/gemini-android-go-moviles-poca-memoria/
 
 ## Gemini en Apple CarPlay
 id: gemini-carplay
