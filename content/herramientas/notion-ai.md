@@ -1,10 +1,11 @@
 titulo: Notion AI: qué plan necesitas para usar la IA y cuánto cuesta
 descripcion: Análisis de Notion AI en 2026: qué incluye cada plan de Notion (Gratis, Plus, Business, Enterprise), precios en euros, agentes, privacidad y alternativas.
 fecha: 2026-10-06
+actualizado: 2026-11-23
 web: https://www.notion.com/product/ai
 plataforma: Web, Windows, macOS, iOS y Android
 precio_desde: 0 €
-plan_pago: Business 19,50 €/usuario/mes
+plan_pago: Business 23,50 €/usuario/mes
 ideal_para: Equipos que usan Notion
 veredicto: Muy recomendable si tu equipo ya trabaja en Notion; ten en cuenta que la IA completa requiere el plan Business.
 fuentes: https://www.notion.com/es-es/pricing
@@ -24,13 +25,13 @@ Encaja especialmente bien en estos perfiles:
 
 ## Planes y precios en euros
 
-Precios por usuario y mes con pago mensual, según la página oficial de Notion para España (comprobado el 6 de octubre de 2026). El pago anual tiene un descuento de hasta el 20 %.
+Precios por usuario y mes con pago mensual, según la página oficial de Notion para España (comprobado el 23 de noviembre de 2026). Con pago anual, Plus sale a 9,50 € y Business a 19,50 € por usuario y mes.
 
 | Plan | Precio | Notion AI |
 |---|---|---|
 | Gratis | 0 € | Prueba limitada de funciones de IA |
-| Plus | 9,50 €/usuario/mes | Prueba limitada de funciones de IA |
-| Business | 19,50 €/usuario/mes | IA completa |
+| Plus | 11,50 €/usuario/mes | Prueba limitada de funciones de IA |
+| Business | 23,50 €/usuario/mes | IA completa |
 | Enterprise | a medida | IA completa con más garantías de privacidad |
 
 Lo que incluye la IA en cada caso, según Notion:
@@ -67,7 +68,7 @@ Lo que incluye la IA en cada caso, según Notion:
 
 ## Limitaciones
 
-- **La IA completa exige el plan Business** (19,50 €/usuario/mes); en Gratis y Plus solo hay una prueba limitada.
+- **La IA completa exige el plan Business** (23,50 €/usuario/mes); en Gratis y Plus solo hay una prueba limitada.
 - **Su valor depende de tener tu información en Notion.** Si no usas Notion a diario, un chatbot generalista será más útil.
 - **Los agentes personalizados se pagan aparte** mediante créditos.
 - **Errores de interpretación**: conviene revisar los resúmenes y tareas que genera antes de compartirlos.
@@ -87,7 +88,7 @@ Las comparamos en [la mejor IA para productividad](/mejor-ia-para-productividad/
 
 ## Veredicto
 
-Notion AI es muy recomendable **si tu equipo ya trabaja en Notion**: la ventaja de que la IA conozca tus proyectos y bases de datos es difícil de igualar. Ten en cuenta que la IA completa requiere **Business (19,50 €/usuario/mes)**. Si solo necesitas redactar o resumir de vez en cuando, un asistente generalista te saldrá más a cuenta.
+Notion AI es muy recomendable **si tu equipo ya trabaja en Notion**: la ventaja de que la IA conozca tus proyectos y bases de datos es difícil de igualar. Ten en cuenta que la IA completa requiere **Business (23,50 €/usuario/mes)**. Si solo necesitas redactar o resumir de vez en cuando, un asistente generalista te saldrá más a cuenta.
 
 ## Preguntas frecuentes
 
@@ -97,7 +98,7 @@ Los planes Gratis y Plus permiten probar algunas funciones de IA de forma limita
 
 ### ¿Cuánto cuesta Notion con IA?
 
-El plan Business, que incluye la IA completa, cuesta 19,50 € por usuario y mes con pago mensual (comprobado el 6 de octubre de 2026).
+El plan Business, que incluye la IA completa, cuesta 23,50 € por usuario y mes con pago mensual, o 19,50 € con pago anual (comprobado el 23 de noviembre de 2026).
 
 ### ¿Notion AI puede tomar notas de mis reuniones?
 

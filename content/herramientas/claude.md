@@ -1,7 +1,7 @@
 titulo: Claude de Anthropic: planes, precios y para qué destaca
-descripcion: Análisis de Claude, el asistente de Anthropic: planes Free, Pro, Max y Team, precios, funciones, privacidad y alternativas en 2026.
+descripcion: Análisis de Claude, el asistente de Anthropic: planes Free, Pro, Max, Ultra y Team, precios, funciones, privacidad y alternativas en 2026.
 fecha: 2026-10-06
-actualizado: 2026-10-20
+actualizado: 2026-11-23
 web: https://claude.ai/
 plataforma: Web, iOS, Android, Windows y macOS
 precio_desde: 0 €
@@ -26,13 +26,14 @@ Es especialmente recomendable para:
 
 ## Planes y precios
 
-Desde España, la página oficial de Anthropic muestra los precios en euros (comprobado el 20 de octubre de 2026):
+Desde España, la página oficial de Anthropic muestra los precios en euros (comprobado el 23 de noviembre de 2026; los planes Team, el 20 de octubre de 2026):
 
 | Plan | Precio | Para quién |
 |---|---|---|
 | Free | 0 € | Uso diario moderado |
 | Pro | 18 €/mes o 15 €/mes con pago anual (180 €/año) | Uso profesional individual |
-| Max | desde 90 €/mes | Uso muy intensivo (5x o 20x el uso de Pro) |
+| Max | 90 €/mes | Uso muy intensivo (5 veces el uso de Pro) |
+| Ultra | 180 €/mes | Sesiones largas (10 veces el uso semanal de Pro) |
 | Team Standard | 21,04 €/usuario/mes o 18 € con pago anual | Equipos |
 | Team Premium | 105,23 €/usuario/mes o 90 € con pago anual | Equipos con uso intensivo |
 | Enterprise | 20 $/usuario/mes + uso a precio de API | Grandes organizaciones |
@@ -41,7 +42,8 @@ Lo que incluye cada nivel, según Anthropic:
 
 - **Free**: chat en web, escritorio y móvil, búsqueda web, creación de archivos, ejecución de código, memoria, conexión con aplicaciones y *artifacts* (piezas interactivas como documentos, tablas o pequeñas apps que se generan junto a la conversación).
 - **Pro**: todo lo anterior más Claude Code, las herramientas de diseño, presentaciones y documentos, proyectos, acceso a más modelos y extensiones para Chrome y Microsoft 365.
-- **Max**: multiplica por 5 o por 20 el uso de Pro, con límites de salida más altos, acceso anticipado a novedades y prioridad en horas punta.
+- **Max**: multiplica por 5 el uso de Pro (cada 5 horas y cada semana), incluye créditos mensuales de API, acceso anticipado a novedades y prioridad en horas punta.
+- **Ultra**: todo lo de Max, 10 veces el uso semanal de Pro y sin límite de 5 horas para cuentas verificadas, con más créditos mensuales de API.
 - **Team y Enterprise** añaden administración centralizada, inicio de sesión único (SSO), controles de acceso y, en Enterprise, opciones de cumplimiento normativo como registros de auditoría y retención de datos a medida.
 
 ## Funciones clave
