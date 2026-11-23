@@ -1,7 +1,7 @@
 titulo: Suno: crear canciones con IA, planes y derechos de uso
-descripcion: Análisis de Suno, la IA para crear canciones: planes Free, Pro y Premier, créditos, descargas, derechos comerciales, ejemplos y alternativas en 2026.
+descripcion: Análisis de Suno, la IA para crear canciones: planes Free, Pro, Premier y Platinum, créditos, descargas, derechos comerciales, ejemplos y alternativas en 2026.
 fecha: 2026-10-06
-actualizado: 2026-10-20
+actualizado: 2026-11-23
 web: https://suno.com/
 plataforma: Web, iOS y Android
 precio_desde: 0 €
@@ -25,18 +25,19 @@ Encaja especialmente bien en estos perfiles:
 
 ## Planes y precios
 
-Desde España, la página oficial de Suno muestra los precios en euros. Precios comprobados el 20 de octubre de 2026; créditos y descargas, el 8 de octubre de 2026:
+Desde España, la página oficial de Suno muestra los precios en euros. Precios comprobados el 23 de noviembre de 2026; créditos y descargas, el 8 de octubre de 2026 (Platinum, el 23 de noviembre de 2026):
 
 | Plan | Mensual | Con pago anual | Créditos | Descargas | Uso comercial |
 |---|---|---|---|---|---|
 | Free | 0 € | — | 50 al día | No | No |
 | Pro | 9 € | 7,20 €/mes | 2.500 al mes | 20 canciones/mes | Sí |
 | Premier | 28 € | 22 €/mes | 10.000 al mes | 60 canciones/mes | Sí |
+| Platinum | 110 € | 90 €/mes | 15.000 al mes | 120 canciones/mes | Sí |
 
 Otros detalles de la página oficial:
 
 - El plan **Free** usa los modelos gratuitos (v6-mini) y **no permite descargar** las canciones ni usarlas comercialmente.
-- **Pro y Premier** dan acceso a sus mejores modelos (v6 y v6-wild) y a los **derechos de uso comercial**.
+- **Pro, Premier y Platinum** dan acceso a sus mejores modelos (v6 y v6-wild) y a los **derechos de uso comercial**.
 - El pago anual supone un ahorro del 20 %.
 
 ## Derechos y uso comercial
