@@ -356,6 +356,7 @@ es: si
 nota: Google remite a la lista de países de la aplicación Gemini.
 comprobado: 2026-11-04
 fuentes: https://support.google.com/notebooklm/answer/16269187?hl=es, https://support.google.com/gemini/answer/13575153?hl=es
+noticia: /noticias/gemini-notebook-flashcards-imagenes-cronometro/
 
 ## Google Antigravity
 id: google-antigravity
